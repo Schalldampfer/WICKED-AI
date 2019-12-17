@@ -9,13 +9,13 @@ _showMarker 	= _this select 5;
 _numWaypoints	= _this select 6;
 _locations		= _this select 7;
 _completionType	= _this select 8;
-_msgstart		= (_this select 9) select 0;
-_msgwin			= (_this select 9) select 1;
-_msglose		= (_this select 9) select 2;
+_msgstart		= _this select 9;
+_msgwin			= _this select 10;
+_msglose		= _this select 11;
 _countWP		= [];
 _unitGroup = ((wai_mission_data select _mission) select 1) select 0;
 
-if(wai_debug_mode) then {diag_log format["WAI: Starting Mission number %1",_mission];};
+if (wai_debug_mode) then {diag_log "WAI: Starting Mission number " + str _mission;};
 
 _color = call {
 	if (_difficulty == "Easy") exitWith {"ColorGreen"};
@@ -42,6 +42,8 @@ for "_i" from 0 to _numWaypoints - 1 do {
 	_wp setWaypointCombatMode "YELLOW";
 	_wp setWaypointCompletionRadius 300;
 };
+
+if (wai_debug_mode) then {diag_log "WAI: Mission Data: " + str wai_mission_data;};
 
 [_difficulty,_msgstart] call wai_server_message;
 
@@ -123,7 +125,7 @@ WAI_MarkerReady = true;
 		if (_showMarker && {_startMarker}) then {
 			if (ai_show_count) then {
 				_aiCount = (wai_mission_data select _mission) select 0;
-				_text = format["%1 (%2 A.I.)",_name,_aiCount];
+				_text = format["%1 [%2%3]",_name,floor(100 * (_max_ai - _aiCount)/_max_ai),"%"];
 			} else {
 				_text = _name;
 			};
@@ -135,7 +137,7 @@ WAI_MarkerReady = true;
 			_marker setMarkerSize [300,300];
 			_dot = createMarker [_missionType + str(_mission) + "dot", _position];
 			_dot setMarkerColor "ColorBlack";
-			_dot setMarkerType "mil_dot";
+			_dot setMarkerType "mil_warning";//mil_dot
 			_dot setMarkerText _text;
 			
 			uiSleep 2;

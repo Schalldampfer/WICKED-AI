@@ -20,6 +20,10 @@ minefield = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile
 custom_publish = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\custom_publish_vehicle.sqf";
 wai_spawnObjects = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\spawn_objects.sqf";
 wai_air_drop = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\airdrop_winorfail.sqf";
+WAI_HandleDamage_Unit = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\ai_handledamage_unit.sqf";
+WAI_HandleDamage_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\ai_handledamage_vehicle.sqf";
+WAI_Killed_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\vehicle_kill.sqf";
+enableSimulationTrue = { (_this select 0) enableSimulation true;};
 
 call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\position_functions.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\functions.sqf";
@@ -46,7 +50,7 @@ if(isNil("DZMSInstalled")) then {
 	WEST setFriend [RESISTANCE,0];
 	
 	RESISTANCE setFriend [EAST,0];
-	RESISTANCE setFriend [WEST,0];	
+	RESISTANCE setFriend [WEST,0];
 };
 
 wai_staticloaded = false;

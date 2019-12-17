@@ -49,39 +49,40 @@ if(_aitype == "Hero") then {
 _pilot = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
 [_pilot] joinSilent _unitGroup;
 
-call {
-	if (_aitype == "hero") 		exitWith {_pilot setVariable ["Hero",true,false]; _pilot setVariable ["humanity", ai_remove_humanity];};
-	if (_aitype == "bandit") 	exitWith {_pilot setVariable ["Bandit",true,false]; _pilot setVariable ["humanity", ai_add_humanity];};
-	if (_aitype == "special") 	exitWith {_pilot setVariable ["Special",true,false]; _pilot setVariable ["humanity", ai_special_humanity];};
-};
-
-_vehicle = createVehicle [_veh_class, [(_startingpos select 0),(_startingpos select 1), 0], [], 0, "CAN_COLLIDE"];
+_vehicle = _veh_class createVehicle _startingpos;
 _vehicle setFuel 1;
 _vehicle engineOn true;
 _vehicle setVehicleAmmo 1;
 _vehicle addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
+_vehicle addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
+_vehicle addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
 _vehicle allowCrewInImmobile true; 
 _vehicle lock true;
+[_vehicle,_veh_class] call load_ammo;
 
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_vehicle];
 
 _pilot assignAsDriver _vehicle;
 _pilot moveInDriver _vehicle;
 
-_gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
-_gunner assignAsGunner _vehicle;
-_gunner moveInTurret [_vehicle,[0]];
-[_gunner] joinSilent _unitGroup;
-
-call {
-	if (_aitype == "hero") 		exitWith {_gunner setVariable ["Hero",true,false]; _gunner setVariable ["humanity", ai_remove_humanity];};
-	if (_aitype == "bandit") 	exitWith {_gunner setVariable ["Bandit",true,false]; _gunner setVariable ["humanity", ai_add_humanity];};
-	if (_aitype == "special") 	exitWith {_gunner setVariable ["Special",true,false]; _gunner setVariable ["humanity", ai_special_humanity];};
+_turretCount = count (configFile >> "CfgVehicles" >> _veh_class >> "turrets");
+for "_i" from 0 to (_turretCount - 1) do {
+	_gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
+	_gunner assignAsGunner _vehicle;
+	_gunner moveInTurret [_vehicle,[_i]];
+	
+	[_gunner] joinSilent _unitGroup;
+	
+	{
+		_gunner 	setSkill [(_x select 0),(_x select 1)];
+	} count _aicskill;
 };
 
-{
-	_gunner setSkill [(_x select 0),(_x select 1)];
-} count _aicskill;
+call {
+	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true,false]; _x setVariable ["humanity", ai_remove_humanity];} count (units _unitgroup); };
+	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count (units _unitgroup); };
+	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count (units _unitgroup); };
+};
 
 {
 	_pilot setSkill [_x,1]
@@ -91,21 +92,25 @@ call {
 	_x addWeapon "Makarov_DZ";
 	_x addMagazine "8Rnd_9x18_Makarov";
 	_x addMagazine "8Rnd_9x18_Makarov";
+	if (sunOrMoon != 1) then {
+		_x addweapon "NVGoggles";
+	};
+	_x setVariable ["bodyName",(name _x)];
 } count (units _unitgroup);
 
 {
 	_x addEventHandler ["Killed",{[_this select 0, _this select 1, "vehicle"] call on_kill;}];
+	_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 } forEach (units _unitgroup);
 
 if (!isNil "_mission") then {
-	_vehicle setVariable ["mission" + dayz_serverKey, _mission, false];
-	
+	_vehicle setVariable ["mission",_mission];
 	((wai_mission_data select _mission) select 1) set [count ((wai_mission_data select _mission) select 1), _unitGroup];
 	((wai_mission_data select _mission) select 4) set [count ((wai_mission_data select _mission) select 4), _vehicle];
 	{
 		_ainum = (wai_mission_data select _mission) select 0;
 		wai_mission_data select _mission set [0, (_ainum + 1)];
-		_x setVariable ["mission" + dayz_serverKey, _mission, false];
+		_x setVariable ["mission",_mission];
 		_x setVariable ["noKey",true];
 	} count (crew _vehicle);
 } else {
@@ -138,6 +143,8 @@ if(_wpnum > 0) then {
 _wp = _unitGroup addWaypoint [[(_position select 0),(_position select 1),0],100];
 _wp setWaypointType "CYCLE";
 _wp setWaypointCompletionRadius 200;
+
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_veh_class,_position];};
 
 _unitGroup
 

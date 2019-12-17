@@ -1,6 +1,6 @@
 // This is a modified version of the DayZ Epoch file fn_spawnObjects.sqf used to spawn WAI mission objects.
 
-private ["_offset","_fires","_position","_object","_objects","_type","_pos","_mission","_destructables"];
+private ["_offset","_fires","_position","_object","_objects","_type","_pos","_mission"];
 
 _objects = _this select 0;
 _pos = _this select 1;
@@ -20,14 +20,6 @@ _fires = [
 	"Misc_TyreHeap"
 ];
 
-// Override god mode on these objects so they can be destroyed if wai_godmode_objects enabled.
-_destructables = [
-	"Gold_Vein_DZE",
-	"Iron_Vein_DZE",
-	"Silver_Vein_DZE",
-	"Supply_Crate_DZE"
-];
-
 {
 	_type = _x select 0;
 	_offset = _x select 1;
@@ -39,8 +31,11 @@ _destructables = [
 	};
 	_object = _type createVehicle [0,0,0];
 	
-	if (_type == "MQ9PredatorB") then {
+	if (_object isKindOf "AllVehicles") then { //_type == "MQ9PredatorB"
 		_object setVehicleLock "LOCKED";
+		_object setVariable ["ObjectID","1",true];
+		_object setVehicleAmmo 0.0;
+		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
 	};
 	
 	if (count _x > 2) then {
@@ -51,13 +46,15 @@ _destructables = [
 	_object setVectorUp surfaceNormal position _object;
 	
 	if (wai_godmode_objects) then {
-		if !(_object in _destructables) then {
-			_object addEventHandler ["HandleDamage",{0}];
-			if !(_type in _fires) then {_object enableSimulation false;};
-		};
+		_object addEventHandler ["HandleDamage",{0}];
 	};
+
+	_object addEventHandler ["Killed",{_this spawn enableSimulationTrue}];
+	if !(_type in _fires) then {_object enableSimulation false;};
 	
-	((wai_mission_data select _mission) select 6) set [count ((wai_mission_data select _mission) select 6), _object];
+	if (_mission > -1) then {
+		((wai_mission_data select _mission) select 6) set [count ((wai_mission_data select _mission) select 6), _object];
+	};
 } forEach _objects;
 
 _object

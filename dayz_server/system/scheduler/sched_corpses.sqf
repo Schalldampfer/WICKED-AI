@@ -63,7 +63,7 @@ sched_corpses = {
 						};
 					};
 					// WAI: 60 * ai_cleanup_time = how long a mission ai corpse stays on the map
-					if ((ai_cleanup_time != -1) && (diag_tickTime - _deathTime > (60*ai_cleanup_time)) && (_x getVariable["bodyName",""] == "mission_ai")) then {
+					if ((ai_cleanup_time != -1) && (diag_tickTime - _deathTime > (60*ai_cleanup_time)) && (_x getVariable ["mission_ai", false])) then {
 						if (_x getVariable["sched_co_fliesDeleted",false] or !dayz_enableFlies) then {
 							// flies have been switched off, we can delete body
 							_sound = _x getVariable ["sched_co_fliesSource", nil];
@@ -82,8 +82,8 @@ sched_corpses = {
 							// body will be deleted at next round
 						};
 					};
-					// 40 minutes = how long a player corpse stays on the map
-					if ((diag_tickTime - _deathTime > 40*60) && (_x getVariable["bodyName",""] != "mission_ai")) then {
+					// 60 minutes = how long a player corpse stays on the map
+					if ((diag_tickTime - _deathTime > 60*60) && !(_x getVariable ["mission_ai", false])) then {
 						if (_x getVariable["sched_co_fliesDeleted",false] or !dayz_enableFlies) then {
 							// flies have been switched off, we can delete body
 							_sound = _x getVariable ["sched_co_fliesSource", nil];
@@ -150,8 +150,8 @@ sched_corpses = {
 				_x setVariable ["sched_co_deathTime", _deathTime];
 			};
 					
-			// 5 minutes = how long a destroyed vehicle stays on the map
-			if (diag_tickTime - _deathTime > 5*60) then {
+			// 20 minutes = how long a destroyed vehicle stays on the map
+			if (diag_tickTime - _deathTime > 20*60) then {
 				{deleteVehicle _x} forEach (_x nearObjects ["CraterLong",50]);
 				_x call sched_co_deleteVehicle;
 				_delQtyV = _delQtyV + 1;

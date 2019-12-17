@@ -1,6 +1,4 @@
-private["_vehicle","_type","_inGear"];
-#define GEAR(mag) if !(isNil "_inGear") then {_vehicle addMagazineCargoGlobal [mag,_inGear];};
-#define TURRET(mag,num) _vehicle addMagazineTurret [mag,[num]];
+private["_vehicle","_type","_inGear","_turretCount","_ammo","_rmWeapons"];
 
 _vehicle = _this select 0;
 _type = _this select 1;
@@ -9,95 +7,94 @@ if (count _this > 2) then {
 	_inGear = _this select 2;
 };
 
-call {
+if(_vehicle isKindOf "ZU23_base") exitWith {
+	_vehicle removeMagazines "40Rnd_23mm_AZP85";
+	_vehicle removeWeapon "2A14";
+	_vehicle addMagazine "1904Rnd_30mmAA_2A38M";
+	_vehicle addWeapon "2A38M";
+};
 
-	if(_type == "Mi17_DZE") exitWith { 
-		TURRET("100Rnd_762x54_PK",0)
-		TURRET("100Rnd_762x54_PK",1)
-		GEAR("100Rnd_762x54_PK")
-	};
+if(_type == "KORD_high_TK_EP1") exitWith {
+	_vehicle addMagazine "500Rnd_145x115_KPVT";
+	_vehicle addMagazine "500Rnd_145x115_KPVT";
+	_vehicle addMagazine "500Rnd_145x115_KPVT";
+	_vehicle addWeapon "KPVT";
+	_vehicle removeWeapon "KORD";
+	_vehicle removeMagazines "50Rnd_127x108_KORD";
+};
 
-	if(_type == "UH1Y_DZE") exitWith {
-		TURRET("2000Rnd_762x51_M134",0)
-		TURRET("2000Rnd_762x51_M134",1)
-		GEAR("2000Rnd_762x51_M134")
-	};
+if(_type == "TOW_TriPod_US_EP1") exitWith {
+	_vehicle removeMagazine "6Rnd_TOW_HMMWV";
+	_vehicle addMagazine "6Rnd_TOW2";
+	_vehicle addMagazine "6Rnd_TOW2";
+};
 
-	if(_type == "UH1H_DZE") exitWith {
-		TURRET("100Rnd_762x51_M240",0)
-		TURRET("100Rnd_762x51_M240",1)
-		GEAR("100Rnd_762x51_M240")
-	};
+if(_type in ["Igla_AA_pod_East","Stinger_Pod"]) exitWith {
+	_vehicle addWeapon "9M311Laucher";
+	_vehicle addMagazine "8Rnd_9M311";
+};
 
-	if(_type == "CH_47F_EP1_DZE") exitWith {
-		TURRET("2000Rnd_762x51_M134",0)
-		TURRET("2000Rnd_762x51_M134",1)
-		TURRET("100Rnd_762x51_M240",2)
-		GEAR("2000Rnd_762x51_M134")
-	};
+if(_type == "GNT_C185U_DZ") exitWith {
+	_vehicle addWeapon "AirBombLauncher";
+	_vehicle addMagazine "4Rnd_FAB_250";
+	_vehicle addMagazine "4Rnd_FAB_250";
+};
 
-	if(_type == "UH60M_EP1_DZE") exitWith {
-		TURRET("2000Rnd_762x51_M134",0)
-		TURRET("2000Rnd_762x51_M134",1)
-		GEAR("2000Rnd_762x51_M134")
-	};
+if(_type == "UH60M_EP1") exitWith {
+	_vehicle addMagazineTurret ["250Rnd_30mmAP_2A42", [0]];
+	_vehicle addMagazineTurret ["250Rnd_30mmAP_2A42", [1]];
+	_vehicle addWeaponTurret ["2A42", [0]];
+	_vehicle addWeaponTurret ["2A42", [1]];
+};
 
-	if(_type == "HMMWV_M998A2_SOV_DES_EP1_DZE") exitWith {
-		TURRET("48Rnd_40mm_MK19",0)
-		TURRET("100Rnd_762x51_M240",1)
-		GEAR("48Rnd_40mm_MK19")
-	};
+//Refill _DZE vehicle's turret
+_turretCount = count (configFile >> "CfgVehicles" >> _type >> "turrets");
+for "_i" from 0 to (_turretCount) do {
+	{
+		_ammoArray = getArray (configFile >> "cfgWeapons" >> _x >> "magazines");
+		if (count _ammoArray > 0) then {
+			_ammo = _ammoArray select 0;
+			if !(_ammo in (_vehicle magazinesTurret [_i])) then {
+				_vehicle addMagazineTurret [_ammo,[_i]];
+				//diag_log format["WAI: Load %1 %2(%4) with %3",_type,_x,_ammo,_i];
+			};
+			if !(isNil "_inGear") then {
+				_vehicle addMagazineCargoGlobal [_ammo,_inGear];
+				//diag_log format["WAI: inGear %1 %2(%4) with %3",_type,_x,_ammo,_i];
+			};
+		};
+		//diag_log format["WAI: Load %1 %2 %3/%4",_x,_ammoArray,_i,_turretCount];
+	} forEach (_vehicle weaponsTurret [_i]);
+	//diag_log format["WAI: has %1 %2/%3",(_vehicle weaponsTurret [_i]),_i,_turretCount];
+};
 
-	if(_type == "LandRover_Special_CZ_EP1_DZE") exitWith {
-		TURRET("29Rnd_30mm_AGS30",0)
-		TURRET("100Rnd_762x54_PK",1)
-		GEAR("29Rnd_30mm_AGS30")
+//Remove AGMs
+_rmWeapons = [
+	"CRV7_PG","HellfireLauncher","AT2Launcher","AT6Launcher","AT9Launcher","VikhrLauncher","MaverickLauncher","Ch29Launcher","Ch29Launcher_Su34"
+];
+if (_vehicle isKindOf "Air") then {
+	for "_i" from 0 to (_turretCount + 1) do {
+		{
+			private ["_am"];
+			if (_x in _rmWeapons) then {
+				_am = getArray (configFile >> "cfgWeapons" >> _x >> "magazines");
+				{
+					_vehicle removeMagazinesTurret [_x,[_i - 1]];
+				} forEach _am;
+			};
+		} foreach (_vehicle weaponsTurret [_i - 1]);
 	};
+	{
+		private ["_am"];
+		if (_x in _rmWeapons) then {
+			_am = getArray (configFile >> "cfgWeapons" >> _x >> "magazines");
+			{
+				_vehicle removeMagazines _x;
+			} forEach _am;
+		};
+	} foreach (weapons _vehicle);
+};
 
-	if(_type == "GAZ_Vodnik_DZE") exitWith {
-		TURRET("100Rnd_762x54_PK",0)
-		TURRET("100Rnd_762x54_PK",1)
-		GEAR("100Rnd_762x54_PK")
-	};
-
-	if(_type == "HMMWV_M1151_M2_CZ_DES_EP1_DZE") exitWith {
-		TURRET("100Rnd_127x99_M2",0)
-		GEAR("100Rnd_127x99_M2")
-	};
-	
-	if(_type == "LandRover_MG_TK_EP1_DZE") exitWith {
-		TURRET("100Rnd_127x99_M2",0)
-		GEAR("100Rnd_127x99_M2")
-	};
-	
-	if(_type == "UAZ_MG_TK_EP1_DZE") exitWith {
-		TURRET("150Rnd_127x107_DSHKM",0)
-		GEAR("150Rnd_127x107_DSHKM")
-	};
-	
-	if(_type == "ArmoredSUV_PMC_DZE") exitWith {
-		TURRET("2000Rnd_762x51_M134",0)
-		GEAR("2000Rnd_762x51_M134")
-	};
-	
-	if(_type == "Offroad_DSHKM_Gue_DZE") exitWith {
-		TURRET("150Rnd_127x107_DSHKM",0)
-		GEAR("150Rnd_127x107_DSHKM")
-	};
-	
-	if(_type == "Pickup_PK_TK_GUE_EP1_DZE") exitWith {
-		TURRET("100Rnd_762x54_PK",0)
-		GEAR("100Rnd_762x54_PK")
-	};
-	
-	if(_type == "Pickup_PK_GUE_DZE") exitWith {
-		TURRET("100Rnd_762x54_PK",0)
-		GEAR("100Rnd_762x54_PK")
-	};
-	
-	if(_type == "Pickup_PK_INS_DZE") exitWith {
-		TURRET("100Rnd_762x54_PK",0)
-		GEAR("100Rnd_762x54_PK")
-	};
-
+if(_type in ["SectorMG_Ori","SectorMG2_Ori"]) exitWith {
+	_vehicle addWeapon "M2BC";
 };

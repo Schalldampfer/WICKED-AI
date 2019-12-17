@@ -1,60 +1,27 @@
-WICKED AI 2.2.6
+WICKED AI 2.2.6-S
 ==============
 
-Since I really like (read love) the Wicked AI missions and support for them has gone in the latest patches, I decided to dust off the old files and start making these 1.0.6+ compatible. Starting with a few minor bugfixes and some custom loadouts, but quickly turning into a proper redo with awesome help of the - very much alive - mod community!
-
-### Release 2.2.6 (worldwidesorrow)
-- Mission objects and crates use compact arrays and functions. Missions can spawn multiple crates.
-- Optional godmode mission objects for servers with overpowered military vehicles. Also disables simulation.
-- New mission C130/MV-22 Armed Vehicle Air Drop added.
-- New multi-crate mission Firestation added.
-- AI multiplier added so overall AI level can be adjusted easily with variables in config.sqf
-- AI Killfeed added to "on kill" function - enabled in config.sqf with variable ai_killfeed.
-- effectiveCommander option added so vehicle gunners can get kill and humanity rewards. @Twist
-- Map independent patrol missions. Reworked so they use map locations as waypoints and they only spawn one thread instead of three.
-- Improved use of the mission data variable for modularity.
-- Avoid traders replaced with avoid safezones that uses the built in DZE_SafeZonePosArray in init.sqf. @Twist
-- Some functions that were not being used and are not necessary like isSlope and inDebug removed.
-- Additional parameter for the load ammo function added so armed vehicles can have magazines placed in their gear.
-- Mission vehicles remained locked until the mission is cleared to prevent ninjas.
-- Since Arma has a bad habit of not kicking dead AI out of vehicles, keys will not spawn on AI static gunners or vehicle crew.
-- Killzone Kid's shuffle plus function added for mission array randomization. @oiad
-- BigEgg's localization solution turned into a function that localizes and formats messages submitted as arrays.
-- The dynamic text option has color-coded mission announcements based on marker color.
-- Additional code auditing and optimization.
-- "mission" variable includes server key for security @BigEgg17
-- missions combined into one folder for ease of update
-- configurable minimum loot level in config.sqf
+Customized WAI for me
+## Release 2.2.6-S2
+- Missions will wait for players getting close within (ac_alert_distance + 1000 m) or timeout in (wai_mission_timeout select 0) minutes.
+- Missions will be shown unknown until players getting close to.
+- All remaining AIs will suicide when the mission is cleard.
+- Marker size depends on the number of AIs in.
+- AI count in % than the number.
+- load_ammo.sqf Automation (It no longer needs ammo classname to be defined)
+- All gunner seats of vehicles are filled.
+- Customized damagehandler for units and vehicles. They receive less damage from AA missiles.
+- DDOPP_taser_handleHit is activated for units in Overpoch servers.
+- Sound effect for Mission claiming
+- Sound effect for Mission clearing
+- Customized loot (config.sqf and configs\overwatch.sqf)
+- Show difficulty instead of Hero/Bandit
+- New missions from DZMS
+- stringtable.xml (communitylocalization stringtable is not compatible with this WAI)
 
 ### Version history
-- 15-11-2018 : Release 2.2.6
-- 28-05-2018 : Release 2.2.5
-- 16-02-2018 : Release 2.2.4
-- 04-01-2018 : Release 2.2.3
-- 04-12-2017 : Release 2.2.2
-- 11-07-2017 : Release 2.2.1
-- 06-06-2015 : Release 2.2.0
-- 11-11-2014 : BETA release v3 (2.2.0)
-- 11-11-2014 : BETA release v2 (2.2.0)
-- 16-10-2014 : BETA release (2.2.0)
-- 03-09-2014 : Minor bugfixes (2.1.4)
-- 03-09-2014 : Minor bugfixes (2.1.3)
-- 02-09-2014 : Minor bugfixes and improvements (2.1.2)
-- 01-09-2014 : Minor bugfixes (2.1.1)
-- 31-08-2014 : Release (2.1.0)
-- 26-08-2014 : BETA release (2.1.0)
-- 24-08-2014 : Minor bugfixes (2.0.5)
-- 20-08-2014 : Minor bugfixes (2.0.4)
-- 20-08-2014 : Minor bugfixes (2.0.3)
-- 19-08-2014 : Minor bugfixes (2.0.2)
-- 17-08-2014 : Minor bugfixes (2.0.1)
-- 17-08-2014 : Major update to (2.0.0)
-- 13-08-2014 : Added anti abuse options (1.9.3)
-- 12-08-2014 : Normalization update (1.9.2)
-- 12-08-2014 : Bugfix medi camp (1.9.1)
-- 09-08-2014 : Major dynamic update (1.9.0)
-- 03-08-2014 : Bugfix MV22 mission (1.8.2)
-- 02-08-2014 : Restructured and code cleaned (1.8.1)
+- 25-6-2019 : 2.2.6-S2
+- 24-11-2018 : Fork from 2.2.6 as 2.2.6-S
 
 ### Installation Instructions
 
@@ -134,8 +101,14 @@ Note: This version of WAI uses files which are adapted from ZSC for radio and dy
 	{
 		sounds[] =
 		{
+			alarm,
 			Radio_Message_Sound
 			,IWAC_Message_Sound
+		};
+		class alarm {
+			name="alarm";
+			sound[]={scripts\radio\alarm.ogg,0.9,1};
+			titles[] = {};
 		};
 		class Radio_Message_Sound
 		{
@@ -267,6 +240,3 @@ For transparency into our release cycle and in striving to maintain backward com
 
 ### Dev team
 - worldwidesorrow
-- oiad
-- BigEgg17
-

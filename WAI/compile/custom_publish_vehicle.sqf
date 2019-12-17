@@ -37,14 +37,18 @@ _vehicle setPos _vehpos;
 _vehicle setVectorUp surfaceNormal position _vehicle;
 _vehicle setVariable ["ObjectID","1",true];
 _vehicle setVariable ["CharacterID","1",true]; // Set character ID to non-zero number so players see the red "Vehicle Locked" message
-_vehicle setVariable ["mission" + dayz_serverKey,_mission, false];
+_vehicle setVariable ["mission",_mission];
+if (!isNil "manage_vehicleammo") then {
+	[_vehicle] call manage_vehicleammo;
+};
+[_vehicle,_class] call load_ammo;
 clearWeaponCargoGlobal _vehicle;
 clearMagazineCargoGlobal _vehicle;
 _vehicle setVehicleLock "locked";
 
 ((wai_mission_data select _mission) select 5) set [count ((wai_mission_data select _mission) select 5), _vehicle];
 
-if (wai_debug_mode) then {diag_log format["WAI: Spawned %1 at %2",_class,_vehpos];};
+diag_log format["WAI: Spawned %1 at %2 %3",_class,_vehpos,_vehicle];
 
 if (getNumber(configFile >> "CfgVehicles" >> _class >> "isBicycle") != 1) then {
 	_hitpoints = _vehicle call vehicle_getHitpoints;
@@ -84,7 +88,7 @@ if (wai_keep_vehicles) then {
 	_vehicle addEventHandler ["GetIn", {
 		_vehicle = _this select 0;
 		_unit = _this select 2;
-		_vehicle setVariable ["mission" + dayz_serverKey,nil];
+		_vehicle setVariable ["mission", nil];
 		
 		if !(isPlayer _unit) exitWith {};
 		
@@ -133,8 +137,10 @@ if (wai_keep_vehicles) then {
 			diag_log ("PUBLISH: Created " + (_class) + " with ID " + str(_uid));
 			
 			if (wai_vehicle_message) then {
-				[nil,(_this select 2),"loc",rTitleText,"This vehicle is saved to the database.","PLAIN",5] call RE;
+				[nil,(_this select 2),"loc",rTitleText,"You have claimed this vehicle! It is now saved to the database.","PLAIN",5] call RE;
 			};
+
+			diag_log format["WAI: %1 has claimed %2", name (_this select 2), _class];
 		};
 	}];
 
@@ -148,7 +154,7 @@ if (wai_keep_vehicles) then {
 		
 		if (_vehicle getVariable ["claimed",nil] == "yes") exitWith {};
 		
-		_vehicle setVariable ["mission" + dayz_serverKey,nil];
+		_vehicle setVariable ["mission", nil];
 		_vehicle setVariable ["claimed","yes",false];
 		_vehicle removeAllEventHandlers "HandleDamage";
 		_vehicle addEventHandler ["HandleDamage",{_this call fnc_veh_handleDam}];

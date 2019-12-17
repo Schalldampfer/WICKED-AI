@@ -17,6 +17,7 @@
 						_claimed = true;
 						[_closestPlayer,_name,"Claimed"] call wai_AutoClaimAlert; // Send alert to all players
 						_acArray = [getplayerUID _closestPlayer, name _closestPlayer]; // Add player UID and name to array
+						[nil,nearestObject [_position, "ReammoBox"],rSAY,"alarm",1600] call RE;//call alarm
 					};
 				};
 			};
@@ -51,6 +52,15 @@
 					_left = false; // Change the mission marker back to claim
 				};
 				
+				// Warn other players in mission area
+				{
+					if(!(_x in (units group _closestPlayer)) && ((_x distance _position) < ac_alert_distance )) then {
+						//warn
+						RemoteMessage = ["rollingMessages", format["You are in %1's mission. Ask %1 for permission!",_acArray select 1] ];
+						(owner _x) publicVariableClient "RemoteMessage";
+					};
+				} forEach playableUnits;
+				
 				// If the player lets the clock run out, then set the mission to unclaimed and set the variables to default
 				// Player left the server
 				if ((isNull _closestPlayer) && ((diag_tickTime - _claimTime) > ac_timeout)) then {
@@ -70,3 +80,15 @@
 					};
 				};
 			};
+			// reveal player in range to AIs
+			{
+				private ["_unit"];
+				_unit = _x;
+				if ((vehicle _unit != _unit) && ((_unit distance _position) < viewDistance)) then {
+					{
+						if ((_x distance _position) < ac_alert_distance) then {
+							_x reveal [_unit, 2.0];
+						};
+					} count allUnits;
+				};
+			} forEach playableUnits;

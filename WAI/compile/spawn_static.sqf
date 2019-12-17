@@ -56,13 +56,9 @@ if (!isNil "_mission") then {
 	_unit = _unitGroup createUnit [_aiskin, [0,0,0], [], 10, "PRIVATE"];
 	
 	_static = _class createVehicle _x;
-	
-	if (surfaceIsWater _x) then {
-		_static setPosASL _x;
-	} else {
-		_static setPosATL _x;
-	};
-	
+	_static setPos _x;
+	[_static,_class] call load_ammo;
+
 	[_unit] joinSilent _unitGroup;
 
 	call {
@@ -87,6 +83,8 @@ if (!isNil "_mission") then {
 				if(_gun == 0) 			exitWith { _aiweapon = ai_wep_random call BIS_fnc_selectRandom; };
 				if(_gun == 1) 			exitWith { _aiweapon = ai_wep_machine;};
 				if(_gun == 2) 			exitWith { _aiweapon = ai_wep_sniper;};
+ 				if(_gun == 3) 			exitWith {_aiweapon = ai_wep_pistol;};
+				if(_gun == 4) 			exitWith {_aiweapon = ai_wep_weak;};
 			} else {
 				if(_gun == "random") 	exitWith { _aiweapon = ai_wep_random call BIS_fnc_selectRandom; };
 				if(_gun == "unarmed") 	exitWith { _unarmed = true; };
@@ -171,7 +169,11 @@ if (!isNil "_mission") then {
 		_static = _this select 0;
 		if (alive _unit) then {_unit moveInGunner _static};
 	}];
-		
+
+	_unit   addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
+	_static addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
+	_static addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+
 	dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_static];
 		
 	if (sunOrMoon != 1) then {
@@ -180,13 +182,14 @@ if (!isNil "_mission") then {
 	
 	_unit moveInGunner _static;
 	_unit setVariable ["noKey",true];
+	_unit setVariable ["bodyName",(name _unit)];
 
 	if (!isNil "_mission") then {
 		_ainum = (wai_mission_data select _mission) select 0;
 		wai_mission_data select _mission set [0, (_ainum + 1)];
 		((wai_mission_data select _mission) select 4) set [count ((wai_mission_data select _mission) select 4), _static];
-		_static setVariable ["mission" + dayz_serverKey, _mission, false];
-		_unit setVariable ["mission" + dayz_serverKey, _mission, false];
+		_static setVariable ["mission",_mission];
+		_unit setVariable ["mission",_mission];
 	} else {
 		wai_static_data set [0, ((wai_static_data select 0) + 1)];
 		(wai_static_data select 2) set [count (wai_static_data select 2), _static];
@@ -204,4 +207,6 @@ if(_aitype == "Hero") then {
 	_unitGroup setBehaviour ai_bandit_behaviour;
 };
 
-if (wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_unitnumber,_class];};
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_unitnumber,_class];};
+
+_unitGroup

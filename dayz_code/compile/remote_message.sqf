@@ -45,7 +45,7 @@ fnc_remote_message = {
 		_vars = _this select 2;
 	};
 	
-	// Checks for localized strings and formats messages that contain parameters
+	// Checks for localized strings and formats messages that contain arguments
 	_message = [_type,_message] call fnc_localizeMessage;
 	
 	if (_type == "radio") exitWith {
@@ -66,7 +66,7 @@ fnc_remote_message = {
 		};
 	};
 
-	if (_type == "private") exitWith {if(getPlayerUID player == (_message select 0)) then {systemChat (_message select 1);};};
+	if (_type == "private") exitWith {if (dayz_playerUID == (_message select 0)) then {(_message select 1) call dayz_rollingMessages;playSound "IWAC_Message_Sound";};};
 	if (_type == "systemChat") exitWith {systemChat _message;};
 	if (_type == "hint") exitWith {hint _message;};
 	if (_type == "titleCut") exitWith {titleCut [_message,"PLAIN DOWN",3];};
@@ -79,6 +79,15 @@ fnc_remote_message = {
 			(_vars select 5), // Y coordinate
 			(_vars select 6), // Message duration
 			(_vars select 7) // fade in
+		] spawn BIS_fnc_dynamicText;
+	};
+	if (_type == "dynamic_text2") exitWith {
+		[
+			format["<t size='0.60' color='#ff0000' align='center'>%1</t>",_message],
+			0, // X coordinate
+			+0.5, // Y coordinate
+			10, // Message duration
+			0.5 // fade in
 		] spawn BIS_fnc_dynamicText;
 	};
 	if (_type == "hintWithImage") exitWith {hint parseText format["<t align='center' color='%4' shadow='2' size='%5'>%1</t><br/><img size='%6' align='Center' image='%3'/><br/><t align='center' color='%#ffffff'>%2</t>",
@@ -109,6 +118,24 @@ fnc_remote_message = {
 		RM_rscLayer = RM_rscLayer + 1;
 		if (RM_rscLayer == 788) then {RM_rscLayer = nil;};
 	};
+	if(_type == "cutin") exitWith { cutText [_message, "PLAIN DOWN"]; };
+	if(_type == "cutinR") exitWith { 
+		if(player hasWeapon "ItemRadio") then { 
+			if(player getVariable["radiostate",true]) then {
+				cutText [_message, "PLAIN DOWN"];
+			};
+		}; 
+	};
+	if (_type == "infoText") exitWith {
+		_message spawn {uiSleep 5; _this spawn BIS_fnc_infoText;};
+	};
+	if(_type == "code") exitWith {
+		call compile ('[] spawn {' + _message + ';};');
+	};
+	if(_type == "bool") exitWith {
+		call compile ( _message + '=!(' + _message + ');');
+	};
+	diag_log format["RemoteMessage:%1",_this];
 };
 
 "RemoteMessage" addPublicVariableEventHandler {(_this select 1) call fnc_remote_message;};

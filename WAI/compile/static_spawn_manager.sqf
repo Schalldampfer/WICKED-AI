@@ -24,12 +24,7 @@ while {_running} do {
 	// Refuel and Rearm the AI vehicles until they are destroyed
 	_aiVehicles = wai_static_data select 2;
 	if(count _aiVehicles > 0) then {
-		{
-			if (alive _x && ({alive _x} count crew _x > 0)) then {
-				_x setVehicleAmmo 1;
-				_x setFuel 1;
-			} else {_x setDamage 1;};
-		} count _aiVehicles;
+		_aiVehicles call wai_monitor_ai_vehicles;
 	};
 	
 	// Static gun glitch fix

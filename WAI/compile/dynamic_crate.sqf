@@ -11,16 +11,19 @@ _multiArrWep = false;
 if !(isNil "_complete") then {
 	if (typeOf _crate in (crates_large + crates_medium + crates_small)) then {
 		if (wai_crates_smoke && sunOrMoon == 1) then {
-			_marker = "smokeShellPurple" createVehicle getPosATL _crate;
+			_marker = "RoadFlare" createVehicle getPosATL _crate;
 			_marker setPosATL (getPosATL _crate);
 			_marker attachTo [_crate,[0,0,0]];
+			
+			PVDZ_obj_RoadFlare = [_marker,0];
+			publicVariable "PVDZ_obj_RoadFlare";
 		};
 		if (wai_crates_flares && sunOrMoon != 1) then {
-			_marker = "RoadFlare" createVehicle getPosATL _crate;
+			_marker = "ChemRed" createVehicle getPosATL _crate;
 			_marker setPosATL (getPosATL _crate);
 			_marker attachTo [_crate, [0,0,0]];
 			
-			PVDZ_obj_RoadFlare = [_marker,0];
+			PVDZ_obj_RoadFlare = [_marker,1];
 			publicVariable "PVDZ_obj_RoadFlare";
 		};
 	};
@@ -74,8 +77,8 @@ if(typeName (_loot select 4) == "ARRAY") then {
 
 if(_num_weapons > 0) then {
 	
-	if (wai_minimum_loot > 0 && wai_minimum_loot <= 1) then {
-		_num_weapons = (round (_num_weapons*wai_minimum_loot) + round random(_num_weapons*(1 - wai_minimum_loot)));
+	if (WAI_RandomizeLoot) then {
+		_num_weapons = (ceil((_num_weapons) / 2) + floor(random (_num_weapons / 2)));
 	};
 	
 	if (_multiArrWep) then {
@@ -85,7 +88,7 @@ if(_num_weapons > 0) then {
 			_weapon = _weapons_array select (floor (random (count _weapons_array)));
 			_ammo = _weapon call find_suitable_ammunition;
 			_crate addWeaponCargoGlobal [_weapon,1];
-			_crate addMagazineCargoGlobal [_ammo, wai_num_mags];
+			_crate addMagazineCargoGlobal [_ammo, (1 + floor(random 5))];
 		};
 	} else {
 		
@@ -93,15 +96,15 @@ if(_num_weapons > 0) then {
 			_weapon = _weapons_array select (floor (random (count _weapons_array)));
 			_ammo = _weapon call find_suitable_ammunition;
 			_crate addWeaponCargoGlobal [_weapon,1];
-			_crate addMagazineCargoGlobal [_ammo, wai_num_mags];
+			_crate addMagazineCargoGlobal [_ammo, WAI_NumMags];
 		};
 	};
 };
 
 if(_num_tools > 0) then {
 
-	if (wai_minimum_loot > 0 && wai_minimum_loot <= 1) then {
-		_num_tools = (round (_num_tools*wai_minimum_loot) + round random(_num_tools*(1 - wai_minimum_loot)));
+	if (WAI_RandomizeLoot) then {
+		_num_tools	= (ceil((_num_tools) / 2) + floor(random (_num_tools / 2)));
 	};
 
 	for "_i" from 1 to _num_tools do {
@@ -117,8 +120,8 @@ if(_num_tools > 0) then {
 
 if(_num_items > 0) then {
 
-	if (wai_minimum_loot > 0 && wai_minimum_loot <= 1) then {
-		_num_items = (round (_num_items*wai_minimum_loot) + round random(_num_items*(1 - wai_minimum_loot)));
+	if (WAI_RandomizeLoot) then {
+		_num_items	= (ceil((_num_items) / 2) + floor(random (_num_items / 2)));
 	};
 	
 	if (_multiArrItem) then {
@@ -149,19 +152,23 @@ if(_num_items > 0) then {
 
 if(_num_pistols > 0) then {
 
-	if (wai_minimum_loot > 0 && wai_minimum_loot <= 1) then {
-		_num_pistols = (round (_num_pistols*wai_minimum_loot) + round random(_num_pistols*(1 - wai_minimum_loot)));
+	if (WAI_RandomizeLoot) then {
+		_num_pistols = (ceil((_num_pistols) / 2) + floor(random (_num_pistols / 2)));
 	};
 
 	for "_i" from 1 to _num_pistols do {
 		_pistol = _pistols_array select (floor (random (count _pistols_array)));
 		_pistolammo = _pistol call find_suitable_ammunition;
 		_crate addWeaponCargoGlobal [_pistol,1];
-		_crate addMagazineCargoGlobal [_pistolammo, wai_num_mags];
+		_crate addMagazineCargoGlobal [_pistolammo, WAI_NumMags];
 	};
 };
 
 if(_num_backpacks > 0) then {
+
+	if (WAI_RandomizeLoot) then {
+		_num_backpacks	= (ceil((_num_backpacks) / 2) + floor(random (_num_backpacks / 2)));
+	};
 
 	for "_i" from 1 to _num_backpacks do {
 		_backpack = _backpack_array select (floor (random (count _backpack_array)));
@@ -177,7 +184,7 @@ if(_num_backpacks > 0) then {
 if(wai_high_value) then {
 
 	if(random 100 < wai_high_value_chance) then {
-		_item = crate_items_high_value select (floor (random (count crate_items_high_value)));
+		_item = crate_items_gems select (floor (random (count crate_items_high_value)));
 		_crate addMagazineCargoGlobal [_item,1];
 	};
 };

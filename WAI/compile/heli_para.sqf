@@ -1,4 +1,4 @@
-private ["_rocket","_unarmed","_launcher","_starttodrop","_timebtwdrops","_flyinheight","_distance","_heliStartDir","_start_position","_diag_distance","_rndnum","_mission_data","_pos_x","_pos_y","_ainum","_missionrunning","_aitype","_helipos1","_geartools","_gearmagazines","_cleanheli","_drop","_helipos","_gunner2","_gunner","_player_present","_skillarray","_aicskill","_aiskin","_aigear","_wp","_helipatrol","_gear","_skin","_backpack","_mags","_gun","_triggerdis","_startingpos","_aiweapon","_mission","_heli_class","_aipack","_helicopter","_unitGroup","_pilot","_skill","_paranumber","_position","_wp1"];
+private ["_rocket","_unarmed","_launcher","_starttodrop","_timebtwdrops","_flyinheight","_distance","_heliStartDir","_start_position","_diag_distance","_rndnum","_mission_data","_pos_x","_pos_y","_ainum","_missionrunning","_aitype","_helipos1","_geartools","_gearmagazines","_cleanheli","_drop","_helipos","_turretCount","_gunner","_player_present","_skillarray","_aicskill","_aiskin","_aigear","_wp","_helipatrol","_gear","_skin","_backpack","_mags","_gun","_triggerdis","_startingpos","_aiweapon","_mission","_heli_class","_aipack","_helicopter","_unitGroup","_pilot","_skill","_paranumber","_position","_wp1"];
 
 if (!wai_enable_paradrops) exitWith {};
 
@@ -102,27 +102,32 @@ if (wai_debug_mode) then {
 
 //_helicopter setFuel 1;
 _helicopter engineOn true;
+[_helicopter,_heli_class] call load_ammo;
 //_helicopter setVehicleAmmo 1;
 _helicopter flyInHeight _flyinheight;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
+_helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
 
 _pilot assignAsDriver _helicopter;
 _pilot moveInDriver _helicopter;
 
-_gunner = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
-_gunner assignAsGunner _helicopter;
-_gunner moveInTurret [_helicopter,[0]];
-[_gunner] joinSilent _unitGroup;
-
-_gunner2 = _unitGroup createUnit [_aiskin,[0,0,0],[],1,"NONE"];
-_gunner2 assignAsGunner _helicopter;
-_gunner2 moveInTurret [_helicopter,[1]];
-[_gunner2] joinSilent _unitGroup;
+_turretCount = count (configFile >> "CfgVehicles" >> _heli_class >> "turrets");
+for "_i" from 0 to (_turretCount - 1) do {
+	_gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
+	_gunner assignAsGunner _helicopter;
+	_gunner moveInTurret [_helicopter,[_i]];
+	
+	[_gunner] joinSilent _unitGroup;
+	
+	{
+		_gunner setSkill [_x,0.7];
+	} count _skillarray;
+};
 
 call {
-	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true]; _x setVariable ["humanity", ai_add_humanity]; } count [_pilot, _gunner, _gunner2];};
-	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true]; _x setVariable ["humanity", ai_remove_humanity]; } count [_pilot, _gunner, _gunner2];};
-	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true]; _x setVariable ["humanity", ai_special_humanity]; } count [_pilot, _gunner, _gunner2];};
+	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true,false]; _x setVariable ["humanity", ai_remove_humanity];} count (units _unitgroup); };
+	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count (units _unitgroup); };
+	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count (units _unitgroup); };
 };
 
 {
@@ -130,15 +135,12 @@ call {
 } count _skillarray;
 
 {
-	_gunner 	setSkill [_x,0.7];
-	_gunner2 	setSkill [_x,0.7];
-} count _skillarray;
-
-
-{
 	_x addWeapon "Makarov_DZ";
 	_x addMagazine "8Rnd_9x18_Makarov";
 	_x addMagazine "8Rnd_9x18_Makarov";
+	if (sunOrMoon != 1) then {
+		_x addweapon "NVGoggles";
+	};
 } count (units _unitgroup);
 
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];
@@ -199,6 +201,8 @@ while {(alive _helicopter) && (_drop)} do {
 					if(_gun == 0) exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
 					if(_gun == 1) exitWith {_aiweapon = ai_wep_machine;};
 					if(_gun == 2) exitWith {_aiweapon = ai_wep_sniper;};
+ 					if(_gun == 3) exitWith {_aiweapon = ai_wep_pistol;};
+					if(_gun == 4) exitWith {_aiweapon = ai_wep_weak;};
 				} else {
 					if(_gun == "random") exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
 					if(_gun == "unarmed") exitWith {_unarmed = true;};
@@ -291,10 +295,13 @@ while {(alive _helicopter) && (_drop)} do {
 			} count _aicskill;
 			
 			_para addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+			_para addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 			_chute = createVehicle ["ParachuteWest", [(_helipos select 0), (_helipos select 1), (_helipos select 2)], [], 0, "NONE"];
 			_para moveInDriver _chute;
 			[_para] joinSilent _pgroup;
-			
+			_para setVariable ["bodyName",(name _para)];
+			[nil,_para,rSAY,"BIS_Steerable_Parachute_Opening",1600] call RE;//call sound
+
 			// Adjusting this number changes the spread of the AI para drops
 			uiSleep _timebtwdrops;
 			
@@ -304,7 +311,7 @@ while {(alive _helicopter) && (_drop)} do {
 				if (typeName _mission_data == "ARRAY") then {
 					_ainum = _mission_data select 0;
 					wai_mission_data select _mission set [0, (_ainum + 1)];
-					_para setVariable ["mission" + dayz_serverKey, _mission, false];
+					_para setVariable ["mission", _mission, true];
 				};
 			} else {
 				wai_static_data set [0, ((wai_static_data select 0) + 1)];
@@ -324,9 +331,9 @@ while {(alive _helicopter) && (_drop)} do {
 		};
 
 		call {
-			if (_aitype == "Hero") exitWith {{_x setVariable ["Hero",true,false];  _x setVariable ["humanity", ai_remove_humanity];} count (units _pgroup);};
-			if (_aitype == "Bandit") exitWith {{_x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count (units _pgroup);};
-			if (_aitype == "Special") exitWith {{_x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count (units _pgroup);};
+			if (_aitype == "Hero") exitWith {{_x setVariable ["Hero",true,true];} count (units _pgroup);};
+			if (_aitype == "Bandit") exitWith {{_x setVariable ["Bandit",true,true];} count (units _pgroup);};
+			if (_aitype == "Special") exitWith {{_x setVariable ["Special",true,true];} count (units _pgroup);};
 		};
 		
 		_drop = false;
@@ -346,6 +353,8 @@ while {(alive _helicopter) && (_drop)} do {
 	};
 };
 
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2 (para)",_heli_class,_position];};
+
 if (_helipatrol) then { 
 	
 	_wp1 = _unitGroup addWaypoint [[(_position select 0),(_position select 1)], 100];
@@ -356,7 +365,12 @@ if (_helipatrol) then {
 	
 	{
 		_x addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+		_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 	} forEach (units _unitgroup);
+
+	_wp1 = _unitGroup addWaypoint [[(_position select 0),(_position select 1),0],100];
+	_wp1 setWaypointType "CYCLE";
+	_wp1 setWaypointCompletionRadius 200;
 
 } else {
 

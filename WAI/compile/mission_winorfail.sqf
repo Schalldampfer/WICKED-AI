@@ -1,4 +1,4 @@
-private ["_mission","_position","_difficulty","_name","_missionType","_showMarker","_enableMines","_completionType","_msgstart","_msgwin","_msglose","_mines"];
+private ["_mission","_position","_difficulty","_name","_missionType","_showMarker","_enableMines","_completionType","_msgstart","_msgwin","_msglose","_mines","_time"];
 
 _mission		= _this select 0;
 _position 		= _this select 1;
@@ -8,11 +8,13 @@ _missionType 	= _this select 4;
 _showMarker 	= _this select 5;
 _enableMines	= _this select 6;
 _completionType	= _this select 7;
-_msgstart		= (_this select 8) select 0;
-_msgwin			= (_this select 8) select 1;
-_msglose		= (_this select 8) select 2;
+_msgstart		= _this select 8;
+_msgwin			= _this select 9;
+_msglose		= _this select 10;
+_time = (wai_mission_timeout select 1) * 60;//timeout interval
+if (count _this > 11) then {_time = _this select 11;};
 
-if(wai_debug_mode) then {diag_log format["WAI: Starting Mission number %1",_mission];};
+if(wai_debug_mode) then {diag_log "WAI: Starting Mission number " + str _mission;};
 
 if(wai_enable_minefield && _enableMines) then {
 	_mines = [_position,50,75,100] call minefield;
@@ -26,18 +28,24 @@ _color = call {
 	if(_difficulty == "Extreme") exitWith {"ColorBlack"};
 };
 
+_name = format["[%1] %2",_difficulty call wai_str_initUpper,_name];
+/*
 _name = call {
 	if(_missionType == "MainHero") exitWith {"Bandit " + _name;};
 	if(_missionType == "MainBandit") exitWith {"Hero " + _name;};
+	//if(_missionType == "special") exitWith {"Special " + _name;};
 };
+*/
+
+if(wai_debug_mode) then {diag_log "WAI: Mission Data: " + str wai_mission_data;};
 
 [_difficulty,_msgstart] call wai_server_message;
 
 WAI_MarkerReady = true;
 
-[_position,_mission,_name,_completionType,_color,_showMarker,_msgwin,_msglose,_enableMines,_missionType,_difficulty] spawn {
+[_position,_mission,_name,_completionType,_color,_showMarker,_msgwin,_msglose,_enableMines,_missionType,_difficulty,_time] spawn {
 
-	private ["_left","_leftTime","_claimTime","_acArray","_claimed","_acTime","_acdot","_acMarker","_timeStamp","_unitGroups","_playerArray","_enableMines","_aiVehicles","_aiVehArray","_baseclean","_msgwin","_msglose","_bomb","_position","_minefieldRadius","_timeout","_player_near","_complete","_starttime","_timeout_time","_max_ai","_killpercent","_mission","_missionType","_airemain","_text","_name","_completionType","_marker","_dot","_objectivetarget","_color","_crateLoot","_crate","_showMarker","_cleanunits"];
+	private ["_left","_leftTime","_claimTime","_acArray","_claimed","_acTime","_acdot","_acMarker","_timeStamp","_unitGroups","_playerArray","_enableMines","_aiVehicles","_aiVehArray","_baseclean","_msgwin","_msglose","_bomb","_position","_minefieldRadius","_timeout","_player_near","_complete","_starttime","_timeout_time","_max_ai","_killpercent","_mission","_missionType","_airemain","_text","_name","_completionType","_marker","_dot","_objectivetarget","_color","_crateLoot","_crate","_showMarker","_cleanunits","_marksize"];
 
 	_position			= _this select 0;
 	_mission			= _this select 1;
@@ -55,7 +63,7 @@ WAI_MarkerReady = true;
 	_player_near		= false;
 	_complete			= false;
 	_starttime 			= diag_tickTime;
-	_timeout_time		= (random((wai_mission_timeout select 1) - (wai_mission_timeout select 0)) + (wai_mission_timeout select 0)) * 60;
+	_timeout_time		= _this select 11;
 	_max_ai				= (wai_mission_data select _mission) select 0;
 	_unitGroups 		= (wai_mission_data select _mission) select 1;
 	_mines 				= (wai_mission_data select _mission) select 2;
@@ -65,11 +73,11 @@ WAI_MarkerReady = true;
 	_baseclean 			= (wai_mission_data select _mission) select 6;
 	_killpercent 		= _max_ai - (_max_ai * (wai_kill_percent / 100));
 	_playerArray		= [];
-	_timeStamp			= diag_tickTime;
+	_timeStamp			= _starttime;
 	_closestPlayer		= objNull;
 	_acArray			= [];
 	_claimed			= false;
-	_acTime				= diag_tickTime;
+	_acTime				= _starttime;
 	_claimTime			= 0;
 	_left				= false;
 	_leftTime			= 0;
@@ -82,12 +90,13 @@ WAI_MarkerReady = true;
 					_x call wai_minefield_warning;
 					_playerArray set [count _playerArray, _x];
 				};
-				
+				/*
 				if((isPlayer _x) && (vehicle _x != _x) && (vehicle _x distance _position < 75) && (alive _x) && ((([vehicle _x] call FNC_GetPos) select 2) < 1)) then {
 					_bomb = "Bo_GBU12_lgb" createVehicle ([vehicle _x] call FNC_GetPos);
 					uiSleep 3;
 					deleteVehicle _bomb;
 				};
+				*/
 			} count playableUnits;
 		};
 		
@@ -112,20 +121,23 @@ WAI_MarkerReady = true;
 		if (_showMarker) then {
 			if (ai_show_count) then {
 				_aiCount = (wai_mission_data select _mission) select 0;
-				_text = format["%1 (%2 A.I.)",_name,_aiCount];
+				if (_aiCount > _max_ai) then {_max_ai = _aiCount;};
+				_text = format["%1 [%2%3]",_name,floor(100 * (_max_ai - _aiCount)/_max_ai),"%"];
+				_marksize = (300 min ((_max_ai + _aiCount) * 5)) max 50;
 			} else {
 				_text = _name;
+				_marksize = 300;
 			};
 
 			_marker = createMarker [_missionType + str(_mission), _position];
 			_marker setMarkerColor _color;
 			_marker setMarkerShape "ELLIPSE";
 			_marker setMarkerBrush "Solid";
-			_marker setMarkerSize [300,300];
+			_marker setMarkerSize [_marksize,_marksize];//300,300
 
 			_dot = createMarker [_missionType + str(_mission) + "dot", _position];
-			_dot setMarkerColor "ColorBlack";
-			_dot setMarkerType "mil_dot";
+			_dot setMarkerColor "ColorBlack";//ColorBlack
+			_dot setMarkerType "hd_warning";//mil_dot
 			_dot setMarkerText _text;
 			
 			if (use_wai_autoclaim) then {
@@ -137,8 +149,8 @@ WAI_MarkerReady = true;
 			
 				if (_claimed) then {
 					_acdot = createMarker [_missionType + str(_mission) + "autodot", [(_position select 0) + 100, (_position select 1) + 100]];
-					_acdot setMarkerColor "ColorBlack";
-					_acdot setMarkerType "mil_objective";
+					_acdot setMarkerColor "ColorBlue"; //"ColorBlack"
+					_acdot setMarkerType "hd_flag"; //"mil_objective"
 					if (_left) then {
 						_acdot setMarkerText format["%1 Claim Timeout [%2]",(_acArray select 1),_leftTime];
 					} else {
@@ -147,13 +159,13 @@ WAI_MarkerReady = true;
 				};
 			};
 			
-			uiSleep 2;
+			uiSleep 5;
 			deleteMarker _marker;
 			deleteMarker _dot;
 			if (!isNil "_acMarker") then {deleteMarker _acMarker;};
 			if (!isNil "_acdot") then {deleteMarker _acdot;};
 		} else {
-			uiSleep 2;
+			uiSleep 5;
 		};
 		
 		_player_near = [_position,wai_timeout_distance] call isNearPlayer;
@@ -169,6 +181,7 @@ WAI_MarkerReady = true;
 	};
 
 	if (_complete) then {
+		[nil,(_crates select 0) select 0,rSAY,"fanfare",1600] call RE;//call fanfare
 		
 		if (count _vehicles > 0) then {
 			{
@@ -193,6 +206,12 @@ WAI_MarkerReady = true;
 			h_missionsrunning = h_missionsrunning - 1;
 			wai_h_starttime = diag_tickTime;
 		};
+		
+		{ // mission units suicide
+			if ((alive _x) && !(isPlayer _x) && (_x getVariable ["mission", nil] == _mission)) then {
+				_x spawn wai_kill_ai;
+			};
+		} forEach allUnits;
 		
 		diag_log format["WAI: [Mission: %1]: Ended at %2",_name,_position];
 		

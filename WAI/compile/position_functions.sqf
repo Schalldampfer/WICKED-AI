@@ -6,7 +6,7 @@ isNearWater = {
 	_position 	= _this select 0;
 	_radius		= _this select 1;
 	
-	for "_i" from 0 to 359 step 45 do {
+	for "_i" from 0 to 359 step 90 do {
 		_position = [(_position select 0) + (sin(_i)*_radius), (_position select 1) + (cos(_i)*_radius)];
 		if (surfaceIsWater _position) exitWith {
 			_result = true; 
@@ -61,7 +61,7 @@ isNearPlayer = {
 	_radius 	= _this select 1;
 
 	{
-		if ((isPlayer _x) && (_x distance _position <= _radius)) then {
+		if ((alive _x) && (isPlayer _x) && (_x distance _position <= _radius)) then {
 			_result = true;
 		};
 	} count playableUnits;

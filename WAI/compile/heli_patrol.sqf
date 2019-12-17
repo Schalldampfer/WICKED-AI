@@ -1,4 +1,4 @@
-private ["_start_position","_diag_distance","_rndnum","_mission","_aitype","_aiskin","_skin","_aicskill","_wpnum","_radius","_gunner2","_gunner","_skillarray","_startingpos","_heli_class","_startPos","_helicopter","_unitGroup","_pilot","_skill","_position","_wp"];
+private ["_start_position","_diag_distance","_rndnum","_mission","_aitype","_aiskin","_skin","_aicskill","_wpnum","_radius","_turretCount","_gunner","_skillarray","_startingpos","_heli_class","_startPos","_helicopter","_unitGroup","_pilot","_skill","_position","_wp"];
 
 _position 			= _this select 0;
 _radius 			= _this select 1;
@@ -58,28 +58,32 @@ if (wai_debug_mode) then {
 _helicopter setFuel 1;
 _helicopter engineOn true;
 _helicopter setVehicleAmmo 1;
+[_helicopter,_heli_class] call load_ammo;
 _helicopter flyInHeight 150;
 _helicopter lock true;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
+_helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
 
 _pilot assignAsDriver _helicopter;
 _pilot moveInDriver _helicopter;
 
-_gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
-_gunner assignAsGunner _helicopter;
-_gunner moveInTurret [_helicopter,[0]];
-
-[_gunner] joinSilent _unitGroup;
-
-_gunner2 = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
-_gunner2 assignAsGunner _helicopter;
-_gunner2 moveInTurret [_helicopter,[1]];
-[_gunner2] joinSilent _unitGroup;
+_turretCount = count (configFile >> "CfgVehicles" >> _heli_class >> "turrets");
+for "_i" from 0 to (_turretCount - 1) do {
+	_gunner = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
+	_gunner assignAsGunner _helicopter;
+	_gunner moveInTurret [_helicopter,[_i]];
+	
+	[_gunner] joinSilent _unitGroup;
+	
+	{
+		_gunner 	setSkill [(_x select 0),(_x select 1)];
+	} count _aicskill;
+};
 
 call {
-	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true,false]; _x setVariable ["humanity", ai_remove_humanity];} count [_pilot, _gunner, _gunner2]; };
-	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count [_pilot, _gunner, _gunner2]; };
-	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count [_pilot, _gunner, _gunner2]; };
+	if (_aitype == "Hero") 		exitWith {{ _x setVariable ["Hero",true,false]; _x setVariable ["humanity", ai_remove_humanity];} count (units _unitgroup); };
+	if (_aitype == "Bandit") 	exitWith {{ _x setVariable ["Bandit",true,false]; _x setVariable ["humanity", ai_add_humanity];} count (units _unitgroup); };
+	if (_aitype == "Special") 	exitWith {{ _x setVariable ["Special",true,false]; _x setVariable ["humanity", ai_special_humanity];} count (units _unitgroup); };
 };
 
 {
@@ -87,18 +91,18 @@ call {
 } count _skillarray;
 
 {
-	_gunner 	setSkill [(_x select 0),(_x select 1)];
-	_gunner2 	setSkill [(_x select 0),(_x select 1)];
-} count _aicskill;
-
-{
 	_x addWeapon "Makarov_DZ";
 	_x addMagazine "8Rnd_9x18_Makarov";
 	_x addMagazine "8Rnd_9x18_Makarov";
+	if (sunOrMoon != 1) then {
+		_x addweapon "NVGoggles";
+	};
+	_x setVariable ["bodyName",(name _x)];
 } count (units _unitgroup);
 
 {
 	_x addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+	_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 } forEach (units _unitgroup);
 
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];
@@ -136,5 +140,7 @@ if(_wpnum > 0) then {
 _wp = _unitGroup addWaypoint [[(_position select 0),(_position select 1),0],100];
 _wp setWaypointType "CYCLE";
 _wp setWaypointCompletionRadius 200;
+
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_heli_class,_position];};
 
 _unitGroup
