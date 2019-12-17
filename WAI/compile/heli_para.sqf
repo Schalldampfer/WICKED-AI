@@ -1,4 +1,4 @@
-private ["_rocket","_unarmed","_launcher","_starttodrop","_timebtwdrops","_flyinheight","_distance","_heliStartDir","_start_position","_diag_distance","_rndnum","_mission_data","_pos_x","_pos_y","_ainum","_missionrunning","_aitype","_helipos1","_geartools","_gearmagazines","_cleanheli","_drop","_helipos","_gunner2","_gunner","_player_present","_skillarray","_aicskill","_aiskin","_aigear","_wp","_helipatrol","_gear","_skin","_backpack","_mags","_gun","_triggerdis","_startingpos","_aiweapon","_mission","_heli_class","_aipack","_helicopter","_unitGroup","_pilot","_skill","_paranumber","_position","_wp1"];
+private ["_rocket","_unarmed","_launcher","_starttodrop","_timebtwdrops","_flyinheight","_distance","_heliStartDir","_start_position","_diag_distance","_rndnum","_mission_data","_pos_x","_pos_y","_ainum","_missionrunning","_aitype","_helipos1","_geartools","_gearmagazines","_cleanheli","_drop","_helipos","_turretCount","_gunner","_player_present","_skillarray","_aicskill","_aiskin","_aigear","_wp","_helipatrol","_gear","_skin","_backpack","_mags","_gun","_triggerdis","_startingpos","_aiweapon","_mission","_heli_class","_aipack","_helicopter","_unitGroup","_pilot","_skill","_paranumber","_position","_wp1"];
 
 if (!wai_enable_paradrops) exitWith {};
 
@@ -352,6 +352,8 @@ while {(alive _helicopter) && (_drop)} do {
 		};
 	};
 };
+
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2 (para)",_heli_class,_position];};
 
 if (_helipatrol) then { 
 	

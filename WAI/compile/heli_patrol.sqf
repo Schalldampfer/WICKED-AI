@@ -1,4 +1,4 @@
-private ["_start_position","_diag_distance","_rndnum","_mission","_aitype","_aiskin","_skin","_aicskill","_wpnum","_radius","_gunner2","_gunner","_skillarray","_startingpos","_heli_class","_startPos","_helicopter","_unitGroup","_pilot","_skill","_position","_wp"];
+private ["_start_position","_diag_distance","_rndnum","_mission","_aitype","_aiskin","_skin","_aicskill","_wpnum","_radius","_turretCount","_gunner","_skillarray","_startingpos","_heli_class","_startPos","_helicopter","_unitGroup","_pilot","_skill","_position","_wp"];
 
 _position 			= _this select 0;
 _radius 			= _this select 1;
@@ -140,5 +140,7 @@ if(_wpnum > 0) then {
 _wp = _unitGroup addWaypoint [[(_position select 0),(_position select 1),0],100];
 _wp setWaypointType "CYCLE";
 _wp setWaypointCompletionRadius 200;
+
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_heli_class,_position];};
 
 _unitGroup

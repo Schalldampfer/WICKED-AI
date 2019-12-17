@@ -151,5 +151,7 @@ _wp = _unitGroup addWaypoint [[(_position select 0),(_position select 1),0],100]
 _wp setWaypointType "CYCLE";
 _wp setWaypointCompletionRadius 200;
 
+if(wai_debug_mode) then {diag_log format ["WAI: Spawned in %1 %2",_veh_class,_position];};
+
 _unitGroup
 

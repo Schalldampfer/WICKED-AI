@@ -15,7 +15,7 @@ if (!isNil "_mission") then {
 	wai_static_data set [0, ((wai_static_data select 0) - 1)];
 };
 
-_unit setVariable ["bodyName","mission_ai",false]; //Only needed on server to prevent immediate cleanup in sched_corpses.sqf
+_unit setVariable ["bodyName",(_unit getVariable ["bodyName","unknown"]),true]; //Only needed on server to prevent immediate cleanup in sched_corpses.sqf
 _unit setVariable ["deathType", "shot", true];
 _unit setVariable ["mission_ai", true, false];
 
