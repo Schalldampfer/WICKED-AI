@@ -137,7 +137,7 @@ if (wai_keep_vehicles) then {
 			diag_log ("PUBLISH: Created " + (_class) + " with ID " + str(_uid));
 			
 			if (wai_vehicle_message) then {
-				[nil,(_this select 2),"loc",rTitleText,"This vehicle is saved to the database.","PLAIN",5] call RE;
+				[nil,(_this select 2),"loc",rTitleText,"You have claimed this vehicle! It is now saved to the database.","PLAIN",5] call RE;
 			};
 
 			diag_log format["WAI: %1 has claimed %2", name (_this select 2), _class];
