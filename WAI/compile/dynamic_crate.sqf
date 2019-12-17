@@ -11,16 +11,18 @@ _multiArrWep = false;
 if !(isNil "_complete") then {
 	if (typeOf _crate in (crates_large + crates_medium + crates_small)) then {
 		if (wai_crates_smoke && sunOrMoon == 1) then {
-			_marker = "smokeShellPurple" createVehicle getPosATL _crate;
+			_marker = "RoadFlare" createVehicle getPosATL _crate;
 			_marker setPosATL (getPosATL _crate);
 			_marker attachTo [_crate,[0,0,0]];
+			PVDZ_obj_RoadFlare = [_marker,0];
+			publicVariable "PVDZ_obj_RoadFlare";
 		};
 		if (wai_crates_flares && sunOrMoon != 1) then {
-			_marker = "RoadFlare" createVehicle getPosATL _crate;
+			_marker = "ChemRed" createVehicle getPosATL _crate;
 			_marker setPosATL (getPosATL _crate);
 			_marker attachTo [_crate, [0,0,0]];
 			
-			PVDZ_obj_RoadFlare = [_marker,0];
+			PVDZ_obj_RoadFlare = [_marker,1];
 			publicVariable "PVDZ_obj_RoadFlare";
 		};
 	};
@@ -177,7 +179,7 @@ if(_num_backpacks > 0) then {
 if(wai_high_value) then {
 
 	if(random 100 < wai_high_value_chance) then {
-		_item = crate_items_high_value select (floor (random (count crate_items_high_value)));
+		_item = crate_items_gems select (floor (random (count crate_items_gems)));
 		_crate addMagazineCargoGlobal [_item,1];
 	};
 };

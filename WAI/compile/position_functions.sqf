@@ -61,7 +61,7 @@ isNearPlayer = {
 	_radius 	= _this select 1;
 
 	{
-		if ((isPlayer _x) && (_x distance _position <= _radius)) then {
+		if ((alive _x) && (isPlayer _x) && (_x distance _position <= _radius)) then {
 			_result = true;
 		};
 	} count playableUnits;

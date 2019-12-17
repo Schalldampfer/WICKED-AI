@@ -26,6 +26,29 @@ find_suitable_ammunition = {
 		_result = _ammoArray select 0;
 		call {
 			if (_result == "20Rnd_556x45_Stanag") exitWith { _result = "30Rnd_556x45_Stanag"; };
+			if (_result == "30Rnd_556x45_G36") exitWith { _result = "30Rnd_556x45_Stanag"; };
+			if (_result == "30Rnd_556x45_G36SD") exitWith { _result = "30Rnd_556x45_StanagSD"; };
+			if (_result == "vil_20Rnd_762x51_G3") exitWith { _result = "20Rnd_762x51_DMR"; };
+			if (_result == "RH_20Rnd_762x51_hk417") exitWith { _result = "20Rnd_762x51_DMR"; };
+			if (_result == "vil_45Rnd_545x39_AK") exitWith { _result = "30Rnd_545x39_AK"; };
+			if (_result == "vil_20Rnd_9x39_SP6_VAL") exitWith { _result = "20Rnd_9x39_SP5_VSS"; };
+			if (_result == "RH_32Rnd_9x19_Muzi") exitWith { _result = "30Rnd_9x19_UZI"; };
+			if (_result == "vil_32Rnd_uzi") exitWith { _result = "30Rnd_9x19_UZI"; };
+			if (_result == "vil_32Rnd_UZI_SD") exitWith { _result = "30Rnd_9x19_UZI_SD"; };
+			if (_result == "vil_17Rnd_9x19_PYA") exitWith { _result = "15Rnd_9x19_M9"; };
+			if (_result == "vil_75Rnd_762x39_AK47") exitWith { _result = "30Rnd_762x39_AK47"; };
+			if (_result == "RH_20Rnd_9x19_M93") exitWith { _result = "15Rnd_9x19_M9"; };
+			if (_result == "RH_19Rnd_9x19_g18") exitWith { _result = "17Rnd_9x19_glock17"; };
+			if (_result == "RH_17Rnd_9x19_g17") exitWith { _result = "17Rnd_9x19_glock17"; };
+			if (_result == "RH_17Rnd_9x19_g17SD") exitWith { _result = "15Rnd_9x19_M9SD"; };
+			if (_result == "RH_20Rnd_32cal_vz61") exitWith { _result = "20Rnd_B_765x17_Ball"; };
+			if (_result == "FHQ_rem_5Rnd_300Win_XM2010_NT") exitWith { _result = "FHQ_rem_5Rnd_300Win_XM2010_T"; };
+			if (_result == "FHQ_rem_7Rnd_338Lapua_MSR_NT") exitWith { _result = "FHQ_rem_10Rnd_338Lapua_MSR_T"; };
+			if (_result == "FHQ_rem_7Rnd_338Lapua_MSR_NT_SD") exitWith { _result = "FHQ_rem_10Rnd_338Lapua_MSR_TD_SD"; };
+			if (_result == "8Rnd_B_Saiga12_74Slug") exitWith { _result = "8Rnd_B_Saiga12_Pellets"; };
+			if (_result == "8Rnd_12Gauge_Slug") exitWith { _result = "8Rnd_12Gauge_Buck"; };
+			//if (_result == "20Rnd_B_AA12_Pellets") exitWith { _result = "20Rnd_B_AA12_HE"; };
+			if (_result == "PG7V") exitWith { _result = "OG7"; };
 		};
 	};
 	_result
@@ -144,12 +167,21 @@ wai_AutoClaimAlert = {
 };
 
 wai_monitor_ai_vehicles = {
-	private "_vehicle";
+	private ["_vehicle","_vD"];
+	_vD = viewDistance;
 	{
 		_vehicle = _x;
 		if (alive _vehicle && ({alive _x} count crew _vehicle > 0)) then {
 			_vehicle setVehicleAmmo 1;
 			_vehicle setFuel 1;
+			//find players
+			{
+				if ((_x distance _vehicle) < _vD) then {
+					if (!(lineIntersects [aimPos _vehicle,aimPos _x,_vehicle,_x]) && !(terrainIntersectASL [aimPos _vehicle,aimPos _x])) then {
+						(gunner _vehicle) reveal [_x,2.5];
+					};
+				};
+			} forEach playableUnits;
 		} else {
 			_vehicle setDamage 1;
 		};
@@ -169,6 +201,7 @@ wai_remove_vehicles = {
     
     {
         if (_x getVariable ["mission" + dayz_serverKey, nil] == _mission) then {
+			dayz_serverObjectMonitor = dayz_serverObjectMonitor - [_x];
             deleteVehicle _x;
         };
     } count _vehicles;
@@ -177,9 +210,24 @@ wai_remove_vehicles = {
 wai_remove_ai = {
     {
         if (_x getVariable ["mission" + dayz_serverKey, nil] == _this) then {
+			if (vehicle _x != _x) then {_x action ["eject",vehicle _x];unassignVehicle _x;};
             deleteVehicle _x;
         };
     } count allUnits;
+};
+
+wai_kill_ai = {
+	if (vehicle _this != _this) then {
+		_this action ["eject", vehicle _this];
+		sleep 0.1;
+	};
+	_this playmove (["ActsPercMstpSnonWpstDnon_suicide1B","ActsPercMstpSnonWpstDnon_suicide2B"] call BIS_fnc_selectRandom);
+	sleep 8;
+	_this fire currentWeapon _this;
+	sleep 0.2;
+	_this setDamage 1;
+	sleep 1;
+	_this setVariable ["deathType", "suicide", true];
 };
 
 wai_generate_vehicle_key = {
@@ -304,4 +352,50 @@ wai_clean_aircraft = {
 	uiSleep 5;
 	deleteGroup _group;
 	if(wai_debug_mode) then {diag_log "WAI: Aircraft Cleaned";};
+};
+
+wai_str_initUpper = {
+	private "_strA";
+	_strA = toArray(toLower(_this));
+	_strA set [0, (_strA select 0) - 32];
+	toString(_strA)
+};
+
+wai_waitForPlayers = {
+	private ["_missionType","_position","_mission","_markName","_dotName","_distance","_marker","_dot","_time","_timeout","_color"];
+	_missionType = _this select 0;//MainBandit or MainHero
+	_position = _this select 1;//position of center of mission
+	_mission = _this select 2;//No. of mission
+
+	_markName = _missionType + str(_mission);
+	_dotName  = _missionType + str(_mission) + "dot";
+	_distance = ac_alert_distance + 1000;//distance to wait
+	_time = diag_tickTime;//start time
+	_timeout = (random((wai_mission_timeout select 1) - (wai_mission_timeout select 0)) + (wai_mission_timeout select 0)) * 60;//time limit
+	WAI_MarkerReady = true;// reset position finding
+
+	_color = "ColorBlue";
+	if (_missionType == "MainHero") then {_color = "ColorYellow";};
+	if (_missionType == "MainBandit") then {_color = "ColorRed";};
+
+	diag_log format["WAI: Mission %1 is waiting for players",_markName];
+
+	//show marker until someone getting close
+	while {(({(alive _x) && (_x distance _position < _distance)} count playableUnits) < 1) && ((diag_tickTime - _time) < _timeout)} do {
+		_marker = createMarker [_markName, _position];
+		_marker setMarkerShape "ELLIPSE";
+		_marker setMarkerBrush "Solid";
+		_marker setMarkerColor _color;
+		_marker setMarkerSize [300,300];
+		_dot = createMarker [_dotName, _position];
+		_dot setMarkerColor "ColorBlack";//ColorBlack
+		_dot setMarkerType "hd_unknown";//mil_dot
+		_dot setMarkerText "Unknown Mission";
+		sleep 6;
+		deleteMarker _marker;
+		deleteMarker _dot;
+	};
+
+	diag_log format["WAI: Mission %1 has started at %2",_mission,_position call fa_coor2str];
+	(_timeout - (diag_tickTime - _time))
 };

@@ -38,6 +38,10 @@ _vehicle setVectorUp surfaceNormal position _vehicle;
 _vehicle setVariable ["ObjectID","1",true];
 _vehicle setVariable ["CharacterID","1",true]; // Set character ID to non-zero number so players see the red "Vehicle Locked" message
 _vehicle setVariable ["mission" + dayz_serverKey,_mission, false];
+if (!isNil "manage_vehicleammo") then {
+	[_vehicle] call manage_vehicleammo;
+};
+[_vehicle,_class] call load_ammo;
 clearWeaponCargoGlobal _vehicle;
 clearMagazineCargoGlobal _vehicle;
 _vehicle setVehicleLock "locked";
@@ -135,6 +139,8 @@ if (wai_keep_vehicles) then {
 			if (wai_vehicle_message) then {
 				[nil,(_this select 2),"loc",rTitleText,"This vehicle is saved to the database.","PLAIN",5] call RE;
 			};
+
+			diag_log format["WAI: %1 has claimed %2", name (_this select 2), _class];
 		};
 	}];
 

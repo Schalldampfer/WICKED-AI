@@ -13,16 +13,19 @@ if(count _this > 2) then {
 	
 	_wp_rad = call {
 		if (_skill == "easy") exitWith {20;};
-		if (_skill == "medium") exitWith {40;};
-		if (_skill == "hard") exitWith {80;};
-		if (_skill == "extreme") exitWith {120;};
-		if (_skill == "random") exitWith {random(100);};
+		if (_skill == "medium") exitWith {100;};
+		if (_skill == "hard") exitWith {200;};
+		if (_skill == "extreme") exitWith {300;};
+		if (_skill == "random") exitWith {random(300);};
 	};
 };
 
 // AI is on a building so limit the movement
-if (_pos_z > 1) then {
-	_wp_rad = 0;
+// AI is on a building so limit the movement
+if (count _position > 2) then {
+	if (_pos_z > 1) then {
+		_wp_rad = 0;
+	};
 };
 
 {

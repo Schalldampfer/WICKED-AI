@@ -51,6 +51,8 @@ if (!isNil "_mission") then {
 	(wai_static_data select 1) set [count (wai_static_data select 1), _unitGroup];
 };
 
+if (count _position < 3) then {_pos_z = 0;};
+
 if(_pos_z == 0) then {
 	if(floor(random 2) == 1) then { 
 		_pos_x = _pos_x - (15 + random(10));
@@ -72,6 +74,10 @@ for "_x" from 1 to _unitnumber do {
 			if(_gun == 0) exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
 			if(_gun == 1) exitWith {_aiweapon = ai_wep_machine; };
 			if(_gun == 2) exitWith {_aiweapon = ai_wep_sniper; };
+ 			if(_gun == 3) exitWith {
+  				if (WAI_Overpoch) then { _aiweapon = ai_wep_owpistol; } else { _aiweapon = ai_wep_pistol; };
+			};
+			if(_gun == 4) exitWith {_aiweapon = ai_wep_weak; };
 		} else {
 			if(_gun == "random") exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
 			if(_gun == "unarmed") exitWith {_unarmed = true; };
@@ -130,7 +136,7 @@ for "_x" from 1 to _unitnumber do {
 	if (!isNil "_gain") then {_unit setVariable ["humanity", _gain];};
 
 	call {
-		if (_backpack == "random") exitWith {_aipack = ai_packs select (floor (random (count ai_packs)));};
+		if (_backpack == "random") exitWith {_aipack = ai_packs select (floor (random (count ai_packs))); if (random 1 < 0.6) then {_backpack = "none";};};
 		if (_backpack == "none") exitWith {};
 		_aipack = _backpack;
 	};
@@ -148,6 +154,8 @@ for "_x" from 1 to _unitnumber do {
 		_unit addWeapon "NVGoggles";
 	};
 
+	_unit setVariable ["bodyName",(name _unit)];
+
 	if (!_unarmed) then {
 		for "_i" from 1 to _mags do {
 			_unit addMagazine _magazine;
@@ -158,15 +166,20 @@ for "_x" from 1 to _unitnumber do {
 
 	if(_backpack != "none") then {
 		_unit addBackpack _aipack;
+		{
+			(unitBackpack _unit) addMagazineCargoGlobal [_x, 1];
+		} count _gearmagazines;
+		{
+			(unitBackpack _unit) addWeaponCargoGlobal [_x, 1];
+		} count _geartools;
+	} else {;
+		{
+			_unit addMagazine _x;
+		} count _gearmagazines;
+		{
+			_unit addWeapon _x;
+		} count _geartools;
 	};
-
-	{
-		_unit addMagazine _x
-	} count _gearmagazines;
-
-	{
-		_unit addWeapon _x
-	} count _geartools;
 	
 	_aicskill = call {
 		if(_skill == "easy") exitWith {ai_skill_easy;};
@@ -182,6 +195,7 @@ for "_x" from 1 to _unitnumber do {
 	} count _aicskill;
 
 	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
+	_unit addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 
 	if (!isNil "_mission") then {
 		wai_mission_data select _mission set [0, (((wai_mission_data select _mission) select 0) + 1)];
@@ -190,9 +204,7 @@ for "_x" from 1 to _unitnumber do {
 		wai_static_data set [0, ((wai_static_data select 0) + 1)];
 	};
 
-};
-
-if (!isNil "_launcher" && wai_use_launchers) then {
+	if (!isNil "_launcher" && wai_use_launchers && (_x < 4)) then {
 	call {
 		//if (_launcher == "Random") exitWith { _launcher = (ai_launchers_AT + ai_launchers_AA) call BIS_fnc_selectRandom; };
 		if (_launcher == "at") exitWith { _launcher = ai_wep_launchers_AT select (floor (random (count ai_wep_launchers_AT))); };
@@ -201,11 +213,15 @@ if (!isNil "_launcher" && wai_use_launchers) then {
 	_rocket = _launcher call find_suitable_ammunition;
 	_unit addMagazine _rocket;
 	_unit addMagazine _rocket;
+		_unit addMagazine _rocket;
 	_unit addWeapon _launcher;
 };
 
-_unitGroup setFormation "ECH LEFT";
+};
+
+_unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);
 _unitGroup selectLeader ((units _unitGroup) select 0);
+_unitGroup allowFleeing 0;
 
 if(_aitype == "Hero") then {
 	_unitGroup setCombatMode ai_hero_combatmode;
@@ -215,8 +231,9 @@ if(_aitype == "Hero") then {
 	_unitGroup setBehaviour ai_bandit_behaviour;
 };
 
-[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call group_waypoints;
-
+if(_pos_z < 1) then {
+	[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call group_waypoints;
+};
 
 if(wai_debug_mode) then {diag_log format ["WAI: Spawned a group of %1 AI (%3) at %2",_unitnumber,_position,_aitype];};
 

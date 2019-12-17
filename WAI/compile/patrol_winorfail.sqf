@@ -123,7 +123,7 @@ WAI_MarkerReady = true;
 		if (_showMarker && {_startMarker}) then {
 			if (ai_show_count) then {
 				_aiCount = (wai_mission_data select _mission) select 0;
-				_text = format["%1 (%2 A.I.)",_name,_aiCount];
+				_text = format["%1 [%2%3]",_name,floor(100 * (_max_ai - _aiCount)/_max_ai),"%"];
 			} else {
 				_text = _name;
 			};
@@ -135,7 +135,7 @@ WAI_MarkerReady = true;
 			_marker setMarkerSize [300,300];
 			_dot = createMarker [_missionType + str(_mission) + "dot", _position];
 			_dot setMarkerColor "ColorBlack";
-			_dot setMarkerType "mil_dot";
+			_dot setMarkerType "mil_warning";
 			_dot setMarkerText _text;
 			
 			uiSleep 2;

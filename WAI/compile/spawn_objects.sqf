@@ -39,8 +39,11 @@ _destructables = [
 	};
 	_object = _type createVehicle [0,0,0];
 	
-	if (_type == "MQ9PredatorB") then {
+	if (_object isKindOf "AllVehicles") then { //_type == "MQ9PredatorB"
 		_object setVehicleLock "LOCKED";
+		_object setVariable ["ObjectID","1",true];
+		_object setVehicleAmmo 0.0;
+		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
 	};
 	
 	if (count _x > 2) then {
@@ -56,8 +59,11 @@ _destructables = [
 			if !(_type in _fires) then {_object enableSimulation false;};
 		};
 	};
+	_object addEventHandler ["Killed",{_this spawn enableSimulationTrue}];
 	
-	((wai_mission_data select _mission) select 6) set [count ((wai_mission_data select _mission) select 6), _object];
+	if (_mission > -1) then {
+		((wai_mission_data select _mission) select 6) set [count ((wai_mission_data select _mission) select 6), _object];
+	};
 } forEach _objects;
 
 _object

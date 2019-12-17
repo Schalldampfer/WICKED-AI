@@ -1,9 +1,9 @@
 private ["_i","_traders","_safepos","_validspot","_position","_color","_markers"];
 
 if (wai_use_blacklist) then {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0,wai_blacklist];
+	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,random 0.4,0,wai_blacklist];
 } else {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0];
+	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,random 0.4,0];
 };
 
 _i = 0;
@@ -108,6 +108,8 @@ while {!_validspot} do {
 
 	if (_validspot) then {
 		if (wai_debug_mode) then {diag_log format ["Loop complete, valid position %1 in %2 attempts.",_position,_i];};
+	} else {
+		uiSleep 0.5;
 	};
 };
 

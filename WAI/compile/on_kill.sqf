@@ -16,6 +16,8 @@ if (!isNil "_mission") then {
 };
 
 _unit setVariable ["bodyName","mission_ai",false]; //Only needed on server to prevent immediate cleanup in sched_corpses.sqf
+_unit setVariable ["deathType", "shot", true];
+_unit setVariable ["mission_ai", true, false];
 
 if (ai_hasMoney && Z_singleCurrency) then {
 	_cash = round(random ai_moneyMultiplier) * 50;
@@ -39,14 +41,10 @@ if (isPlayer _player) then {
 		_player = (effectiveCommander vehicle _player);
 	};
 	
-	if (ai_killfeed && ai_humanity_gain) then {
-		_aitype = if (_unit getVariable ["Hero", false]) then {"Hero";} else {"Bandit";};
-		_humanityReward = if (_aitype == "Hero") then {format["-%1 Humanity",ai_remove_humanity];} else {format["+%1 Humanity",ai_add_humanity];};
-		_aiColor = if (_aitype == "Hero") then {"#3333ff";} else {"#ff0000";};
-		_params = [_aiColor,"0.50","#FFFFFF",-.4,.2,2,0.5];
-		
-		RemoteMessage = ["ai_killfeed", [_aitype," AI Kill",_humanityReward],_params];
-		(owner _player) publicVariableClient "RemoteMessage";
+	if (ai_killfeed) then {
+		_name = _unit getVariable ["bodyName","unknown"];
+		_pname = if (alive _player) then {name _player} else {_player getVariable ["bodyName","unknown"]};
+		["0",0,_unit,"0",toArray _name,false,toArray _pname,currentWeapon _player,round(_player distance _unit),"shot"] spawn server_playerDied;
 	};
 
 	_humanity 		= _player getVariable["humanity",0];
@@ -55,9 +53,10 @@ if (isPlayer _player) then {
 
 	if (ai_humanity_gain) then {
 		_gain = _unit getVariable ["humanity", 0];
+		if (vehicle _player != _player) then { _gain = ceil(_gain / 2.0); };//half when in vehicle
 		call {
 			if (_unit getVariable ["Hero", false]) exitWith { _player setVariable ["humanity",(_humanity - _gain),true]; };
-			if (_unit getVariable ["Bandit", false]) exitWith { _player setVariable ["humanity",(_humanity + _gain),true]; };					
+			if (_unit getVariable ["Bandit", false]) exitWith { _player setVariable ["humanity",(_humanity + _gain),true]; };
 			if (_unit getVariable ["Special", false]) exitWith { if (_humanity < 0) then { _player setVariable ["humanity",(_humanity - _gain),true]; } else { _player setVariable ["humanity",(_humanity + _gain),true]; }; };
 		};
 	};
@@ -81,6 +80,9 @@ if (isPlayer _player) then {
 				_x reveal [_player, 4.0];
 			};
 		} count allUnits;
+		{
+			_x doTarget _player;
+		} forEach (units group _unit);
 	};
 
 } else {
@@ -113,12 +115,26 @@ if(wai_remove_launcher && _launcher != "") then {
 	
 	{
 		if(_x == _rockets) then {
-			_unit removeMagazine _x;
+			_unit removeMagazines _x;
 		};
 	} count magazines _unit;
 	
 };
 
-if(_unit hasWeapon "NVGoggles" && floor(random 100) < 20) then {
+if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
 	_unit removeWeapon "NVGoggles";
+};
+
+if (ai_share_info && (!isNil "_mission")) then {
+	_vp = (vehicle _player == _player);
+	{
+		if ((_x getVariable ["mission", -1]) == _mission) then {
+			_x reveal [_player, 4.0];
+			_vx = (vehicle _x == _x);
+			if ((_vx && _vp) || (!_vx && !_vp)) then {
+				_x doTarget _player;
+				_x doFire _player;
+			};
+		};
+	} count allUnits;
 };

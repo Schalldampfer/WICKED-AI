@@ -17,6 +17,7 @@
 						_claimed = true;
 						[_closestPlayer,_name,"Claimed"] call wai_AutoClaimAlert; // Send alert to all players
 						_acArray = [getplayerUID _closestPlayer, name _closestPlayer]; // Add player UID and name to array
+						[nil,nearestObject [_position, "ReammoBox"],rSAY,"alarm",1600] call RE;//call alarm
 					};
 				};
 			};
@@ -70,3 +71,15 @@
 					};
 				};
 			};
+			// reveal player in range to AIs
+			{
+				private ["_unit"];
+				_unit = _x;
+				if ((_unit distance _position) < viewDistance) then {
+					{
+						if ((_x distance _position) < ac_alert_distance) then {
+							_x reveal [_unit, 2.0];
+						};
+					} count allUnits;
+				};
+			} forEach playableUnits;
