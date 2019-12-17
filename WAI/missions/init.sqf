@@ -14,6 +14,25 @@ _mission			= "";
 _hresult 			= 0;
 _bresult 			= 0;
 
+//defreezer
+[] spawn {
+	while {true} do {
+		if (!WAI_MarkerReady) then {
+			sleep 290;
+			if (!WAI_MarkerReady) then {
+				diag_log "WAI: WAI_MarkerReady seems freezed";
+				sleep 10;
+				if (!WAI_MarkerReady) then {
+					diag_log "WAI: WAI_MarkerReady defrosted";
+					WAI_MarkerReady = true;
+					sleep 270;
+				};
+			};
+		};
+		sleep 30;
+	};
+};
+
 while {true} do
 {
 	_cnt = {alive _x} count playableUnits;
