@@ -1,4 +1,4 @@
-private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot"];
+private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot","_loot1","_loot2","_loot3"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -8,6 +8,9 @@ _position = [40] call find_position;
 diag_log format["WAI: [Mission:[%2] Lunch break Convoy]: Starting... %1",_position,_missionType];
 
 _loot = if (_missionType == "MainHero") then {Loot_IkeaConvoy select 0;} else {Loot_IkeaConvoy select 1;};
+_loot1 = if (_missionType == "MainHero") then {Loot_IkeaConvoy1 select 0;} else {Loot_IkeaConvoy1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_IkeaConvoy2 select 0;} else {Loot_IkeaConvoy2 select 1;};
+_loot3 = if (_missionType == "MainHero") then {Loot_IkeaConvoy3 select 0;} else {Loot_IkeaConvoy3 select 1;};
 
 //Spawn Crates
 [[
@@ -33,9 +36,9 @@ _rndnum = ceil (random 5);
 //Heli Para Drop
 [_position,400,"BAF_Merlin_HC3_D","North",[3000,4000],150,1.0,200,10,"Random","Random",4,"Random",_aiType,"Random",_aiType,false,_mission] spawn heli_para;
 
-[cargo_trucks,[(_position select 0) + 19,(_position select 1) + 11],_mission,true,90] call custom_publish;
-[refuel_trucks,[(_position select 0) - 14,(_position select 1) - 14],_mission,true,-90] call custom_publish;
-[military_unarmed,[(_position select 0) - 20,(_position select 1) - 6],_mission,true,-90] call custom_publish;
+[_loot1,[(_position select 0) + 19,(_position select 1) + 11],_mission,true,90] call custom_publish;
+[_loot2,[(_position select 0) - 14,(_position select 1) - 14],_mission,true,-90] call custom_publish;
+[_loot3,[(_position select 0) - 20,(_position select 1) - 6],_mission,true,-90] call custom_publish;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_IKEA_ANNOUNCE","STR_CL_HERO_IKEA_WIN","STR_CL_HERO_IKEA_FAIL"];

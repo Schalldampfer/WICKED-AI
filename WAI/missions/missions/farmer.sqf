@@ -1,4 +1,4 @@
-private ["_rndnum","_mission","_position","_messages","_aiType","_missionType","_loot"];
+private ["_rndnum","_mission","_position","_messages","_aiType","_missionType","_loot","_loot2"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -7,7 +7,8 @@ _position = [30] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Farmer]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_Farmer select 0;} else {Loot_Farmer select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_Farmer1 select 0;} else {Loot_Farmer1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_Farmer2 select 0;} else {Loot_Farmer2 select 1;};
 
 //Spawn Crates
 [[
@@ -37,7 +38,7 @@ _rndnum = ceil (random 3);
 [[(_position select 0) -17,(_position select 1) +29,0],_rndnum,"Easy",["Random","AT"],4,"Random","RU_Villager2","Random",_aiType,_mission] call spawn_group;
 
 //Spawn vehicles
-["Tractor",[(_position select 0) -6.5, (_position select 1) +12.7],_mission,true,46.7] call custom_publish;
+[_loot2,[(_position select 0) -6.5, (_position select 1) +12.7],_mission,true,46.7] call custom_publish;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_FARMER_ANNOUNCE","STR_CL_HERO_FARMER_WIN","STR_CL_HERO_FARMER_FAIL"];

@@ -6,12 +6,12 @@ _aiType = _this select 1; // Type of AI - opposite of mission type
 _position = [30] call find_position;
 
 //Military Chopper
-_vehclass = armed_chopper call BIS_fnc_selectRandom;
+_vehclass = (if (_missionType == "MainHero") then {Loot_Extraction2 select 0} else {Loot_Extraction2 select 1}) call BIS_fnc_selectRandom;
 _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");
 
 diag_log format["WAI: [Mission:[%2] Sniper Extraction]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_Extraction select 0;} else {Loot_Extraction select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_Extraction1 select 0;} else {Loot_Extraction1 select 1;};
 
 //Spawn Crates
 [[

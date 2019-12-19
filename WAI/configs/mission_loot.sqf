@@ -9,9 +9,13 @@ Loot_UralAttack = [
 	[4,8,36,3,1], // Hero
 	[4,8,36,3,1] // Bandit
 ];
-Loot_Farmer = [
+Loot_Farmer1 = [
 	[6,5,[40,crate_items_medical],3,1], // Hero
 	[6,5,[40,crate_items_medical],3,1] // Bandit
+];
+Loot_Farmer2 = [
+	["Tractor"], // Hero
+	["tractorOld"] // Bandit
 ];
 Loot_MediCamp = [
 	[0,0,[70,crate_items_medical],3,1], // Hero
@@ -21,9 +25,13 @@ Loot_Outpost = [
 	[6,4,40,2,1], // Hero
 	[6,4,40,2,1] // Bandit
 ];
-Loot_ScoutPatrol = [
+Loot_ScoutPatrol1 = [
 	[4,8,36,2,1], // Hero
 	[4,8,36,2,1] // Bandit
+];
+Loot_ScoutPatrol2 = [
+	civil_vehicles, // Hero
+	civil_vehicles // Bandit
 ];
 Loot_SlaughterHouse = [
 	[6,5,[6,crate_items_chainbullets],2,1], // Hero
@@ -35,9 +43,13 @@ Loot_AbandonedTrader = [
 	[8,5,15,3,1], // Hero
 	[8,5,15,3,1] // Bandit
 ];
-Loot_ArmedVehicle = [
+Loot_ArmedVehicle1 = [
 	[0,0,[25,crate_items_chainbullets],0,1], // Hero
 	[0,0,[25,crate_items_chainbullets],0,1] // Bandit
+];
+Loot_ArmedVehicle2 = [
+	armed_vehicle, // Hero
+	armed_vehicle // Bandit
 ];
 Loot_BHC = [ // Black Hawk Crash
 	[5,5,10,3,1], // Hero
@@ -93,6 +105,18 @@ Loot_IkeaConvoy = [
 	[[1,crate_weapons_buildables],[4,crate_tools_buildable],[30,crate_items_buildables],3,4], // Hero
 	[[1,crate_weapons_buildables],[4,crate_tools_buildable],[30,crate_items_buildables],3,4] // Bandit
 ];
+Loot_IkeaConvoy1 = [
+	cargo_trucks, // Hero
+	cargo_trucks // Bandit
+];
+Loot_IkeaConvoy2 = [
+	refuel_trucks, // Hero
+	refuel_trucks // Bandit
+];
+Loot_IkeaConvoy3 = [
+	military_unarmed, // Hero
+	military_unarmed // Bandit
+];
 Loot_LumberJack = [
 	[6,[8,crate_tools_sniper],[15,crate_items_wood],3,[4,crate_backpacks_large]], // Hero
 	[6,[8,crate_tools_sniper],[15,crate_items_wood],3,[4,crate_backpacks_large]] // Bandit
@@ -105,9 +129,13 @@ Loot_Radioshack = [
 	[10,5,30,3,2], // Hero
 	[10,5,30,3,2] // Bandit
 ];
-Loot_Extraction = [
+Loot_Extraction1 = [
 	[[10,ai_wep_sniper],[4,crate_tools_sniper],[4,crate_items_sniper],3,2], // Hero
 	[[10,ai_wep_sniper],[4,crate_tools_sniper],[4,crate_items_sniper],3,2] // Bandit
+];
+Loot_Extraction2 = [
+	armed_chopper, // Hero
+	armed_chopper // Bandit
 ];
 Loot_Presidents = [
 	[0,0,[40,crate_items_president],0,1], // Hero

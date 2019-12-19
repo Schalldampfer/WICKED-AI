@@ -1,4 +1,4 @@
-private ["_mission","_position","_rndnum","_aiType","_messages","_missionType","_loot"];
+private ["_mission","_position","_rndnum","_aiType","_messages","_missionType","_loot","_loot2"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -7,7 +7,8 @@ _position = [30] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Scout Patrol]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_ScoutPatrol select 0;} else {Loot_ScoutPatrol select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_ScoutPatrol1 select 0;} else {Loot_ScoutPatrol1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_ScoutPatrol2 select 0;} else {Loot_ScoutPatrol2 select 1;};
 
 // Spawn crates
 [[
@@ -22,7 +23,7 @@ _rndnum = ceil (random 3);
 [_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Spawn vehicle
-[civil_vehicles,_position,_mission] call custom_publish;
+[_loot2,_position,_mission] call custom_publish;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_BANDITPATROL_ANNOUNCE","STR_CL_HERO_BANDITPATROL_WIN","STR_CL_HERO_BANDITPATROL_FAIL"];
