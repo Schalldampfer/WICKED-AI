@@ -63,12 +63,12 @@ Loot_WeaponCache = [
 	[10,4,0,3,1], // Hero
 	[10,4,0,3,1] // Bandit
 ];
+Loot_Mayors = [
+	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]], // Hero
+	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]] // Bandit
+];
 
 /***** Hard Missions *****/
-Loot_ArmyBase = [
-	[10,5,10,3,2], // Hero
-	[10,5,10,3,2] // Bandit
-];
 Loot_Base = [
 	[[16,ai_wep_sniper],[8,crate_tools_sniper],[3,crate_items_high_value],3,[4,crate_backpacks_large]], // Hero
 	[[16,ai_wep_sniper],[8,crate_tools_sniper],[3,crate_items_high_value],3,[4,crate_backpacks_large]] // Bandit
@@ -88,10 +88,6 @@ Loot_CropRaider = [
 Loot_DronePilot = [
 	[14,[8,crate_tools_sniper],[2,crate_items_high_value],3,[2,crate_backpacks_large]], // Hero
 	[14,[8,crate_tools_sniper],[2,crate_items_high_value],3,[2,crate_backpacks_large]] // Bandit
-];
-Loot_GemTower = [
-	[8,5,[4,crate_items_gems],3,2], // Hero
-	[8,5,[4,crate_items_gems],3,2] // Bandit
 ];
 Loot_IkeaConvoy = [
 	[[1,crate_weapons_buildables],[4,crate_tools_buildable],[30,crate_items_buildables],3,4], // Hero
@@ -113,12 +109,10 @@ Loot_Extraction = [
 	[[10,ai_wep_sniper],[4,crate_tools_sniper],[4,crate_items_sniper],3,2], // Hero
 	[[10,ai_wep_sniper],[4,crate_tools_sniper],[4,crate_items_sniper],3,2] // Bandit
 ];
-Loot_TankColumn = [
-	[12,5,30,3,2], // Hero
-	[12,5,30,3,2] // Bandit
+Loot_Presidents = [
+	[0,0,[40,crate_items_president],0,1], // Hero
+	[0,0,[40,crate_items_president],0,1] // Bandit
 ];
-
-/***** Extreme Missions *****/
 Loot_Firestation1 = [ // Fire Station Crate 1
 	[0,0,[4,crate_items_high_value],0,1], // Hero
 	[0,0,[4,crate_items_high_value],0,1] // Bandit
@@ -127,11 +121,29 @@ Loot_Firestation2 = [ // Fire Station Crate 2
 	[[10,ai_wep_sniper],3,20,3,1], // Hero
 	[[10,ai_wep_sniper],3,20,3,1] // Bandit
 ];
-Loot_Mayors = [
-	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]], // Hero
-	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]] // Bandit
+Loot_Firestation3 = [
+	armed_vehicle, // Hero
+	armed_vehicle // Bandit
 ];
-Loot_Presidents = [
-	[0,0,[40,crate_items_president],0,1], // Hero
-	[0,0,[40,crate_items_president],0,1] // Bandit
+
+/***** Extreme Missions *****/
+Loot_ArmyBase1 = [
+	[10,5,10,3,2], // Hero
+	[10,5,10,3,2] // Bandit
+];
+Loot_ArmyBase2 = [
+	armed_vehicle, // Hero
+	armed_vehicle // Bandit
+];
+Loot_GemTower = [
+	[8,5,[4,crate_items_gems],3,2], // Hero
+	[8,5,[4,crate_items_gems],3,2] // Bandit
+];
+Loot_TankColumn1 = [
+	[12,5,30,3,2], // Hero
+	[12,5,30,3,2] // Bandit
+];
+Loot_TankColumn2 = [
+	armed_vehicle, // Hero
+	armed_vehicle // Bandit
 ];

@@ -25,16 +25,16 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) + 29, (_position select 1) - 21, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 21, (_position select 1) + 19, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 23, (_position select 1) - 19, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 29, (_position select 1) - 21, 0],5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 21, (_position select 1) + 19, 0],5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 23, (_position select 1) - 19, 0],5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[[(_position select 0) - 12, (_position select 1) + 23, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[[(_position select 0) - 12, (_position select 1) + 23, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],50,2,"HMMWV_Armored","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],50,2,"HMMWV_Armored","Extreme",_aiType,_aiType,_mission] call vehicle_patrol;
  
 //Static Guns
 [[
@@ -45,7 +45,7 @@ _rndnum = ceil (random 5);
 [
 	_mission, // Mission number
 	_position, // Position of mission
-	"Hard", // Difficulty
+	"Extreme", // Difficulty
 	"Gem Tower", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?

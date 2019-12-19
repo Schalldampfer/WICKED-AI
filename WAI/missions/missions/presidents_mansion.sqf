@@ -20,18 +20,18 @@ _loot = if (_missionType == "MainHero") then {Loot_Presidents select 0;} else {L
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //The President Himself
-_president = [[((_position select 0) + 5), _position select 1, 4.1],1,"Extreme","Random",4,"none","Special","Random",[_aiType,500],_mission] call spawn_group;
-_firstlady = [[((_position select 0) + 5), _position select 1, 4.1],1,"Extreme","Unarmed",4,"none","Secretary1","Random",[_aiType,0],_mission] call spawn_group;
+_president = [[((_position select 0) + 5), _position select 1, 4.1],1,"Hard","Random",4,"none","Special","Random",[_aiType,500],_mission] call spawn_group;
+_firstlady = [[((_position select 0) + 5), _position select 1, 4.1],1,"Hard","Unarmed",4,"none","Secretary1","Random",[_aiType,0],_mission] call spawn_group;
 
 _president_himself = (units _president) select 0;
 _president_himself disableAI "MOVE";
@@ -59,12 +59,12 @@ _president_himself spawn {
 	[(_position select 0) - 13.135, (_position select 1) + 5.025, 5.27],
 	[(_position select 0) + 14.225, (_position select 1) + 5.025, 5.27],
 	[(_position select 0) + 1.97, (_position select 1) - 2.368, 10.54]
-],"M2StaticMG","Extreme",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+],"M2StaticMG","Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 
 [
 	_mission, // Mission number
 	_position, // Position of mission
-	"Extreme", // Difficulty
+	"Hard", // Difficulty
 	"President's in Town", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?

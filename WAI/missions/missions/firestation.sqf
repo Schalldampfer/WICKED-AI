@@ -1,4 +1,4 @@
-private ["_rndnum","_mission","_position","_messages","_aiType","_missionType","_loot1","_loot2"];
+private ["_rndnum","_mission","_position","_messages","_aiType","_missionType","_loot1","_loot2","_loot3"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -9,6 +9,7 @@ diag_log format["WAI: [Mission:[%2] Fire Station]: Starting... %1",_position,_mi
 
 _loot1 = if (_missionType == "MainHero") then {Loot_Firestation1 select 0;} else {Loot_Firestation1 select 1;};
 _loot2 = if (_missionType == "MainHero") then {Loot_Firestation2 select 0;} else {Loot_Firestation2 select 1;};
+_loot3 = if (_missionType == "MainHero") then {Loot_Firestation3 select 0;} else {Loot_Firestation3 select 1;};
 
 //Spawn Crates
 [[
@@ -24,17 +25,17 @@ _loot2 = if (_missionType == "MainHero") then {Loot_Firestation2 select 0;} else
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 // Spawn Vehicle
-[armed_vehicle,[(_position select 0) -9.5, (_position select 1) -6.8],_mission,true,-29] call custom_publish;
+[_loot3,[(_position select 0) -9.5, (_position select 1) -6.8],_mission,true,-29] call custom_publish;
 
 //Humvee Patrol
 [[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored","Random",_aiType,_aiType,_mission] call vehicle_patrol;
@@ -48,7 +49,7 @@ _rndnum = ceil (random 5);
 	[(_position select 0) - 12.8, (_position select 1) - 4.2, 4.97],
 	[(_position select 0) + 0.9, (_position select 1) - 20.9, 0],
 	[(_position select 0) + 23.5, (_position select 1) + 1.1, 8.94]
-],"M2StaticMG","Extreme",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+],"M2StaticMG","Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_FIRESTATION_ANNOUNCE","STR_CL_HERO_FIRESTATION_WIN","STR_CL_HERO_FIRESTATION_FAIL"];
@@ -59,7 +60,7 @@ _messages = if (_missionType == "MainHero") then {
 [
 	_mission, // Mission number
 	_position, // Position of mission
-	"Extreme", // Difficulty
+	"Hard", // Difficulty
 	"Fire Station", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?

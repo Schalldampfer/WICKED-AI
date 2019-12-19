@@ -20,17 +20,17 @@ _mansion = [[
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 5);
-[_position,_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //The Mayor Himself
-_mayor = [_position,1,"Extreme","Random",4,"Random","Special","Random",[_aiType,300],_mission] call spawn_group;
+_mayor = [_position,1,"Medium","Random",4,"Random","Special","Random",[_aiType,300],_mission] call spawn_group;
 _mayor_himself = (units _mayor) select 0;
 
 //Put the Mayor in his room
@@ -60,12 +60,12 @@ _mayor_himself spawn {
 [[
 	[(_position select 0) - 15, (_position select 1) + 15, 8],
 	[(_position select 0) + 15, (_position select 1) - 15, 8]
-],"M2StaticMG","Extreme",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+],"M2StaticMG","Medium",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 
 [
 	_mission, // Mission number
 	_position, // Position of mission
-	"Extreme", // Difficulty
+	"Medium", // Difficulty
 	"Mayors Mansion", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
