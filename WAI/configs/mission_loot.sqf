@@ -17,10 +17,6 @@ Loot_Farmer2 = [
 	["Tractor"], // Hero
 	["tractorOld"] // Bandit
 ];
-Loot_MediCamp = [
-	[0,0,[70,crate_items_medical],3,1], // Hero
-	[0,0,[70,crate_items_medical],3,1] // Bandit
-];
 Loot_Outpost = [
 	[6,4,40,2,1], // Hero
 	[6,4,40,2,1] // Bandit
@@ -37,6 +33,10 @@ Loot_SlaughterHouse = [
 	[6,5,[6,crate_items_chainbullets],2,1], // Hero
 	[6,5,[6,crate_items_chainbullets],2,1] // Bandit
 ];
+Loot_BHC = [ // Black Hawk Crash
+	[5,5,10,3,1], // Hero
+	[5,5,10,3,1] // Bandit
+];
 
 /***** Medium Missions *****/
 Loot_AbandonedTrader = [
@@ -50,10 +50,6 @@ Loot_ArmedVehicle1 = [
 Loot_ArmedVehicle2 = [
 	armed_vehicle, // Hero
 	armed_vehicle // Bandit
-];
-Loot_BHC = [ // Black Hawk Crash
-	[5,5,10,3,1], // Hero
-	[5,5,10,3,1] // Bandit
 ];
 Loot_DrugBust = [
 	[5,5,[10,crate_items_crop_raider],3,1], // Hero
@@ -78,6 +74,10 @@ Loot_WeaponCache = [
 Loot_Mayors = [
 	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]], // Hero
 	[10,5,[4,crate_items_high_value],3,[2,crate_backpacks_large]] // Bandit
+];
+Loot_MediCamp = [
+	[0,0,[70,crate_items_medical],3,1], // Hero
+	[0,0,[70,crate_items_medical],3,1] // Bandit
 ];
 
 /***** Hard Missions *****/

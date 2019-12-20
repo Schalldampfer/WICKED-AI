@@ -25,11 +25,11 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 3);
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 3);
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_MSC_ANNOUNCE","STR_CL_HERO_MSC_WIN","STR_CL_HERO_MSC_FAIL"];
@@ -40,7 +40,7 @@ _messages = if (_missionType == "MainHero") then {
 [
 	_mission, // Mission number
 	_position, // Position of mission
-	"Easy", // Difficulty
+	"Medium", // Difficulty
 	"Medical Supply Camp", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
