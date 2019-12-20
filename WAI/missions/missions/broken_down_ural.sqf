@@ -3,7 +3,7 @@ private ["_mission","_position","_rndnum","_messages","_aiType","_missionType","
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
-_position = [30] call find_position;
+_position = [10] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Ural Attack]: Starting... %1",_position,_missionType];
 
@@ -14,10 +14,8 @@ _loot = if (_missionType == "MainHero") then {Loot_UralAttack select 0;} else {L
 	[_loot,crates_medium,[-5,-5]]
 ],_position,_mission] call wai_spawnCrate;
 
-// Spawn Objects
-[[
-	["UralWreck",[0,0]]
-],_position,_mission] call wai_spawnObjects;
+//Spawn Vehicle
+[["Ural_CDF","Ural_TK_CIV_EP1","Ural_UN_EP1","UralCivil_DZE","UralCivil2_DZE"] call BIS_fnc_selectRandom,_position,_mission] call custom_publish;
 
 //Troops
 _rndnum = round (random 5);

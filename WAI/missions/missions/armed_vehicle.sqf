@@ -3,7 +3,7 @@ private ["_mission","_rndnum","_vehname","_position","_vehclass","_messages","_a
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
-_position = [30] call find_position;
+_position = [25] call find_position;
 
 //Armed Land Vehicle
 _vehclass = (if (_missionType == "MainHero") then {Loot_ArmedVehicle2 select 0} else {Loot_ArmedVehicle2 select 1}) call BIS_fnc_selectRandom;

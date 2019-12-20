@@ -12,6 +12,14 @@ _loot1 = if (_missionType == "MainHero") then {Loot_IkeaConvoy1 select 0;} else 
 _loot2 = if (_missionType == "MainHero") then {Loot_IkeaConvoy2 select 0;} else {Loot_IkeaConvoy2 select 1;};
 _loot3 = if (_missionType == "MainHero") then {Loot_IkeaConvoy3 select 0;} else {Loot_IkeaConvoy3 select 1;};
 
+// Spawn Objects
+[[
+	["US_WarfareBFieldhHospital_Base_EP1",[2,5]],
+	["MASH_EP1",[-24,-5]],
+	["MASH_EP1",[-17,-5]],
+	["MASH_EP1",[-10,-5]]
+],_position,_mission] call wai_spawnObjects;
+
 //Spawn Crates
 [[
 	[_loot,crates_large,[0,0]]

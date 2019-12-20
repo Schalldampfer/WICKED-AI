@@ -118,7 +118,7 @@ wai_high_value_chance	= 20; // chance in percent you find above mentioned item
 wai_num_mags 			= (3 + round(random 3)); // Number of magazines per weapon in the crate
 wai_minimum_loot		= 0.8 + (random 0.2); // Number between .01 and 1. 1 = 100% loot based on loot definitions. To disable the feature set value less than or equal to 0 and you will automatically get 100% loot;
 
-wai_enable_minefield	= true; // enable minefields to better defend missions
+wai_enable_minefield	= false; // enable minefields to better defend missions
 wai_enable_static_guns	= true; // Enables or disables static gun placements at missions that have them.
 wai_enable_paradrops	= true; // Enables or disables paratrooper drops at missions that have them.
 wai_enable_patrols		= true; // Enables or disables armored vehicle patrols at missions that have them.

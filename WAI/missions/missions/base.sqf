@@ -3,7 +3,7 @@ private ["_mission","_position","_rndnum","_aiType","_messages","_missionType","
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
-_position = [80] call find_position;
+_position = [60] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Base]: Starting... %1",_position,_missionType];
 

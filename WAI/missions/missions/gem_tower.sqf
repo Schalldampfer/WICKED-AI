@@ -3,7 +3,7 @@ private ["_mission","_position","_aiType","_rndnum","_missionType","_loot"];
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
-_position = [80] call find_position;
+_position = [100] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Gem Tower]: Starting... %1",_position,_missionType];
 
@@ -17,12 +17,15 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 // Spawn Objects
 [[
 	["Land_Misc_Coltan_Heap_EP1",[-3.41,16.4,-2.5],-82.16],
+	["Land_Misc_Coltan_Heap_EP1",[-31,12,-2],8.27],
+	["Land_Misc_Coltan_Heap_EP1",[-26,34,-2]],
+	["GraveCrossHelmet",[-20,11]]
+],_position,_mission] call wai_spawnObjects;
+[[
 	["Land_Ind_SiloVelke_01",[-0.01,-0.01,-0.25]],
 	["Land_Ind_SiloVelke_01",[-21,-0.4,-0.25],182.209],
-	["Land_Misc_Coltan_Heap_EP1",[-31,12,-2],8.27],
-	["Land_A_Castle_Bastion",[-21,11,-0.2]],
-	["Land_Misc_Coltan_Heap_EP1",[-26,34,-2]]
-],_position,_mission] call wai_spawnObjects;
+	["Land_A_Castle_Bastion",[-21,11,-0.2]]
+],_position,-1] call wai_spawnObjects;
 
 //Troops
 [[(_position select 0) + 29, (_position select 1) - 21, 0],5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
