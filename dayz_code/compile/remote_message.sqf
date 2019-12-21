@@ -66,7 +66,7 @@ fnc_remote_message = {
 		};
 	};
 
-	if (_type == "private") exitWith {if(getPlayerUID player == (_message select 0)) then {systemChat (_message select 1);playSound "IWAC_Message_Sound";};};
+	if (_type == "private") exitWith {if(getPlayerUID player == (_message select 0)) then {(_message select 1) call dayz_rollingMessages;playSound "IWAC_Message_Sound";};};
 	if (_type == "systemChat") exitWith {systemChat _message;};
 	if (_type == "hint") exitWith {hint _message;};
 	if (_type == "titleCut") exitWith {titleCut [_message,"PLAIN DOWN",3];};
