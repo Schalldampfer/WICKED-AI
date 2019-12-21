@@ -28,18 +28,16 @@ _loot = if (_missionType == "MainHero") then {Loot_WeaponCache select 0;} else {
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) + 6.5,(_position select 1) - 12,0],5,"Easy",["Random","AT"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 8,(_position select 1) + 14,0],5,"Easy","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0) - 21,(_position select 1) - 12.5,0],_rndnum,"Easy","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0) - 21,(_position select 1) - 12.5,0],_rndnum,"Easy","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 6.5,(_position select 1) - 12,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) -  8,(_position select 1) +  14,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 21,(_position select 1) - 12.5,0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 21,(_position select 1) - 12.5,0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
 	[(_position select 0) + 18, (_position select 1) - 13, 0],
 	[(_position select 0) - 19.5, (_position select 1) + 12, 0]
-],"M2StaticMG","Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_WEAPONCACHE_ANNOUNCE","STR_CL_HERO_WEAPONCACHE_WIN","STR_CL_HERO_WEAPONCACHE_FAIL"];

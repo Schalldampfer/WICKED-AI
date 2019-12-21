@@ -27,11 +27,14 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
+
+//Humvee Patrol
+[[(_position select 0) + 35, _position select 1, 0],       [(_position select 0) + 30, _position select 1, 0],50,2,"M1114_AGS_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) +  2, (_position select 1) + 38, 0],[(_position select 0) - 28, _position select 1, 0],50,2,"M1114_DSK_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_MSC_ANNOUNCE","STR_CL_HERO_MSC_WIN","STR_CL_HERO_MSC_FAIL"];

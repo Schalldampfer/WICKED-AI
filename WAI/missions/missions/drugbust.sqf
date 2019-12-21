@@ -46,12 +46,10 @@ _loot2 = if (_missionType == "MainHero") then {Loot_DrugBust2 select 0;} else {L
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) - 12, (_position select 1) - 15,0],5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 12, (_position select 1) + 15,0],5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0), (_position select 1), 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0), (_position select 1), 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) - 15,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 12, (_position select 1) + 15,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Spawn Vehicle
 [_loot2,[(_position select 0) +11, (_position select 1) -3,-0.01],_mission,true,0] call custom_publish;
@@ -73,3 +71,6 @@ _messages = if (_missionType == "MainHero") then {
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;
+
+//Paradrop after mission
+[_position,100,civil_chopper call BIS_fnc_selectRandom,["North","South","East","West"] call BIS_fnc_selectRandom,[4000,5000],100,0.4,300,6,"Random","MP5_SD_DZ",2,"Random","RU_Policeman_DZ","Random",_aiType,true,_mission] spawn heli_para;

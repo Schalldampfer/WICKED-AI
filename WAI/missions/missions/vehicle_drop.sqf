@@ -34,12 +34,13 @@ diag_log format["WAI: [Mission:[%3] %1 Vehicle Drop]: Starting... %2",_vehname,_
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Medium",["Random","AT"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Humvee Patrol
+[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],250,4,armed_vehicle call BIS_fnc_selectRandom,"Hard","Random",_aiType,_mission] call vehicle_patrol;
 
 if(wai_debug_mode) then {
 	diag_log format["WAI: [%3] %1 Vehicle Drop spawned a %2",_airName,_vehname,_missionType];

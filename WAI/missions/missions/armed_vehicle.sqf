@@ -21,15 +21,13 @@ _loot = if (_missionType == "MainHero") then {Loot_ArmedVehicle1 select 0;} else
 ],_position,_mission] call wai_spawnCrate;
 
 //Troops
-[_position,5,"Medium",["Random","AT"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
-//Static Guns
-[[[(_position select 0),(_position select 1) + 10, 0]],"Random","Medium",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+//Humvee Patrol
+[[(_position select 0),(_position select 1) + 10, 0],[(_position select 0) + 0.1, (_position select 1) + 20, 0],50,2,armed_vehicle call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,_mission] call vehicle_patrol;
 
 //Spawn vehicles
 [_vehclass,_position,_mission] call custom_publish;

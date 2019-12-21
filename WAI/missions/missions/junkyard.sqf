@@ -58,12 +58,10 @@ _loot2 = if (_missionType == "MainHero") then {Loot_Junkyard2 select 0;} else {L
 [_loot2,[(_position select 0) -8, (_position select 1) +7,-0.04],_mission,true,44.77] call custom_publish;
 
 //Troops
-[[(_position select 0) - 2, (_position select 1) - 5, 0],5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0) + 17, (_position select 1) + 21, 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[[(_position select 0) + 17, (_position select 1) + 21, 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) -  2, (_position select 1) -  5, 0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[

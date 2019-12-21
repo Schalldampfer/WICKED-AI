@@ -42,18 +42,16 @@ _loot2 = if (_missionType == "MainHero") then {Loot_AbandonedTrader2 select 0;} 
 [_loot2 call BIS_fnc_selectRandom,[(_position select 0) + 27, (_position select 1) - 3,-0.01],_mission,true,-67.9033] call custom_publish;
 
 //Troops
-[_position,5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium","Random",4,"Random","Hero","Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random","Hero","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
 	[(_position select 0) + 0.1, (_position select 1) + 20, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 20, 0]
-],"M2StaticMG","Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_ABANDONEDTRADER_ANNOUNCE","STR_CL_HERO_ABANDONEDTRADER_WIN","STR_CL_HERO_ABANDONEDTRADER_FAIL"];

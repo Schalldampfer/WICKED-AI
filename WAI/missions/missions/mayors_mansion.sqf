@@ -22,18 +22,16 @@ _mansion = [[
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",3,"Random","BAF_Soldier_Officer_MTP_DZ","Random",_aiType,_mission] call spawn_group;
 
 //The Mayor Himself
-_mayor = [_position,1,"Medium","Random",4,"Random","Special","Random",[_aiType,300],_mission] call spawn_group;
+_mayor = [_position,1,"extreme","revolver_gold_EP1",2,"Random","Special","Random",[_aiType,100],_mission] call spawn_group;
+_mayor setBehaviour "COMBAT";
 _mayor_himself = (units _mayor) select 0;
+_mayor_himself setUnitPos "UP";
 
 //Put the Mayor in his room
 _room = (6 + ceil(random(3)));
@@ -47,22 +45,20 @@ _mayor_himself spawn {
 	_player_near = false;
 	while {!_player_near} do {
 		_player_near = [(position _mayor),30] call isNearPlayer;
-		uiSleep 1;
+		uiSleep 2;
 	};
 	_mayor enableAI "MOVE";
+	doStop _mayor;
 };
-
-//Humvee Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored","Random",_aiType,_aiType,_mission] call vehicle_patrol;
-
-//Heli Paradrop
-[_position,400,"UH60M_EP1_DZE","North",[3000,4000],150,1.0,100,10,"Random","Random",4,"Random",_aiType,"Random",_aiType,false,_mission] spawn heli_para;
 
 //Static mounted guns
 [[
 	[(_position select 0) - 15, (_position select 1) + 15, 8],
 	[(_position select 0) + 15, (_position select 1) - 15, 8]
-],"M2StaticMG","Medium",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+[[
+	[(_position select 0) - 50,(_position select 1), 0]
+],"SearchLight_Ins","Extreme",_aiType,_aiType,0,2,"none","Random",_mission] call spawn_static;
 
 [
 	_mission, // Mission number
