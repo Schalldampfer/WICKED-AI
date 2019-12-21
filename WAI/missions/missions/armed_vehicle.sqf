@@ -5,6 +5,8 @@ _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
 _position = [25] call find_position;
 
+if (([_missionType,_position,_mission] call wai_waitForPlayers) < 1) exitWith { [_missionType,_mission] call wai_removeMission; };
+
 //Armed Land Vehicle
 _vehclass = (if (_missionType == "MainHero") then {Loot_ArmedVehicle2 select 0} else {Loot_ArmedVehicle2 select 1}) call BIS_fnc_selectRandom;
 _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");

@@ -5,6 +5,8 @@ _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
 _position = [50] call find_position;
 
+if (([_missionType,_position,_mission] call wai_waitForPlayers) < 1) exitWith { [_missionType,_mission] call wai_removeMission; };
+
 diag_log format["WAI: [Mission:[%2] Presidents in Town]: Starting... %1",_position,_missionType];
 
 _loot = if (_missionType == "MainHero") then {Loot_Presidents select 0;} else {Loot_Presidents select 1;};
