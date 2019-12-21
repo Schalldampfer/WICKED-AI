@@ -13,7 +13,7 @@ _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");
 _airClass = ["C130J_US_EP1_DZ","MV22_DZ"] call BIS_fnc_selectRandom;
 _airName = getText (configFile >> "CfgVehicles" >> _airClass >> "displayName");
 
-diag_log format["WAI: [Mission:[%3] %1 Vehicle Drop]: Starting... %2",_airName,_position,_missionType];
+diag_log format["WAI: [Mission:[%3] %1 Vehicle Drop]: Starting... %2",_vehname,_position,_missionType];
 
 // Spawn Objects
 [[
@@ -55,7 +55,7 @@ _messages = if (_missionType == "MainHero") then {
 	_mission, // Mission number
 	_position, // Position of mission
 	"Medium", // Difficulty
-	format["%1 Air Drop",_airName], // Name of Mission
+	format["%1 Air Drop",_vehname], // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
 	true, // make minefields available for this mission
