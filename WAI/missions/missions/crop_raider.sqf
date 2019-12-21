@@ -43,6 +43,13 @@ _loot = if (_missionType == "MainHero") then {Loot_CropRaider select 0;} else {L
 	["fiberplant",[15,10]]
 ],_position,_mission] call wai_spawnObjects;
 
+//Spawn vehicles
+if (WAI_Overpoch) then {
+	[ow_patrol call BIS_fnc_selectRandom,[(_position select 0) - 9, (_position select 1) + 5,-0.01],_mission] call custom_publish;
+} else {
+	["LadaLM",[(_position select 0) - 9, (_position select 1) + 5,-0.01],_mission] call custom_publish;
+};
+
 //Group Spawning
 [[(_position select 0) + 9, (_position select 1) - 13, 0],5,"Hard",["Random","AT"],4,"Random","Rocker3_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard","Random",4,"Random","Rocker1_DZ","Random",_aiType,_mission] call spawn_group;
