@@ -128,7 +128,7 @@ if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
 if (ai_share_info && (!isNil "_mission")) then {
 	_vp = (vehicle _player == _player);
 	{
-		if ((_x getVariable ["mission", -1]) == _mission) then {
+		if ((_x getVariable ["mission" + dayz_serverKey, -1]) == _mission) then {
 			_x reveal [_player, 4.0];
 			_vx = (vehicle _x == _x);
 			if ((_vx && _vp) || (!_vx && !_vp)) then {
