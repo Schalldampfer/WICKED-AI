@@ -34,11 +34,14 @@ _loot = if (_missionType == "MainHero") then {Loot_SlaughterHouse select 0;} els
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) + 9, (_position select 1) - 13, 0],5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0) + 13, (_position select 1) + 15, 0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0) + 13, (_position select 1) + 15, 0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  9, (_position select 1) - 13, 0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+[[
+	[(_position select 0) + 25, (_position select 1) + 25, 0],
+	[(_position select 0) - 25, (_position select 1) - 25, 0]
+],ai_static_gpmg call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 [
 	_mission, // Mission number

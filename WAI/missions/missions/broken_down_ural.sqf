@@ -21,11 +21,12 @@ _loot = if (_missionType == "MainHero") then {Loot_UralAttack select 0;} else {L
 
 //Troops
 _rndnum = round (random 5);
-[_position,5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Humvee Patrol
+[[(_position select 0), (_position select 1) + 20, 0],[(_position select 0), (_position select 1) - 20, 0],50,2,pk_vehicle call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,_mission] call vehicle_patrol;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_URAL_ANNOUNCE","STR_CL_HERO_URAL_WIN","STR_CL_HERO_URAL_FAIL"];

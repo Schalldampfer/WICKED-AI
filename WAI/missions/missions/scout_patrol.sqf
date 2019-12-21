@@ -18,11 +18,12 @@ _loot2 = if (_missionType == "MainHero") then {Loot_ScoutPatrol2 select 0;} else
 ],_position,_mission] call wai_spawnCrate;
 
 //Troops
-[_position,5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Humvee Patrol
+[[(_position select 0), (_position select 1) + 20, 0],[(_position select 0), (_position select 1) - 20, 0],50,2,pk_vehicle call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,_mission] call vehicle_patrol;
 
 //Spawn vehicle
 [_loot2,_position,_mission] call custom_publish;

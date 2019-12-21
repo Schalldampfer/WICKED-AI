@@ -25,22 +25,14 @@ _loot = if (_missionType == "MainHero") then {Loot_BHC select 0;} else {Loot_BHC
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 4);
-[_position,_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
 	[(_position select 0) +5, (_position select 1) +5]
 ],["UH1Wreck","UH60_wreck_EP1"] call BIS_fnc_selectRandom,"Easy","Bandit","Bandit",0,2,"Random","Random",_mission] call spawn_static;
-
-[[
-	[(_position select 0) + 25, (_position select 1) + 25, 0],
-	[(_position select 0) - 25, (_position select 1) - 25, 0]
-],ai_static_gpmg call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_BHCRASH_ANNOUNCE","STR_CL_HERO_BHCRASH_WIN","STR_CL_HERO_BHCRASH_FAIL"];

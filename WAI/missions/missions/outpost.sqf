@@ -28,11 +28,14 @@ _loot = if (_missionType == "MainHero") then {Loot_Outpost select 0;} else {Loot
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) + 2,_position select 1,0],5,"Easy",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0) - 2,_position select 1,0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 3);
-[[(_position select 0),(_position select 1) + 15,0],_rndnum,"Easy","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 2,_position select 1,   0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 2,_position select 1,   0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0),(_position select 1) + 15,0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+[[
+	[(_position select 0) + 25, (_position select 1) + 25, 0],
+	[(_position select 0) - 25, (_position select 1) - 25, 0]
+],ai_static_gpmg call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_BANDITOUTPOST_ANNOUNCE","STR_CL_HERO_BANDITOUTPOST_WIN","STR_CL_HERO_BANDITOUTPOST_FAIL"];
