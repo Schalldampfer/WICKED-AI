@@ -217,17 +217,27 @@ wai_remove_ai = {
 };
 
 wai_kill_ai = {
-	if (vehicle _this != _this) then {
-		_this action ["eject", vehicle _this];
-		sleep 0.1;
-	};
-	_this playmove (["ActsPercMstpSnonWpstDnon_suicide1B","ActsPercMstpSnonWpstDnon_suicide2B"] call BIS_fnc_selectRandom);
-	sleep 8;
-	_this fire currentWeapon _this;
-	sleep 0.2;
-	_this setDamage 1;
-	sleep 1;
-	_this setVariable ["deathType", "suicide", true];
+	private ["_veh"];
+	{
+		if (_x getVariable ["mission" + dayz_serverKey, nil] == _this) then {
+			_veh = vehicle _x;
+			if (_veh != _x) then {
+				_veh removeAllEventHandlers "GetOut";
+				_x action ["eject", _veh];
+				sleep 0.1;
+				_veh setDamage 2;
+			};
+			if (alive _x) then {
+				_x playmove (["ActsPercMstpSnonWpstDnon_suicide1B","ActsPercMstpSnonWpstDnon_suicide2B"] call BIS_fnc_selectRandom);
+				sleep 8;
+				_x fire (currentWeapon _x);
+				sleep 0.1;
+				_x setDamage 1;
+				sleep 0.1;
+				_x setVariable ["deathType", "suicide", true];
+			};
+		};
+	} count allUnits;
 };
 
 wai_generate_vehicle_key = {
@@ -369,7 +379,7 @@ wai_waitForPlayers = {
 
 	_markName = _missionType + str(_mission);
 	_dotName  = _missionType + str(_mission) + "dot";
-	_distance = ac_alert_distance + 1000;//distance to wait
+	_distance = (ac_alert_distance max wai_timeout_distance) + 1000;//distance to wait
 	_time = diag_tickTime;//start time
 	_timeout = (random((wai_mission_timeout select 1) - (wai_mission_timeout select 0)) + (wai_mission_timeout select 0)) * 60;//time limit
 	WAI_MarkerReady = true;// reset position finding
@@ -399,3 +409,19 @@ wai_waitForPlayers = {
 	diag_log format["WAI: Mission %1 has started at %2",_mission,_position call fa_coor2str];
 	(_timeout - (diag_tickTime - _time))
 };
+
+wai_removeMission = {
+	private ["_missionType","_mission"];
+	_missionType = _this select 0;//MainBandit or MainHero
+	_mission = _this select 1;//No. of mission
+	
+	if (_missionType == "MainBandit") then {
+		b_missionsrunning = b_missionsrunning - 1;
+		wai_b_starttime = diag_tickTime;
+	} else {
+		h_missionsrunning = h_missionsrunning - 1;
+		wai_h_starttime = diag_tickTime;
+	};
+	wai_mission_data set [_mission, -1];
+};
+

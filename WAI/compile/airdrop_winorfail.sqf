@@ -291,11 +291,8 @@ WAI_MarkerReady = true;
 			wai_h_starttime = diag_tickTime;
 		};
 		
-		{ // mission units suicide
-			if ((alive _x) && !(isPlayer _x) && (_x getVariable ["mission", nil] == _mission)) then {
-				_x spawn wai_kill_ai;
-			};
-		} forEach allUnits;
+		// mission units suicide
+		_mission call wai_kill_ai;
 		
 		diag_log format["WAI: [Mission: %1]: Ended at %2",_name,_position];
 		
