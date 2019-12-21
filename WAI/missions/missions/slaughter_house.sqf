@@ -50,7 +50,7 @@ _loot = if (_missionType == "MainHero") then {Loot_SlaughterHouse select 0;} els
 	"Slaughter House", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	["STR_CL_GENERAL_SLAUGHTERHOUSE_ANNOUNCE","STR_CL_GENERAL_SLAUGHTERHOUSE_WIN","STR_CL_GENERAL_SLAUGHTERHOUSE_FAIL"]
 ] call mission_winorfail;
