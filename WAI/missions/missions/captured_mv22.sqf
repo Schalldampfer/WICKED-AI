@@ -13,7 +13,7 @@ _loot = if (_missionType == "MainHero") then {Loot_CapturedMV22 select 0;} else 
 
 //Spawn Crates
 [[
-	[_loot,"USBasicWeaponsBox",[11.2,12.2,.1]]
+	[_loot,"UNBasicWeapons_EP1",[11.2,12.2,.1]]
 ],_position,_mission] call wai_spawnCrate;
 
 // Spawn Objects
@@ -27,20 +27,19 @@ _loot = if (_missionType == "MainHero") then {Loot_CapturedMV22 select 0;} else 
 
 //Troops
 [[_position select 0,_position select 1,0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 33,(_position select 1) - 7,0.1],5,"Hard","Random",4,"Random","RU_Doctor","Random",[_aiType,100],_mission] call spawn_group;
-[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 33,(_position select 1) -  7,0.1],5,"Hard",1,2,"Random","RU_Doctor","Random",[_aiType,100],_mission] call spawn_group;
+[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
+//Humvee Patrol
+[[(_position select 0) + 0.1, (_position select 1) + 20, 0],[(_position select 0) + 0.1, (_position select 1) - 20, 0],50,2,armed_vehicle call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,_mission] call vehicle_patrol;
 
- 
 //Static Guns
 [[
 	[(_position select 0) - 9.3, (_position select 1) + 11.2, 0],
 	[(_position select 0) - 6, (_position select 1) - 21.4, 0]
-],"M2StaticMG","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 //Spawn vehicles
 ["MV22_DZ",[(_position select 0) - 20.5,(_position select 1) - 5.2,0], _mission,true,-82.5] call custom_publish;

@@ -39,18 +39,20 @@ _loot2 = if (_missionType == "MainHero") then {Loot_DronePilot2 select 0;} else 
 
 // Troops
 [[(_position select 0) + 17, (_position select 1) - 18, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 11, (_position select 1) + 9, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 15, (_position select 1) - 15, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 2, (_position select 1) + 18, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 2, (_position select 1) + 18, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 11, (_position select 1) +  9, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 15, (_position select 1) - 15, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  2, (_position select 1) + 18, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  2, (_position select 1) + 18, 0],5,"Hard",[2,"AA"],5,"Random","USMC_Soldier_Pilot_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"HMMWV_Armored","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"HMMWV_Avenger","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
 
 //Static Guns
-[[[(_position select 0) - 7, (_position select 1) + 19, 0]],"KORD_high_TK_EP1","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+[[[(_position select 0) - 7, (_position select 1) + 19, 0]],"Rbs70_ACR","Hard","US_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+[[[(_position select 0) - 41, (_position select 1) + 0.1, 0]],"SearchLight_CDF","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+
+//Patrol Drone
+[_position,200,4,"Ka137_MG_PMC","Hard","Random",_aiType,_mission] call heli_patrol;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_DRONE_ANNOUNCE","STR_CL_HERO_DRONE_WIN","STR_CL_HERO_DRONE_FAIL"];
@@ -68,7 +70,7 @@ _messages = if (_missionType == "MainHero") then {
 	"Drone Pilot", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;

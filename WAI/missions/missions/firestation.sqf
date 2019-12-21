@@ -28,22 +28,20 @@ _loot3 = if (_missionType == "MainHero") then {Loot_Firestation3 select 0;} else
 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 // Spawn Vehicle
 [_loot3,[(_position select 0) -9.5, (_position select 1) -6.8],_mission,true,-29] call custom_publish;
 
 //Humvee Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored","Random",_aiType,_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,armed_vehicle call BIS_fnc_selectRandom,"Random",_aiType,_aiType,_mission] call vehicle_patrol;
 
 //Heli Paradrop
-[_position,400,"UH60M_EP1_DZE","East",[3000,4000],150,1.0,200,10,"Random","Random",4,"Random",_aiType,"Random",_aiType,false,_mission] spawn heli_para;
+[_position,800,armed_chopper call BIS_fnc_selectRandom,"East",[3000,4000],150,1.0,200,10,"Random","Random",4,"Random",_aiType,"Random",_aiType,false,_mission] spawn heli_para;
 
 //Static guns
 [[
@@ -51,7 +49,7 @@ _rndnum = ceil (random 5);
 	[(_position select 0) - 12.8, (_position select 1) - 4.2, 4.97],
 	[(_position select 0) + 0.9, (_position select 1) - 20.9, 0],
 	[(_position select 0) + 23.5, (_position select 1) + 1.1, 8.94]
-],"M2StaticMG","Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_FIRESTATION_ANNOUNCE","STR_CL_HERO_FIRESTATION_WIN","STR_CL_HERO_FIRESTATION_FAIL"];

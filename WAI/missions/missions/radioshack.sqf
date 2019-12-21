@@ -19,7 +19,7 @@ _loot = if (_missionType == "MainHero") then {Loot_Radioshack select 0;} else {L
 // Spawn Objects
 [[
 	["Land_cihlovej_dum_in",[-3,-1]],
-	["LADAWreck",[-7.5,-3]],
+	//["LADAWreck",[-7.5,-3]],
 	["FoldTable",[-1.2,-4]],
 	["FoldChair",[-1,-3]],
 	["SmallTV",[-1.7,-4,0.82]],
@@ -37,32 +37,35 @@ _tower=[[
 	["Land_Com_tower_ep1",[5,-2]]
 ],_position,-1] call wai_spawnObjects;
 
+//Spawn Vehicle
+[civil_vehicles call BIS_fnc_selectRandom,[(_position select 0) -7.5, (_position select 1) -3,0],_mission,true,0] call custom_publish;
+
 //Sound effect
-[_position,_mission,_tower] spawn {
-	private ["_pos","_mission","_running","_tower"];
+[_position,_tower] spawn {
+	private ["_pos","_running","_tower"];
 	_pos = _this select 0;
-	_mission = _this select 1;
-	_tower = _this select 2;
+	_tower = _this select 1;
 	_running = true;
 	while {_running} do {
-		sleep ((random 2) + 2);
-		_running = (typeName (wai_mission_data select _mission) == "ARRAY");
+		sleep 5;
 		{
 			if ((isPlayer _x) && (_x distance _pos < 5)) exitWith { _running = false;};
-			//if ((alive _x) && (_x distance _pos < 2000)) then {[objNull,_x,rSAY,"radionoise1",2] call RE;[nil,_x,"loc",rTITLETEXT,"[RADIO] . . .","PLAIN DOWN",2] call RE;};
 		} count playableUnits;
 	};
 	[_tower] call wai_fnc_remove;
 };
 
 // Troops
-[[(_position select 0) - 1.2, (_position select 1)  - 20, 0],5,"extreme",["random","at"],4,"random",_aiType,"random",[_aiType,150],_mission] call spawn_group;
-[[(_position select 0) - 4, (_position select 1) + 16, 0],5,"hard","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 17, (_position select 1) - 4, 0],5,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 14, (_position select 1) - 3, 0],_rndnum,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 14, (_position select 1) - 3, 0],_rndnum,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 1, (_position select 1) - 20, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 4, (_position select 1) + 16, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 17, (_position select 1) - 4, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Static Guns
+[[[(_position select 0) - 32, (_position select 1) - 18, 0],
+  [(_position select 0) + 12, (_position select 1) + 40, 0]
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_RADIO_ANNOUNCE","STR_CL_HERO_RADIO_WIN","STR_CL_HERO_RADIO_FAIL"];

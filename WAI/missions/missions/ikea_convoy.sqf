@@ -28,23 +28,16 @@ _loot3 = if (_missionType == "MainHero") then {Loot_IkeaConvoy3 select 0;} else 
 ],_position,_mission] call wai_spawnCrate;
 
 //Troops
-[_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AT"],4,"Random","Worker1_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random","Worker3_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random","Worker4_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",1,2,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,6,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
 
-//Static Guns
-[[
-	[(_position select 0) - 30, (_position select 1) + 4, 0],
-	[(_position select 0) + 10, (_position select 1) - 30, 0],
-	[(_position select 0) + 8, (_position select 1) + 30, 0]
-],"M2StaticMG","Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
-
-//Heli Para Drop
-[_position,400,"BAF_Merlin_HC3_D","North",[3000,4000],150,1.0,200,10,"Random","Random",4,"Random",_aiType,"Random",_aiType,false,_mission] spawn heli_para;
+//Humvee Patrol
+[[(_position select 0) + 55, _position select 1, 0],       [(_position select 0) - 50, _position select 1, 0],500,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) +  2, (_position select 1) + 48, 0],[(_position select 0) - 48, _position select 1, 0],250,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) - 55, (_position select 1) + 48, 0],[(_position select 0) + 48, _position select 1, 0],150,2,spg9_vehicles call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
 
 [_loot1,[(_position select 0) + 19,(_position select 1) + 11],_mission,true,90] call custom_publish;
 [_loot2,[(_position select 0) - 14,(_position select 1) - 14],_mission,true,-90] call custom_publish;
@@ -63,7 +56,7 @@ _messages = if (_missionType == "MainHero") then {
 	"IKEA Convoy", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;

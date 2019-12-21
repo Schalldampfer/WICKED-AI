@@ -3,7 +3,7 @@ private ["_rndnum","_mission","_vehname","_vehicle","_position","_vehclass","_ai
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
 _aiType = _this select 1; // Type of AI - opposite of mission type
-_position = [20] call find_position;
+_position = [10] call find_position;
 
 if (([_missionType,_position,_mission] call wai_waitForPlayers) < 1) exitWith { [_missionType,_mission] call wai_removeMission; };
 
@@ -21,13 +21,11 @@ _loot = if (_missionType == "MainHero") then {Loot_Extraction1 select 0;} else {
 ],_position,_mission] call wai_spawnCrate;
 
 //Troops
-[_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[2,"AT"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[2,"AA"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[2,"AA"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","KSVK_DZE",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["L115A3_DZ","L115A3_2_DZ"] call BIS_fnc_selectRandom,3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
@@ -35,7 +33,7 @@ _rndnum = ceil (random 5);
 	[(_position select 0) + 30, (_position select 1) + 30, 0],
 	[(_position select 0) - 30, (_position select 1) - 30, 0],
 	[(_position select 0) - 30, (_position select 1) + 30, 0]
-],"M2StaticMG","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 //Spawn vehicle
 [_vehclass,_position,_mission] call custom_publish;

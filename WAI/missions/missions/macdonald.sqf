@@ -37,18 +37,19 @@ _loot = if (_missionType == "MainHero") then {Loot_MacDonald select 0;} else {Lo
 
 //Troops
 [[(_position select 0) - 1, (_position select 1) - 10, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 2, (_position select 1) - 50, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) - 1, (_position select 1) + 11, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) - 1, (_position select 1) + 11, 0],_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 2, (_position select 1) - 50, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) - 27, (_position select 1) - 18, 0],[(_position select 0) + 32, (_position select 1) + 1, 0],50,2,"Offroad_DSHKM_Gue_DZ","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) - 27, (_position select 1) - 18, 0],[(_position select 0) + 32, (_position select 1) + 1, 0],150,2,armed_vehicle call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,_mission] call vehicle_patrol;
  
 //Static Guns
-[[[(_position select 0) - 12, (_position select 1) - 18, 0]],"M2StaticMG","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+[[
+	[(_position select 0) - 12, (_position select 1) - 18, 0],
+	[(_position select 0) + 12, (_position select 1) + 70, 0]
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 [
 	_mission, // Mission number

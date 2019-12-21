@@ -40,17 +40,24 @@ _loot = if (_missionType == "MainHero") then {Loot_CannibalCave select 0;} else 
 	["Land_Campfire_burning",[-0.01,-0.01]],
 	["Mass_grave",[-6,-7,-0.02],-50.94],
 	["SKODAWreck",[-11,-46],151.15],
-	["datsun01Wreck",[-2,-60],34.54],
-	["UralWreck",[-41.3,-26],19.15]
+//	["UralWreck",[-41.3,-26],19.15],
+	["datsun01Wreck",[-2,-60],34.54]
 ],_position,_mission] call wai_spawnObjects;
 
-[[(_position select 0) + 12, (_position select 1) + 42.5, .01],5,"extreme",["random","AT"],4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 11, (_position select 1) + 41, .01],5,"hard","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 12, (_position select 1) - 43, .01],5,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) - 13, (_position select 1) - 43, .01],_rndnum,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) - 20, (_position select 1) - 43, .01],_rndnum,"random","random",4,"random",_aiType,"random",_aiType,_mission] call spawn_group;
+//Spawn Vehicle
+[civil_vehicles call BIS_fnc_selectRandom,[(_position select 0) - 41.3, (_position select 1) - 26,0],_mission,true,19.15] call custom_publish;
+
+//Troops
+[[(_position select 0) + 12, (_position select 1) + 42, .01],5,"Hard",["Random","AT"],4,"Random","TK_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 11, (_position select 1) + 41, .01],5,"Hard",["Random","AA"],4,"Random","TK_INS_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) - 43, .01],5,"Hard",["Random","AA"],4,"Random","TK_GUE_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 13, (_position select 1) - 43, .01],5,"Hard",1,2,"Random","TK_INS_Soldier_AR_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 20, (_position select 1) - 43, .01],5,"Hard",["Anzio_20_DZ","KSVK_DZE"] call BIS_fnc_selectRandom,5,"Random","TK_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+
+//Static Guns
+[[[(_position select 0) - 50, (_position select 1) + 40, 0],
+  [(_position select 0) + 20, (_position select 1) - 50, 0]
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard","TK_Special_Forces_MG_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 [
 	_mission,

@@ -30,26 +30,21 @@ _loot = if (_missionType == "MainHero") then {Loot_Base select 0;} else {Loot_Ba
 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[_position,_rndnum,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
-//Humvee Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
- 
 //Static Guns
 [[
 	[(_position select 0) - 10, (_position select 1) + 10, 0],
 	[(_position select 0) + 10, (_position select 1) - 10, 0],
 	[(_position select 0) + 10, (_position select 1) + 10, 0],
 	[(_position select 0) - 10, (_position select 1) - 10, 0]
-],"M2StaticMG","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 //Heli Paradrop
-[_position,400,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,"Hard","Random",4,"Random",_aiType,"Random",_aiType,true,_mission] spawn heli_para;
+[_position,400,armed_chopper call BIS_fnc_selectRandom,"East",[3000,4000],150,1.0,200,10,"Hard","Random",4,"Random",_aiType,"Random",_aiType,true,_mission] spawn heli_para;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_BANDITBASE_ANNOUNCE","STR_CL_HERO_BANDITBASE_WIN","STR_CL_HERO_BANDITBASE_FAIL"];

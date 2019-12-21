@@ -53,25 +53,15 @@ if (WAI_Overpoch) then {
 };
 
 //Group Spawning
-[[(_position select 0) + 9, (_position select 1) - 13, 0],5,"Hard",["Random","AT"],4,"Random","Rocker3_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard","Random",4,"Random","Rocker1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard","Random",4,"Random","Rocker1_DZ","Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) - 13, (_position select 1) + 15, 0],_rndnum,"Hard","Random",4,"Random","Policeman","Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[_position select 0, _position select 1, 0],_rndnum,"Hard","Random",4,"Random","Policeman","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  9, (_position select 1) - 13, 0],5,"Hard",["Random","AT"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard",["Random","AA"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard",["Random","AA"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 13, (_position select 1) + 15, 0],5,"Hard",1,2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[[_position select 0       , _position select 1       , 0],5,"Hard",2,6,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],50,2,"HMMWV_Armored","Hard",_aiType,_aiType,_mission] call vehicle_patrol;
-
-//Static Guns
-[[
-	[(_position select 0) - 48, (_position select 1) + 0.1, 0],
-	[(_position select 0) + 2, (_position select 1) + 48, 0]
-],"M2StaticMG","Hard","Policeman",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-
-//Heli Paradrop
-[_position,200,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,"Hard","Random",4,"Random",_aiType,"Random",_aiType,true,_mission] spawn heli_para;
+[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) - 55, _position select 1, 0],[(_position select 0) - 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
 
 [
 	_mission, // Mission number
