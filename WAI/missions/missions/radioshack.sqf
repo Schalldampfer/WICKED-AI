@@ -17,7 +17,6 @@ _loot = if (_missionType == "MainHero") then {Loot_Radioshack select 0;} else {L
 // Spawn Objects
 [[
 	["Land_cihlovej_dum_in",[-3,-1]],
-	["Land_Com_tower_ep1",[5,-2]],
 	["LADAWreck",[-7.5,-3]],
 	["FoldTable",[-1.2,-4]],
 	["FoldChair",[-1,-3]],
@@ -32,6 +31,27 @@ _loot = if (_missionType == "MainHero") then {Loot_Radioshack select 0;} else {L
 	["MAP_t_fraxinus2s",[-14,1]],
 	["MAP_t_carpinus2s",[28,-13]]
 ],_position,_mission] call wai_spawnObjects;
+_tower=[[
+	["Land_Com_tower_ep1",[5,-2]]
+],_position,-1] call wai_spawnObjects;
+
+//Sound effect
+[_position,_mission,_tower] spawn {
+	private ["_pos","_mission","_running","_tower"];
+	_pos = _this select 0;
+	_mission = _this select 1;
+	_tower = _this select 2;
+	_running = true;
+	while {_running} do {
+		sleep ((random 2) + 2);
+		_running = (typeName (wai_mission_data select _mission) == "ARRAY");
+		{
+			if ((isPlayer _x) && (_x distance _pos < 5)) exitWith { _running = false;};
+			//if ((alive _x) && (_x distance _pos < 2000)) then {[objNull,_x,rSAY,"radionoise1",2] call RE;[nil,_x,"loc",rTITLETEXT,"[RADIO] . . .","PLAIN DOWN",2] call RE;};
+		} count playableUnits;
+	};
+	[_tower] call wai_fnc_remove;
+};
 
 // Troops
 [[(_position select 0) - 1.2, (_position select 1)  - 20, 0],5,"extreme",["random","at"],4,"random",_aiType,"random",[_aiType,150],_mission] call spawn_group;
