@@ -1,4 +1,4 @@
-private ["_mission","_position","_rndnum","_aiType","_messages","_missionType","_loot"];
+private ["_mission","_position","_rndnum","_aiType","_messages","_missionType","_loot","_loot2"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -7,7 +7,8 @@ _position = [80] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Drone Pilot]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_DronePilot select 0;} else {Loot_DronePilot select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_DronePilot1 select 0;} else {Loot_DronePilot1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_DronePilot2 select 0;} else {Loot_DronePilot2 select 1;};
 
 //Spawn Crates
 [[
@@ -16,7 +17,6 @@ _loot = if (_missionType == "MainHero") then {Loot_DronePilot select 0;} else {L
 
 // Spawn Objects
 [[
-	["MQ9PredatorB",[11,-28]],
 	["TK_WarfareBUAVterminal_EP1",[-6,-15],-153.81],
 	["Land_budova4_in",[-13,3.5]],
 	["Land_Vysilac_FM",[-10,-7]],
@@ -55,6 +55,9 @@ _messages = if (_missionType == "MainHero") then {
 } else {
 	["STR_CL_BANDIT_DRONEPILOT_ANNOUNCE","STR_CL_BANDIT_DRONEPILOT_WIN","STR_CL_BANDIT_DRONEPILOT_FAIL"];
 };
+
+//Spawn vehicles
+[_loot2,[(_position select 0) + 11, (_position select 1) - 28, 0],_mission] call custom_publish;
 
 [
 	_mission, // Mission number

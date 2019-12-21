@@ -1,4 +1,4 @@
-private ["_mission","_position","_rndnum","_messages","_aiType","_missionType","_loot"];
+private ["_mission","_position","_rndnum","_messages","_aiType","_missionType","_loot","_loot2"];
 
 // Get mission number, important we do this early
 _mission = count wai_mission_data -1;
@@ -8,7 +8,8 @@ _position = [30] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Abandoned Trader]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_AbandonedTrader select 0;} else {Loot_AbandonedTrader select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_AbandonedTrader1 select 0;} else {Loot_AbandonedTrader1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_AbandonedTrader2 select 0;} else {Loot_AbandonedTrader2 select 1;};
 
 //Spawn Crates
 [[
@@ -28,13 +29,15 @@ _loot = if (_missionType == "MainHero") then {Loot_AbandonedTrader select 0;} el
 	["Land_Market_shelter_EP1",[10,-0.4,-0.01],2.32],
 	["Land_transport_crates_EP1",[22,2,-0.01],-43.88],
 	["Fort_Crate_wood",[18,-1,-0.01]],
-	["UralWreck",[27,-3,-0.01],-67.9033],
 	["Land_Canister_EP1",[18,1.4,-0.01],28.73],
 	["MAP_ground_garbage_square5",[13.6,-2,-0.01]],
 	["MAP_ground_garbage_square5",[-16,-2,-0.01]],
 	["MAP_ground_garbage_long",[-0.4,-2,-0.01]],
 	["MAP_garbage_misc",[-8,-2,-0.01]]
 ],_position,_mission] call wai_spawnObjects;
+
+//Spawn Vehicle
+[_loot2 call BIS_fnc_selectRandom,[(_position select 0) + 27, (_position select 1) - 3,-0.01],_mission,true,-67.9033] call custom_publish;
 
 //Troops
 [_position,5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;

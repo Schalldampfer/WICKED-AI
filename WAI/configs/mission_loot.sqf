@@ -14,8 +14,8 @@ Loot_Farmer1 = [
 	[6,5,[40,crate_items_medical],3,1] // Bandit
 ];
 Loot_Farmer2 = [
-	["Tractor"], // Hero
-	["tractorOld"] // Bandit
+	["hilux1_civil_1_open_DZE","hilux1_civil_2_covered_DZE","hilux1_civil_3_open_DZE","tractorOld"], // Hero
+	["datsun1_civil_1_open_DZE","datsun1_civil_2_covered_DZE","datsun1_civil_3_open_DZE","Tractor"] // Bandit
 ];
 Loot_Outpost = [
 	[6,4,40,2,1], // Hero
@@ -27,7 +27,7 @@ Loot_ScoutPatrol1 = [
 ];
 Loot_ScoutPatrol2 = [
 	civil_vehicles, // Hero
-	civil_vehicles // Bandit
+	military_unarmed // Bandit
 ];
 Loot_SlaughterHouse = [
 	[6,5,[6,crate_items_chainbullets],2,1], // Hero
@@ -39,9 +39,13 @@ Loot_BHC = [ // Black Hawk Crash
 ];
 
 /***** Medium Missions *****/
-Loot_AbandonedTrader = [
+Loot_AbandonedTrader1 = [
 	[8,5,15,3,1], // Hero
 	[8,5,15,3,1] // Bandit
+];
+Loot_AbandonedTrader2 = [
+	cargo_trucks, // Hero
+	refuel_trucks // Bandit
 ];
 Loot_ArmedVehicle1 = [
 	[0,0,[25,crate_items_chainbullets],0,1], // Hero
@@ -51,21 +55,37 @@ Loot_ArmedVehicle2 = [
 	armed_vehicle, // Hero
 	armed_vehicle // Bandit
 ];
-Loot_DrugBust = [
+Loot_DrugBust1 = [
 	[5,5,[10,crate_items_crop_raider],3,1], // Hero
 	[5,5,[10,crate_items_crop_raider],3,1] // Bandit
+];
+Loot_DrugBust2 = [
+	civil_vehicles, // Hero
+	civil_vehicles // Bandit
 ];
 Loot_Junkyard = [
 	[14,5,1,3,1], // Hero
 	[14,5,1,3,1] // Bandit
+];
+Loot_Junkyard1 = [
+	cargo_trucks, // Hero
+	military_unarmed // Bandit
+];
+Loot_Junkyard2 = [
+	civil_vehicles, // Hero
+	civil_vehicles // Bandit
 ];
 Loot_Patrol = [
 	[3,0,[2,["ItemBriefcase100oz"]],0,1], // Hero
 	[3,0,[2,["ItemBriefcase100oz"]],0,1] // Bandit
 ];
 Loot_VehicleDrop = [
-	[3,0,[2,["ItemBriefcase100oz"]],0,1], // Hero
-	[3,0,[2,["ItemBriefcase100oz"]],0,1] // Bandit
+	[0,0,[2,["ItemBriefcase100oz"]],0,0], // Hero
+	[0,0,[2,["ItemBriefcase100oz"]],0,0] // Bandit
+];
+Loot_VehicleDrop2 = [
+	improved_vehicles, // Hero
+	improved_vehicles // Bandit
 ];
 Loot_WeaponCache = [
 	[10,4,0,3,1], // Hero
@@ -97,9 +117,13 @@ Loot_CropRaider = [
 	[6,5,[15,crate_items_crop_raider],3,3], // Hero
 	[6,5,[15,crate_items_crop_raider],3,3] // Bandit
 ];
-Loot_DronePilot = [
+Loot_DronePilot1 = [
 	[14,[8,crate_tools_sniper],[2,crate_items_high_value],3,[2,crate_backpacks_large]], // Hero
 	[14,[8,crate_tools_sniper],[2,crate_items_high_value],3,[2,crate_backpacks_large]] // Bandit
+];
+Loot_DronePilot2 = [
+	["Ka137_MG_PMC","Ka137_PMC","Pchela1T","Pchela1T_CDF","AH6X_DZ","MQ9PredatorB"], // Hero
+	["Ka137_MG_PMC","Ka137_PMC","Pchela1T","Pchela1T_CDF","AH6X_DZ","MQ9PredatorB"] // Bandit
 ];
 Loot_IkeaConvoy = [
 	[[1,crate_weapons_buildables],[4,crate_tools_buildable],[30,crate_items_buildables],3,4], // Hero
@@ -110,12 +134,12 @@ Loot_IkeaConvoy1 = [
 	cargo_trucks // Bandit
 ];
 Loot_IkeaConvoy2 = [
-	refuel_trucks, // Hero
-	refuel_trucks // Bandit
-];
-Loot_IkeaConvoy3 = [
 	military_unarmed, // Hero
 	military_unarmed // Bandit
+];
+Loot_IkeaConvoy3 = [
+	civil_vehicles, // Hero
+	civil_vehicles // Bandit
 ];
 Loot_LumberJack = [
 	[6,[8,crate_tools_sniper],[15,crate_items_wood],3,[4,crate_backpacks_large]], // Hero
@@ -150,8 +174,8 @@ Loot_Firestation2 = [ // Fire Station Crate 2
 	[[10,ai_wep_sniper],3,20,3,1] // Bandit
 ];
 Loot_Firestation3 = [
-	armed_vehicle, // Hero
-	armed_vehicle // Bandit
+	refuel_trucks, // Hero
+	refuel_trucks // Bandit
 ];
 
 /***** Extreme Missions *****/
@@ -160,8 +184,8 @@ Loot_ArmyBase1 = [
 	[10,5,10,3,2] // Bandit
 ];
 Loot_ArmyBase2 = [
-	armed_vehicle, // Hero
-	armed_vehicle // Bandit
+	super_vehicles, // Hero
+	super_vehicles // Bandit
 ];
 Loot_GemTower = [
 	[8,5,[4,crate_items_gems],3,2], // Hero
@@ -172,6 +196,6 @@ Loot_TankColumn1 = [
 	[12,5,30,3,2] // Bandit
 ];
 Loot_TankColumn2 = [
-	armed_vehicle, // Hero
-	armed_vehicle // Bandit
+	super_vehicles, // Hero
+	super_vehicles // Bandit
 ];

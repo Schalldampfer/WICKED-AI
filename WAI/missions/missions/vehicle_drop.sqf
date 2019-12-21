@@ -6,7 +6,7 @@ _aiType = _this select 1; // Type of AI - opposite of mission type
 _position = [20] call find_position;
 
 //Armed Land Vehicle
-_vehclass = armed_vehicle call BIS_fnc_selectRandom;
+_vehclass = (if (_missionType == "MainHero") then {Loot_VehicleDrop2 select 0} else {Loot_VehicleDrop2 select 1}) call BIS_fnc_selectRandom;
 _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");
 
 // Plane

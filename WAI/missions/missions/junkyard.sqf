@@ -1,4 +1,4 @@
-private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot"];
+private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot","_loot1","_loot2"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -8,6 +8,8 @@ _position = [45] call find_position;
 diag_log format["WAI: [Mission:[%2] Junk Yard]: Starting... %1",_position,_missionType];
 
 _loot = if (_missionType == "MainHero") then {Loot_Junkyard select 0;} else {Loot_Junkyard select 1;};
+_loot1 = if (_missionType == "MainHero") then {Loot_Junkyard select1 0;} else {Loot_Junkyard1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_Junkyard select2 0;} else {Loot_Junkyard2 select 1;};
 
 //Spawn Crates
 [[
@@ -17,15 +19,15 @@ _loot = if (_missionType == "MainHero") then {Loot_Junkyard select 0;} else {Loo
 // Spawn Objects
 [[
 	["Mi8Wreck",[31,-12.4,-0.12]],
-	["UralWreck",[-7,-9,-0.04],-49.99],
+	//["UralWreck",[-7,-9,-0.04],-49.99],
 	["UralWreck",[23,4,-0.04],201.46],
 	["UralWreck",[-7,23,-0.04],80.879],
-	["HMMWVWreck",[-8,7,-0.04],44.77],
+	//["HMMWVWreck",[-8,7,-0.04],44.77],
 	["BMP2Wreck",[-4,24,-0.02],-89],
 	["T72Wreck",[11,-13,-0.02],27],
 	["UralWreck",[14,10,-0.02],162],
 	["T72Wreck",[4,16,-0.02]],
-	["UH60_ARMY_Wreck_DZ",[7,1.3,-0.02],-41],
+	//["UH60_ARMY_Wreck_DZ",[7,1.3,-0.02],-41],
 	["Land_Dirthump01",[9,1,-1.59],25],
 	["Land_Dirthump01",[8,0.2,-1.59],53],
 	["Mi8Wreck",[5,-34,-0.02],94],
@@ -50,6 +52,9 @@ _loot = if (_missionType == "MainHero") then {Loot_Junkyard select 0;} else {Loo
 	["Land_Fire_barrel_burning",[2,-9,-0.02]]
 ],_position,_mission] call wai_spawnObjects;
 
+[_loot1,[(_position select 0) - 7, (_position select 1) - 9,-0.04],_mission,true,-49.99] call custom_publish;
+[_loot2,[(_position select 0) -8, (_position select 1) +7,-0.04],_mission,true,44.77] call custom_publish;
+
 //Troops
 [[(_position select 0) - 2, (_position select 1) - 5, 0],5,"Medium",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
@@ -57,6 +62,11 @@ _rndnum = ceil (random 4);
 [[(_position select 0) + 17, (_position select 1) + 21, 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 4);
 [[(_position select 0) + 17, (_position select 1) + 21, 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Static Guns
+[[
+	[(_position select 0) +7, (_position select 1) +1.3]
+],["UH1Wreck","UH60_wreck_EP1"] call BIS_fnc_selectRandom,"Medium","Hero","Hero",0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_JUNKYARD_ANNOUNCE","STR_CL_HERO_JUNKYARD_WIN","STR_CL_HERO_JUNKYARD_FAIL"];

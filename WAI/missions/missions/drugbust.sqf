@@ -1,4 +1,4 @@
-private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot"];
+private ["_rndnum","_mission","_position","_aiType","_messages","_missionType","_loot","_loot2"];
 
 _mission = count wai_mission_data -1;
 _missionType = _this select 0; // Type of mission: "MainHero" or "MainBandit"
@@ -7,7 +7,8 @@ _position = [30] call find_position;
 
 diag_log format["WAI: [Mission:[%2] Drug Bust]: Starting... %1",_position,_missionType];
 
-_loot = if (_missionType == "MainHero") then {Loot_DrugBust select 0;} else {Loot_DrugBust select 1;};
+_loot = if (_missionType == "MainHero") then {Loot_DrugBust1 select 0;} else {Loot_DrugBust1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_DrugBust2 select 0;} else {Loot_DrugBust2 select 1;};
 
 //Spawn Crates
 [[
@@ -30,7 +31,7 @@ _loot = if (_missionType == "MainHero") then {Loot_DrugBust select 0;} else {Loo
 	["Land_Water_pipe_EP1",[-1.4,-3,0.01],105.15],
 	["Land_Bag_EP1",[-5.9,1.9,0.01]],
 	["LADAWreck",[-8,-4,-0.01],-119.578],
-	["SKODAWreck",[11,-3,-0.01]],
+	//["SKODAWreck",[11,-3,-0.01]],
 	["MAP_tv_a",[-2.7,-0.1,0.01]],
 	["MAP_Dkamna_uhli",[-0.01,5,-0.1]],
 	["MAP_Skrin_opalena",[1.2,0.1,0.05]],
@@ -49,6 +50,9 @@ _rndnum = ceil (random 4);
 [[(_position select 0), (_position select 1), 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 _rndnum = ceil (random 4);
 [[(_position select 0), (_position select 1), 0],_rndnum,"Medium","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+
+//Spawn Vehicle
+[_loot2,[(_position select 0) +11, (_position select 1) -3,-0.01],_mission,true,0] call custom_publish;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_DRUGBUST_ANNOUNCE","STR_CL_HERO_DRUGBUST_WIN","STR_CL_HERO_DRUGBUST_FAIL"];
