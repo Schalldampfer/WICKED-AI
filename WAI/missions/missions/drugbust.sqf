@@ -73,4 +73,4 @@ _messages = if (_missionType == "MainHero") then {
 ] call mission_winorfail;
 
 //Paradrop after mission
-[_position,100,civil_chopper call BIS_fnc_selectRandom,["North","South","East","West"] call BIS_fnc_selectRandom,[4000,5000],100,0.4,300,6,"Random","MP5_SD_DZ",2,"Random","RU_Policeman_DZ","Random",_aiType,true,_mission] spawn heli_para;
+[_position,100,civil_chopper call BIS_fnc_selectRandom,["North","South","East","West"] call BIS_fnc_selectRandom,[4000,5000],100,0.4,300,6,"Random","MP5_SD_DZ",2,"Random","RU_Policeman_DZ","Random",_aiType,true] spawn heli_para;

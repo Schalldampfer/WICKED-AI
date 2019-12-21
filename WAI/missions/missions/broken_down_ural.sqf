@@ -20,7 +20,6 @@ _loot = if (_missionType == "MainHero") then {Loot_UralAttack select 0;} else {L
 [["Ural_CDF","Ural_TK_CIV_EP1","Ural_UN_EP1","UralCivil_DZE","UralCivil2_DZE"] call BIS_fnc_selectRandom,_position,_mission] call custom_publish;
 
 //Troops
-_rndnum = round (random 5);
 [_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
