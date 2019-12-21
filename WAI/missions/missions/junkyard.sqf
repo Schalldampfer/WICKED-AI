@@ -8,8 +8,8 @@ _position = [45] call find_position;
 diag_log format["WAI: [Mission:[%2] Junk Yard]: Starting... %1",_position,_missionType];
 
 _loot = if (_missionType == "MainHero") then {Loot_Junkyard select 0;} else {Loot_Junkyard select 1;};
-_loot1 = if (_missionType == "MainHero") then {Loot_Junkyard select1 0;} else {Loot_Junkyard1 select 1;};
-_loot2 = if (_missionType == "MainHero") then {Loot_Junkyard select2 0;} else {Loot_Junkyard2 select 1;};
+_loot1 = if (_missionType == "MainHero") then {Loot_Junkyard1 select 0;} else {Loot_Junkyard1 select 1;};
+_loot2 = if (_missionType == "MainHero") then {Loot_Junkyard2 select 0;} else {Loot_Junkyard2 select 1;};
 
 //Spawn Crates
 [[

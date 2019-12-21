@@ -46,6 +46,6 @@ _messages = if (_missionType == "MainHero") then {
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
 	true, // make minefields available for this mission
-	["kill"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
+	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;
