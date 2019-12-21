@@ -21,7 +21,6 @@ if(count _this > 2) then {
 };
 
 // AI is on a building so limit the movement
-// AI is on a building so limit the movement
 if (count _position > 2) then {
 	if (_pos_z > 1) then {
 		_wp_rad = 0;
