@@ -37,22 +37,28 @@ _loot2 = if (_missionType == "MainHero") then {Loot_TankColumn2 select 0;} else 
 [_loot2,[(_position select 0) +2.2, (_position select 1) -12],_mission,true,91.28] call custom_publish;
 
 //Troops
-[[(_position select 0) - 7, (_position select 1) - 10, 0],5,"Extreme",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 16, (_position select 1) - 5, 0],5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 4, (_position select 1) + 18, 0],_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_rndnum = ceil (random 5);
-[[(_position select 0) + 4, (_position select 1) + 18, 0],_rndnum,"Extreme","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7, (_position select 1) - 10, 0],5,"Extreme","KSVK_DZE",6,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 16, (_position select 1) - 5, 0],5,"Extreme",[1,"M47Launcher_EP1"],4,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[2,"Javelin"],4,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[2,"AA"],4,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[1,"Igla"],4,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 22, (_position select 1) + 32, 0],[(_position select 0) + 15, (_position select 1) - 33, 0],50,2,"HMMWV_Armored","Extreme",_aiType,_aiType,_mission] call vehicle_patrol;
- 
+[[(_position select 0) + 22, (_position select 1) + 32, 0],[(_position select 0) + 15, (_position select 1) - 33, 0],500,3,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) - 22, (_position select 1) - 32, 0],[(_position select 0) - 15, (_position select 1) + 33, 0],500,3,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+
 //Static Guns
 [[
 	[(_position select 0) + 8, (_position select 1) - 29, 0],
 	[(_position select 0) + 12, (_position select 1) + 24, 0]
-],"M2StaticMG","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],"ZU23_CDF","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+[[
+	[(_position select 0) - 8, (_position select 1) + 29, 0],
+	[(_position select 0) - 12, (_position select 1) - 24, 0]
+],ai_static_weapons call BIS_fnc_selectRandom,"Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+[[
+	[(_position select 0) + 25, (_position select 1) - 25, 0]
+],"Igla_AA_pod_TK_EP1","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_TANK_ANNOUNCE","STR_CL_HERO_TANK_WIN","STR_CL_HERO_TANK_FAIL"];
@@ -67,7 +73,7 @@ _messages = if (_missionType == "MainHero") then {
 	"Tank Column", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;
