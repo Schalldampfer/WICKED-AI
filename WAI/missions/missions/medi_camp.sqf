@@ -13,7 +13,7 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 
 //Spawn Crates
 [[
-	[_loot,"USVehicleBox",[0,0],60]
+	[_loot,"USVehicleBox_EP1",[0,0],60]
 ],_position,_mission] call wai_spawnCrate;
 
 // Spawn Objects

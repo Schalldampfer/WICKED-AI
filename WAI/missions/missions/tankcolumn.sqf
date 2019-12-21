@@ -14,7 +14,7 @@ _loot2 = if (_missionType == "MainHero") then {Loot_TankColumn2 select 0;} else 
 
 //Spawn Crates
 [[
-	[_loot,crates_small,[.02,0]]
+	[_loot,crates_large,[.02,0]]
 ],_position,_mission] call wai_spawnCrate;
 
 // Spawn Objects
