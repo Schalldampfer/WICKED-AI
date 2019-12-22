@@ -15,8 +15,6 @@ if (ai_static_useweapon) then {
 	_gear 	  = _this select 8;
 };
 
-if (count _position < 3) then {_position set [2,0];};
-
 if ((count _this == 10) OR (count _this == 6)) then {
 	if (count _this == 10) 	then { _mission = _this select 9; };
 	if (count _this == 6) 	then { _mission = _this select 5; };
