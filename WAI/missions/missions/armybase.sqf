@@ -69,7 +69,7 @@ _loot2 = if (_missionType == "MainHero") then {Loot_ArmyBase2 select 0;} else {L
 
 //Troops
 [[(_position select 0) - 12, (_position select 1) +  2, 0],5,"Extreme",["Random","M47Launcher_EP1"],4,"Random","CZ_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) +, 2, (_position select 1) +  2, 0],5,"Extreme",["Random","AT"],4,"Random","CZ_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  2, (_position select 1) +  2, 0],5,"Extreme",["Random","AT"],4,"Random","CZ_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 14, (_position select 1) - 35, 0],5,"Extreme",["Random","Igla"],4,"Random","CZ_Soldier_SL_DES_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme",["Random","AA"],4,"Random","CZ_Soldier_SL_DES_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme","KSVK_DZE",6,"Random","CZ_Special_Forces_GL_DES_EP1_DZ","Random",_aiType,_mission] call spawn_group;
