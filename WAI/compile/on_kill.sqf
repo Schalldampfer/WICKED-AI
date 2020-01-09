@@ -80,9 +80,11 @@ if (isPlayer _player) then {
 				_x reveal [_player, 4.0];
 			};
 		} count allUnits;
-		{
-			_x doTarget _player;
-		} forEach (units group _unit);
+		//change wp to killer
+		_grp = group _unit;
+		_wp = [_grp,currentWaypoint _grp];
+		_wp setWaypointPosition [position _player, 50];
+		_wp setWaypointType "SAD";
 	};
 
 } else {
