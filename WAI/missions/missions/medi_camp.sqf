@@ -28,13 +28,14 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 
 //Troops
 [[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AA"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 35, _position select 1, 0],       [(_position select 0) + 30, _position select 1, 0],50,2,"M1114_AGS_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) +  2, (_position select 1) + 38, 0],[(_position select 0) - 28, _position select 1, 0],50,2,"M1114_DSK_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1 = [[(_position select 0) + 35, _position select 1, 0],       [(_position select 0) + 30, _position select 1, 0],50,2,"M1114_AGS_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2 = [[(_position select 0) +  2, (_position select 1) + 38, 0],[(_position select 0) - 28, _position select 1, 0],50,2,"M1114_DSK_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_MSC_ANNOUNCE","STR_CL_HERO_MSC_WIN","STR_CL_HERO_MSC_FAIL"];
@@ -49,7 +50,7 @@ _messages = if (_missionType == "MainHero") then {
 	"Medical Supply Camp", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;

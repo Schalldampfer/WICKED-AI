@@ -59,13 +59,13 @@ _loot2 = if (_missionType == "MainHero") then {Loot_Junkyard2 select 0;} else {L
 
 //Troops
 [[(_position select 0) -  2, (_position select 1) -  5, 0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium",["Random","AA"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
-	[(_position select 0) +7, (_position select 1) +1.3]
+	[(_position select 0) +7, (_position select 1) +1.3, 0]
 ],["UH1Wreck","UH60_wreck_EP1"] call BIS_fnc_selectRandom,"Medium","Hero","Hero",0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {

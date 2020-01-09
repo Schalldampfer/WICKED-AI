@@ -35,9 +35,11 @@ _loot3 = if (_missionType == "MainHero") then {Loot_IkeaConvoy3 select 0;} else 
 [_position,5,"Hard",2,6,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 55, _position select 1, 0],       [(_position select 0) - 50, _position select 1, 0],500,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) +  2, (_position select 1) + 48, 0],[(_position select 0) - 48, _position select 1, 0],250,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) - 55, (_position select 1) + 48, 0],[(_position select 0) + 48, _position select 1, 0],150,2,spg9_vehicles call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1=[[(_position select 0) + 55, _position select 1, 0],       [(_position select 0) - 50, _position select 1, 0],500,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2=[[(_position select 0) +  2, (_position select 1) + 48, 0],[(_position select 0) - 48, _position select 1, 0],250,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
+_uG2=[[(_position select 0) - 55, (_position select 1) + 48, 0],[(_position select 0) + 48, _position select 1, 0],150,2,spg9_vehicles call BIS_fnc_selectRandom,"Hard","Soldier_Bodyguard_AA12_PMC_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 [_loot1,[(_position select 0) + 19,(_position select 1) + 11],_mission,true,90] call custom_publish;
 [_loot2,[(_position select 0) - 14,(_position select 1) - 14],_mission,true,-90] call custom_publish;

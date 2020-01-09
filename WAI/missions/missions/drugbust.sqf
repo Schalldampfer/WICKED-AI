@@ -46,10 +46,10 @@ _loot2 = if (_missionType == "MainHero") then {Loot_DrugBust2 select 0;} else {L
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) - 12, (_position select 1) - 15,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 12, (_position select 1) + 15,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) - 15,0],5,"Medium",["Random","RPG7V"],3,"Random","Rocker1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 12, (_position select 1) + 15,0],5,"Medium",["Random","AA"],3,"Random","Rocker2_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random","Rocker3_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0), (_position select 1), 0],5,"Medium","Random",3,"Random","Rocker4_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Spawn Vehicle
 [_loot2,[(_position select 0) +11, (_position select 1) -3,-0.01],_mission,true,0] call custom_publish;

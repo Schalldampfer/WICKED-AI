@@ -35,7 +35,7 @@ diag_log format["WAI: [Mission:[%3] %1 Vehicle Drop]: Starting... %2",_vehname,_
 
 //Troops
 [_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","AA"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
@@ -59,7 +59,7 @@ _messages = if (_missionType == "MainHero") then {
 	format["%1 Air Drop",_vehname], // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_airClass, // Class of plane to deliver the vehicle
 	_vehclass, // Class of vehicle to air drop

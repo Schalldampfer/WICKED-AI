@@ -60,8 +60,9 @@ if (WAI_Overpoch) then {
 [[_position select 0       , _position select 1       , 0],5,"Hard",2,6,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) - 55, _position select 1, 0],[(_position select 0) - 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1=[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2=[[(_position select 0) - 55, _position select 1, 0],[(_position select 0) - 50, _position select 1, 0],150,2,"HMMWV_M1151_M2_CZ_DES_EP1","Hard","RU_Policeman_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 [
 	_mission, // Mission number
@@ -70,7 +71,7 @@ if (WAI_Overpoch) then {
 	"Crop Raider", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	["STR_CL_GENERAL_CROPRAIDER_ANNOUNCE","STR_CL_GENERAL_CROPRAIDER_WIN","STR_CL_GENERAL_CROPRAIDER_FAIL"]
 ] call mission_winorfail;

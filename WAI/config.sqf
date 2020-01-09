@@ -34,8 +34,8 @@ ai_skill_medium		 = [["aimingAccuracy",0.50],["aimingShake",0.75],["aimingSpeed"
 ai_skill_easy		 = [["aimingAccuracy",0.30],["aimingShake",0.40],["aimingSpeed",0.30],["endurance",0.50],["spotDistance",1.00],["spotTime",0.50],["courage",0.70],["reloadSpeed",0.70],["commanding",0.50],["general",0.50]];	// Easy
 ai_skill_random		 = [ai_skill_extreme,ai_skill_hard,ai_skill_hard,ai_skill_hard,ai_skill_hard,ai_skill_medium,ai_skill_medium,ai_skill_medium,ai_skill_medium,ai_skill_easy];
 
-ai_static_useweapon	 = false; // Allows AI on static guns to have a loadout 	
-ai_static_weapons	 = ["DSHKM_Ins","DSHKM_Gue","KORD_high","M2StaticMG","BAF_L2A1_Minitripod_W_NoDisassembly","BAF_L2A1_Tripod_W_NoDisassembly"]; // static guns
+ai_static_useweapon	 = false; // Allows AI on static guns to have a loadout
+ai_static_weapons	 = ["DSHKM_Ins","DSHKM_Gue","KORD_high","M2StaticMG","BAF_L2A1_Tripod_W_NoDisassembly"]; // static guns
 ai_static_gpmg		 = ["BAF_GPMG_Minitripod_D","BAF_GPMG_Minitripod_W"]; // static guns
 ai_static_skills	 = false; // Allows you to set custom array for AI on static weapons. (true: On false: Off) 
 ai_static_array		 = [["aimingAccuracy",0.20],["aimingShake",0.50],["aimingSpeed",0.50],["endurance",1.00],["spotDistance",1.00],["spotTime",0.75],["courage",1.00],["reloadSpeed",1.00],["commanding",1.00],["general",1.00]];
@@ -93,7 +93,7 @@ wai_avoid_water			= 20; // avoid spawning missions this close to water
 wai_avoid_players 		= 1500; // avoid spawning missions this close to a player
 wai_avoid_plots			= DZE_PlotPole select 1; // avoid spawning missions near player plots
 
-wai_mission_timer		= [2,7]; // time between missions. Default: 5-15 minutes
+wai_mission_timer		= [2,5]; // time between missions. Default: 5-15 minutes
 wai_mission_timeout		= [20,30]; // time each mission takes to timeout if inactive. Default: 15-30 minutes
 wai_timeout_distance	= 1000; // if a player is this close to a mission then it won't timeout
 
@@ -122,7 +122,7 @@ wai_high_value_chance	= 20; // chance in percent you find above mentioned item
 wai_num_mags 			= (3 + round(random 3)); // Number of magazines per weapon in the crate
 wai_minimum_loot		= 0.8 + (random 0.2); // Number between .01 and 1. 1 = 100% loot based on loot definitions. To disable the feature set value less than or equal to 0 and you will automatically get 100% loot;
 
-wai_enable_minefield	= false; // enable minefields to better defend missions
+wai_enable_minefield	= true; // enable minefields to better defend missions
 wai_enable_static_guns	= true; // Enables or disables static gun placements at missions that have them.
 wai_enable_paradrops	= true; // Enables or disables paratrooper drops at missions that have them.
 wai_enable_patrols		= true; // Enables or disables armored vehicle patrols at missions that have them.
@@ -130,7 +130,7 @@ wai_use_launchers		= true; // add a rocket launcher to each spawned AI group
 wai_remove_launcher		= true; // remove rocket launcher from AI on death
 wai_mission_announce	= "Radio"; // Options: "Radio", "DynamicText", "titleText"
 wai_hero_limit			= 3; // define how many hero missions can run at once
-wai_bandit_limit		= 3; // define how many bandit missions can run at once
+wai_bandit_limit		= 4; // define how many bandit missions can run at once
 
 // Mission Arrays
 // [mission name, chance to spawn] Chance to spawn is 0-1. Example - If you only want your mission to have a 25% chance to spawn enter .25
@@ -141,63 +141,63 @@ wai_hero_missions = [
 	["base",1],
 	["captured_mv22",1],
 	["scout_patrol",1],
-	["ikea_convoy",1],
-	["medi_camp",1],
+	["ikea_convoy",0.5],
+	["medi_camp",0.5],
 	["broken_down_ural",1],
 	["sniper_extraction",1],
 	["mayors_mansion",1],
-	["weapon_cache",1],
+	["weapon_cache",0.5],
 	["gem_tower",1],
 	["cannibal_cave",1],
-	["crop_raider",1],
-	["drone_pilot",1],
+	["crop_raider",0.5],
+	["drone_pilot",0.5],
 	["slaughter_house",1],
 	["drugbust",1],
-	["armybase",1],
+	["armybase",0.2],
 	["abandoned_trader",1],
-	["lumberjack",1],
-	["presidents_mansion",1],
-	["tankcolumn",1],
-	["macdonald",1],
+	["lumberjack",0.5],
+	["presidents_mansion",0.5],
+	["tankcolumn",0.5],
+	["macdonald",0.5],
 	["radioshack",1],
-	["junkyard",1],
+	["junkyard",0.5],
 	["outpost",1],
 	["farmer",1],
 	["firestation",1],
-	["vehicle_drop",1]
+	["vehicle_drop",0.5]
 ];
 
 wai_bandit_missions	= [
 	//["patrol",1],
-	["black_hawk_crash",1],
+	["black_hawk_crash",0.5],
 	["armed_vehicle",1],
 	["base",1],
-	["captured_mv22",1],
-	["scout_patrol",1],
+	["captured_mv22",0.5],
+	["scout_patrol",0.5],
 	["ikea_convoy",1],
 	["medi_camp",1],
-	["broken_down_ural",1],
+	["broken_down_ural",0.5],
 	["sniper_extraction",1],
-	["mayors_mansion",1],
-	["weapon_cache",1],
+	["mayors_mansion",0.5],
+	["weapon_cache",0.5],
 	["gem_tower",1],
-	["cannibal_cave",1],
+	["cannibal_cave",0.5],
 	["crop_raider",1],
 	["drone_pilot",1],
 	["slaughter_house",1],
-	["drugbust",1],
-	["armybase",1],
-	["abandoned_trader",1],
+	["drugbust",0.5],
+	["armybase",0.5],
+	["abandoned_trader",0.5],
 	["lumberjack",1],
 	["presidents_mansion",1],
-	["tankcolumn",1],
+	["tankcolumn",0.2],
 	["macdonald",1],
 	["radioshack",1],
-	["junkyard",1],
+	["junkyard",0.5],
 	["outpost",1],
-	["farmer",1],
-	["firestation",1],
-	["vehicle_drop",1]
+	["farmer",0.5],
+	["firestation",0.5],
+	["vehicle_drop",0.5]
 ];
 
 // Vehicle arrays

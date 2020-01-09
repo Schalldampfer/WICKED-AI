@@ -37,22 +37,27 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 [[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",["Anzio_20_DZ","KSVK_DZE"] call BIS_fnc_selectRandom,6,"Random","TK_INS_Warlord_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) - 50, _position select 1, 0],[(_position select 0) + 60, _position select 1, 0],500,4,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1=[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2=[[(_position select 0) - 50, _position select 1, 0],[(_position select 0) + 60, _position select 1, 0],500,4,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 //Static Guns
-[[
+_uG1=[[
 	[(_position select 0) - 1, (_position select 1) + 39, 0],
 	[(_position select 0) + 33, (_position select 1) - 21, 0]
 ],"ZU23_TK_GUE_EP1","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
+_uG2=[[
 	[(_position select 0) + 1, (_position select 1) - 39, 0],
 	[(_position select 0) + 33, (_position select 1) + 21, 0]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
+(units _uG2) joinSilent _uG1;
+_uG2=[[
   [(_position select 0) + 20, (_position select 1) - 20, 0]
 ],"Igla_AA_pod_TK_EP1","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+(units _uG2) joinSilent _uG1;
 
+//Paradrop after mission
+[_position,70,armed_chopper call BIS_fnc_selectRandom,["North","South","East","West"] call BIS_fnc_selectRandom,[4000,5000],100,0.4,300,6,"Random",0,4,"Random",_aiType,"Random",_aiType,true] spawn heli_para;
 
 [
 	_mission, // Mission number
@@ -65,6 +70,3 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	["STR_CL_GENERAL_GEMTOWER_ANNOUNCE","STR_CL_GENERAL_GEMTOWER_WIN","STR_CL_GENERAL_GEMTOWER_FAIL"]
 ] call mission_winorfail;
-
-//Paradrop after mission
-[_position,70,armed_chopper call BIS_fnc_selectRandom,["North","South","East","West"] call BIS_fnc_selectRandom,[4000,5000],100,0.4,300,6,"Random",0,4,"Random",_aiType,"Random",_aiType,true] spawn heli_para;

@@ -58,7 +58,7 @@ _loot = if (_missionType == "MainHero") then {Loot_MacDonald select 0;} else {Lo
 	"The Farm", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	["STR_CL_GENERAL_FARM_ANNOUNCE","STR_CL_GENERAL_FARM_WIN","STR_CL_GENERAL_FARM_FAIL"]
 ] call mission_winorfail;

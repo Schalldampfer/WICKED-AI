@@ -31,7 +31,7 @@ _loot = if (_missionType == "MainHero") then {Loot_BHC select 0;} else {Loot_BHC
 
 //Static Guns
 [[
-	[(_position select 0) +5, (_position select 1) +5]
+	[(_position select 0) +5, (_position select 1) +5, 0]
 ],["UH1Wreck","UH60_wreck_EP1"] call BIS_fnc_selectRandom,"Easy","Bandit","Bandit",0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
@@ -47,7 +47,7 @@ _messages = if (_missionType == "MainHero") then {
 	"Black Hawk Crash", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	false, // make minefields available for this mission
+	true, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;

@@ -52,13 +52,14 @@ _mayor_himself spawn {
 };
 
 //Static mounted guns
-[[
+_uG1=[[
 	[(_position select 0) - 15, (_position select 1) + 15, 8],
 	[(_position select 0) + 15, (_position select 1) - 15, 8]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
-[[
+_uG2=[[
 	[(_position select 0) - 50,(_position select 1), 0]
-],"SearchLight_Ins","Extreme",_aiType,_aiType,0,2,"none","Random",_mission] call spawn_static;
+],"Igla_AA_pod_TK_EP1","Extreme",_aiType,_aiType,0,2,"none","Random",_mission] call spawn_static;
+(units _uG2) joinSilent _uG1;
 
 [
 	_mission, // Mission number

@@ -44,21 +44,24 @@ _loot2 = if (_missionType == "MainHero") then {Loot_TankColumn2 select 0;} else 
 [[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[1,"Igla"],4,"Random","UN_CDF_Soldier_Guard_EP1","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 22, (_position select 1) + 32, 0],[(_position select 0) + 15, (_position select 1) - 33, 0],500,3,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) - 22, (_position select 1) - 32, 0],[(_position select 0) - 15, (_position select 1) + 33, 0],500,3,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1=[[(_position select 0) + 22, (_position select 1) + 32, 0],[(_position select 0) + 15, (_position select 1) - 33, 0],500,3,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2=[[(_position select 0) - 22, (_position select 1) - 32, 0],[(_position select 0) - 15, (_position select 1) + 33, 0],500,3,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 //Static Guns
-[[
+_uG1=[[
 	[(_position select 0) + 8, (_position select 1) - 29, 0],
 	[(_position select 0) + 12, (_position select 1) + 24, 0]
 ],"ZU23_CDF","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
+_uG2=[[
 	[(_position select 0) - 8, (_position select 1) + 29, 0],
 	[(_position select 0) - 12, (_position select 1) - 24, 0]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
+(units _uG2) joinSilent _uG1;
+_uG2=[[
 	[(_position select 0) + 25, (_position select 1) - 25, 0]
 ],"Igla_AA_pod_TK_EP1","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+(units _uG2) joinSilent _uG1;
 
 _messages = if (_missionType == "MainHero") then {
 	["STR_CL_HERO_TANK_ANNOUNCE","STR_CL_HERO_TANK_WIN","STR_CL_HERO_TANK_FAIL"];

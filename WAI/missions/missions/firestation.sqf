@@ -45,10 +45,8 @@ _loot3 = if (_missionType == "MainHero") then {Loot_Firestation3 select 0;} else
 
 //Static guns
 [[
-	[(_position select 0) + 4.9, (_position select 1) + 6.5, 17.94],
-	[(_position select 0) - 12.8, (_position select 1) - 4.2, 4.97],
-	[(_position select 0) + 0.9, (_position select 1) - 20.9, 0],
-	[(_position select 0) + 23.5, (_position select 1) + 1.1, 8.94]
+	[(_position select 0) + 1.5, (_position select 1) -21, 0],
+	[(_position select 0) + 0.5, (_position select 1) - 21.8, 0]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {
@@ -64,7 +62,7 @@ _messages = if (_missionType == "MainHero") then {
 	"Fire Station", // Name of Mission
 	_missionType, // Mission Type: MainHero or MainBandit
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] call mission_winorfail;
