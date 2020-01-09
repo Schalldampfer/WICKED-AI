@@ -55,7 +55,7 @@ if (isPlayer _player) then {
 		_gain = _unit getVariable ["humanity", 0];
 		if (vehicle _player != _player) then { _gain = ceil(_gain / 2.0); };//half when in vehicle
 		call {
-			if (_unit getVariable ["Hero", false]) exitWith { _player setVariable ["humanity",(_humanity - _gain),true]; };
+			if (_unit getVariable ["Hero", false]) exitWith { _player setVariable ["humanity",(_humanity + _gain),true]; };
 			if (_unit getVariable ["Bandit", false]) exitWith { _player setVariable ["humanity",(_humanity + _gain),true]; };
 			if (_unit getVariable ["Special", false]) exitWith { if (_humanity < 0) then { _player setVariable ["humanity",(_humanity - _gain),true]; } else { _player setVariable ["humanity",(_humanity + _gain),true]; }; };
 		};
@@ -118,7 +118,7 @@ if(wai_remove_launcher && _launcher != "") then {
 			_unit removeMagazines _x;
 		};
 	} count magazines _unit;
-	
+
 };
 
 if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
