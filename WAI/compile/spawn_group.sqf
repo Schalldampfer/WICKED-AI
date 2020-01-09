@@ -180,7 +180,7 @@ for "_x" from 1 to _unitnumber do {
 			_unit addWeapon _x;
 		} count _geartools;
 	};
-	
+
 	_aicskill = call {
 		if(_skill == "easy") exitWith {ai_skill_easy;};
 		if(_skill == "medium") exitWith {ai_skill_medium;};

@@ -301,7 +301,7 @@ while {(alive _helicopter) && (_drop)} do {
 			[_para] joinSilent _pgroup;
 			_para setVariable ["bodyName",(name _para)];
 			[nil,_para,rSAY,"BIS_Steerable_Parachute_Opening",1600] call RE;//call sound
-			
+
 			// Adjusting this number changes the spread of the AI para drops
 			uiSleep _timebtwdrops;
 			
