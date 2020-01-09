@@ -201,6 +201,10 @@ if (!isNil "_mission") then {
 
 } forEach _position;
 
+if(_static isKindOf "StaticMortar" || _static isKindOf "StaticCannon") then {
+	_unitGroup spawn WAI_arty_fire;
+};
+
 _unitGroup selectLeader ((units _unitGroup) select 0);
 
 if(_aitype == "Hero") then {
