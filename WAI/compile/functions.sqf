@@ -385,8 +385,7 @@ wai_waitForPlayers = {
 	WAI_MarkerReady = true;// reset position finding
 
 	_color = "ColorBlue";
-	if (_missionType == "MainHero") then {_color = "ColorYellow";};
-	if (_missionType == "MainBandit") then {_color = "ColorRed";};
+	if (_missionType in ["MainHero","MainBandit"]) then {_color = "ColorOrange";};
 
 	diag_log format["WAI: Mission %1 is waiting for players",_markName];
 
