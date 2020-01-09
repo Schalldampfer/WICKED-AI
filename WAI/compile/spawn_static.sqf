@@ -59,7 +59,7 @@ if (!isNil "_mission") then {
 	if (surfaceIsWater _x) then {
 		_static setPosASL _x;
 	} else {
-		_static setPosATL _x;
+		_static setPos _x;
 	};
 	[_static,_class] call load_ammo;
 	
@@ -173,7 +173,7 @@ if (!isNil "_mission") then {
 		_static = _this select 0;
 		if (alive _unit) then {_unit moveInGunner _static};
 	}];
-		
+
 	_unit   addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 	_static addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 	_static addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
