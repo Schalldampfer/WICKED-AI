@@ -14,7 +14,7 @@ if (_ammo == "") exitWith {0};
 if (isPlayer _source) then {_unit doTarget _source;};
 
 if !(_ammo isKindOf "Default") then {
-	diag_log format["[Dmg] %1 from %2",_ammo,_source];
+	diag_log format["[Dmg] %1 on %2 from %3",_ammo,typeOf _unit,_source];
 };
 
 _damage
