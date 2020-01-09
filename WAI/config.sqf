@@ -36,6 +36,7 @@ ai_skill_random		 = [ai_skill_extreme,ai_skill_hard,ai_skill_hard,ai_skill_hard,
 
 ai_static_useweapon	 = false; // Allows AI on static guns to have a loadout 	
 ai_static_weapons	 = ["DSHKM_Ins","DSHKM_Gue","KORD_high","M2StaticMG","BAF_L2A1_Minitripod_W_NoDisassembly","BAF_L2A1_Tripod_W_NoDisassembly"]; // static guns
+ai_static_gpmg		 = ["BAF_GPMG_Minitripod_D","BAF_GPMG_Minitripod_W"]; // static guns
 ai_static_skills	 = false; // Allows you to set custom array for AI on static weapons. (true: On false: Off) 
 ai_static_array		 = [["aimingAccuracy",0.20],["aimingShake",0.50],["aimingSpeed",0.50],["endurance",1.00],["spotDistance",1.00],["spotTime",0.75],["courage",1.00],["reloadSpeed",1.00],["commanding",1.00],["general",1.00]];
 
