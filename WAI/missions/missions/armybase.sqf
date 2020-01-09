@@ -26,7 +26,9 @@ _loot2 = if (_missionType == "MainHero") then {Loot_ArmyBase2 select 0;} else {L
 	["Base_WarfareBBarrier10xTall",[-15,16,-0.64]],
 	["MAP_posed",[17,11]],
 	["MAP_posed",[-20,11]],
-	["MAP_fort_artillery_nest",[-1,-31,-0.56],-178.615],
+	["MAP_fort_artillery_nest",[-1,-31],-178.615],
+	["MAP_fort_artillery_nest",[-1,-47,-0.56],-178.615],
+	["MAP_fort_artillery_nest",[1,47,-0.56],1.385],
 	["MAP_Fortress_02",[-27,-13]],
 	["MAP_Fortress_02",[25,-13],-89.16],
 	["MAP_fortified_nest_big",[26,13],-180.55],
@@ -75,21 +77,23 @@ _loot2 = if (_missionType == "MainHero") then {Loot_ArmyBase2 select 0;} else {L
 [[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme","KSVK_DZE",6,"Random","CZ_Special_Forces_GL_DES_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) - 22, (_position select 1) + 56, 0],[(_position select 0) + 22, (_position select 1) - 56, 0],500,4,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","CZ_Special_Forces_GL_DES_EP1_DZ",_aiType,_mission] call vehicle_patrol;
-[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","CZ_Special_Forces_GL_DES_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1=[[(_position select 0) - 22, (_position select 1) + 56, 0],[(_position select 0) + 22, (_position select 1) - 56, 0],500,4,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","CZ_Special_Forces_GL_DES_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2=[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","CZ_Special_Forces_GL_DES_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+(units _uG2) joinSilent _uG1;
 
 //Static Guns
-[[
+_uG1=[[
 	[(_position select 0) - 0.01, (_position select 1) + 41, 0],
-	[(_position select 0) + 0.1, (_position select 1) - 25, 0]
+	[(_position select 0) + 0.1, (_position select 1) - 41, 0]
 ],"ZU23_CDF","Extreme","CZ_Soldier_SL_DES_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
-	[(_position select 0) - 41, (_position select 1) + 0.1, 0],
-	[(_position select 0) + 41, (_position select 1) - 0.1, 0]
-],ai_static_weapons call BIS_fnc_selectRandom,"Extreme","CZ_Soldier_SL_DES_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-[[
+_uG2=[[
+	[(_position select 0) - 1, (_position select 1) -27, 0]
+],"2b14_82mm_GUE","Extreme","CZ_Soldier_SL_DES_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+(units _uG2) joinSilent _uG1;
+_uG2=[[
 	[(_position select 0) + 30, (_position select 1) - 20, 0]
 ],"Igla_AA_pod_TK_EP1","Extreme","CZ_Soldier_SL_DES_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+(units _uG2) joinSilent _uG1;
 
 
 [
