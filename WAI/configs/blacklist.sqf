@@ -24,7 +24,8 @@ call {
 		_marker setMarkerBrushLocal "Solid";
 		_marker setMarkerAlphaLocal 0;
 		_marker setMarkerSizeLocal [800, 800];
-    };    if (toLower worldName == "smd_sahrani_a2") exitWith {wai_blacklist = [];};
+    };
+    if (toLower worldName == "smd_sahrani_a2") exitWith {wai_blacklist = [];};
     if (toLower worldName == "sauerland") exitWith {wai_blacklist = [];};
     wai_blacklist = []; diag_log "You are on an unsupported map! No blacklist available."; //default if nothing above matches
 };
