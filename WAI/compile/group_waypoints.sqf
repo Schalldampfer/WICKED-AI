@@ -16,7 +16,7 @@ if(count _this > 2) then {
 		if (_skill == "medium") exitWith {100;};
 		if (_skill == "hard") exitWith {200;};
 		if (_skill == "extreme") exitWith {300;};
-		if (_skill == "random") exitWith {random(300);};
+		if (_skill == "random") exitWith {100 + random(100);};
 	};
 };
 
