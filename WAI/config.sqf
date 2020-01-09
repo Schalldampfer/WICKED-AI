@@ -67,6 +67,9 @@ ai_wep_random		 = [ai_wep_g36,ai_wep_m16,ai_wep_m16,ai_wep_m4,ai_wep_scar,ai_wep
 ai_wep_launchers_AT	 = ["MAAWS","RPG18","M136"];
 ai_wep_launchers_AA	 = ["Strela","Igla","Stinger"];
 
+wai_remove_weapons	 = ["USSR_cheytacM200_sd"];
+wai_remove_magazines = ["USSR_5Rnd_408"];
+
 ai_packs			 = ["DZ_Czech_Vest_Pouch","DZ_ALICE_Pack_EP1","DZ_TK_Assault_Pack_EP1","DZ_British_ACU","DZ_GunBag_EP1","DZ_CivilBackpack_EP1","DZ_Backpack_EP1","DZ_LargeGunBag_EP1"];
 ai_hero_skin		 = ["Survivor2_DZ","Survivor3_DZ","SurvivorW2_DZ","SurvivorW3_DZ","Haris_Press_EP1_DZ","Soldier_Bodyguard_AA12_PMC_DZ"];
 ai_bandit_skin		 = ["BanditW1_DZ","BanditW2_DZ","Bandit1_DZ","Bandit2_DZ","GUE_Soldier_MG_DZ","GUE_Soldier_Crew_DZ","GUE_Soldier_CO_DZ","GUE_Soldier_2_DZ","TK_INS_Soldier_EP1_DZ","Ins_Soldier_GL_DZ","Ins_Soldier_2_DZ"];

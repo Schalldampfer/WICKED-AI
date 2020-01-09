@@ -123,6 +123,9 @@ if(wai_remove_launcher && _launcher != "") then {
 
 };
 
+{_unit removeWeapon _x;} forEach wai_remove_weapons;
+{_unit removeMagazines _x;} forEach wai_remove_magazines;
+
 if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
 	_unit removeWeapon "NVGoggles";
 };
