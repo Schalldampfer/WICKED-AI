@@ -1,6 +1,7 @@
 waitUntil{uiSleep 1; initialized};
 
 WAI_Overpoch = isClass (configFile >> "CfgWeapons" >> "USSR_cheytacM200");
+WAI_Origins = isClass (configFile >> "CfgWeapons" >> "AEK_973s_1pn100");
 
 // Compile all Functions
 spawn_group = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\spawn_group.sqf";
@@ -70,6 +71,10 @@ execVM "\z\addons\dayz_server\WAI\configs\mission_loot.sqf";
 
 if (WAI_Overpoch) then {
 	execVM "\z\addons\dayz_server\WAI\configs\overwatch.sqf";
+};
+
+if (WAI_Origins) then {
+	execVM "\z\addons\dayz_server\WAI\configs\origins.sqf";
 };
 
 if (wai_user_spawnpoints) then {

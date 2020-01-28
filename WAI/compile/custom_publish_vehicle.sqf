@@ -81,6 +81,13 @@ if (wai_godmode_vehicles) then {
 	_vehicle addEventHandler ["HandleDamage",{_this call fnc_veh_handleDam}];
 };
 
+if (WAI_Origins) then {
+	if (_class in ["ori_ZAZ968M","ori_taviander","ori_buchanka","ori_m3","ori_maniac","ori_KaTransp","ori_ScrapRaft","ori_bike_d2","ori_col_truck_tent","ori_col_truck_fuel","ori_gaika","ori_rth_originsmod_bathmobile","ori_ScrapBuggy","ori_submarine","ori_bigRaft"]) then {
+		_vehicle animate ["hopa",1];
+		_vehicle animate ["doska",1];
+	};
+};
+
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_vehicle];
 
 if (wai_keep_vehicles) then {
