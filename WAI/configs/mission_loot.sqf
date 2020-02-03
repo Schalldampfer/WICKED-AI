@@ -4,6 +4,8 @@
 // [[Hero Loot Array],
 //	[Bandit Loot Array]]
 
+diag_log "WAI: Loading Mission Loot table";
+
 /***** Easy Missions *****/
 Loot_UralAttack = [
 	[0,6,20,0,1], // Hero
@@ -162,8 +164,8 @@ Loot_Extraction2 = [
 	armed_chopper // Bandit
 ];
 Loot_Presidents = [
-	[[6,ai_wep_special_good + ai_wep_special_cheap],0,[20,crate_items_president],[1,ai_wep_special_delux + ai_wep_special_rare],2], // Hero
-	[[6,ai_wep_special_good + ai_wep_special_cheap],0,[20,crate_items_president],[1,ai_wep_special_delux + ai_wep_special_rare],2] // Bandit
+	[[6,ai_wep_special_good + ai_wep_special_cheap],0,[20,crate_items_president],[1,ai_wep_special_rare],2], // Hero
+	[[6,ai_wep_special_good + ai_wep_special_cheap],0,[20,crate_items_president],[1,ai_wep_special_rare],2] // Bandit
 ];
 Loot_Firestation1 = [ // Fire Station Crate 1
 	[0,0,[10,crate_items_buildables],0,2], // Hero
@@ -180,8 +182,8 @@ Loot_Firestation3 = [
 
 /***** Extreme Missions *****/
 Loot_ArmyBase1 = [
-	[[6,ai_wep_special_good],0,[20,crate_ammo_good + crate_items_sniper],[3,ai_wep_special_rare + ai_wep_special_delux],2], // Hero
-	[[6,ai_wep_special_good],0,[20,crate_ammo_good + crate_items_sniper],[3,ai_wep_special_rare + ai_wep_special_delux],2] // Bandit
+	[[6,ai_wep_special_good],0,[20,crate_ammo_good + crate_items_sniper],[3,ai_wep_special_rare + ai_wep_special_delux],[2,crate_backpacks_large]], // Hero
+	[[6,ai_wep_special_good],0,[20,crate_ammo_good + crate_items_sniper],[3,ai_wep_special_rare + ai_wep_special_delux],[2,crate_backpacks_large]] // Bandit
 ];
 Loot_ArmyBase2 = [
 	super_vehicles, // Hero

@@ -2,9 +2,6 @@
 
 // OverWatch Weapons & Vehicles
 
-waitUntil{!isNil "WAIconfigloaded"};
-waitUntil {WAIconfigloaded};
-
 ai_wep_ow_rifle		 = ["gms_k98_rg","vil_SKS"];
 ai_wep_ow_assault	 = ["RH_hk416","RH_hk417","RH_m1s","FHQ_ACR_BLK_IRN","vil_9a91_c","vil_HK33","vil_G3a3","vil_Galil","vil_uzi"];
 ai_wep_ow_ak		 = ["vil_ak12","vil_PMI74S","vil_type88_1","vil_M70","vil_M70B","vil_M64","vil_ASH82","vil_AMD","vil_AMD63","vil_PMI","vil_PMIS","vil_MPi"];

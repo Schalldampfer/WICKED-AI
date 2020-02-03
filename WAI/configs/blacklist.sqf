@@ -9,6 +9,13 @@ call {
 		[[235,686,0],[758,160,0]] // Debug Island
 	];};
     if (toLower worldName == "tavi") exitWith {wai_blacklist = [];};
+	if (toLower worldName == "taviana") exitWith {
+		wai_blacklist = [
+			[[16300,11630,0],[17018,9622,0]],
+			[[6504,8724,0],[8009,7322,0]],
+			[[9777,18900,0],[10850,17270,0]]
+		];
+	};
     if (toLower worldName == "lingor") exitWith {wai_blacklist = [];};
     if (toLower worldName == "napf") exitWith {
     	wai_blacklist = [];

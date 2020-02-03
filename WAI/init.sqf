@@ -63,26 +63,26 @@ WAIconfigloaded	= false;
 wai_markedPos = [];
 wai_static_data = [0,[],[],[]]; // [AI Count, UnitGroups, Vehicles to Monitor, Crates]
 
-execVM "\z\addons\dayz_server\WAI\config.sqf";
+call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\config.sqf";
 waitUntil {WAIconfigloaded};
 diag_log "WAI: AI Config File Loaded";
 
-execVM "\z\addons\dayz_server\WAI\configs\mission_loot.sqf";
-
 if (WAI_Overpoch) then {
-	execVM "\z\addons\dayz_server\WAI\configs\overwatch.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\configs\overwatch.sqf";
 };
 
 if (WAI_Origins) then {
-	execVM "\z\addons\dayz_server\WAI\configs\origins.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\configs\origins.sqf";
 };
 
+call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\configs\mission_loot.sqf";
+
 if (wai_user_spawnpoints) then {
-	execVM "\z\addons\dayz_server\WAI\configs\spawnpoints.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\configs\spawnpoints.sqf";
 };
 
 if (wai_use_blacklist) then {
-	execVM "\z\addons\dayz_server\WAI\configs\blacklist.sqf";
+	call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\configs\blacklist.sqf";
 };
 
 if(wai_static_missions) then {
