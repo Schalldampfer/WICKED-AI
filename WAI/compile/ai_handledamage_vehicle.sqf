@@ -7,7 +7,7 @@ _ammo = 		_this select 4;
 
 if (_source == _unit) exitWith {0};
 
-if (isPlayer _source) then {_unit doTarget _source;};
+if (isPlayer _source) then {_unit doTarget _source;(gunner _unit) doWatch _unit;};
 
 if !(_ammo isKindOf "Default") then {
 	diag_log format["[Dmg] %1 on %2 from %3",_ammo,typeOf _unit,_source];

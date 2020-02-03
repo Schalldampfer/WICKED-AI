@@ -13,10 +13,10 @@ if(count _this > 2) then {
 	
 	_wp_rad = call {
 		if (_skill == "easy") exitWith {20;};
-		if (_skill == "medium") exitWith {100;};
-		if (_skill == "hard") exitWith {200;};
-		if (_skill == "extreme") exitWith {300;};
-		if (_skill == "random") exitWith {100 + random(100);};
+		if (_skill == "medium") exitWith {40;};
+		if (_skill == "hard") exitWith {80;};
+		if (_skill == "extreme") exitWith {120;};
+		if (_skill == "random") exitWith {random(100);};
 	};
 };
 
@@ -33,6 +33,6 @@ if (count _position > 2) then {
 
 } count [[_pos_x,(_pos_y+_wp_rad),0],[(_pos_x+_wp_rad),_pos_y,0],[_pos_x,(_pos_y-_wp_rad),0],[(_pos_x-_wp_rad),_pos_y,0]];
 
-_wp = _unitGroup addWaypoint [[_pos_x,_pos_y,0],_wp_rad];
+_wp = _unitGroup addWaypoint [[_pos_x,(_pos_y+_wp_rad),0],_wp_rad];
 _wp setWaypointType "CYCLE";
 

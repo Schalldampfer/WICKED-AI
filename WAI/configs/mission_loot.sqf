@@ -106,8 +106,8 @@ Loot_Base = [
 	[[8,ai_wep_special_good + ai_launcher_special_cheap],2,0,[3,ai_wep_special_rare + ai_launcher_special_cheap],[4,crate_backpacks_large]] // Bandit
 ];
 Loot_CannibalCave = [
-	[[4,ai_wep_special_cheap + ai_wep_special_good],0,[3,crate_items_gems],0,4], // Hero
-	[[4,ai_wep_special_cheap + ai_wep_special_good],0,[3,crate_items_gems],0,4] // Bandit
+	[[4,ai_wep_special_cheap + ai_wep_special_good],0,[2,crate_items_gems],0,4], // Hero
+	[[4,ai_wep_special_cheap + ai_wep_special_good],0,[2,crate_items_gems],0,4] // Bandit
 ];
 Loot_CapturedMV22 = [
 	[4,4,[20,crate_items_medical + crate_items_skin],0,1], // Hero
@@ -188,8 +188,8 @@ Loot_ArmyBase2 = [
 	super_vehicles // Bandit
 ];
 Loot_GemTower = [
-	[[3,ai_wep_special_good],[3,crate_tools_sniper],[5,crate_items_gems],[1,ai_wep_special_delux + ai_launcher_special_delux],[2,crate_backpacks_large]], // Hero
-	[[3,ai_wep_special_good],[3,crate_tools_sniper],[5,crate_items_gems],[1,ai_wep_special_delux + ai_launcher_special_delux],[2,crate_backpacks_large]] // Bandit
+	[[3,ai_wep_special_good],[3,crate_tools_sniper],[4,crate_items_gems],[1,ai_wep_special_delux + ai_launcher_special_delux],[2,crate_backpacks_large]], // Hero
+	[[3,ai_wep_special_good],[3,crate_tools_sniper],[4,crate_items_gems],[1,ai_wep_special_delux + ai_launcher_special_delux],[2,crate_backpacks_large]] // Bandit
 ];
 Loot_TankColumn1 = [
 	[[7,ai_wep_special_good],0,[10,crate_items_chainbullets + crate_items_sniper],[2,ai_wep_special_rare],2], // Hero

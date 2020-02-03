@@ -177,7 +177,7 @@ wai_monitor_ai_vehicles = {
 			//find players
 			{
 				if ((_x distance _vehicle) < _vD) then {
-					if (!(lineIntersects [aimPos _vehicle,aimPos _x,_vehicle,_x]) && !(terrainIntersectASL [aimPos _vehicle,aimPos _x])) then {
+					if ((vehicle _x) isKindOf "Air" || !(lineIntersects [aimPos _vehicle,aimPos _x,_vehicle,_x]) && !(terrainIntersectASL [aimPos _vehicle,aimPos _x])) then {
 						(gunner _vehicle) reveal [_x,2.5];
 					};
 				};

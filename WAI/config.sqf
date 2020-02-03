@@ -44,21 +44,21 @@ ai_gear0			 = [["ItemBandage","ItemHeatPack"],["ItemCrowbar"]];
 ai_gear1			 = [["ItemBandage","FoodPistachio","ItemSodaPepsi"],["ItemRadio"]];
 ai_gear2			 = [["ItemBandage"],["ItemToolbox","ItemKeyKit"]];
 ai_gear3			 = [["HandGrenade_west","FoodCanFrankBeans","ItemWaterbottle"],["ItemCompass","ItemCrowbar"]];
-ai_gear4			 = [["HandGrenade_east","ItemBandage","HandChemBlue","ItemAntibacterialWipe"],["ItemMachete","ItemGPS"]];
+ai_gear4			 = [["HandGrenade_east","ItemBandage","HandChemBlue","ItemAntibacterialWipe"],["ItemMachete","ItemMap"]];
 ai_gear_random		 = [ai_gear0,ai_gear0,ai_gear0,ai_gear1,ai_gear1,ai_gear2,ai_gear2,ai_gear3,ai_gear4];
 
 // Weapons
 ai_wep_g36			 = ["G36C_DZ","G36A_Camo_DZ","G36K_Camo_DZ","m8_carbine","m8_compact","m8_sharpshooter"];
-ai_wep_m16			 = ["M16A2_DZ","M16A4_DZ","M16A4_CCO_DZ","M16A4_FL_DZ"];
-ai_wep_m4			 = ["M4A1_DZ","M4A1_FL_DZ","M4A1_MFL_DZ","M4A1_CCO_DZ","M4A1_Holo_DZ"];
+ai_wep_m16			 = ["M16A2_DZ","M16A4_FL_DZ","M16A4_CCO_FL_DZ","M16A4_FL_DZ"];
+ai_wep_m4			 = ["M4A1_FL_DZ","M4A1_FL_DZ","M4A1_MFL_DZ","M4A1_CCO_FL_DZ","M4A1_Holo_FL_DZ"];
 ai_wep_scar			 = ["FNFAL_DZ","SCAR_L_CQC","SCAR_L_CQC_CCO_SD","SCAR_L_CQC_Holo","SCAR_L_STD_HOLO","SCAR_L_STD_Mk4CQT","SCAR_H_CQC_CCO"];
-ai_wep_sa58			 = ["AA12_PMC","SA58_DZ","SA58_RIS_FL_DZ","SA58_CCO_DZ","SA58_ACOG_DZ","evo_sd_ACR","CZ805_A1_ACR"];
-ai_wep_l85			 = ["L85A2_DZ","L85A2_FL_DZ","L85A2_Holo_DZ","L85A2_ACOG_DZ","BAF_L85A2_RIS_SUSAT"];
-ai_wep_ak 			 = ["AKS74U_DZ","AKS74U_Kobra_DZ","AK_47_S","AKM_DZ","AK74_DZ","AK74_Kobra_DZ","AK_107_CP","AKS_74_NSPU"];
-ai_wep_machine		 = ["M8_SAW","M60A4_EP1_DZE","MG36_camo","MG36","BAF_L86A2_ACOG","L110A1_DZ","L110A1_CCO_DZ","L110A1_Holo_DZ","M249_DZ","M249_CCO_DZ","M249_Holo_DZ","M240_DZ","Mk48_DZ","Mk48_CCO_DZ","Mk48_Holo_DZ","RPK_DZ","RPK_Kobra_DZ","RPK_PSO1_DZ","UK59_DZ","PKM_DZ","BAF_L7A2_GPMG_Small"];
-ai_wep_pistol		 = ["M9_DZ","G17_DZ","G17_FL_DZ","Makarov_DZ","Revolver_DZ","M1911_DZ","CZ_75_SP_01_PHANTOM"];
+ai_wep_sa58			 = ["AA12_PMC","SA58_DZ","SA58_RIS_FL_DZ","SA58_CCO_FL_DZ","SA58_ACOG_FL_DZ","evo_sd_ACR","CZ805_A1_ACR"];
+ai_wep_l85			 = ["L85A2_FL_DZ","L85A2_FL_DZ","L85A2_Holo_FL_DZ","L85A2_ACOG_FL_DZ"];
+ai_wep_ak 			 = ["AKS74U_DZ","AKS74U_Kobra_DZ","AK_47_S","AKM_DZ","AK74_DZ","AK74_Kobra_DZ","AK_107_CP","RPK_DZ"];
+ai_wep_machine		 = ["M8_SAW","M60A4_EP1_DZE","MG36_camo","MG36","BAF_L86A2_ACOG","L110A1_DZ","L110A1_CCO_DZ","L110A1_Holo_DZ","M249_DZ","M249_EP1_DZ","M249_CCO_DZ","M249_Holo_DZ","M240_DZ","Mk48_DZ","Mk48_CCO_DZ","Mk48_Holo_DZ","RPK_PSO1_DZ","UK59_DZ","PKM_DZ","BAF_L7A2_GPMG_Small"];
+ai_wep_pistol		 = ["M9_DZ","G17_FL_DZ","Makarov_DZ","Revolver_DZ","M1911_DZ","CZ_75_SP_01_PHANTOM"];
 ai_wep_sniper		 = ["M14_DZ","CZ550_DZ","M24_DZ","M24_des_EP1","M40A3_DZ","SVD_DZ","SVD_des_EP1","L115A3_DZ","M4SPR_DZE","CZ_750_S1_ACR","CZ805_B_GL_ACR"];
-ai_wep_weak			 = ["Sa61_EP1","PDW_DZ","UZI_SD_EP1","MP5_DZ","Bizon_DZ","MR43_DZ","Winchester1866_DZ","Remington870_DZ","M1014_DZ","Saiga12K","LeeEnfield_DZ","Mosin_DZ","RedRyder","Crossbow_DZ"];
+ai_wep_weak			 = ["Sa61_EP1","PDW_DZ","UZI_SD_EP1","MP5_DZ","Bizon_DZ","MR43_DZ","Winchester1866_DZ","Remington870_DZ","M1014_DZ","Saiga12K","LeeEnfield_DZ","Mosin_FL_DZ","RedRyder","Crossbow_DZ"];
 ai_wep_tws			 = ["AKS_74_GOSHAWK","BAF_AS50_TWS","BAF_L85A2_RIS_TWS_DZ","M249_TWS_EP1_Small","m107_TWS_EP1_Small","m8_tws","m8_tws_sd","SCAR_L_STD_EGLM_TWS","SCAR_H_STD_TWS_SD","M110_TWS_EP1"];
 ai_wep_assault	= ai_wep_g36 + ai_wep_m16 + ai_wep_m4 + ai_wep_scar + ai_wep_sa58 + ai_wep_l85 + ai_wep_ak;
 
@@ -118,7 +118,7 @@ wai_server_fps			= 5; // missions only starts if server FPS is over wai_server_f
 wai_kill_percent		= 50; // percentage of AI players that must be killed at "crate" missions to be able to trigger completion
 
 wai_high_value			= true; // enable the possibility of finding a high value item (defined below crate_items_high_value) inside a crate
-wai_high_value_chance	= 20; // chance in percent you find above mentioned item
+wai_high_value_chance	= 5; // chance in percent you find above mentioned item
 wai_num_mags 			= (3 + round(random 3)); // Number of magazines per weapon in the crate
 wai_minimum_loot		= 0.8 + (random 0.2); // Number between .01 and 1. 1 = 100% loot based on loot definitions. To disable the feature set value less than or equal to 0 and you will automatically get 100% loot;
 
@@ -210,9 +210,9 @@ cargo_trucks 				= ["Kamaz_DZE","KamazOpen_DZE","MTVR","MTVR_DES_EP1","Ural_CDF"
 refuel_trucks				= ["KamazRefuel_DZ","MtvrRefuel_DES_EP1_DZ","UralRefuel_TK_EP1_DZ","V3S_Refuel_TK_GUE_EP1_DZ","Ikarus","Ikarus_TK_CIV_EP1"];
 civil_vehicles 				= ["Octavia_ACR","hilux1_civil_1_open_DZE","hilux1_civil_2_covered_DZE","hilux1_civil_3_open_DZE","car_hatchback","datsun1_civil_1_open_DZE","datsun1_civil_2_covered_DZE","datsun1_civil_3_open_DZE","UAZ_Unarmed_TK_CIV_EP1","LandRover_TK_CIV_EP1","SUV_Blue","SUV_Camo","SUV_Charcoal","SUV_Green","SUV_Orange","SUV_Pink","SUV_Red","SUV_Silver","SUV_TK_CIV_EP1","SUV_White","SUV_Yellow","car_sedan","Lada1","Lada2","Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","S1203_TK_CIV_EP1","Skoda","SkodaBlue","SkodaRed","SkodaGreen","Volha_1_TK_CIV_EP1","Volha_2_TK_CIV_EP1","VolhaLimo_TK_CIV_EP1","VWGolf","S1203_ambulance_EP1"];
 ai_antiair_vehicles			= ["ZSU_INS","ZSU_CDF","ZSU_TK_EP1","ZSU_Gue_CP","HMMWV_Avenger","HMMWV_Avenger_DES_EP1"];
-ai_armored_vehicles			= ["T34","T55_TK_GUE_EP1","BMP3","BAF_FV510_D","M6_EP1"];
+ai_armored_vehicles			= ["T34","T34_TK_EP1","T34_TK_GUE_EP1","T55_TK_GUE_EP1","BMP3","M6_EP1"];
 spg9_vehicles				= ["Offroad_SPG9_TK_GUE_EP1","Offroad_SPG9_Gue","UAZ_SPG9_INS","LandRover_SPG9_TK_INS_EP1","LandRover_SPG9_TK_EP1"];
-improved_vehicles			= ["BRDM2_CDF","BRDM2_Gue","BRDM2_TK_EP1","BRDM2_TK_GUE_EP1","BRDM2_ATGM_CDF","BRDM2_ATGM_TK_EP1","GAZ_Vodnik_HMG","LAV25","AAV_cutscene","M1126_ICV_mk19_EP1","HMMWV_TOW_DES_EP1","Dingo_DST_ACR","Dingo_GL_DST_ACR"] + spg9_vehicles;
+improved_vehicles			= ["BRDM2_CDF","BRDM2_Gue","BRDM2_TK_EP1","BRDM2_TK_GUE_EP1","BRDM2_ATGM_CDF","BRDM2_ATGM_TK_EP1","GAZ_Vodnik_HMG","LAV25","AAV_cutscene","M1126_ICV_mk19_EP1","HMMWV_TOW_DES_EP1","Dingo_DST_ACR","Dingo_GL_DST_ACR","AH6J_EP1"] + spg9_vehicles;
 super_vehicles				= ["T34_TK_GUE_EP1","T55_TK_EP1","BMP1_INS_CP","BVP1_TK_ACR","BVP1_TK_GUE_ACR","BMP2_ACR","BMP2_Des_ACR","BMP2_UN_EP1","BMP2_TK_EP1","BTR90","M1135_ATGMV_EP1","HMMWV_Avenger_DES_EP1","MAZ_543_SCUD_TK_EP1"];
 
 // Dynamic crate array
@@ -224,7 +224,7 @@ crates_small				= ["USOrdnanceBox_EP1","USLaunchers_EP1","USBasicWeapons_EP1","U
 crate_weapons_buildables	= ["ChainSawB","ChainSawG","ChainSawP","ChainSawR"];
 crate_tools					= ["ItemKeyKit","Binocular","ItemCompass","ItemCrowbar","ItemEtool","ItemFishingPole","ItemFlashlightRed","ItemHatchet","ItemKnife","ItemMachete","ItemMatchbox","ItemToolbox","NVGoggles"];
 crate_tools_buildable		= ["ItemToolbox","ItemEtool","ItemCrowbar","ItemKnife","ItemShovel","ItemPickaxe","ItemSledge"];
-crate_tools_sniper			= ["ItemCompass","Binocular_Vector","NVGoggles","ItemGPS","Laserdesignator","Mosin_BR_DZ"];
+crate_tools_sniper			= ["ItemCompass","Binocular_Vector","NVGoggles","ItemGPS","Laserdesignator","Mosin_BR_DZ","NVGoggles_DZE"];
 
 crate_items_misc			= ["ItemSilverBar","ItemSilverBar10oz","ItemBriefcaseS100oz","ItemBriefcaseS100oz","ItemGoldBar","ItemGoldBar","ItemGoldBar10oz","ItemGoldBar10oz","ItemBriefcase100oz"];
 crate_items_high_value		= ["ItemBriefcase_Base","ItemBriefcase_Base","ItemBriefcase_Base","ItemBriefcase100oz","ItemVault","m240_nest_kit","PipeBomb"];
@@ -235,7 +235,12 @@ crate_items_medical			= ["ItemWaterbottle","ItemWaterbottle","ItemAntibiotic","I
 crate_items_chainbullets	= ["pook_1300Rnd_762x51_M60","pook_250Rnd_762x51","2000Rnd_762x51_M134","2000Rnd_762x51_M134","2000Rnd_762x51_L94A1","60Rnd_762x54_DT","60Rnd_762x54_DT","100Rnd_762x54_PK","100Rnd_762x54_PK","100Rnd_762x54_PK","200Rnd_762x51_M240","200Rnd_762x51_M240","200Rnd_762x51_M240","100Rnd_127x99_M2","100Rnd_127x99_M2","150Rnd_127x107_DSHKM","150Rnd_127x107_DSHKM","29Rnd_30mm_AGS30","48Rnd_40mm_MK19","3Rnd_GyroGrenade","pook_12Rnd_Grenade_Camel","PG9_AT","OG9_HE"];
 crate_items_sniper			= [["5Rnd_17HMR",4],["5Rnd_17HMR",6],"10Rnd_9x39_SP5_VSS","5Rnd_86x70_L115A1","5Rnd_127x108_KSVK","bulk_30Rnd_556x45_StanagSD",["5Rnd_762x51_M24",3],["5Rnd_762x51_M24",5],"20Rnd_762x51_DMR",["20Rnd_762x51_DMR",3],"10Rnd_762x54_SVD",["10Rnd_762x54_SVD",3],["5Rnd_762x54_Mosin",5],["5Rnd_762x54_Mosin",8],["1Rnd_HE_M203",3],["1Rnd_HE_GP25",3],"Attachment_Ghillie","Attachment_ACOG","Attachment_PSO1","Attachment_PSO1","Attachment_SCOPED","Attachment_SCOPED","Attachment_SCOPED","Attachment_GP25","Attachment_M203","Attachment_MFL","Attachment_MFL_Pist","Attachment_Sup545","Attachment_Sup556","Attachment_Sup9","Attachment_SupBizon","Attachment_SupMakarov","Laserbatteries"];
 crate_items_president		= ["ItemBriefcase_Base","ItemBriefcase_Base","ItemBriefcase_Base"] + crate_items_food + crate_items_medical;
-crate_items_gems			= ["ItemRuby","ItemCitrine","ItemEmerald","ItemAmethyst","ItemSapphire","ItemObsidian","ItemObsidian","ItemTopaz","ItemTopaz","ItemTopaz"];
+crate_items_gems = [];
+{
+	for "_i" from 1 to (_x select 1) do {
+		crate_items_gems set [count crate_items_gems, _x select 0];
+	};
+} forEach DZE_GemOccurance;
 crate_items_crop_raider		= ["ItemKiloHemp","ItemKiloHemp","ItemKiloHemp","ItemKiloHemp","ItemKiloHemp",["ItemCanvas",2],"ItemSandbag","FoodBioMeat"];
 crate_items_wood			= [["ItemWoodFloorQuarter",4],"ItemWoodStairs",["ItemWoodLadder",2],["ItemWoodWallThird",3],"ItemWoodWallGarageDoor",["ItemWoodWallLg",2],"ItemWoodWallWithDoorLg",["PartPlankPack",12],["PartPlankPack",10],["PartPlankPack",10],["PartPlankPack",8],["PartPlankPack",8],["PartPlywoodPack",5],["PartPlywoodPack",4],["PartPlywoodPack",4],["PartPlywoodPack",3],["PartPlywoodPack",3],"ItemLog"];
 crate_backpacks_all			= ["DZ_TerminalPack_EP1","DZ_ALICE_Pack_EP1","DZ_TK_Assault_Pack_EP1","DZ_CompactPack_EP1","DZ_British_ACU","DZ_GunBag_EP1","DZ_CivilBackpack_EP1"];
@@ -246,10 +251,10 @@ crate_items_money			= crate_items_misc;
 crate_items_skin			= ["Skin_Sniper1_DZ","Skin_Camo1_DZ","Skin_Soldier1_DZ","Skin_Survivor2_DZ","Skin_Rocket_DZ","Skin_RU_Policeman_DZ","Skin_Pilot_EP1_DZ","Skin_Haris_Press_EP1_DZ","Skin_Ins_Soldier_GL_DZ","Skin_GUE_Commander_DZ","Skin_Functionary1_EP1_DZ","Skin_Priest_DZ","Skin_Rocker1_DZ","Skin_Rocker2_DZ","Skin_Rocker3_DZ","Skin_Rocker4_DZ","Skin_Bandit1_DZ","Skin_Bandit2_DZ","Skin_GUE_Soldier_MG_DZ","Skin_GUE_Soldier_Sniper_DZ","Skin_GUE_Soldier_Crew_DZ","Skin_GUE_Soldier_CO_DZ","Skin_GUE_Soldier_2_DZ","Skin_BanditW1_DZ","Skin_BanditW2_DZ","Skin_SurvivorW3_DZ","Skin_SurvivorW2_DZ","Skin_SurvivorWpink_DZ","Skin_SurvivorWcombat_DZ","Skin_SurvivorWdesert_DZ","Skin_SurvivorWurban_DZ","Skin_TK_INS_Warlord_EP1_DZ",
 							   "Skin_TK_INS_Soldier_EP1_DZ","Skin_CZ_Special_Forces_GL_DES_EP1_DZ","Skin_Drake_Light_DZ","Skin_Soldier_Bodyguard_AA12_PMC_DZ","Skin_FR_OHara_DZ","Skin_FR_Rodriguez_DZ","Skin_CZ_Soldier_Sniper_EP1_DZ","Skin_Graves_Light_DZ","Skin_Soldier_Sniper_PMC_DZ","Skin_Soldier_TL_PMC_DZ","Skin_TK_Special_Forces_MG_EP1_DZ","Skin_TK_Soldier_Sniper_EP1_DZ","Skin_TK_Commander_EP1_DZ","Skin_RU_Soldier_Crew_DZ","Skin_INS_Lopotev_DZ","Skin_INS_Soldier_AR_DZ","Skin_INS_Soldier_CO_DZ","Skin_INS_Bardak_DZ","Skin_INS_Worker2_DZ","Skin_USMC_Soldier_Officer_DZ","Skin_USMC_Soldier_MG_DZ","Skin_USMC_Soldier_Pilot_DZ","Skin_FR_TL_DZ","Skin_FR_R_DZ","Skin_FR_Marksman_DZ","Skin_FR_Assault_R_DZ","Skin_RU_Soldier_DZ",
 							   "Skin_RU_Soldier_Officer_DZ","Skin_RUS_Soldier1_DZ","Skin_RUS_Commander_DZ","Skin_MVD_Soldier_DZ","Skin_Ins_Soldier_2_DZ","Skin_Ins_Commander_DZ","Skin_Ins_Soldier_Crew_DZ","Skin_CDF_Soldier_DZ","Skin_Assistant_DZ","Skin_Doctor_DZ","Skin_Worker1_DZ","Skin_Worker3_DZ","Skin_Worker4_DZ","Skin_TK_CIV_Takistani01_EP1_DZ","Skin_TK_CIV_Takistani03_EP1_DZ","Skin_TK_CIV_Takistani04_EP1_DZ","Skin_TK_CIV_Takistani06_EP1_DZ","Skin_TK_INS_Soldier_AR_EP1_DZ","Skin_TK_GUE_Soldier_EP1_DZ","Skin_CZ_Soldier_SL_DES_EP1_DZ","Skin_US_Soldier_EP1_DZ","Skin_UN_CDF_Soldier_EP1_DZ","Skin_UN_CDF_Soldier_Guard_EP1_DZ","Skin_GER_Soldier_TL_EP1_DZ","Skin_BAF_Soldier_Officer_MTP_DZ","Skin_BAF_Soldier_N_MTP_DZ","Skin_FR_Sapper_DZ"];
-ai_wep_special_cheap		= ["G36K_Camo_DZ","SCAR_L_STD_Mk4CQT","SCAR_L_STD_EGLM_RCO","SCAR_H_CQC_CCO","SCAR_H_STD_EGLM_Spect","m8_holo_sd","BAF_L86A2_ACOG","L110A1_DZ","Mk48_DZ","UK59_DZ","M60A4_EP1_DZE","MG36","M79_EP1"];
-ai_wep_special_good			= ["UZI_SD_EP1","SCAR_H_CQC_CCO_SD","FN_FAL_ANPVS4_DZE","AKS_74_NSPU","BAF_L85A2_RIS_CWS","VSS_vintorez_DZE","DMR_DZ","SCAR_H_LNG_Sniper","M4SPR_DZE","Mk13_EP1"];
-ai_wep_special_rare			= ["AKS_GOLD","AKS_74_GOSHAWK","m8_tws","BAF_L85A2_RIS_TWS_DZ","SCAR_L_STD_EGLM_TWS","SCAR_H_LNG_Sniper_SD","Pecheneg_DZ","m240_scoped_EP1_DZE","M249_m145_EP1_DZE","M110_NVG_EP1","L115A3_DZ","L115A3_2_DZ","KSVK_DZE","m107_DZ","BAF_AS50_scoped_DZ","M32_EP1"];
-ai_wep_special_delux		= ["SCAR_H_STD_TWS_SD","M249_TWS_EP1_Small","M110_TWS_EP1","BAF_AS50_TWS","m107_TWS_EP1","Anzio_20_DZ","LRTV_ACR"];
+ai_wep_special_cheap		= ["G36K_Camo_DZ","SCAR_L_STD_Mk4CQT","SCAR_L_STD_EGLM_RCO","SCAR_H_CQC_CCO","m8_holo_sd","BAF_L86A2_ACOG","L110A1_DZ","Mk48_DZ","UK59_DZ","M60A4_EP1_DZE","MG36","M79_EP1"];
+ai_wep_special_good			= ["UZI_SD_EP1","SCAR_H_CQC_CCO_SD","SCAR_H_STD_EGLM_Spect","FN_FAL_ANPVS4_DZE","AKS_74_NSPU","BAF_L85A2_RIS_CWS","VSS_vintorez_DZE","M4SPR_DZE","L115A3_DZ","Mk13_EP1"];
+ai_wep_special_rare			= ["AKS_GOLD","AKS_74_GOSHAWK","m8_tws","BAF_L85A2_RIS_TWS_DZ","SCAR_L_STD_EGLM_TWS","SCAR_H_LNG_Sniper","SCAR_H_LNG_Sniper_SD","DMR_DZ","Pecheneg_DZ","m240_scoped_EP1_DZE","M249_m145_EP1_DZE","L115A3_2_DZ","KSVK_DZE","M32_EP1"];
+ai_wep_special_delux		= ["SCAR_H_STD_TWS_SD","M249_TWS_EP1_Small","M110_NVG_EP1","M110_TWS_EP1","BAF_AS50_scoped_DZ","Anzio_20_DZ","LRTV_ACR"];//["BAF_AS50_TWS","m107_TWS_EP1"];
 crate_ammo_cheap			= ["100Rnd_762x51_M240","30Rnd_556x45_Stanag","30Rnd_556x45_Stanag","30Rnd_556x45_Stanag","30Rnd_762x39_AK47","30Rnd_762x39_AK47","30Rnd_545x39_AK","30Rnd_545x39_AK","30Rnd_545x39_AK","20Rnd_762x51_FNFAL","5Rnd_762x51_M24","5Rnd_17HMR","5Rnd_762x54_Mosin","10Rnd_303British","15Rnd_W1866_Slug","8Rnd_12Gauge_Buck","8Rnd_B_Saiga12_Pellets","30Rnd_9x19_MP5","6Rnd_45ACP","7Rnd_45ACP_1911","8Rnd_9x18_Makarov","15Rnd_9x19_M9","17Rnd_9x19_glock17","BAF_L109A1_HE","HandGrenade_west","HandGrenade_east","1Rnd_HE_M203","1Rnd_HE_GP25"];
 crate_ammo_good				= ["20Rnd_762x51_B_SCAR","20Rnd_762x51_SB_SCAR","100Rnd_556x45_BetaCMag","200Rnd_556x45_M249","20Rnd_9x39_SP5_VSS","5Rnd_86x70_L115A1","5Rnd_127x108_KSVK","3rnd_Anzio_20x102mm","30Rnd_9x19_UZI_SD","8Rnd_9x18_MakarovSD","bulk_15Rnd_9x19_M9SD","bulk_30Rnd_9x19_MP5SD","bulk_30Rnd_556x45_StanagSD","6Rnd_HE_M203","20Rnd_B_AA12_HE"];
 ai_launcher_special_cheap	= ["RPG7V","M136","RPG18","SMAW","MAAWS","M47Launcher_EP1","Strela"];

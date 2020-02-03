@@ -12,6 +12,7 @@ if (!isNil "_mission") then {
 		wai_mission_data select _mission set [0, ((wai_mission_data select _mission) select 0) - 1];
 	};
 } else {
+	_mission = -1;
 	wai_static_data set [0, ((wai_static_data select 0) - 1)];
 };
 
@@ -79,6 +80,9 @@ if (isPlayer _player) then {
 			if (((position _x) distance (position _unit)) <= ai_share_distance) then {
 				_x reveal [_player, 4.0];
 			};
+			if ((_x getVariable ["mission" + dayz_serverKey, -1]) == _mission) then {
+				_x reveal [_player, 2.5];
+			};
 		} count allUnits;
 		//change wp to killer
 		_grp = group _unit;
@@ -103,7 +107,7 @@ if (isPlayer _player) then {
 		if ((random 100) <= ai_rk_damageweapon) then {
 
 			removeAllWeapons _unit;
-			
+
 		};
 
 	};
@@ -128,18 +132,4 @@ if(wai_remove_launcher && _launcher != "") then {
 
 if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
 	_unit removeWeapon "NVGoggles";
-};
-
-if (ai_share_info && (!isNil "_mission")) then {
-	_vp = (vehicle _player == _player);
-	{
-		if ((_x getVariable ["mission" + dayz_serverKey, -1]) == _mission) then {
-			_x reveal [_player, 4.0];
-			_vx = (vehicle _x == _x);
-			if ((_vx && _vp) || (!_vx && !_vp)) then {
-				_x doTarget _player;
-				_x doFire _player;
-			};
-		};
-	} count allUnits;
 };

@@ -5,7 +5,7 @@ _pos_x 			= _position select 0;
 _pos_y 			= _position select 1;
 _pos_z 			= _position select 2;
 _unitnumber 		= _this select 1;
-_skill 				= _this select 2;
+_skill 				= toLower(_this select 2);
 _gun 				= _this select 3;
 _mags 				= _this select 4;
 _backpack 			= _this select 5;
@@ -53,19 +53,22 @@ if (!isNil "_mission") then {
 
 if (count _position < 3) then {_pos_z = 0;};
 
-if(_pos_z == 0) then {
+if(_pos_z < 0.1) then {
 	if(floor(random 2) == 1) then { 
-		_pos_x = _pos_x - (15 + random(10));
+		_pos_x = _pos_x - (5 + random(10));
 	} else {
-		_pos_x = _pos_x + (15 + random(10));
+		_pos_x = _pos_x + (5 + random(10));
 	};			
 
 	if(floor(random 2) == 1) then { 
-		_pos_y = _pos_y - (15 + random(10));
+		_pos_y = _pos_y - (5 + random(10));
 	} else {
-		_pos_y = _pos_y + (15 + random(10));
+		_pos_y = _pos_y + (5 + random(10));
 	};
 };
+
+_position set [0, _pos_x];
+_position set [1, _pos_y];
 
 for "_x" from 1 to _unitnumber do {
 	
@@ -222,16 +225,17 @@ for "_x" from 1 to _unitnumber do {
 _unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);
 _unitGroup selectLeader ((units _unitGroup) select 0);
 _unitGroup allowFleeing 0;
+_unitGroup enableGunLights true;
 
 if(_aitype == "Hero") then {
-	_unitGroup setCombatMode ai_hero_combatmode;
 	_unitGroup setBehaviour ai_hero_behaviour;
+	_unitGroup setCombatMode ai_hero_combatmode;
 } else {
-	_unitGroup setCombatMode ai_bandit_combatmode;
 	_unitGroup setBehaviour ai_bandit_behaviour;
+	_unitGroup setCombatMode ai_bandit_combatmode;
 };
 
-if(_pos_z < 1) then {
+if(_pos_z < 0.1) then {
 	[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call group_waypoints;
 };
 

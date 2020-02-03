@@ -158,11 +158,11 @@ _unitGroup setBehaviour "CARELESS";
 _unitGroup setSpeedMode "FULL";
 
 if(_aitype == "Hero") then {
-	_unitGroup setCombatMode ai_hero_combatmode;
 	_unitGroup setBehaviour ai_hero_behaviour;
+	_unitGroup setCombatMode ai_hero_combatmode;
 } else {
-	_unitGroup setCombatMode ai_bandit_combatmode;
 	_unitGroup setBehaviour ai_bandit_behaviour;
+	_unitGroup setCombatMode ai_bandit_combatmode;
 };
 
 // Add waypoints to the chopper group.

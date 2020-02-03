@@ -6,7 +6,7 @@ waitUntil{!isNil "WAIconfigloaded"};
 waitUntil {WAIconfigloaded};
 
 ai_wep_ow_rifle		 = ["gms_k98_rg","vil_SKS"];
-ai_wep_ow_assault	 = ["RH_hk416","RH_hk417","RH_m1s","FHQ_ACR_BLK_IRN","vil_9a91_c","vil_G3a3","vil_uzi"];
+ai_wep_ow_assault	 = ["RH_hk416","RH_hk417","RH_m1s","FHQ_ACR_BLK_IRN","vil_9a91_c","vil_HK33","vil_G3a3","vil_Galil","vil_uzi"];
 ai_wep_ow_ak		 = ["vil_ak12","vil_PMI74S","vil_type88_1","vil_M70","vil_M70B","vil_M64","vil_ASH82","vil_AMD","vil_AMD63","vil_PMI","vil_PMIS","vil_MPi"];
 ow_camel			 = ["CYBP_Camel_us","CYBP_Camel_rus","CYBP_Camel_civ"];
 ow_patrol			 = ["Copcar","Copcarhw","Copcarswat","CVPI_Patrol","CVPI_Trooper_Patrol","CVPI_TrooperSL_Patrol","CVPI_NYPD_Patrol","CVPI_HighwaySL_Patrol","CVPI_UnmarkedB_Patrol","CVPI_UnmarkedG_Patrol","CVPI_LAPD_Patrol","CVPI_UnmarkedW_Patrol","CVPI_LAPDSL_Patrol","CVPI_NYPDSL_Patrol"];
@@ -18,9 +18,9 @@ crate_ammo_good		 = crate_ammo_good + ["FHQ_rem_7Rnd_338Lapua_MSR_NT","FHQ_rem_5
 crate_ammo_cheap	 = crate_ammo_cheap + ["gms_k98_mag","panzergrenade","vil_10Rnd_762x39_SKS","FHQ_rem_30Rnd_680x43_ACR"];
 
 ai_wep_special_cheap = ai_wep_special_cheap + ["FHQ_ACR_BLK_IRN","RH_hk416","RH_hk417"];
-ai_wep_special_good	 = ai_wep_special_good + ["FHQ_ACR_BLK_IRN_SD_F","RH_hk417sd","vil_9a91_c","vil_AK_74M_N","vil_Abakan_P29","vil_M76","vil_SV_98_69","vil_VSS_N","FHQ_MSR_DESERT","FHQ_ACR_BLK_HAMR","DDOPP_X26"];
-ai_wep_special_rare	 = ai_wep_special_rare + ["FHQ_ACR_BLK_TWS","FHQ_ACR_BLK_HAMR_SD_F","FHQ_XM2010_NV_DESERT","FHQ_MSR_NV_DESERT","vil_PKM_N","vil_SVDK","vil_SVU_A","RH_anacg","DDOPP_X3"];
-ai_wep_special_delux = ai_wep_special_delux + ["FHQ_MSR_TWS_DESERT","FHQ_MSR_NV_SD_DESERT","FHQ_XM2010_TWS_DESERT","FHQ_XM2010_NV_SD_DESERT","RH_Deagleg"];
+ai_wep_special_good	 = ai_wep_special_good + ["FHQ_ACR_BLK_IRN_SD_F","vil_9a91_c","vil_AK_74M_N","vil_Abakan_P29","vil_M76","vil_VSS_N","FHQ_ACR_BLK_HAMR","DDOPP_X26"];
+ai_wep_special_rare	 = ai_wep_special_rare + ["FHQ_ACR_BLK_HAMR_SD_F","RH_hk417sd","USSR_cheytacM200","vil_M110","vil_PKM_N","vil_SR25","vil_SVDK","vil_SVU_A","vil_SV_98_69","FHQ_MSR_DESERT","DDOPP_X3","RH_Deagleg","RH_anacg"];
+ai_wep_special_delux = ai_wep_special_delux + ["FHQ_ACR_BLK_TWS","FHQ_MSR_NV_DESERT","FHQ_MSR_NV_SD_DESERT","FHQ_XM2010_NV_DESERT","FHQ_XM2010_NV_SD_DESERT"];//["FHQ_MSR_TWS_DESERT","FHQ_XM2010_TWS_DESERT"];
 
 ai_wep_assault		 = ai_wep_assault + ai_wep_ow_assault + ai_wep_ow_ak;
 ai_wep_machine		 = ai_wep_machine + ["vil_Mg3","vil_RPK74M_P29","vil_RPK74M_N"];
