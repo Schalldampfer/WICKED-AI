@@ -81,6 +81,7 @@
 				};
 			};
 			// reveal player in range to AIs
+			/*
 			{
 				private ["_unit"];
 				_unit = _x;
@@ -92,3 +93,4 @@
 					} count allUnits;
 				};
 			} forEach playableUnits;
+			*/
