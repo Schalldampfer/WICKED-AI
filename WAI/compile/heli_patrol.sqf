@@ -63,6 +63,7 @@ _helicopter flyInHeight 150;
 _helicopter lock true;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
 _helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+_helicopter addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 
 _pilot assignAsDriver _helicopter;
 _pilot moveInDriver _helicopter;

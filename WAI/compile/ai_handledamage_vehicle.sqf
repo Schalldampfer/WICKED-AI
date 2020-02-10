@@ -10,12 +10,17 @@ if (_source == _unit) exitWith {0};
 if (isPlayer _source) then {_unit doTarget _source;(gunner _unit) doWatch _unit;};
 
 if !(_ammo isKindOf "Default") then {
-	diag_log format["[Dmg] %1 on %2 from %3",_ammo,typeOf _unit,_source];
 	_damage = 0;
 };
 
-if ((_this select 1) == "" && !isPlayer _source) then {
-	diag_log format["[Dmg] %1(%2) on %3 from %4",_damage,_ammo,typeOf _unit,_source];
+if (({_ammo isKindOf _x} count ["RocketBase","ARTY_Sh_Base","Sh_122_HE","Sh_82_HE","Sh_81_HE","120mmHE_M120"]) > 0) then {
+	if (isNull _source) then {
+		_damage = 0;
+	} else {
+		if ((_unit distance _source) > 1570 && !(_unit isKindOf "Air")) then {
+			_damage = 0;
+		};
+	};
 };
 
 _damage

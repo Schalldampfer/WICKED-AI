@@ -62,6 +62,7 @@ _vehicle setVehicleAmmo 1;
 _vehicle addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
 _vehicle addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 _vehicle addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+_vehicle addeventhandler ["IncomingMissile", {(_this select 0) fire "SmokeLauncher";}];
 _vehicle allowCrewInImmobile true; 
 _vehicle lock true;
 [_vehicle,_veh_class] call load_ammo;
