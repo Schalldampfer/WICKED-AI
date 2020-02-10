@@ -27,14 +27,14 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AA"],3,"Random","US_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","RUS_Soldier1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AA"],3,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-_uG1 = [[(_position select 0) + 35, _position select 1, 0],       [(_position select 0) + 30, _position select 1, 0],50,2,"M1114_AGS_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
-_uG2 = [[(_position select 0) +  2, (_position select 1) + 38, 0],[(_position select 0) - 28, _position select 1, 0],50,2,"M1114_DSK_ACR","Medium","GER_Soldier_TL_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG1 = [[(_position select 0) + 35, _position select 1, 0],       [(_position select 0) + 30, _position select 1, 0],50,2,"M1114_AGS_ACR","Medium","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
+_uG2 = [[(_position select 0) +  2, (_position select 1) + 38, 0],[(_position select 0) - 28, _position select 1, 0],50,2,"M1114_DSK_ACR","Medium","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
 (units _uG2) joinSilent _uG1;
 
 _messages = if (_missionType == "MainHero") then {

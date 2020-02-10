@@ -30,7 +30,7 @@ _loot = if (_missionType == "MainHero") then {Loot_Base select 0;} else {Loot_Ba
 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;

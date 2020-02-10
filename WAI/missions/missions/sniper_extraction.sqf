@@ -21,9 +21,9 @@ _loot = if (_missionType == "MainHero") then {Loot_Extraction1 select 0;} else {
 ],_position,_mission] call wai_spawnCrate;
 
 //Troops
-[_position,5,"Hard",[2,"AT"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",[2,"AA"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",[2,"AA"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[2,"AT"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[2,"AA"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard","KSVK_DZE",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",["L115A3_DZ","L115A3_2_DZ"] call BIS_fnc_selectRandom,3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 

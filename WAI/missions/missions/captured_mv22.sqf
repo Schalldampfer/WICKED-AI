@@ -26,24 +26,23 @@ _loot = if (_missionType == "MainHero") then {Loot_CapturedMV22 select 0;} else 
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[[_position select 0,_position select 1,0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-_uG2=[[(_position select 0) + 33,(_position select 1) -  7,0.1],5,"Hard",1,2,"Random","RU_Doctor","Random",[_aiType,100],_mission] call spawn_group;
-[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[_position select 0,_position select 1,0],5,"Hard",["Random","AT"],4,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 33,(_position select 1) -  7,0.1],5,"Hard",1,2,"Random","RU_Doctor","Random",[_aiType,100],_mission] call spawn_group;
+[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,"Hard",["Random","AA"],4,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard","Random",4,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",2,5,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-[[(_position select 0) + 0.1, (_position select 1) + 20, 0],[(_position select 0) + 0.1, (_position select 1) - 20, 0],50,2,armed_vehicle call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,_mission] call vehicle_patrol;
+[[(_position select 0) + 0.1, (_position select 1) + 20, 0],[(_position select 0) + 0.1, (_position select 1) - 20, 0],50,2,armed_vehicle call BIS_fnc_selectRandom,"Hard","UN_CDF_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
 
 //Static Guns
 _uG1=[[
 	[(_position select 0) - 9.3, (_position select 1) + 11.2, 0],
 	[(_position select 0) - 6, (_position select 1) - 21.4, 0]
-],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
-(units _uG2) joinSilent _uG1;
+],ai_static_weapons call BIS_fnc_selectRandom,"Hard","UN_CDF_Soldier_Guard_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 _uG2=[[
 	[(_position select 0) + 19, (_position select 1) + 10, 0]
-],"Igla_AA_pod_TK_EP1","Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],"Igla_AA_pod_TK_EP1","Hard","UN_CDF_Soldier_Guard_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 
 //Spawn vehicles

@@ -55,7 +55,7 @@ if (WAI_Overpoch) then {
 //Group Spawning
 [[(_position select 0) +  9, (_position select 1) - 13, 0],5,"Hard",["Random","AT"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard",["Random","AA"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard",["Random","AA"],4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,"Hard","Random",4,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 13, (_position select 1) + 15, 0],5,"Hard",1,2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 [[_position select 0       , _position select 1       , 0],5,"Hard",2,6,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
 

@@ -18,12 +18,7 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 
 // Spawn Objects
 [[
-	["Land_Misc_Coltan_Heap_EP1",[-3.41,16.4,-2.5],-82.16],
-	["Land_Misc_Coltan_Heap_EP1",[-31,12,-2],8.27],
-	["Land_Misc_Coltan_Heap_EP1",[-26,34,-2]],
-	["GraveCrossHelmet",[-20,11]]
-],_position,_mission] call wai_spawnObjects;
-[[
+	["GraveCrossHelmet",[-20,11]],
 	["Land_Ind_SiloVelke_01",[-0.01,-0.01,-0.25]],
 	["Land_Ind_SiloVelke_01",[-21,-0.4,-0.25],182.209],
 	["Land_A_Castle_Bastion",[-21,11,-0.2]]
@@ -34,7 +29,7 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 [[(_position select 0) + 21, (_position select 1) + 19, 0],5,"Extreme",[1,"AT"],4,"Random","TK_CIV_Takistani03_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 23, (_position select 1) - 19, 0],5,"Extreme",[2,"Igla"],4,"Random","TK_CIV_Takistani04_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",[2,"AA"],4,"Random","TK_CIV_Takistani06_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",["Anzio_20_DZ","KSVK_DZE"] call BIS_fnc_selectRandom,6,"Random","TK_INS_Warlord_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",["Anzio_20_DZ","KSVK_DZE","BAF_AS50_scoped_DZ"] call BIS_fnc_selectRandom,6,"Random","TK_INS_Warlord_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
 _uG1=[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,_mission] call vehicle_patrol;
