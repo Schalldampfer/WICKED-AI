@@ -36,6 +36,8 @@ _name = call {
 };
 */
 
+[_position,_difficulty,_mission] call wai_spawn_trees;
+
 [_difficulty,_msgstart] call wai_server_message;
 
 WAI_MarkerReady = true;

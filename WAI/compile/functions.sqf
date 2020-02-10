@@ -424,3 +424,46 @@ wai_removeMission = {
 	wai_mission_data set [_mission, -1];
 };
 
+wai_spawn_trees = { // Spawn trees around mission
+	private ["_position","_difficulty","_mission","_num","_trees","_types","_pos","_type","_object"];
+	_position = _this select 0;
+	_difficulty = _this select 1;
+	_mission = _this select 2;
+
+	_num = switch (toLower _difficulty) do {
+		case "easy": {50 + round(random 50)};
+		case "medium": {50 + round(random 100)};
+		case "hard": {100 + round(random 50)};
+		case "extreme": {100 + round(random 100)};
+		default {50 + round(random 100)};
+	};
+
+	//select 3 tree types
+	_trees = [
+		"MAP_t_picea1s","MAP_t_picea2s","MAP_t_picea3f","MAP_t_pinusN1s","MAP_t_pinusN2s","MAP_t_pinusS2f","MAP_t_populus3s",
+		"MAP_t_betula1f","MAP_t_betula2s","MAP_t_betula2w","MAP_t_betula2f","MAP_t_fagus2f","MAP_t_fagus2s","MAP_t_fagus2W","MAP_t_malus1s",
+		"MAP_t_sorbus2s","MAP_t_quercus2f","MAP_t_quercus3s","MAP_t_pyrus2s","MAP_t_acer2s","MAP_t_fraxinus2W","MAP_t_fraxinus2s",
+		"MAP_t_salix2s","MAP_t_alnus2s","MAP_t_carpinus2s","MAP_t_larix3f","MAP_t_larix3s","MAP_t_populus3s"
+	];
+	_types = [_trees call BIS_fnc_selectRandom,_trees call BIS_fnc_selectRandom,_trees call BIS_fnc_selectRandom];
+
+	for "_x" from 1 to _num do {
+		//find good position
+		_pos = [_position,25 + _num * 1.0,50 + _num * 2.0,5 + (random 5),1,2000,0] call BIS_fnc_findSafePos;
+		if ((!isOnRoad _position) && (count _pos < 3)) then {
+			//select tree type
+			_type = _types call BIS_fnc_selectRandom;
+			
+			//spawn
+			_object = _type createVehicle _pos;
+			_object setDir (random 180);
+			_object setVectorUp surfaceNormal _pos;
+			_object enableSimulation false;
+			_object addEventHandler ["Killed",{_this spawn enableSimulationTrue}];
+			
+			if (_mission > -1) then {
+				((wai_mission_data select _mission) select 6) set [count ((wai_mission_data select _mission) select 6), _object];
+			};
+		};
+	};
+};

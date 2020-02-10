@@ -45,6 +45,8 @@ _PorM = if (random 1 > .5) then {"+"} else {"-"};
 _PorM2 = if (random 1 > .5) then {"+"} else {"-"};
 _startPos = call compile format ["[(%1 select 0) %2 %4,(%1 select 1) %3 %4, 300]",_position,_PorM,_PorM2,_startDist];
 
+[_position,_difficulty,_mission] call wai_spawn_trees;
+
 [_difficulty,_msgstart] call wai_server_message;
 
 WAI_MarkerReady = true;
