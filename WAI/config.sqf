@@ -20,7 +20,7 @@ ai_bandit_behaviour	 = "COMBAT"; // behavior of bandit AI
 ai_hero_combatmode	 = "RED"; // combat mode of hero AI
 ai_hero_behaviour	 = "COMBAT"; // behavior of hero AI
 ai_share_info		 = true; // AI share info on player position
-ai_share_distance	 = 500; // distance from killed AI for AI to share your rough position
+ai_share_distance	 = 300; // distance from killed AI for AI to share your rough position
 ai_kills_gain		 = true; // add kill to bandit/human kill score
 ai_humanity_gain	 = true; // gain humanity for killing AI
 ai_add_humanity		 = 50; // amount of humanity gained for killing a bandit AI
@@ -42,9 +42,9 @@ ai_static_array		 = [["aimingAccuracy",0.20],["aimingShake",0.50],["aimingSpeed"
 
 ai_gear0			 = [["ItemBandage","ItemHeatPack"],["ItemCrowbar"]];
 ai_gear1			 = [["ItemBandage","FoodPistachio","ItemSodaPepsi"],["ItemRadio"]];
-ai_gear2			 = [["ItemBandage"],["ItemToolbox","ItemKeyKit"]];
-ai_gear3			 = [["HandGrenade_west","FoodCanFrankBeans","ItemWaterbottle"],["ItemCompass","ItemCrowbar"]];
-ai_gear4			 = [["HandGrenade_east","ItemBandage","HandChemBlue","ItemAntibacterialWipe"],["ItemMachete","ItemMap"]];
+ai_gear2			 = [["ItemBandage","HandChemBlue"],["ItemToolbox","ItemKeyKit"]];
+ai_gear3			 = [["HandGrenade_west","FoodCanFrankBeans","ItemWaterbottle"],["ItemCompass"]];
+ai_gear4			 = [["HandGrenade_east","ItemBandage","ItemAntibacterialWipe"],["ItemMap"]];
 ai_gear_random		 = [ai_gear0,ai_gear0,ai_gear0,ai_gear1,ai_gear1,ai_gear2,ai_gear2,ai_gear3,ai_gear4];
 
 // Weapons
@@ -53,12 +53,12 @@ ai_wep_m16			 = ["M16A2_DZ","M16A4_FL_DZ","M16A4_CCO_FL_DZ","M16A4_FL_DZ"];
 ai_wep_m4			 = ["M4A1_FL_DZ","M4A1_FL_DZ","M4A1_MFL_DZ","M4A1_CCO_FL_DZ","M4A1_Holo_FL_DZ"];
 ai_wep_scar			 = ["FNFAL_DZ","SCAR_L_CQC","SCAR_L_CQC_CCO_SD","SCAR_L_CQC_Holo","SCAR_L_STD_HOLO","SCAR_L_STD_Mk4CQT","SCAR_H_CQC_CCO"];
 ai_wep_sa58			 = ["AA12_PMC","SA58_DZ","SA58_RIS_FL_DZ","SA58_CCO_FL_DZ","SA58_ACOG_FL_DZ","evo_sd_ACR","CZ805_A1_ACR"];
-ai_wep_l85			 = ["L85A2_FL_DZ","L85A2_FL_DZ","L85A2_Holo_FL_DZ","L85A2_ACOG_FL_DZ"];
-ai_wep_ak 			 = ["AKS74U_DZ","AKS74U_Kobra_DZ","AK_47_S","AKM_DZ","AK74_DZ","AK74_Kobra_DZ","AK_107_CP","RPK_DZ"];
-ai_wep_machine		 = ["M8_SAW","M60A4_EP1_DZE","MG36_camo","MG36","BAF_L86A2_ACOG","L110A1_DZ","L110A1_CCO_DZ","L110A1_Holo_DZ","M249_DZ","M249_EP1_DZ","M249_CCO_DZ","M249_Holo_DZ","M240_DZ","Mk48_DZ","Mk48_CCO_DZ","Mk48_Holo_DZ","RPK_PSO1_DZ","UK59_DZ","PKM_DZ","BAF_L7A2_GPMG_Small"];
+ai_wep_l85			 = ["L85A2_FL_DZ","L85A2_FL_DZ","L85A2_Holo_FL_DZ","L85A2_ACOG_FL_DZ","BAF_L86A2_ACOG"];
+ai_wep_ak 			 = ["AKS74U_DZ","AKS74U_Kobra_DZ","AK_47_S","AKM_DZ","AK74_DZ","AK74_Kobra_DZ","AK_107_CP","RPK_DZ","RPK74_DZ"];
+ai_wep_machine		 = ["M8_SAW","M60A4_EP1_DZE","MG36_camo","MG36","L110A1_DZ","L110A1_CCO_DZ","M249_DZ","M249_EP1_DZ","M249_CCO_DZ","M240_DZ","Mk48_DZ","Mk48_CCO_DZ","Mk48_Holo_DZ","UK59_DZ","PKM_DZ","BAF_L7A2_GPMG_Small"];
 ai_wep_pistol		 = ["M9_DZ","G17_FL_DZ","Makarov_DZ","Revolver_DZ","M1911_DZ","CZ_75_SP_01_PHANTOM"];
 ai_wep_sniper		 = ["M14_DZ","CZ550_DZ","M24_DZ","M24_des_EP1","M40A3_DZ","SVD_DZ","SVD_des_EP1","L115A3_DZ","M4SPR_DZE","CZ_750_S1_ACR","CZ805_B_GL_ACR"];
-ai_wep_weak			 = ["Sa61_EP1","PDW_DZ","UZI_SD_EP1","MP5_DZ","Bizon_DZ","MR43_DZ","Winchester1866_DZ","Remington870_DZ","M1014_DZ","Saiga12K","LeeEnfield_DZ","Mosin_FL_DZ","RedRyder","Crossbow_DZ"];
+ai_wep_weak			 = ["Sa61_EP1","PDW_DZ","UZI_SD_EP1","MP5_DZ","Bizon_DZ","MR43_DZ","Winchester1866_DZ","Remington870_DZ","M1014_DZ","Saiga12K","LeeEnfield_DZ","Mosin_FL_DZ","Crossbow_DZ"];
 ai_wep_tws			 = ["AKS_74_GOSHAWK","BAF_AS50_TWS","BAF_L85A2_RIS_TWS_DZ","M249_TWS_EP1_Small","m107_TWS_EP1_Small","m8_tws","m8_tws_sd","SCAR_L_STD_EGLM_TWS","SCAR_H_STD_TWS_SD","M110_TWS_EP1"];
 ai_wep_assault	= ai_wep_g36 + ai_wep_m16 + ai_wep_m4 + ai_wep_scar + ai_wep_sa58 + ai_wep_l85 + ai_wep_ak;
 
@@ -90,7 +90,7 @@ wai_avoid_safezones		= 1000; // avoid spawning missions this close to safezones
 wai_avoid_town			= 50; // avoid spawning missions this close to towns, *** doesn't function with infiSTAR enabled ***
 wai_avoid_road			= 0; // avoid spawning missions this close to roads
 wai_avoid_water			= 20; // avoid spawning missions this close to water
-wai_avoid_players 		= 1500; // avoid spawning missions this close to a player
+wai_avoid_players 		= 1000; // avoid spawning missions this close to a player
 wai_avoid_plots			= DZE_PlotPole select 1; // avoid spawning missions near player plots
 
 wai_mission_timer		= [2,5]; // time between missions. Default: 5-15 minutes
@@ -209,7 +209,7 @@ military_unarmed 			= ["M113Ambul_TK_EP1","BMP2_Ambul_CDF","GAZ_Vodnik_MedEvac",
 cargo_trucks 				= ["Kamaz_DZE","KamazOpen_DZE","MTVR","MTVR_DES_EP1","Ural_CDF","Ural_TK_CIV_EP1","Ural_UN_EP1","UralCivil_DZE","UralCivil2_DZE","V3S_Civ","V3S_Open_TK_CIV_EP1","V3S_Open_TK_EP1","V3S_TK_EP1_DZE","V3S_RA_TK_GUE_EP1_DZE"];
 refuel_trucks				= ["KamazRefuel_DZ","MtvrRefuel_DES_EP1_DZ","UralRefuel_TK_EP1_DZ","V3S_Refuel_TK_GUE_EP1_DZ","Ikarus","Ikarus_TK_CIV_EP1"];
 civil_vehicles 				= ["Octavia_ACR","hilux1_civil_1_open_DZE","hilux1_civil_2_covered_DZE","hilux1_civil_3_open_DZE","car_hatchback","datsun1_civil_1_open_DZE","datsun1_civil_2_covered_DZE","datsun1_civil_3_open_DZE","UAZ_Unarmed_TK_CIV_EP1","LandRover_TK_CIV_EP1","SUV_Blue","SUV_Camo","SUV_Charcoal","SUV_Green","SUV_Orange","SUV_Pink","SUV_Red","SUV_Silver","SUV_TK_CIV_EP1","SUV_White","SUV_Yellow","car_sedan","Lada1","Lada2","Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","S1203_TK_CIV_EP1","Skoda","SkodaBlue","SkodaRed","SkodaGreen","Volha_1_TK_CIV_EP1","Volha_2_TK_CIV_EP1","VolhaLimo_TK_CIV_EP1","VWGolf","S1203_ambulance_EP1"];
-ai_antiair_vehicles			= ["ZSU_INS","ZSU_CDF","ZSU_TK_EP1","ZSU_Gue_CP","HMMWV_Avenger","HMMWV_Avenger_DES_EP1"];
+ai_antiair_vehicles			= ["Ural_ZU23_INS","Ural_ZU23_Gue","Ural_ZU23_TK_GUE_EP1","HMMWV_Avenger","HMMWV_Avenger_DES_EP1"];
 ai_armored_vehicles			= ["T34","T34_TK_EP1","T34_TK_GUE_EP1","T55_TK_GUE_EP1","BMP3","M6_EP1"];
 spg9_vehicles				= ["Offroad_SPG9_TK_GUE_EP1","Offroad_SPG9_Gue","UAZ_SPG9_INS","LandRover_SPG9_TK_INS_EP1","LandRover_SPG9_TK_EP1"];
 improved_vehicles			= ["BRDM2_CDF","BRDM2_Gue","BRDM2_TK_EP1","BRDM2_TK_GUE_EP1","BRDM2_ATGM_CDF","BRDM2_ATGM_TK_EP1","GAZ_Vodnik_HMG","LAV25","AAV_cutscene","M1126_ICV_mk19_EP1","HMMWV_TOW_DES_EP1","Dingo_DST_ACR","Dingo_GL_DST_ACR","AH6J_EP1"] + spg9_vehicles;
@@ -268,7 +268,7 @@ crate_items_random			= [crate_items_food,crate_items_vehicle_repair,crate_items_
 /* AUTO-CLAIM CONFIG */
 
 use_wai_autoclaim			= true; // Turn on the auto-claim feature. You should increase wai_avoid_missions to more than the distance below
-ac_alert_distance			= 1000; // Distance from the mission that auto-claim uses to alert closest player
+ac_alert_distance			= 900; // Distance from the mission that auto-claim uses to alert closest player
 ac_delay_time				= 30; // Time that the auto-claim waits until it declares a claim and places a marker - time in seconds
 ac_timeout					= 180; // If the claimer leaves the mission area he/she has this much time to return - time in seconds
 
