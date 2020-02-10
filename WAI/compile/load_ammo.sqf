@@ -14,6 +14,11 @@ if(_vehicle isKindOf "ZU23_base") exitWith {
 	_vehicle addWeapon "2A38M";
 };
 
+if(_vehicle isKindOf "Ural_ZU23_Base") exitWith {
+	_vehicle addMagazine "2000Rnd_23mm_AZP85";
+	_vehicle removeMagazines "40Rnd_23mm_AZP85";
+};
+
 if(_type == "KORD_high_TK_EP1") exitWith {
 	_vehicle addMagazine "500Rnd_145x115_KPVT";
 	_vehicle addMagazine "500Rnd_145x115_KPVT";
