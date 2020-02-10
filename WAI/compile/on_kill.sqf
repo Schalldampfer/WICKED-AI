@@ -45,7 +45,8 @@ if (isPlayer _player) then {
 	if (ai_killfeed) then {
 		_name = _unit getVariable ["bodyName","unknown"];
 		_pname = if (alive _player) then {name _player} else {_player getVariable ["bodyName","unknown"]};
-		["0",0,_unit,"0",toArray _name,false,toArray _pname,currentWeapon _player,round(_player distance _unit),"shot"] spawn server_playerDied;
+		_weap = if ((vehicle _player) == (effectiveCommander _player)) then {currentWeapon _player} else {typeOf (vehicle _player)};
+		["0",0,_unit,"0",toArray _name,false,toArray _pname,_weap,round(_player distance _unit),"shot"] spawn server_playerDied;
 	};
 
 	_humanity 		= _player getVariable["humanity",0];
