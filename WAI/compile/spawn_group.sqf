@@ -67,8 +67,7 @@ if(_pos_z < 0.1) then {
 	};
 };
 
-_position set [0, _pos_x];
-_position set [1, _pos_y];
+_position = [_pos_x, _pos_y, _pos_z];
 
 for "_x" from 1 to _unitnumber do {
 	
