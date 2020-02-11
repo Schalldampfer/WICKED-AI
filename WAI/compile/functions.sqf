@@ -450,7 +450,7 @@ wai_spawn_trees = { // Spawn trees around mission
 	for "_x" from 1 to _num do {
 		//find good position
 		_pos = [_position,25 + _num * 1.0,50 + _num * 2.0,5 + (random 5),1,2000,0] call BIS_fnc_findSafePos;
-		if ((!isOnRoad _position) && (count _pos < 3)) then {
+		if ((!isOnRoad _pos) && (!surfaceIsWater _pos) && (count _pos < 3)) then {
 			//select tree type
 			_type = _types call BIS_fnc_selectRandom;
 			
