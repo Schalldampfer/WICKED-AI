@@ -238,7 +238,7 @@ if(_pos_z < 0.1) then {
 	[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call group_waypoints;
 };
 
-if ((_skill in ["extreme","hard","random"]) && (_gear in [0,1,"random"])) then {_unitGroup spawn WAI_flare_fire;};
+if ((_skill in ["extreme","hard","random"]) && (_gun in [0,1,"random"])) then {_unitGroup spawn WAI_flare_fire;};
 
 if(wai_debug_mode) then {diag_log format ["WAI: Spawned a group of %1 AI (%3) at %2",_unitnumber,_position,_aitype];};
 
