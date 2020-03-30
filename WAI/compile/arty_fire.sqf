@@ -12,7 +12,7 @@ _arty = [];
 } forEach (units _battery);
 
 [_logic] call BIS_ARTY_F_Firebase;
-diag_log format["WAI:Fire mission starting by %1",_logic];
+if (wai_debug_mode) then {diag_log format["WAI:Fire mission starting by %1",_logic];};
 
 while {{alive _x} count _arty > 0} do {
 	//interval
@@ -25,7 +25,7 @@ while {{alive _x} count _arty > 0} do {
 			_x addMagazine "8Rnd_82mmHE_2B14";
 			_x addMagazine "8Rnd_81mmILLUM_M252";
 			_x addMagazine "8Rnd_82mmILLUM_2B14";
-			diag_log format["WAI:Reloading mortar rounds of %2 by %1",_logic, typeOf _x];
+			if (wai_debug_mode) then {diag_log format["WAI:Reloading mortar rounds of %2 by %1",_logic, typeOf _x];};
 		};
 	} forEach _arty;
 
@@ -49,16 +49,16 @@ while {{alive _x} count _arty > 0} do {
 			if ([_logic, _pos, _fmTemplate select 1] call BIS_ARTY_F_PosInRange && {!isPlayer _x} count (_x nearEntities ["CAManBase", 40]) < 1) then {
 				//fire
 				[_logic, _pos, _fmTemplate] call BIS_ARTY_F_ExecuteTemplateMission;
-				diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _x];
+				if (wai_debug_mode) then {diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _x];};
 
 				sleep (random _time);
 			};
 		};
 	} forEach playableUnits;
-	diag_log format["WAI:Fire mission check by %1 is finished. Wait %2 sec",_logic,_time];
+	if (wai_debug_mode) then {diag_log format["WAI:Fire mission check by %1 is finished. Wait %2 sec",_logic,_time];};
 
 	sleep _time;
 };
 
-diag_log format["WAI:Fire mission by %1 has finished",_logic];
+if (wai_debug_mode) then {diag_log format["WAI:Fire mission by %1 has finished",_logic];}
 deleteVehicle _logic;
