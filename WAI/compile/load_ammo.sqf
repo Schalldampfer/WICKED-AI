@@ -28,6 +28,22 @@ if(_type == "KORD_high_TK_EP1") exitWith {
 	_vehicle removeMagazines "50Rnd_127x108_KORD";
 };
 
+if(_type == "KORD_high_UN_EP1") exitWith {
+	_vehicle addMagazine "2000Rnd_762x54_PKT";
+	_vehicle addMagazine "2000Rnd_762x54_PKT";
+	_vehicle addWeapon "PKT_MG_Nest";
+	_vehicle removeWeapon "KORD";
+	_vehicle removeMagazines "50Rnd_127x108_KORD";
+};
+
+if(_vehicle isKindOf "BAF_L2A1_ACOG_base") exitWith {
+	_vehicle addMagazine "250Rnd_127x99_M3P";
+	_vehicle addMagazine "250Rnd_127x99_M3P";
+	_vehicle addWeapon "M3P";
+	_vehicle removeWeapon "BAF_L2A1";
+	_vehicle removeMagazines "100Rnd_127x99_M2";
+};
+
 if(_type == "TOW_TriPod_US_EP1") exitWith {
 	_vehicle removeMagazine "6Rnd_TOW_HMMWV";
 	_vehicle addMagazine "6Rnd_TOW2";
@@ -46,10 +62,14 @@ if(_type == "GNT_C185U_DZ") exitWith {
 };
 
 if(_type == "UH60M_EP1") exitWith {
-	_vehicle addMagazineTurret ["250Rnd_30mmAP_2A42", [0]];
-	_vehicle addMagazineTurret ["250Rnd_30mmAP_2A42", [1]];
-	_vehicle addWeaponTurret ["2A42", [0]];
-	_vehicle addWeaponTurret ["2A42", [1]];
+	_vehicle addMagazineTurret ["4Rnd_AT3", [0]];
+	_vehicle addMagazineTurret ["4Rnd_AT3", [1]];
+	_vehicle addWeaponTurret ["AT3Launcher", [0]];
+	_vehicle addWeaponTurret ["AT3Launcher", [1]];
+	_vehicle addMagazineTurret ["4Rnd_Stinger", [0]];
+	_vehicle addMagazineTurret ["4Rnd_Stinger", [1]];
+	_vehicle addWeaponTurret ["StingerLaucher_4x", [0]];
+	_vehicle addWeaponTurret ["StingerLaucher_4x", [1]];
 };
 
 //Refill _DZE vehicle's turret
