@@ -26,6 +26,7 @@ WAI_HandleDamage_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_ser
 WAI_Killed_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\vehicle_kill.sqf";
 enableSimulationTrue = { (_this select 0) enableSimulation true;};
 WAI_arty_fire = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\arty_fire.sqf";
+WAI_flare_fire = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\flare_fire.sqf";
 
 ARTY_LOGIC = createAgent ["BIS_ARTY_Logic",[0,0,0],[],0,"NONE"];
 enableEngineArtillery true;
