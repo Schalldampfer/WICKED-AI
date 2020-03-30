@@ -60,5 +60,5 @@ while {{alive _x} count _arty > 0} do {
 	sleep _time;
 };
 
-if (wai_debug_mode) then {diag_log format["WAI:Fire mission by %1 has finished",_logic];}
+if (wai_debug_mode) then {diag_log format["WAI:Fire mission by %1 has finished",_logic];};
 deleteVehicle _logic;

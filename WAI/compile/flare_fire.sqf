@@ -11,7 +11,7 @@ _interval = 150; //Interval of firing in seconds
 //_this = group;
 _grp = _this;
 _unit = leader _this;
-if (wai_debug_mode) then {diag_log format["WAI: Preparing Flare of %1",name _unit];}
+if (wai_debug_mode) then {diag_log format["WAI: Preparing Flare of %1",name _unit];};
 
 //add GP25 weapon & flare
 _unit removeMagazines ((primaryWeapon _unit) call find_suitable_ammunition);
@@ -32,7 +32,7 @@ while {alive _unit} do {
 		} forEach playableUnits;
 		//if found
 		if (_targ != _unit) then {
-			if (wai_debug_mode) then {diag_log format["WAI: Firing Flare on %1",name _targ];}
+			if (wai_debug_mode) then {diag_log format["WAI: Firing Flare on %1",name _targ];};
 			//aim target pos
 			_pos = getPos _targ;
 			_invT = "HeliHEmpty" createVehicle _pos;
