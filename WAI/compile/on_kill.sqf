@@ -90,6 +90,7 @@ if (isPlayer _player) then {
 		_wp = [_grp,currentWaypoint _grp];
 		_wp setWaypointPosition [position _player, 50];
 		_wp setWaypointType "SAD";
+		{_x suppressFor 0.4;} forEach units _grp;
 	};
 
 } else {
@@ -133,4 +134,10 @@ if(wai_remove_launcher && _launcher != "") then {
 
 if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
 	_unit removeWeapon "NVGoggles";
+};
+
+_leader = leader group _unit;
+if (alive _leader && (_unit distance _player) > 500) then {
+	_leader addMagazine "SmokeShell";
+	_leader fire ["SmokeShellMuzzle","SmokeShellMuzzle","SmokeShell"];
 };
