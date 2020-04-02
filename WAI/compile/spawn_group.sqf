@@ -215,10 +215,11 @@ for "_x" from 1 to _unitnumber do {
 	_rocket = _launcher call find_suitable_ammunition;
 	_unit addMagazine _rocket;
 	_unit addMagazine _rocket;
-		_unit addMagazine _rocket;
+	_unit addMagazine _rocket;
 	_unit addWeapon _launcher;
-};
+	};
 
+	if((_skill in ["easy","medium","random"]) || (_pos_z > 0.1)) then {_unit setUnitPos "UP";};
 };
 
 _unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);

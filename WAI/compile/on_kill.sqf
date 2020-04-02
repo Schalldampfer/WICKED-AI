@@ -89,8 +89,8 @@ if (isPlayer _player) then {
 		_grp = group _unit;
 		_wp = [_grp,currentWaypoint _grp];
 		_wp setWaypointPosition [position _player, 50];
-		_wp setWaypointType "SAD";
-		{_x suppressFor 0.4;} forEach units _grp;
+		[_grp,currentWaypoint _grp + 1] setWaypointPosition [position _unit, 50];
+		{_x suppressFor 0.7;} forEach units _grp;
 	};
 
 } else {

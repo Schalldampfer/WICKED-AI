@@ -184,6 +184,7 @@ if (!isNil "_mission") then {
 		_unit addWeapon "NVGoggles";
 	};
 	
+	_unit setunitpos "UP";
 	_unit moveInGunner _static;
 	_unit setVariable ["noKey",true];
 	_unit setVariable ["bodyName",(name _unit)];

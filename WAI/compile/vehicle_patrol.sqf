@@ -120,6 +120,7 @@ if (!isNil "_mission") then {
 		wai_mission_data select _mission set [0, (_ainum + 1)];
 		_x setVariable ["mission" + dayz_serverKey, _mission, false];
 		_x setVariable ["noKey",true];
+		_x setunitpos "UP";
 	} count (crew _vehicle);
 } else {
 	{wai_static_data set [0, ((wai_static_data select 0) + 1)];} count (crew _vehicle);

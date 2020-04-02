@@ -142,6 +142,7 @@ call {
 	if (sunOrMoon != 1) then {
 		_x addweapon "NVGoggles";
 	};
+	_x setunitpos "UP";
 } count (units _unitgroup);
 
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];

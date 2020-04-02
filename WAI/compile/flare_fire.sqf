@@ -38,6 +38,7 @@ while {alive _unit} do {
 			_invT = "HeliHEmpty" createVehicle _pos;
 			_invT setPos [(_pos select 0)+(random 20),(_pos select 1)+(random 20),(_unit distance _targ)/10.0];
 			sleep 0.5;
+			_unit selectWeapon _flareMuz;
 			_unit doTarget _invT;
 			sleep 0.5;
 			//fire

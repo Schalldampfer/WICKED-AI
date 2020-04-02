@@ -59,7 +59,7 @@ _helicopter setFuel 1;
 _helicopter engineOn true;
 _helicopter setVehicleAmmo 1;
 [_helicopter,_heli_class] call load_ammo;
-_helicopter flyInHeight 150;
+_helicopter flyInHeight (150 + random 100);
 _helicopter lock true;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setFuel 0;(_this select 0) setDamage 1;}];
 _helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
@@ -99,6 +99,7 @@ call {
 		_x addweapon "NVGoggles";
 	};
 	_x setVariable ["bodyName",(name _x)];
+	_x setunitpos "UP";
 } count (units _unitgroup);
 
 {
