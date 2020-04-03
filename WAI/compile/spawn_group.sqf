@@ -53,24 +53,18 @@ if (!isNil "_mission") then {
 
 if (count _position < 3) then {_pos_z = 0;};
 
-if(_pos_z < 0.1) then {
-	if(floor(random 2) == 1) then { 
-		_pos_x = _pos_x - (5 + random(10));
-	} else {
-		_pos_x = _pos_x + (5 + random(10));
-	};			
-
-	if(floor(random 2) == 1) then { 
-		_pos_y = _pos_y - (5 + random(10));
-	} else {
-		_pos_y = _pos_y + (5 + random(10));
-	};
-};
-
-_position = [_pos_x, _pos_y, _pos_z];
-
 for "_x" from 1 to _unitnumber do {
-	
+
+	if(_pos_z < 0.1) then {
+		_pos_x = _pos_x - 15 + (random 30);
+		_pos_y = _pos_y - 15 + (random 30);
+	} else {
+		_pos_x = _pos_x - 1.5 + (random 3);
+		_pos_y = _pos_y - 1.5 + (random 3);
+	};
+
+	_position = [_pos_x, _pos_y, _pos_z];
+
 	call {
 		if(typeName(_gun) == "SCALAR") then {
 			if(_gun == 0) exitWith {_aiweapon = ai_wep_random select (floor (random (count ai_wep_random)));};
