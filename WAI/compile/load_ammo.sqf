@@ -31,7 +31,7 @@ if(_type == "KORD_high_TK_EP1") exitWith {
 if(_type == "KORD_high_UN_EP1") exitWith {
 	_vehicle addMagazine "2000Rnd_762x54_PKT";
 	_vehicle addMagazine "2000Rnd_762x54_PKT";
-	_vehicle addWeapon "PKT_MG_Nest";
+	_vehicle addWeapon "PKT_high_AI_dispersion_tank";
 	_vehicle removeWeapon "KORD";
 	_vehicle removeMagazines "50Rnd_127x108_KORD";
 };
@@ -62,14 +62,10 @@ if(_type == "GNT_C185U_DZ") exitWith {
 };
 
 if(_type == "UH60M_EP1") exitWith {
-	_vehicle addMagazineTurret ["4Rnd_Stinger", [0]];
-	_vehicle addMagazineTurret ["4Rnd_Stinger", [1]];
-	_vehicle addWeaponTurret ["StingerLaucher_4x", [0]];
-	_vehicle addWeaponTurret ["StingerLaucher_4x", [1]];
-	_vehicle addMagazineTurret ["4000Rnd_762x51_M134", [0]];
-	_vehicle addMagazineTurret ["4000Rnd_762x51_M134", [1]];
-	_vehicle addWeaponTurret ["TwinM134", [0]];
-	_vehicle addWeaponTurret ["TwinM134", [1]];
+	_vehicle addMagazineTurret ["4Rnd_AT2_Mi24D", [-1]];
+	_vehicle addWeaponTurret ["AT2Launcher", [-1]];
+	_vehicle addMagazineTurret ["8Rnd_Sidewinder_AH64", [-1]];
+	_vehicle addWeaponTurret ["SidewinderLaucher_AH64", [-1]];
 };
 
 //Refill _DZE vehicle's turret

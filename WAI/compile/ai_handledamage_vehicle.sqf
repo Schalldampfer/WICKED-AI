@@ -14,7 +14,7 @@ if !(_ammo isKindOf "Default") then {
 };
 
 if (({_ammo isKindOf _x} count ["RocketBase","ARTY_Sh_Base","Sh_122_HE","Sh_82_HE","Sh_81_HE","120mmHE_M120"]) > 0) then {
-	if (isNull _source) then {
+	if (isNull (effectiveCommander _source)) then {
 		_damage = 0;
 	} else {
 		if ((_unit distance _source) > 1570 && !(_unit isKindOf "Air")) then {

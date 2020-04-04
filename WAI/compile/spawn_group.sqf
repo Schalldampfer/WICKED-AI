@@ -56,14 +56,32 @@ if (count _position < 3) then {_pos_z = 0;};
 for "_x" from 1 to _unitnumber do {
 
 	if(_pos_z < 0.1) then {
-		_pos_x = _pos_x - 15 + (random 30);
-		_pos_y = _pos_y - 15 + (random 30);
+		if((random 2) > 1) then { 
+			_pos_x = _pos_x - (5 + random(10));
+		} else {
+			_pos_x = _pos_x + (5 + random(10));
+		};
+		if((random 2) > 1) then { 
+			_pos_y = _pos_y - (5 + random(10));
+		} else {
+			_pos_y = _pos_y + (5 + random(10));
+		};
 	} else {
-		_pos_x = _pos_x - 1.5 + (random 3);
-		_pos_y = _pos_y - 1.5 + (random 3);
+		if((random 2) > 1) then { 
+			_pos_x = _pos_x - (1 + random(3));
+		} else {
+			_pos_x = _pos_x + (1 + random(3));
+		};
+		if((random 2) > 1) then { 
+			_pos_y = _pos_y - (1 + random(3));
+		} else {
+			_pos_y = _pos_y + (1 + random(3));
+		};
 	};
 
-	_position = [_pos_x, _pos_y, _pos_z];
+	if (_x != 1) then {
+		_position = [_pos_x, _pos_y, _pos_z];
+	};
 
 	call {
 		if(typeName(_gun) == "SCALAR") then {

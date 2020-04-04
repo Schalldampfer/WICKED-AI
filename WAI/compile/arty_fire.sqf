@@ -1,4 +1,13 @@
-private ["_arty","_logic","_fmTemplate","_pos","_ammo","_battery","_time","_mission","_unitGroups","_player"];
+private ["_arty","_logic","_fmTemplate","_pos","_ammo","_battery","_time","_mission","_unitGroups","_player","_isArty","_side"];
+_isArty = { /* https://forums.bohemia.net/forums/topic/126834-detect-artillery-capable-vehicles/ */
+	private ["_class","_result"];
+	_class = typeOf _this;
+	_result = false;
+	if (isNumber (configFile >> "CfgVehicles" >> _class >> "artilleryScanner")) then {
+		_result = getNumber (configFile >> "CfgVehicles" >> _class >> "artilleryScanner") > 0;
+	};
+	_result
+};
 
 //arty logic
 _logic = createAgent ["BIS_ARTY_Logic",[0,0,0],[],0,"NONE"];
@@ -19,6 +28,7 @@ _unitGroups = wai_static_data select 1;
 if (!isNil "_mission") then {
 	_unitGroups = (wai_mission_data select _mission) select 1;
 };
+_side = side _battery;
 
 while {{alive _x} count _arty > 0} do {
 	//interval
@@ -41,19 +51,23 @@ while {{alive _x} count _arty > 0} do {
 
 		//find position
 		_pos = getPosASL _player;
-		_pos = [(_pos select 0) - 15 + (random 30),(_pos select 1) - 15 + (random 30),_pos select 2];
 
 		//target found or not
-		if ({_x knowsAbout _player > 1.5} count _unitGroups > 0 && !((vehicle _player) isKindOf "Air")) then {
+		if ({_x knowsAbout _player > 1.5} count _unitGroups > 0 && !((vehicle _player) isKindOf "Air") || (vehicle _player) call _isArty) then {
 			//ammo selection
 			_ammo = "HE";
-			if (sunOrMoon != 1 && random 1 < 0.2) then {
-				_ammo="ILLUM";
+			if (random 1 < 0.2) then {
+				if (sunOrMoon != 1) then {
+					_ammo="ILLUM";
+				} else {
+					_ammo="WP";
+				};
 			};
 			_fmTemplate = ["IMMEDIATE", _ammo, 5.0 + (random 5), round(random 3) + 1];
 
 			//in range
-			if ([_logic, _pos, _fmTemplate select 1] call BIS_ARTY_F_PosInRange && {!isPlayer _x} count (_player nearEntities ["CAManBase", 40]) < 1) then {
+			_pos = [(_pos select 0) - 15 + (random 30),(_pos select 1) - 15 + (random 30),_pos select 2];
+			if ([_logic, _pos, _fmTemplate select 1] call BIS_ARTY_F_PosInRange && {(side _x) == _side} count (_player nearEntities ["CAManBase", 40]) < 1) then {
 				//fire
 				[_logic, _pos, _fmTemplate] call BIS_ARTY_F_ExecuteTemplateMission;
 				if (wai_debug_mode) then {diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _x];};
