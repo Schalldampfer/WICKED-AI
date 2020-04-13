@@ -10,9 +10,9 @@ wai_use_blacklist	 = true; // You can edit the blacklist per map in file WAI\con
 ai_multiplier		 = 1; // To increase the number of ai per mission use a larger number. Be careful. Tons of ai affect server performance.
 ai_show_count		 = true; //this will show the ai count in the mission markers.
 ai_hasMoney			 = true; //If you have ZSC installed then setting this to true will place random amounts of coins in 50 coin increments in ai wallets.
-ai_moneyMultiplier	 = 100; //This value is multiplied by 50 to set the max amount of ZSC coins in AI wallets. ex. 200x50=10000 max coins.
+ai_moneyMultiplier	 = 75; //This value is multiplied by 50 to set the max amount of ZSC coins in AI wallets. ex. 200x50=10000 max coins.
 ai_clear_body		 = false; // instantly clear bodies
-ai_cleanup_time		 = 30; // time to clear bodies in minutes. Set to -1 to disable AI cleanup.
+ai_cleanup_time		 = 20; // time to clear bodies in minutes. Set to -1 to disable AI cleanup.
 ai_clean_roadkill	 = false; // clean bodies that are roadkills
 ai_rk_damageweapon	 = 0; // percentage of chance a roadkill will destroy weapon AI is carrying
 ai_bandit_combatmode = "RED"; // combat mode of bandit AI
@@ -40,11 +40,11 @@ ai_static_gpmg		 = ["BAF_GPMG_Minitripod_D","BAF_GPMG_Minitripod_W"]; // static 
 ai_static_skills	 = false; // Allows you to set custom array for AI on static weapons. (true: On false: Off) 
 ai_static_array		 = [["aimingAccuracy",0.20],["aimingShake",0.50],["aimingSpeed",0.50],["endurance",1.00],["spotDistance",1.00],["spotTime",0.75],["courage",1.00],["reloadSpeed",1.00],["commanding",1.00],["general",1.00]];
 
-ai_gear0			 = [["ItemBandage","ItemHeatPack"],["ItemCrowbar"]];
-ai_gear1			 = [["ItemBandage","FoodPistachio","ItemSodaPepsi"],["ItemRadio"]];
-ai_gear2			 = [["ItemBandage","HandChemBlue"],["ItemToolbox","ItemKeyKit"]];
-ai_gear3			 = [["HandGrenade_west","FoodCanFrankBeans","ItemWaterbottle"],["ItemCompass"]];
-ai_gear4			 = [["HandGrenade_east","ItemBandage","ItemAntibacterialWipe"],["ItemMap"]];
+ai_gear0			 = [["ItemBandage","ItemHeatPack"],["ItemCrowbar","ItemRadio"]];
+ai_gear1			 = [["ItemBandage","FoodPistachio","ItemSodaPepsi"],["ItemWatch","ItemRadio"]];
+ai_gear2			 = [["ItemBandage","HandChemBlue"],["ItemToolbox","ItemKeyKit","ItemRadio"]];
+ai_gear3			 = [["HandGrenade_west","FoodCanFrankBeans","ItemWaterbottle"],["ItemCompass","ItemRadio"]];
+ai_gear4			 = [["HandGrenade_east","ItemBandage","ItemAntibacterialWipe"],["ItemMap","ItemRadio"]];
 ai_gear_random		 = [ai_gear0,ai_gear0,ai_gear0,ai_gear1,ai_gear1,ai_gear2,ai_gear2,ai_gear3,ai_gear4];
 
 // Weapons
@@ -83,14 +83,14 @@ ai_add_skin			 = false; // adds unit skin to inventory on death. Should set to f
 /* WAI MISSIONS CONFIG */
 wai_mission_system		= true; // use built in mission system
 
-wai_mission_markers		= ["maze","SEair","aiIsland","NEAF","SWAF","CMB"]; // List of DZMS mission markers to check
+wai_mission_markers		= ["maze","NEAF","SWAF","SEAF","milbase","SEcatsle","SWcatsle"]; // List of DZMS mission markers to check
 wai_avoid_samespot		= true; // Checks to see that a selected mission spawn point has not been used already - 200m check.
 wai_avoid_missions		= 2000; // avoid spawning missions this close to other missions, these are defined in wai_mission_markers
 wai_avoid_safezones		= 1000; // avoid spawning missions this close to safezones
 wai_avoid_town			= 50; // avoid spawning missions this close to towns, *** doesn't function with infiSTAR enabled ***
 wai_avoid_road			= 0; // avoid spawning missions this close to roads
 wai_avoid_water			= 20; // avoid spawning missions this close to water
-wai_avoid_players 		= 1000; // avoid spawning missions this close to a player
+wai_avoid_players 		= 1500; // avoid spawning missions this close to a player
 wai_avoid_plots			= DZE_PlotPole select 1; // avoid spawning missions near player plots
 
 wai_mission_timer		= [2,5]; // time between missions. Default: 5-15 minutes
@@ -101,7 +101,7 @@ wai_clean_mission_time	= 30; // time in minutes after a mission is complete to c
 wai_clean_mission_crate	= false; // include the mission crates with the mission cleanup. If a player is within 75 meters of the crates the cleanup script will wait. Does not apply to missions that timeout.
 wai_clean_when_clear	= ["Road Block","C130 Crash"]; // These mission names will get cleaned instantly overriding wai_clean_mission_time
 
-wai_godmode_objects		= false; // prevents mission objects from taking damage
+wai_godmode_objects		= true; // prevents mission objects from taking damage
 wai_mission_fuel		= [15,30]; // fuel inside mission spawned vehicles [min%,max%]
 wai_vehicle_damage		= [30,50]; // damages to spawn vehicles with [min%,max%]
 wai_keep_vehicles		= true; // save vehicles to database and keep them after restart
@@ -210,7 +210,7 @@ cargo_trucks 				= ["Kamaz_DZE","KamazOpen_DZE","MTVR","MTVR_DES_EP1","Ural_CDF"
 refuel_trucks				= ["KamazRefuel_DZ","MtvrRefuel_DES_EP1_DZ","UralRefuel_TK_EP1_DZ","V3S_Refuel_TK_GUE_EP1_DZ","Ikarus","Ikarus_TK_CIV_EP1"];
 civil_vehicles 				= ["Octavia_ACR","hilux1_civil_1_open_DZE","hilux1_civil_2_covered_DZE","hilux1_civil_3_open_DZE","car_hatchback","datsun1_civil_1_open_DZE","datsun1_civil_2_covered_DZE","datsun1_civil_3_open_DZE","UAZ_Unarmed_TK_CIV_EP1","LandRover_TK_CIV_EP1","SUV_Blue","SUV_Camo","SUV_Charcoal","SUV_Green","SUV_Orange","SUV_Pink","SUV_Red","SUV_Silver","SUV_TK_CIV_EP1","SUV_White","SUV_Yellow","car_sedan","Lada1","Lada2","Lada1_TK_CIV_EP1","Lada2_TK_CIV_EP1","S1203_TK_CIV_EP1","Skoda","SkodaBlue","SkodaRed","SkodaGreen","Volha_1_TK_CIV_EP1","Volha_2_TK_CIV_EP1","VolhaLimo_TK_CIV_EP1","VWGolf","S1203_ambulance_EP1"];
 ai_antiair_vehicles			= ["Ural_ZU23_INS","Ural_ZU23_Gue","Ural_ZU23_TK_GUE_EP1","HMMWV_Avenger","HMMWV_Avenger_DES_EP1"];
-ai_armored_vehicles			= ["T34","T34_TK_EP1","T34_TK_GUE_EP1","T55_TK_GUE_EP1","BMP3","M6_EP1"];
+ai_armored_vehicles			= ["T34","T34_TK_EP1","T34_TK_GUE_EP1","T55_TK_GUE_EP1","2S6M_Tunguska","M6_EP1"];
 spg9_vehicles				= ["Offroad_SPG9_TK_GUE_EP1","Offroad_SPG9_Gue","UAZ_SPG9_INS","LandRover_SPG9_TK_INS_EP1","LandRover_SPG9_TK_EP1"];
 improved_vehicles			= ["BRDM2_CDF","BRDM2_Gue","BRDM2_TK_EP1","BRDM2_TK_GUE_EP1","BRDM2_ATGM_CDF","BRDM2_ATGM_TK_EP1","GAZ_Vodnik_HMG","LAV25","AAV_cutscene","M1126_ICV_mk19_EP1","HMMWV_TOW_DES_EP1","Dingo_DST_ACR","Dingo_GL_DST_ACR","AH6J_EP1"] + spg9_vehicles;
 super_vehicles				= ["T34_TK_GUE_EP1","T55_TK_EP1","BMP1_INS_CP","BVP1_TK_ACR","BVP1_TK_GUE_ACR","BMP2_ACR","BMP2_Des_ACR","BMP2_UN_EP1","BMP2_TK_EP1","BTR90","M1135_ATGMV_EP1","HMMWV_Avenger_DES_EP1","MAZ_543_SCUD_TK_EP1"];
