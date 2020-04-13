@@ -33,8 +33,8 @@ _loot = if (_missionType == "MainHero") then {Loot_Outpost select 0;} else {Loot
 [[(_position select 0),(_position select 1) + 15,0],5,"Easy",4,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 [[
-	[(_position select 0) + 25, (_position select 1) + 25, 0],
-	[(_position select 0) - 25, (_position select 1) - 25, 0]
+	[(_position select 0) + 19, (_position select 1) + 9, 2.8],
+	[(_position select 0) + 2, (_position select 1) - 20, 2.8]
 ],ai_static_gpmg call BIS_fnc_selectRandom,"Easy",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 _messages = if (_missionType == "MainHero") then {

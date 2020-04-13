@@ -38,7 +38,7 @@ _loot = if (_missionType == "MainHero") then {Loot_MacDonald select 0;} else {Lo
 //Troops
 [[(_position select 0) - 1, (_position select 1) - 10, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 2, (_position select 1) - 50, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",["Random","RPG7V"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 1, (_position select 1) + 11, 0],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 

@@ -82,15 +82,17 @@ if (isPlayer _player) then {
 				_x reveal [_player, 4.0];
 			};
 			if ((_x getVariable ["mission" + dayz_serverKey, -1]) == _mission) then {
-				_x reveal [_player, 2.5];
+				_x reveal [_player, 1.5];
 			};
 		} count allUnits;
 		//change wp to killer
 		_grp = group _unit;
-		_wp = [_grp,currentWaypoint _grp];
-		_wp setWaypointPosition [position _player, 50];
-		[_grp,currentWaypoint _grp + 1] setWaypointPosition [position _unit, 50];
-		{_x suppressFor 0.7;} forEach units _grp;
+		if ((getPosATL _unit) select 2 < 0.3 && _mission != -1) then {
+			_wp = [_grp,currentWaypoint _grp];
+			_wp setWaypointPosition [position _player, 50];
+			[_grp,currentWaypoint _grp + 1] setWaypointPosition [position _unit, 50];
+		};
+		{_x doTarget _player;_x suppressFor 0.7;} forEach units _grp;
 	};
 
 } else {
@@ -132,7 +134,7 @@ if(wai_remove_launcher && _launcher != "") then {
 {_unit removeWeapon _x;} forEach wai_remove_weapons;
 {_unit removeMagazines _x;} forEach wai_remove_magazines;
 
-if(_unit hasWeapon "NVGoggles" && floor(random 100) > 20) then {
+if(_unit hasWeapon "NVGoggles" && floor(random 100) > 10) then {
 	_unit removeWeapon "NVGoggles";
 };
 

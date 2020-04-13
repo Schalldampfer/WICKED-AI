@@ -39,7 +39,7 @@ _loot2 = if (_missionType == "MainHero") then {Loot_TankColumn2 select 0;} else 
 //Troops
 [[(_position select 0) - 7, (_position select 1) - 10, 0],5,"Extreme","KSVK_DZE",6,"Random","RU_Soldier_SniperH","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 16, (_position select 1) - 5, 0],5,"Extreme",[1,"M47Launcher_EP1"],4,"Random","RU_Soldier_LAT","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[2,"Javelin"],4,"Random","RU_Soldier_HAT","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[0,"MetisLauncher"],4,"Random","RU_Soldier_HAT","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[2,"AA"],4,"Random","RU_Soldier_AA","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 4, (_position select 1) + 18, 0],5,"Extreme",[1,"Igla"],4,"Random","RU_Soldier_AA","Random",_aiType,_mission] call spawn_group;
 
@@ -50,17 +50,18 @@ _uG2=[[(_position select 0) - 22, (_position select 1) - 32, 0],[(_position sele
 
 //Static Guns
 _uG1=[[
-	[(_position select 0) + 8, (_position select 1) - 29, 0],
-	[(_position select 0) + 12, (_position select 1) + 24, 0]
-],"ZU23_CDF","Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+	[(_position select 0) + 25, (_position select 1) + 2, 0]
+],"2b14_82mm_GUE","Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 _uG2=[[
+	[(_position select 0) + 8, (_position select 1) - 29, 0],
+	[(_position select 0) + 12, (_position select 1) + 24, 0],
 	[(_position select 0) - 8, (_position select 1) + 29, 0],
 	[(_position select 0) - 12, (_position select 1) - 24, 0]
-],ai_static_weapons call BIS_fnc_selectRandom,"Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],"BAF_L2A1_Tripod_D","Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 _uG2=[[
 	[(_position select 0) + 25, (_position select 1) - 25, 0]
-],"Igla_AA_pod_TK_EP1","Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],"Igla_AA_pod_East","Extreme","RU_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 
 _messages = if (_missionType == "MainHero") then {

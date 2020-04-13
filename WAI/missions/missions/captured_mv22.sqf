@@ -29,7 +29,7 @@ _loot = if (_missionType == "MainHero") then {Loot_CapturedMV22 select 0;} else 
 [[_position select 0,_position select 1,0],5,"Hard",["Random","AT"],4,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 33,(_position select 1) -  7,0.1],5,"Hard",1,2,"Random","RU_Doctor","Random",[_aiType,100],_mission] call spawn_group;
 [[(_position select 0) - 33,(_position select 1) - 18,0.1],5,"Hard",["Random","AA"],4,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard","Random",4,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",["Random","RPG7V"],4,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) +  1,(_position select 1) + 29,0.1],5,"Hard",2,5,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol

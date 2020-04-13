@@ -237,7 +237,8 @@ for "_x" from 1 to _unitnumber do {
 _unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);
 _unitGroup selectLeader ((units _unitGroup) select 0);
 _unitGroup allowFleeing 0;
-_unitGroup enableGunLights true;
+if (_gun in [0,1,3,4,"random"]) then {_unitGroup enableGunLights true;};
+if (_gun in [0,"random"]) then {_unitGroup enableIRLasers true;};
 
 if(_aitype == "Hero") then {
 	_unitGroup setBehaviour ai_hero_behaviour;

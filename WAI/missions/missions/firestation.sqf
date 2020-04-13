@@ -28,9 +28,9 @@ _loot3 = if (_missionType == "MainHero") then {Loot_Firestation3 select 0;} else
 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","RPG7V"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",1,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
@@ -45,7 +45,7 @@ _loot3 = if (_missionType == "MainHero") then {Loot_Firestation3 select 0;} else
 
 //Static guns
 [[
-	[(_position select 0) + 1.5, (_position select 1) -21, 0],
+	[(_position select 0) + 4, (_position select 1) + 7, 18],
 	[(_position select 0) + 0.5, (_position select 1) - 21.8, 0]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 

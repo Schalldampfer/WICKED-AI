@@ -30,17 +30,17 @@ _loot = if (_missionType == "MainHero") then {Loot_Base select 0;} else {Loot_Ba
 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","RPG7V"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",2,4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[
-	[(_position select 0) - 10, (_position select 1) + 10, 0],
-	[(_position select 0) + 10, (_position select 1) - 10, 0],
-	[(_position select 0) + 10, (_position select 1) + 10, 0],
-	[(_position select 0) - 10, (_position select 1) - 10, 0]
+	[(_position select 0) - 10, (_position select 1) + 2, 2.8],
+	[(_position select 0) + 10, (_position select 1) - 2, 2.8],
+	[(_position select 0) + 2, (_position select 1) + 10, 2.8],
+	[(_position select 0) - 2, (_position select 1) - 10, 2.8]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Hard",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 
 //Heli Paradrop

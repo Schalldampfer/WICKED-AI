@@ -29,7 +29,7 @@ _loot = if (_missionType == "MainHero") then {Loot_WeaponCache select 0;} else {
 
 //Troops
 [[(_position select 0) + 6.5,(_position select 1) - 12,0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) -  8,(_position select 1) +  14,0],5,"Medium",["Random","AA"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) -  8,(_position select 1) +  14,0],5,"Medium",["Random","Strela"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 21,(_position select 1) - 12.5,0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 21,(_position select 1) - 12.5,0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 

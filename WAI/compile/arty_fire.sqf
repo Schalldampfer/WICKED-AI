@@ -1,4 +1,4 @@
-private ["_arty","_logic","_fmTemplate","_pos","_ammo","_battery","_time","_mission","_unitGroups","_player","_isArty","_side"];
+private ["_arty","_logic","_fmTemplate","_pos","_ammo","_battery","_time","_mission","_unitGroups","_player","_isArty","_side","_r","_t","_rnd"];
 _isArty = { /* https://forums.bohemia.net/forums/topic/126834-detect-artillery-capable-vehicles/ */
 	private ["_class","_result"];
 	_class = typeOf _this;
@@ -55,24 +55,32 @@ while {{alive _x} count _arty > 0} do {
 		//target found or not
 		if ({_x knowsAbout _player > 1.5} count _unitGroups > 0 && !((vehicle _player) isKindOf "Air") || (vehicle _player) call _isArty) then {
 			//ammo selection
-			_ammo = "HE";
 			if (random 1 < 0.2) then {
 				if (sunOrMoon != 1) then {
 					_ammo="ILLUM";
+					_rnd = 1;
 				} else {
 					_ammo="WP";
+					_rnd = 2;
+				};
+			} else {
+				_ammo = "HE";
+				_rnd = round(random 2) + 2;
+				if (vehicle _player == _player) then {
+					_r = 6 + random 14;
+					_t = random 360;
+					_pos = [(_pos select 0) + (_r*sin(_t)), (_pos select 1) + (_r*cos(_t)), _pos select 2];
 				};
 			};
-			_fmTemplate = ["IMMEDIATE", _ammo, 5.0 + (random 5), round(random 3) + 1];
+			_fmTemplate = ["IMMEDIATE", _ammo, 5.0 + (random 5), _rnd];
 
 			//in range
-			_pos = [(_pos select 0) - 15 + (random 30),(_pos select 1) - 15 + (random 30),_pos select 2];
 			if ([_logic, _pos, _fmTemplate select 1] call BIS_ARTY_F_PosInRange && {(side _x) == _side} count (_player nearEntities ["CAManBase", 40]) < 1) then {
 				//fire
 				[_logic, _pos, _fmTemplate] call BIS_ARTY_F_ExecuteTemplateMission;
 				if (wai_debug_mode) then {diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _x];};
 
-				sleep (random _time);
+				sleep (random _time/2);
 			};
 		};
 	} forEach playableUnits;

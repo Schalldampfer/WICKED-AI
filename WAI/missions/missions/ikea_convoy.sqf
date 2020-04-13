@@ -30,7 +30,7 @@ _loot3 = if (_missionType == "MainHero") then {Loot_IkeaConvoy3 select 0;} else 
 //Troops
 [_position,5,"Hard",["Random","AT"],4,"Random","Worker1_DZ","Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",["Random","AA"],4,"Random","Worker3_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","Random",4,"Random","Worker4_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",["Random","RPG7V"],4,"Random","Worker4_DZ","Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",1,2,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard",2,6,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
 

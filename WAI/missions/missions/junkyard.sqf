@@ -59,7 +59,7 @@ _loot2 = if (_missionType == "MainHero") then {Loot_Junkyard2 select 0;} else {L
 
 //Troops
 [[(_position select 0) -  2, (_position select 1) -  5, 0],5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium",["Random","AA"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 19, (_position select 1) + 19, 0],5,"Medium",["Random","Strela"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 

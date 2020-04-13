@@ -26,7 +26,7 @@ _loot = if (_missionType == "MainHero") then {Loot_GemTower select 0;} else {Loo
 
 //Troops
 [[(_position select 0) + 29, (_position select 1) - 21, 0],5,"Extreme",[1,"M47Launcher_EP1"],4,"Random","TK_CIV_Takistani01_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 21, (_position select 1) + 19, 0],5,"Extreme",[1,"AT"],4,"Random","TK_CIV_Takistani03_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 21, (_position select 1) + 19, 0],5,"Extreme",[0,"AT"],4,"Random","TK_CIV_Takistani03_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 23, (_position select 1) - 19, 0],5,"Extreme",[2,"Igla"],4,"Random","TK_CIV_Takistani04_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",[2,"AA"],4,"Random","TK_CIV_Takistani06_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 12, (_position select 1) + 23, 0],5,"Extreme",["Anzio_20_DZ","KSVK_DZE","BAF_AS50_scoped_DZ"] call BIS_fnc_selectRandom,6,"Random","TK_INS_Warlord_EP1_DZ","Random",_aiType,_mission] call spawn_group;
@@ -38,17 +38,18 @@ _uG2=[[(_position select 0) - 50, _position select 1, 0],[(_position select 0) +
 
 //Static Guns
 _uG1=[[
-	[(_position select 0) - 1, (_position select 1) + 39, 0],
-	[(_position select 0) + 33, (_position select 1) - 21, 0]
-],"ZU23_TK_GUE_EP1","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+	[(_position select 0) + 25, (_position select 1) + 2, 0]
+],"2b14_82mm_GUE","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 _uG2=[[
-	[(_position select 0) + 1, (_position select 1) - 39, 0],
-	[(_position select 0) + 33, (_position select 1) + 21, 0]
-],ai_static_weapons call BIS_fnc_selectRandom,"Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+	[(_position select 0) - 35, (_position select 1) + 29, 0],
+	[(_position select 0) + 23, (_position select 1) - 21, 0],
+	[(_position select 0) - 40, (_position select 1) - 20, 0]
+],"ZU23_CDF","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 _uG2=[[
-  [(_position select 0) + 20, (_position select 1) - 20, 0]
-],"Igla_AA_pod_TK_EP1","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+	[(_position select 0) - 8, (_position select 1) - 29, 0],
+	[(_position select 0) + 2, (_position select 1) + 21, 0]
+],"Igla_AA_pod_East","Extreme","TK_INS_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 
 //Paradrop after mission

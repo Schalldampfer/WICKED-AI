@@ -40,13 +40,13 @@ _loot2 = if (_missionType == "MainHero") then {Loot_DronePilot2 select 0;} else 
 // Troops
 [[(_position select 0) + 17, (_position select 1) - 18, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 11, (_position select 1) +  9, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 15, (_position select 1) - 15, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 15, (_position select 1) - 15, 0],5,"Hard",[1,"RPG7V"],2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) +  2, (_position select 1) + 18, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) +  2, (_position select 1) + 18, 0],5,"Hard",[2,"AA"],5,"Random","USMC_Soldier_Pilot_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 _uG1=[[[(_position select 0) - 7, (_position select 1) + 19, 0]],"Rbs70_ACR","Hard","US_Soldier_EP1_DZ",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-_uG2=[[[(_position select 0) - 41, (_position select 1) + 0.1, 0]],"SearchLight_CDF","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
+_uG2=[[[(_position select 0) - 9.6, (_position select 1) -7.6, 14.6]],"SearchLight_CDF","Extreme",_aiType,_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 
 //Humvee Patrol

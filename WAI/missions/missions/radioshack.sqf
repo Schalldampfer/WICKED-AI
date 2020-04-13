@@ -60,7 +60,7 @@ _tower=[[
 [[(_position select 0) - 4, (_position select 1) + 16, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 17, (_position select 1) - 4, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 14, (_position select 1) - 3, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"Hard",[2,"RPG7V"],5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[[(_position select 0) - 32, (_position select 1) - 18, 0],

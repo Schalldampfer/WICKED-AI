@@ -166,15 +166,18 @@ if (!isNil "_mission") then {
 		} count _aicskill;
 	};
 	
-	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call on_kill;}];
-	
 	_static addEventHandler ["GetOut",{
 		_unit = _this select 2;
 		_static = _this select 0;
 		if (alive _unit) then {_unit moveInGunner _static};
 	}];
 
-	_unit   addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
+	if (_skin == "InvisibleManE_EP1") then {
+		_unit allowDamage false;
+	} else {
+		_unit   addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
+		_unit   addEventHandler ["Killed",{_this call on_kill;}];
+	};
 	_static addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 	_static addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
 
@@ -190,8 +193,10 @@ if (!isNil "_mission") then {
 	_unit setVariable ["bodyName",(name _unit)];
 
 	if (!isNil "_mission") then {
-		_ainum = (wai_mission_data select _mission) select 0;
-		wai_mission_data select _mission set [0, (_ainum + 1)];
+		if (_skin != "InvisibleManE_EP1") then {
+			_ainum = (wai_mission_data select _mission) select 0;
+			wai_mission_data select _mission set [0, (_ainum + 1)];
+		};
 		((wai_mission_data select _mission) select 4) set [count ((wai_mission_data select _mission) select 4), _static];
 		_static setVariable ["mission" + dayz_serverKey, _mission, false];
 		_unit setVariable ["mission" + dayz_serverKey, _mission, false];

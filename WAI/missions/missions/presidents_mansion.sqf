@@ -22,12 +22,12 @@ _loot = if (_missionType == "MainHero") then {Loot_Presidents select 0;} else {L
 ],_position,_mission] call wai_spawnObjects;
 
 //Troops
-[_position,5,"Hard",[1,"AT"],2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",[2,"AT"],5,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",[1,"AA"],2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard",[2,"AA"],5,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","L115A3_DZ",3,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
-[_position,5,"Hard","L115A3_2_DZ",3,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[0,"AT"],2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[1,"AT"],5,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[0,"AA"],2,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",[1,"AA"],5,"Random","RU_Policeman_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,3,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Hard",2,3,"Random","Soldier_Bodyguard_AA12_PMC_DZ","Random",_aiType,_mission] call spawn_group;
 
 //The President Himself
 _president = [[((_position select 0) + 5), _position select 1, 4.1],1,"extreme","revolver_gold_EP1",2,"none","Special","Random",[_aiType,200],_mission] call spawn_group;

@@ -21,6 +21,7 @@ for "_i" from 1 to _mags do {
 	_unit addMagazine _magazine;
 };
 _unit addMagazine _flareMag;
+sleep (random 8);
 
 //check night and GP25
 while {alive _unit} do {

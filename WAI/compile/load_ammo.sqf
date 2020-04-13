@@ -7,16 +7,19 @@ if (count _this > 2) then {
 	_inGear = _this select 2;
 };
 
-if(_vehicle isKindOf "ZU23_base") exitWith {
-	_vehicle removeMagazines "40Rnd_23mm_AZP85";
-	_vehicle removeWeapon "2A14";
+if(_vehicle isKindOf "ZU23_base" || _vehicle isKindOf "Ural_ZU23_Base") exitWith {
 	_vehicle addMagazine "1904Rnd_30mmAA_2A38M";
 	_vehicle addWeapon "2A38M";
+	_vehicle removeMagazines "40Rnd_23mm_AZP85";
+	_vehicle removeWeapon "2A14";
 };
 
-if(_vehicle isKindOf "Ural_ZU23_Base") exitWith {
-	_vehicle addMagazine "2000Rnd_23mm_AZP85";
-	_vehicle removeMagazines "40Rnd_23mm_AZP85";
+if(_vehicle isKindOf "HMMWV_Avenger") exitWith {
+	_vehicle addMagazine "8Rnd_Sidewinder_AH64";
+	_vehicle addMagazine "8Rnd_Sidewinder_AH64";
+	_vehicle addWeapon "SidewinderLaucher_AH64";
+	_vehicle removeMagazines "8Rnd_Stinger";
+	_vehicle removeWeapon "StingerLaucher";
 };
 
 if(_type == "KORD_high_TK_EP1") exitWith {
@@ -51,14 +54,29 @@ if(_type == "TOW_TriPod_US_EP1") exitWith {
 };
 
 if(_type in ["Igla_AA_pod_East","Stinger_Pod"]) exitWith {
-	_vehicle addWeapon "9M311Laucher";
-	_vehicle addMagazine "8Rnd_9M311";
+	_vehicle addMagazine "4Rnd_R73";
+	_vehicle addMagazine "4Rnd_R73";
+	_vehicle addMagazine "4Rnd_R73";
+	_vehicle addWeapon "R73Launcher";
+	_vehicle removeWeapon "Igla_twice";
+	_vehicle removeWeapon "StingerLauncher_twice";
 };
 
-if(_type == "GNT_C185U_DZ") exitWith {
-	_vehicle addWeapon "AirBombLauncher";
-	_vehicle addMagazine "4Rnd_FAB_250";
-	_vehicle addMagazine "4Rnd_FAB_250";
+if (_type == "Ka137_MG_PMC") exitWith {
+	_vehicle removeWeapon "PKT_high_AI_dispersion";
+	for "_i" from 1 to 4 do {
+		_vehicle addMagazine "29Rnd_30mm_AGS30_heli";
+	};
+	_vehicle addWeapon "AGS30_heli";
+};
+
+if(_type == "Mi24_D_TK_EP1") exitWith {
+	_vehicle removeWeapon "57mmLauncher_128";
+	_vehicle removeMagazines "128Rnd_57mm";
+	_vehicle removeWeapon "AT2Launcher";
+	_vehicle removeMagazines "4Rnd_AT2_Mi24D";
+	_vehicle addMagazine "8Rnd_Sidewinder_AH64";
+	_vehicle addWeapon "SidewinderLaucher_AH64";
 };
 
 if(_type == "UH60M_EP1") exitWith {

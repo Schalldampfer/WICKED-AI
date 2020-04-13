@@ -6,13 +6,12 @@ _damage = 		_this select 2;
 _source = 		_this select 3;
 _ammo = 		_this select 4;
 
-if (_ammo == "") exitWith {0};
+if (_source == _unit) exitWith {0};
+if !(_ammo isKindOf "Default") exitWith {0};
 
-{
-	if (_ammo isKindOf _x) then {
-		_damage = _damage * 0.25;
-	};
-} foreach ["RocketBase","ARTY_Sh_Base","Sh_122_HE","120mmHE_M120"];
+if (({_ammo isKindOf _x} count ["B_127x99_Ball","B_127x107_Ball","RocketBase","ARTY_Sh_Base","Sh_122_HE","120mmHE_M120","BombCore"]) > 0) then {
+	_damage = _damage * 0.125;
+};
 
 if (WAI_Overpoch) then { //Taser for OVP
 	_this call DDOPP_taser_handleHit;
@@ -25,10 +24,6 @@ if (isPlayer _source) then {
 			_unit setVariable["hitRegistered",true];
 		};
 	};
-};
-
-if !(_ammo isKindOf "Default") then {
-	_damage = 0;
 };
 
 _damage

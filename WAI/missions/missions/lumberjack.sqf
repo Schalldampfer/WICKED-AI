@@ -34,7 +34,7 @@ _loot = if (_missionType == "MainHero") then {Loot_LumberJack select 0;} else {L
 // Troops
 [[(_position select 0) + 12, (_position select 1) + 22, 0],5,"Hard",["Random","AT"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) + 21, (_position select 1) + 11, 0],5,"Hard",["Random","AA"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) -  1, (_position select 1) -  1, 0],5,"Hard","Random",4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) -  1, (_position select 1) -  1, 0],5,"Hard",["Random","RPG7V"],4,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 13, (_position select 1) - 23, 0],5,"Hard",1,2,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 13, (_position select 1) - 23, 0],5,"Hard",2,5,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 

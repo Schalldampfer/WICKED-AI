@@ -52,7 +52,7 @@ _loot = if (_missionType == "MainHero") then {Loot_CannibalCave select 0;} else 
 [[(_position select 0) + 11, (_position select 1) + 41, .01],5,"Hard",["Random","AA"],4,"Random","TK_INS_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 12, (_position select 1) - 43, .01],5,"Hard",["Random","AA"],4,"Random","TK_GUE_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 13, (_position select 1) - 43, .01],5,"Hard",1,2,"Random","TK_INS_Soldier_AR_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 20, (_position select 1) - 43, .01],5,"Hard",["Anzio_20_DZ","KSVK_DZE"] call BIS_fnc_selectRandom,5,"Random","TK_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 20, (_position select 1) - 43, .01],5,"Hard",2,5,"Random","TK_Soldier_Sniper_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 
 //Static Guns
 [[[(_position select 0) - 50, (_position select 1) + 40, 0],

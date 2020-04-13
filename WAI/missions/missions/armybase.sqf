@@ -70,29 +70,29 @@ _loot2 = if (_missionType == "MainHero") then {Loot_ArmyBase2 select 0;} else {L
 [_loot2,[(_position select 0) +2, (_position select 1) +5],_mission,true,-71.49] call custom_publish;
 
 //Troops
-[[(_position select 0) - 12, (_position select 1) +  2, 0],5,"Extreme",["Random","M47Launcher_EP1"],4,"Random","USMC_Soldier_HAT","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) +  2, (_position select 1) +  2, 0],5,"Extreme",["Random","AT"],4,"Random","USMC_Soldier_LAT","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 14, (_position select 1) - 35, 0],5,"Extreme",["Random","Stinger"],4,"Random","USMC_Soldier_AA","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme",["Random","AA"],4,"Random","USMC_Soldier_AA","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme","m107_DZ",2,"Random","USMC_SoldierS_SniperH","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 12, (_position select 1) +  2, 0],5,"Extreme",[1,"M47Launcher_EP1"],4,"Random","USMC_Soldier_HAT","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) +  2, (_position select 1) +  2, 0],5,"Extreme",[0,"AT"],4,"Random","USMC_Soldier_LAT","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 14, (_position select 1) - 35, 0],5,"Extreme",[2,"Stinger"],4,"Random","USMC_Soldier_AA","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme",[2,"AA"],4,"Random","USMC_Soldier_AA","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) + 13, (_position select 1) + 35, 0],5,"Extreme","KSVK_DZE",2,"Random","USMC_SoldierS_SniperH","Random",_aiType,_mission] call spawn_group;
 
 //Humvee Patrol
-_uG1=[[(_position select 0) - 22, (_position select 1) + 56, 0],[(_position select 0) + 22, (_position select 1) - 56, 0],500,4,ai_antiair_vehicles call BIS_fnc_selectRandom,"Extreme","USMC_Soldier_Crew",_aiType,_mission] call vehicle_patrol;
-_uG2=[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","USMC_Soldier_Crew",_aiType,_mission] call vehicle_patrol;
-(units _uG2) joinSilent _uG1;
+[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],500,4,ai_armored_vehicles call BIS_fnc_selectRandom,"Extreme","USMC_Soldier_Crew",_aiType,_mission] call vehicle_patrol;
 
 //Static Guns
 _uG1=[[
-	[(_position select 0) - 0.01, (_position select 1) + 41, 0],
-	[(_position select 0) + 0.1, (_position select 1) - 41, 0]
-],"ZU23_CDF","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
-_uG2=[[
 	[(_position select 0) - 1, (_position select 1) -27, 0]
 ],"2b14_82mm_GUE","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+_uG2=[[
+	[(_position select 0) - 19, (_position select 1) + 11, 4],
+	[(_position select 0) + 18, (_position select 1) + 11, 4]
+],"KORD_high_TK_EP1","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 _uG2=[[
+	[(_position select 0) - 0.01, (_position select 1) + 41, 0],
+	[(_position select 0) + 0.1, (_position select 1) - 41, 0],
 	[(_position select 0) + 30, (_position select 1) - 20, 0]
-],"Igla_AA_pod_TK_EP1","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
+],"Igla_AA_pod_East","Extreme","USMC_Soldier_Light",_aiType,0,2,"Random","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 
 

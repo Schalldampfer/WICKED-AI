@@ -28,7 +28,7 @@ _loot = if (_missionType == "MainHero") then {Loot_MediCamp select 0;} else {Loo
 
 //Troops
 [[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","RPG7V"],3,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","AA"],3,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
+[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,"Medium",["Random","Strela"],3,"Random","UN_CDF_Soldier_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 [[(_position select 0) - 26,(_position select 1) - 2.4,0],5,"Medium","Random",3,"Random","UN_CDF_Soldier_Guard_EP1_DZ","Random",_aiType,_mission] call spawn_group;
 

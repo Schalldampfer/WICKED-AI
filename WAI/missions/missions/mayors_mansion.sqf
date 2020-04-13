@@ -23,7 +23,7 @@ _mansion = [[
 
 //Troops
 [_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","Strela"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Hard","Random",3,"Random","BAF_Soldier_Officer_MTP_DZ","Random",_aiType,_mission] call spawn_group;
 
@@ -53,11 +53,11 @@ _mayor_himself spawn {
 
 //Static mounted guns
 _uG1=[[
-	[(_position select 0) - 15, (_position select 1) + 15, 8],
-	[(_position select 0) + 15, (_position select 1) - 15, 8]
+	[(_position select 0) - 15, (_position select 1) + 15, 7.3],
+	[(_position select 0) + 15, (_position select 1) - 15, 7.3]
 ],ai_static_weapons call BIS_fnc_selectRandom,"Medium",_aiType,_aiType,1,2,"Random","Random",_mission] call spawn_static;
 _uG2=[[
-	[(_position select 0) - 50,(_position select 1), 0]
+	[(_position select 0) - 5,(_position select 1) - 5, 7.3]
 ],"Igla_AA_pod_TK_EP1","Extreme",_aiType,_aiType,0,2,"none","Random",_mission] call spawn_static;
 (units _uG2) joinSilent _uG1;
 

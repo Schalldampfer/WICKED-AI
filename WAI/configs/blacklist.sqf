@@ -31,6 +31,12 @@ call {
 		_marker setMarkerBrushLocal "Solid";
 		_marker setMarkerAlphaLocal 0;
 		_marker setMarkerSizeLocal [800, 800];
+		_marker = createMarkerLocal ["SEAF", [18373.527, 2248.1064]];
+		_marker setMarkerShapeLocal "ELLIPSE";
+		_marker setMarkerTypeLocal "Empty";
+		_marker setMarkerBrushLocal "Solid";
+		_marker setMarkerAlphaLocal 0;
+		_marker setMarkerSizeLocal [700, 700];
     };
     if (toLower worldName == "smd_sahrani_a2") exitWith {wai_blacklist = [];};
     if (toLower worldName == "sauerland") exitWith {wai_blacklist = [];};

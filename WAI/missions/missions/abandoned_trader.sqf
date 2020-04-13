@@ -43,7 +43,7 @@ _loot2 = if (_missionType == "MainHero") then {Loot_AbandonedTrader2 select 0;} 
 
 //Troops
 [_position,5,"Medium",["Random","RPG7V"],3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
-[_position,5,"Medium",["Random","AA"],3,"Random","Hero","Random",_aiType,_mission] call spawn_group;
+[_position,5,"Medium",["Random","Strela"],3,"Random","Hero","Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 [_position,5,"Medium","Random",3,"Random",_aiType,"Random",_aiType,_mission] call spawn_group;
 
