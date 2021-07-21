@@ -1,16 +1,31 @@
-// Updated mission example for DayZ Epoch 1.0.7+. Please review missions in the hero and bandit folder for additional examples.
+// Updated single/multiple location mission example for DayZ Epoch 1.0.7+ by JasonTM. Please review the Wuhan Lab and Castle Grayskull missions for additional examples.
 
-// Note: One of the DayZ Epoch devs discovered through testing that using the local command when creating a variable is faster than using the private array so it has been used here.
-
-local _mission = count WAI_MissionData -1; // Do Not Change This Line.
+local _mission = count WAI_MissionData -1;
 local _aiType = _this select 0; // Type of AI - "Hero" or "Bandit" - this is sent from the scheduler.
-local _position = [80] call WAI_FindPos; // Get a safe position 80 meters from the nearest object. You can change this number.
-local _name = "Mission Name"; // this is mainly used for rpt entries
+local _name = "Mission Name";
+
+// Declare your custom positions for this mission.
+// Normally with the z coordinate you will just use 0 because 0 means that it is on the ground.
+// Round the coordinates you get from the editor to whole numbers to make it easier. Ex. 1783.42963 is just 1783.
+local _positions = [[x, y, 0]]; // Example with just one position.
+local _positions = [[x, y, 0],[x, y, 0],[x, y, 0],[x, y, 0]]; // Example with multiple positions.
+local _position = [_positions] call isValidSpot; // Check for near players and near missions.
+
+// If isValidSpot fails, then the mission will end and another will be allowed to start.
+if (count _position < 1) exitWith {
+	if (_aiType == "Hero") then {
+		WAI_HeroRunning = WAI_HeroRunning - 1; WAI_MissionData set [_mission, -1]; WAI_MarkerReady = true;
+	} else {
+		WAI_BanditRunning = WAI_BanditRunning - 1; WAI_MissionData set [_mission, -1]; WAI_MarkerReady = true;
+	};
+};
+
+// Additional variables to set once the position check passes.
 local _startTime = diag_tickTime; // used for timeout below
-local _difficulty = "Hard"; // Options: "Easy", "Medium", "Hard", "Extreme".
-local _markerColor = "ColorRed"; // Color of the mission marker. https://community.bistudio.com/wiki/Arma_3:_CfgMarkerColors
+local _difficulty = "Extreme"; // Options: "Easy", "Medium", "Hard", "Extreme".
 local _localized = ["STR_CL_MISSION_BANDIT", "STR_CL_MISSION_HERO"] select (_aiType == "Hero"); // These localized strings will place "Hero" or "Bandit" text in front of the mission text.
 local _localName = "STR_CL_MISSIONNAME_TITLE"; // This localized string name is used for the mission marker. It does not have to be a localized string.
+local _markerColor = "ColorBlack"; // Color of the mission marker. https://community.bistudio.com/wiki/Arma_3:_CfgMarkerColors
 
 // Sends a message to the server's rpt file
 diag_log format["[WAI]: %1 %2 started at %3.",_aiType,_name,_position];
@@ -82,7 +97,7 @@ if (_timeout) exitWith {
 //[16,8,[3,WAI_HighValue],3,[4,WAI_PacksLg]] - example of calling custom arrays instead of default
 
 // Save loot array to a variable
-local _loot = [10,[4,WAI_ToolsBuildable],[30,WAI_Ikea],3,4];
+_loot = [10,[4,WAI_ToolsBuildable],[30,WAI_Ikea],3,4];
 
 //Spawn Crate with loot variable in first position.
 [[
@@ -93,7 +108,7 @@ local _loot = [10,[4,WAI_ToolsBuildable],[30,WAI_Ikea],3,4];
 [[
 	[[8,5,15,3,2],"DZ_AmmoBoxBigUS",[.3,0,-.01],30] // [[loot array, crate classname, 3d offests], direction]
 ],_position,_mission] call WAI_SpawnCrate;
-
+ 
 // Mission object Spawning Format - [class name, [x-offset, y-offset,z-offset(optional)],direction(optional)]
 // Offsets are modifications to the [x,y,z] coordinates relative to the [0,0,0] mission center position.
 // If no z-coordinate or direction are provided, then the function will set them to 0.
@@ -130,7 +145,6 @@ local _num = round (random 3) + 4; // You can use this to get a random number of
 // Assassination target example
 // This is the same as normal group spawns but we assign it to a variable instead for use in the trigger below (if there are multiple units in this group you'll need to kill them all)
 local _unitGroup = [[_position select 0, _position select 1, 0],1,"hard","random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-
 
 // Humvee Patrol Example
 // Parameters:	0: Patrol position
@@ -191,9 +205,9 @@ local _unitGroup = [[_position select 0, _position select 1, 0],1,"hard","random
 //				3: Fixed vehicle position? If false the mission will pick a random position for the vehicle
 //				4: Optional direction. If no number provided the mission will select a random direction
 
-["MV22_DZ",[(_position select 0) - 20.5,(_position select 1) - 5.2,0], _mission,true,-82.5] call WAI_PublishVeh; // with declared vehicle class, optional fixed position, and optional direction
-[cargo_trucks,_position,_mission] call WAI_PublishVeh; // with vehicle array, random position, and random direction
-local _vehicle = [cargo_trucks,_position,_mission] call WAI_PublishVeh; // Same as above but saved to variable if necessary
+["MV22_DZ",[(_position select 0) - 20.5,(_position select 1) - 5.2,0], _mission,true,-82.5] call custom_publish; // with declared vehicle class, optional fixed position, and optional direction
+[cargo_trucks,_position,_mission] call custom_publish; // with vehicle array, random position, and random direction
+_vehicle = [cargo_trucks,_position,_mission] call custom_publish; // Same as above but saved to variable if necessary
 
 // This example is for spawning a DZE armed vehicle and then loading ammo into the turrets and gear.
 local _vehicle = [WAI_ArmedVeh ,[(_position select 0) - 20.5, (_position select 1) - 5],_mission,true, 0] call WAI_PublishVeh;

@@ -1,25 +1,28 @@
 local _mission = count WAI_MissionData -1;
 local _aiType = _this select 0; // "Bandit" or "Hero"
 local _position = [30] call WAI_FindPos;
-local _name = "Medical Supply Camp";
+local _vehclass = WAI_APC call BIS_fnc_selectRandom; //Armed Land Vehicle
+local _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");
+local _name = format["Disabled %1",_vehname];
 local _startTime = diag_tickTime;
-local _difficulty = "Easy";
+local _difficulty = "Medium";
 local _localized = ["STR_CL_MISSION_BANDIT", "STR_CL_MISSION_HERO"] select (_aiType == "Hero");
-local _localName = "STR_CL_WAI_MSC_TITLE";
+local _localName = ["STR_CL_ARMEDVEHICLE_TITLE",_vehname];
+local _text = [_localized,_localName];
 
-diag_log format["[WAI]: %1 %2 started at %3.",_aiType,_name,_position];
+diag_log format["WAI: %1 %2 started at %3.",_aiType,_name,_position];
 
 local _messages = if (_aiType == "Hero") then {
-	["STR_CL_HERO_MSC_ANNOUNCE","STR_CL_HERO_MSC_WIN","STR_CL_HERO_MSC_FAIL"];
+	["STR_CL_HERO_ARMEDVEHICLE_ANNOUNCE","STR_CL_HERO_ARMEDVEHICLE_WIN","STR_CL_HERO_ARMEDVEHICLE_FAIL"];
 } else {
-	["STR_CL_BANDIT_MSC_ANNOUNCE","STR_CL_BANDIT_MSC_WIN","STR_CL_BANDIT_MSC_FAIL"];
+	["STR_CL_BANDIT_ARMEDVEHICLE_ANNOUNCE","STR_CL_BANDIT_ARMEDVEHICLE_WIN","STR_CL_BANDIT_ARMEDVEHICLE_FAIL"];
 };
 
 ////////////////////// Do not edit this section ///////////////////////////
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
-_markers set [0, [_position, "WAI" + str(_mission), "ColorGreen", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [0, [_position, "WAI" + str(_mission), "ColorYellow", "", "ELLIPSE", "Solid", [300,300], [], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], _text, 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -55,25 +58,26 @@ if (_timeout) exitWith {
 //////////////////////////////// End //////////////////////////////////////
 
 //Spawn Crates
-local _loot = if (_aiType == "Hero") then {Loot_MediCamp select 0;} else {Loot_MediCamp select 1;};
 [[
-	[_loot,"DZ_AmmoBoxBigUS",[0,0],60]
+	[[0,0,[20,WAI_VehAmmo],0,1],WAI_CrateMd,[0,5]]
 ],_position,_mission] call WAI_SpawnCrate;
 
-// Spawn Objects
-[[
-	["MAP_fort_watchtower",[1.5,12.6],-210],
-	["MAP_MASH",[-17,5.3],60],
-	["MAP_Stan_east",[-16.5,15.9],-30],
-	["USMC_WarfareBFieldhHospital",[3,-4.4],60],
-	["MAP_Stan_east",[-10,19.6],-30],
-	["MAP_MASH",[-14,-0.4],60]
-],_position,_mission] call WAI_SpawnObjects;
-
 //Troops
-[[(_position select 0) - 7.5,(_position select 1) + 7.9,0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],(ceil random 3),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 26,(_position select 1) - 2.4,0],(ceil random 3),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position, 5, _difficulty, "Random", "AT", "Random", _aiType, "Random", _aiType, _mission] call WAI_SpawnGroup;
+[_position, 5, _difficulty, "Random", "AA", "Random", "Hero", "Random", _aiType, _mission] call WAI_SpawnGroup;
+[_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+
+//Static Guns
+[[
+	[(_position select 0) + 29,(_position select 1) + 7, 0],
+	[(_position select 0) + 13,(_position select 1) + 42, 0],
+	[(_position select 0),(_position select 1) + 10, 0]
+],"Random",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+
+//Spawn vehicles
+local _vehicle = [_vehclass,_position,_mission] call WAI_PublishVeh;
+[_vehicle,_vehclass,2] call WAI_LoadAmmo;
 
 [
 	_mission, // Mission number
@@ -86,6 +90,6 @@ local _loot = if (_aiType == "Hero") then {Loot_MediCamp select 0;} else {Loot_M
 	_posIndex,
 	true, // show mission marker?
 	true, // make minefields available for this mission
-	["kill"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
+	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

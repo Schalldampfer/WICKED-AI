@@ -1,11 +1,23 @@
-WICKED AI 2.2.7 Work in Progress
+WICKED AI 2.3
 ==============
 
-## Version 2.2.7 will be compatible with DayZ Epoch 1.0.7.
+### Release 2.3 (worldwidesorrow)
+- Extensive reworking of configs and missions
+- Client side marker manager
+- AI caching - disables FSM, targeting, movement and hides/unhides AI with hideObject command.
+- Loop added to each mission file that prevents AI and objects from spawning until a player is near.
+- Universal NPC deletion in sched_corpses function
+- Bandit and Hero dog tags.
+- All new DZE armed vehicles added to load ammo function
+- Multi-position missions Castle Grayskull and Wuhan Lab added.
+- Expanded AI gear selection
+- Expanded skin selection
+- Extensive rework of the static mission system including AI counter, custom mission markers, AI group respawning,
+  support for setVectorDirAndUp command for object spawning, AI caching, auto-claim, etc. Custom Skalisty Island
+  mission used for testing included.
 
-Version 2.2.6 compatible with DayZ Epoch 1.0.6.2 can be found ***[Here](https://github.com/f3cuk/WICKED-AI/releases/tag/2.2.6)***.
-
-Since I really like (read love) the Wicked AI missions and support for them has gone in the latest patches, I decided to dust off the old files and start making these 1.0.6+ compatible. Starting with a few minor bugfixes and some custom loadouts, but quickly turning into a proper redo with awesome help of the - very much alive - mod community!
+### Release 2.2.7 (worldwidesorrow)
+- Minor updates for DayZ Epoch 1.0.7 compatibility.
 
 ### Release 2.2.6 (worldwidesorrow)
 - Mission objects and crates use compact arrays and functions. Missions can spawn multiple crates.
