@@ -64,14 +64,14 @@ Since I really like (read love) the Wicked AI missions and support for them has 
 
 1. Click ***[Clone or Download](https://github.com/f3cuk/WICKED-AI/archive/master.zip)*** the green button on the right side of the Github page.
 
-	> Recommended PBO tool for all "pack", "repack", or "unpack" steps: ***[PBO Manager](http://www.armaholic.com/page.php?id=16369)***
+2. This mod is dependent on the Client Side Marker Manager. Download it ***[here](https://github.com/worldwidesorrow/Client-Side-Marker-Manager/)*** and install it according to the instructions.
 
-2. Extract the downloaded folder to your desktop and open it
-3. Go to your server pbo and unpack it.
-4. Copy the WAI folder into the ***dayz_server*** folder.
-5. Navigate to directory ***dayz_server\system\scheduler*** and replace ***sched_corpses.sqf*** with the one from the download.
-6. Copy over file ***sched_wai.sqf*** to the same folder.
-7. Open file ***sched_init.sqf***.
+3. Extract the downloaded folder to your desktop and open it
+4. Go to your server pbo and unpack it.
+5. Copy the WAI folder into the ***dayz_server*** folder.
+6. Navigate to directory ***dayz_server\system\scheduler*** and replace ***sched_corpses.sqf*** with the one from the download.
+7. Copy over file ***sched_wai.sqf*** to the same folder.
+8. Open file ***sched_init.sqf***.
 
 	Find this line:
 	
@@ -124,9 +124,24 @@ Since I really like (read love) the Wicked AI missions and support for them has 
 	"aif_arma1buildings",
 	```
 
+3. This mod is dependent on the Epoch community stringtable. Download the stringtable ***[here](https://github.com/oiad/communityLocalizations/)*** and place file stringTable.xml in the root of your mission folder.
+
 Note: The announcements used in this mod are localized strings contained in the mod's dayz_code PBO. If you want to adjust the announcements, you need to create your own string table and overwrite the existing strings in the "WickedAI" section of stringtable.xml.
 
-3. Repack your mission PBO.
+4. Repack your mission PBO.
+
+### Battleye
+If you are going to use the AI caching feature, then you need to add this exception to the end of line 46 or the one that starts with <code>5 hideObject</code>
+
+ ```sqf
+ !="this hideObject true"
+ ```
+ 
+Some of the missions use the MBG buildings and need to have an exception for opening the doors or else the log file will get spammed.  Add this to the end of line 40 or the one that starts with <code>1 execVM</code>
+
+ ```sqf
+ !"execvm 'MBG_Killhouses\\s\\MPSoundV2.sqf';"
+ ```
 
 Note: In order for players to receive radio announcements, they must have ItemRadio in a toolbelt inventory slot, so you might want to adjust your default loadout in init.sqf if you have this feature enabled.
 
