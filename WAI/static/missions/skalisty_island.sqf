@@ -44,6 +44,8 @@ if (_enableMarkers) then {
 	publicVariable "PVDZ_ServerMarkerSend";
 };
 
+WAI_StaticMarkerReady = true;
+
 // Add the mission's position to the global array so that other missions do not spawn near it.
 DZE_MissionPositions set [count DZE_MissionPositions, _position];
 
