@@ -28,7 +28,7 @@ local _posIndex = count DZE_MissionPositions - 1;
 diag_log format["[WAI]: %2 Patrol: Starting at %1",_position,_aiType];
 
 //Spawn units
-local _unitGroup = [[(_position select 0) + 4,(_position select 1),0.1],3,"Patrol","Random","","Random",_aiType,"Random",_aiType,_mission] call spawn_group;
+local _unitGroup = [[(_position select 0) + 4,(_position select 1),0.1],3,"Patrol","Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Spawn vehicles
 local _vehicle = [_vehclass,_position,_mission] call WAI_PublishVeh;
