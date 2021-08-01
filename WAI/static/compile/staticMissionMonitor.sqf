@@ -95,6 +95,9 @@ while {_running} do {
 	
 	_playerNear = [_position,_triggerDist] call isNearPlayer;
 	
+	// Retrieve the AI groups in the loop to see which ones should be removed and respawned if enabled.
+	local _unitGroups = (WAI_MissionData select _mission) select 1;
+	
 	// AI Caching
 	if (_aiCaching) then {
 		if (!_playerNear && !_frozen && {diag_tickTime - _cacheTime > 15}) then {
@@ -125,9 +128,6 @@ while {_running} do {
 			DZE_ServerMarkerArray set [_markerIndex, _markers];
 		};
 	};
-	
-	// Retrieve the AI groups in the loop to see which ones should be removed and respawned if enabled.
-	local _unitGroups = (WAI_MissionData select _mission) select 1;
 	
 	{
 		// remove empty groups
