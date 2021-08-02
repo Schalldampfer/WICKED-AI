@@ -5,10 +5,12 @@ local _triggerDist = _this select 3;
 local _aiType = _this select 4;
 local _aiCaching = _this select 5;
 local _autoClaim = _this select 6;
-local _respawn = _this select 7;
+local _killPercent = _this select 7;
+local _lootWhenClear = _this select 8;
+local _respawn = _this select 9;
 local _enableRespawn = _respawn select 0;
 local _respawnTimer = _respawn select 1;
-local _markerOptions = _this select 8;
+local _markerOptions = _this select 10;
 local _enableMarkers = _markerOptions select 0;
 local _markerIndex = _markerOptions select 1;
 local _showMarkerText = _markerOptions select 2;
@@ -41,11 +43,13 @@ local _player = objNull;
 local _warnArray = [];
 local _autoMarkDot = "WAI" + str(_mission) + "autodot";
 local _autoText = "";
+_killPercent = _aiCount - (_aiCount * (_killPercent / 100));
 
-// Spawn loot in crates
-{
-	[(_x select 0),(_x select 1)] call WAI_DynCrate;
-} count _crates;
+if (!_lootWhenClear && !_markWhenClear) then { // Spawn loot in crates if loot when clear disabled.
+	{
+		[(_x select 0),(_x select 1)] call WAI_DynCrate;
+	} count _crates;
+};
 
 // Add AI counter if enabled
 if (_enableMarkers && _showMarkerText && _showAiCount) then {
@@ -119,9 +123,15 @@ while {_running} do {
 	
 	// Mark When clear if enabled.
 	if (!_clear && _enableMarkers && _showMarkerText && _markWhenClear) then {
-		local _count = (WAI_MissionData select _mission) select 0;
-		if (_count == 0) then {
+		if (((WAI_MissionData select _mission) select 0) <= _killPercent) then {
 			_clear = true;
+			
+			if (_lootWhenClear) then { // Spawn loot in crates if loot when clear enabled.
+				{
+					[(_x select 0),(_x select 1)] call WAI_DynCrate;
+				} count _crates;
+			};
+			
 			PVDZ_ServerMarkerSend = ["textSingle",[_dotMarker,[_name + ": Clear"]]];
 			publicVariable "PVDZ_ServerMarkerSend";
 			(_markers select 1) set [7, [_name + ": Clear"]];

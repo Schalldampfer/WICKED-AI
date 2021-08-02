@@ -29,6 +29,8 @@ local _markerAlpha = 0.4; // From 0 to 1. Sets the marker transparency. https://
 local _showMarkerText = true; // Show the name of the mission in the center of the marker. Needed for AI counter.
 local _showAiCount = false; // Show the AI count in the mission marker.
 local _markWhenClear = true; // If all AI are dead, place a marker that says that the mission has been cleared. Respawns must be disabled.
+local _killPercent = 95; // The percentage of AI that must be killed for the mission to be marked "clear". Because the AI counts can be slightly off for some reason, I recommend not using 100%.
+local _lootWhenClear = true; // Wait until the mission is cleared to spawn the loot. True or false.
 //End Config
 
 ////////////////////// Do not edit this section ///////////////////////////
@@ -485,6 +487,8 @@ local _briefcases = 2 + (round (random 8)); // Up to 10 briefcases.
 	_aiType, // "Bandit" or "Hero"
 	_aiCaching, // true or false
 	_autoClaim, // true or false
+	_killPercent, // Percentage of AI killed to clear the mission
+	_lootWhenClear, // Wait to spawn loot in crates until mission cleared
 	[_enableRespawn,_respawnTimer], // Respawn options
 	[_enableMarkers,_markerIndex,_showMarkerText,_showAiCount,_markWhenClear] // Marker parameters
 ] execVM "\z\addons\dayz_server\WAI\static\compile\staticMissionMonitor.sqf";
