@@ -86,9 +86,9 @@ local _loot = if (_aiType == "Hero") then {Loot_LumberJack select 0;} else {Loot
 	_difficulty, // Difficulty
 	_name, // Name of Mission
 	_localName, // localized marker text
+	_aiType, // "Bandit" or "Hero"
 	_markerIndex,
 	_posIndex,
-	_aiType, // "Bandit" or "Hero"
 	true, // show mission marker?
 	true, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
