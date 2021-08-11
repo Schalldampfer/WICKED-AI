@@ -36,10 +36,11 @@ local _posIndex = count DZE_MissionPositions - 1;
 [_difficulty,(_messages select 0)] call WAI_Message;
 
 // Wait until a player is within range or timeout is reached.
-local _playerNear = false;
 local _timeout = false;
-while {!_playerNear && !_timeout} do {
-	_playerNear = [_position,WAI_TimeoutDist] call isNearPlayer;
+local _claimPlayer = objNull;
+
+while {WAI_WaitForPlayer && !_timeout && {isNull _claimPlayer}} do {
+	_claimPlayer = [_position, WAI_TimeoutDist] call isClosestPlayer;
 	
 	if (diag_tickTime - _startTime >= (WAI_Timeout * 60)) then {
 		_timeout = true;
@@ -74,11 +75,11 @@ local _loot = if (_aiType == "Hero") then {Loot_LumberJack select 0;} else {Loot
 ],_position,_mission] call WAI_SpawnObjects;
 
 // Troops
-[[(_position select 0) + 12, (_position select 1) + 22.5, 0],5,"extreme","Random","AT","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 21, (_position select 1) + 11, 0],5,_difficulty,"Random","AA","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 1.12, (_position select 1) - 0.43, 0],5,"random","Random","","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 12, (_position select 1) + 22.5, 0],5,"extreme","Random","AT","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 21, (_position select 1) + 11, 0],5,_difficulty,"Random","AA","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 1.12, (_position select 1) - 0.43, 0],5,"random","Random","","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
 
 [
 	_mission, // Mission number
@@ -89,6 +90,7 @@ local _loot = if (_aiType == "Hero") then {Loot_LumberJack select 0;} else {Loot
 	_aiType, // "Bandit" or "Hero"
 	_markerIndex,
 	_posIndex,
+	_claimPlayer,
 	true, // show mission marker?
 	true, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],

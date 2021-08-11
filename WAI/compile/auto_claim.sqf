@@ -1,10 +1,16 @@
 			if (!_claimed) then {
-			
 				// Find the closest player and send an alert
 				if (isNull _closestPlayer) then {
-					_closestPlayer = [_position,WAI_AcAlertDistance] call isClosestPlayer; // Find the closest player
-					[_closestPlayer,_name,"Start"] call WAI_AutoClaimAlert; // Send alert
-					_claimTime = diag_tickTime; // Set the time variable for countdown
+					if (!isNull _claimPlayer && {alive _claimPlayer} && {_claimPlayer distance _position <= WAI_AcAlertDistance}) then {
+						_closestPlayer = _claimPlayer;
+						_claimPlayer = objNull;
+					} else {
+						_closestPlayer = [_position, WAI_AcAlertDistance] call isClosestPlayer; // Find the closest player
+					};
+					if (!isNull _closestPlayer) then {
+						[_closestPlayer,_name,"Start"] call WAI_AutoClaimAlert; // Send alert
+						_claimTime = diag_tickTime; // Set the time variable for countdown
+					};
 				};
 				
 				// After the delay time, check player's location and either claim or not claim
@@ -72,10 +78,16 @@
 				
 				// Warn other players in mission area
 				{
-					if(!(_x in (units group _closestPlayer)) && ((_x distance _position) < WAI_AcAlertDistance )) then {
+					local _inside = _x distance _position < WAI_AcAlertDistance;
+					local _inArray = _x in _warnArray;
+					if (!(_x in (units group _closestPlayer)) && _inside && !_inArray) then {
 						RemoteMessage = ["rollingMessages", ["STR_CL_CLAIM_WARNING",_acArray select 1]];
 						(owner _x) publicVariableClient "RemoteMessage";
 						_warnArray set [count _warnArray, _x]; // add player to temp array so it does not spam the message.
+					};
+					
+					if (!_inside && _inArray) then {
+						_warnArray = _warnArray - [_x]; // Remove player from the array so the message can repeat if player reenters the mission area.
 					};
 				} count playableUnits;
 				

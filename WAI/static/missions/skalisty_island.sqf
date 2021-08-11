@@ -52,9 +52,9 @@ WAI_StaticMarkerReady = true;
 DZE_MissionPositions set [count DZE_MissionPositions, _position];
 
 // Wait until a player is within range.
-local _playerNear = false;
-while {!_playerNear} do {
-	_playerNear = [_position,_triggerDistance] call isNearPlayer;
+local _claimPlayer = objNull;
+while {isNull _claimPlayer} do {
+	_claimPlayer = [_position, _triggerDistance] call isClosestPlayer;
 	uiSleep 1;
 };
 //////////////////////////////// End //////////////////////////////////////
@@ -489,6 +489,7 @@ local _briefcases = 2 + (round (random 8)); // Up to 10 briefcases.
 	_autoClaim, // true or false
 	_killPercent, // Percentage of AI killed to clear the mission
 	_lootWhenClear, // Wait to spawn loot in crates until mission cleared
+	_claimPlayer,
 	[_enableRespawn,_respawnTimer], // Respawn options
 	[_enableMarkers,_markerIndex,_showMarkerText,_showAiCount,_markWhenClear] // Marker parameters
 ] execVM "\z\addons\dayz_server\WAI\static\compile\staticMissionMonitor.sqf";

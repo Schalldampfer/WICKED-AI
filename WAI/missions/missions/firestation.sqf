@@ -36,10 +36,11 @@ local _posIndex = count DZE_MissionPositions - 1;
 [_difficulty,(_messages select 0)] call WAI_Message;
 
 // Wait until a player is within range or timeout is reached.
-local _playerNear = false;
 local _timeout = false;
-while {!_playerNear && !_timeout} do {
-	_playerNear = [_position,WAI_TimeoutDist] call isNearPlayer;
+local _claimPlayer = objNull;
+
+while {WAI_WaitForPlayer && !_timeout && {isNull _claimPlayer}} do {
+	_claimPlayer = [_position, WAI_TimeoutDist] call isClosestPlayer;
 	
 	if (diag_tickTime - _startTime >= (WAI_Timeout * 60)) then {
 		_timeout = true;
@@ -107,6 +108,7 @@ local _vehicle = [WAI_ArmedVeh ,[(_position select 0) -9.5, (_position select 1)
 	_aiType, // "Bandit" or "Hero"
 	_markerIndex,
 	_posIndex,
+	_claimPlayer,
 	true, // show mission marker?
 	true, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],

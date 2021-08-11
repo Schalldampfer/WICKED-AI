@@ -72,6 +72,7 @@ WAI_AvoidRoad = 0; // avoid spawning missions this close to roads
 WAI_AvoidWater = 50; // avoid spawning missions this close to water
 WAI_AvoidPlayers = 500; // avoid spawning missions this close to a player
 WAI_AvoidPlots = 100; // avoid spawning missions near player plots
+WAI_WaitForPlayer = true; // Wait until a player is within range of WAI_TimeoutDist to spawn the mission objects and AI. If using auto-claim make sure WAI_TimeoutDist and WAI_AcAlertDistance are the same. This is good for server performance but can be problematic on servers run on low end hardware.																																																																										   
 
 WAI_Timer = [1,3]; // time (in minutes) between missions. Default: 5-15 minutes
 WAI_Timeout = 30; // time (in minutes) each mission takes to timeout if inactive. Default: 30 minutes.

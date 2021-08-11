@@ -42,7 +42,7 @@ isNearPlayer = {
 	local _radius = _this select 1;
 
 	{
-		if ((isPlayer _x) && (_x distance _position <= _radius)) then {
+		if ((isPlayer _x) && (_x distance _position <= _radius)) exitWith {
 			_result = true;
 		};
 	} count playableUnits;
@@ -92,11 +92,11 @@ isClosestPlayer = {
 	local _closest = objNull;
 	
 	{
-	local _dist = vehicle _x distance _position;
-	if (isPlayer _x && _dist < _scandist) then {
-		_closest = _x;
-		_scandist = _dist;
-	};
+		local _dist = vehicle _x distance _position;
+		if (isPlayer _x && _dist < _scandist) then {
+			_closest = _x;
+			_scandist = _dist;
+		};
 	} count playableUnits;
 	
 	_closest

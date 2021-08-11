@@ -36,10 +36,11 @@ local _posIndex = count DZE_MissionPositions - 1;
 [_difficulty,(_messages select 0)] call WAI_Message;
 
 // Wait until a player is within range or timeout is reached.
-local _playerNear = false;
 local _timeout = false;
-while {!_playerNear && !_timeout} do {
-	_playerNear = [_position,WAI_TimeoutDist] call isNearPlayer;
+local _claimPlayer = objNull;
+
+while {WAI_WaitForPlayer && !_timeout && {isNull _claimPlayer}} do {
+	_claimPlayer = [_position, WAI_TimeoutDist] call isClosestPlayer;
 	
 	if (diag_tickTime - _startTime >= (WAI_Timeout * 60)) then {
 		_timeout = true;
@@ -92,7 +93,7 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 	[(_position select 0) + 0.1, (_position select 1) + 20, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 20, 0]
 ],"M2StaticMG","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
-
+uiSleep 30; // simulate shitty server hardware.
 [
 	_mission, // Mission number
 	_position, // Position of mission
@@ -102,6 +103,7 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 	_aiType, // "Bandit" or "Hero"
 	_markerIndex,
 	_posIndex,
+	_claimPlayer,
 	true, // show mission marker?
 	true, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
