@@ -75,11 +75,11 @@ local _loot = if (_aiType == "Hero") then {Loot_LumberJack select 0;} else {Loot
 ],_position,_mission] call WAI_SpawnObjects;
 
 // Troops
-[[(_position select 0) + 12, (_position select 1) + 22.5, 0],5,"extreme","Random","AT","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 21, (_position select 1) + 11, 0],5,_difficulty,"Random","AA","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 1.12, (_position select 1) - 0.43, 0],5,"random","Random","","LegendBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",ai_apocalyptic_skin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 12, (_position select 1) + 22.5, 0],5,"extreme","Random","AT","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 21, (_position select 1) + 11, 0],5,_difficulty,"Random","AA","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 1.12, (_position select 1) - 0.43, 0],5,"random","Random","","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
 
 [
 	_mission, // Mission number
