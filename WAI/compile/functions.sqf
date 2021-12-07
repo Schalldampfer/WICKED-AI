@@ -184,20 +184,6 @@ WAI_CleanUp = {
 				} else {
 					_cleaned = true;
 				};
-				
-				uiSleep 10; // Need to sleep to let the group count get to zero
-				
-				// Remove AI groups
-				{
-					if (count units _x == 0) then {
-						deleteGroup _x;
-						_groups = _groups - [_x];
-						//diag_log format ["WAI: Group %1 deleted.",_x];
-						if (count _groups > 0) then {
-							diag_log format ["WAI: Group array %1",_groups];
-						};
-					};
-				} count _groups;
 			};
 		};
 	};
