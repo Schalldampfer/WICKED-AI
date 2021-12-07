@@ -226,7 +226,7 @@ while {!_complete} do {
 	
 	// Timeout check
 	_playerNear = [_position,WAI_TimeoutDist] call isNearPlayer;
-	if (diag_tickTime - _starttime >= WAI_Timeout && !_playerNear) then {
+	if (diag_tickTime - _starttime >= (WAI_Timeout * 60) && !_playerNear) then {
 		_complete = true;
 		[_position, _mission, [], _vehicles, [], _unitGroups, [], _posIndex, true] spawn WAI_CleanUp;
 		[_difficulty,_msglose] call WAI_Message;
