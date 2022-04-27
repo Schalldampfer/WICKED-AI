@@ -113,7 +113,7 @@ WAI_BanditLimit = 1; // define how many bandit missions can run at once
 // Mission Arrays
 // [mission name, chance to spawn] Chance to spawn is 0-1. Example - If you only want your mission to have a 25% chance to spawn enter .25
 WAI_HeroMissions = [
-	//["patrol",1],
+	["patrol",1],
 	["black_hawk_crash",1],
 	["armed_vehicle",1],
 	["base",1],
@@ -150,7 +150,7 @@ WAI_HeroMissions = [
 ];
 
 WAI_BanditMissions	= [
-	//["patrol",1],
+	["patrol",1],
 	["black_hawk_crash",1],
 	["armed_vehicle",1],
 	["base",1],
