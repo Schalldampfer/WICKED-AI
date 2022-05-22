@@ -65,10 +65,11 @@ local _posIndex = count DZE_MissionPositions - 1;
 [_difficulty,(_messages select 0)] call WAI_Message;
 
 // Wait until a player is within range or timeout is reached.
-local _playerNear = false;
 local _timeout = false;
-while {!_playerNear && !_timeout} do {
-	_playerNear = [_position,WAI_TimeoutDist] call isNearPlayer;
+local _claimPlayer = objNull;
+
+while {WAI_WaitForPlayer && !_timeout && {isNull _claimPlayer}} do {
+	_claimPlayer = [_position, WAI_TimeoutDist] call isClosestPlayer;
 	
 	if (diag_tickTime - _startTime >= (WAI_Timeout * 60)) then {
 		_timeout = true;
@@ -215,17 +216,18 @@ local _vehicle = [WAI_ArmedVeh ,[(_position select 0) - 20.5, (_position select 
 
 // Array of options to send to WAI_MissionMonitor.
 [
-	_mission, // Mission Variable - This is a number.
+	_mission, // Mission number
 	_position, // Position of mission
-	_difficulty, // Difficulty as defined above
+	_difficulty, // Difficulty
 	_name, // Name of Mission
-	_localName, // localized marker text. Does not have to be localized.
+	_localName, // localized marker text
 	_aiType, // "Bandit" or "Hero"
-	_markerIndex, // index of markers in DZE_ServerMarkerArray
-	_posIndex, // index of position in DZE_MissionPositions
+	_markerIndex,
+	_posIndex,
+	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission?
-	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup], : crate - you have to get within 20 meters of the crate and kill at least the number of ai defined by variable WAI_KillPercent in config.sqf. kill = you have to kill all of the AI. assassinate - you have to kill a special ai (see Mayor's Mansion mission).
+	true, // make minefields available for this mission
+	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;
 

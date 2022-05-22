@@ -93,7 +93,7 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 	[(_position select 0) + 0.1, (_position select 1) + 20, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 20, 0]
 ],"M2StaticMG","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
-uiSleep 30; // simulate shitty server hardware.
+
 [
 	_mission, // Mission number
 	_position, // Position of mission
