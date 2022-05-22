@@ -202,18 +202,18 @@ local _vehicle = [WAI_ArmedVeh ,[(_position select 0) - 20.5, (_position select 
 
 // Array of options to send to WAI_MissionMonitor.
 [
-	_mission, // Mission number
+	_mission, // Mission Variable - This is a number.
 	_position, // Position of mission
-	_difficulty, // Difficulty
+	_difficulty, // Difficulty as defined above
 	_name, // Name of Mission
-	_localName, // localized marker text
+	_localName, // localized marker text. Does not have to be localized.
 	_aiType, // "Bandit" or "Hero"
 	_markerIndex,
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
 	true, // make minefields available for this mission
-	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
+	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup], : crate - you have to get within 20 meters of the crate and kill at least the number of ai defined by variable WAI_KillPercent in config.sqf. kill = you have to kill all of the AI. assassinate - you have to kill a special ai (see Mayor's Mansion mission).
 	_messages
 ] spawn WAI_MissionMonitor;
 
