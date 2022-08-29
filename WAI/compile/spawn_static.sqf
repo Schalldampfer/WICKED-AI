@@ -25,6 +25,7 @@ local _pack = _backpack;
 		} else {
 			if (_skin == "hero") exitWith {WAI_HeroSkin call BIS_fnc_selectRandom;};
 			if (_skin == "bandit") exitWith {WAI_BanditSkin call BIS_fnc_selectRandom;};
+			if (_skin == "random") exitWith {WAI_AllSkin call BIS_fnc_selectRandom;};
 			_skin;
 		};
 	};
