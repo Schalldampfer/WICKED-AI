@@ -90,6 +90,9 @@ if (WAI_DebugMode) then {
 
 _helicopter flyInHeight _flyinheight;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setDamage 1;}];
+_helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+_helicopter addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
+[_helicopter,_heliClass] call WAI_LoadAmmo;
 
 _pilot assignAsDriver _helicopter;
 _pilot moveInDriver _helicopter;
@@ -291,9 +294,11 @@ while {(alive _helicopter) && _drop} do {
 			} count _aicskill;
 			
 			_para addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+			_para addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 			local _chute = createVehicle ["ParachuteWest", _heliPos, [], 0, "NONE"];
 			_para moveInDriver _chute;
 			[_para] joinSilent _pgroup;
+			[objNull, _chute, rSAY, "BIS_Steerable_Parachute_Opening"] call RE;
 			
 			// Adjusting this number changes the spread of the AI para drops
 			uiSleep _timebtwdrops;
@@ -361,6 +366,7 @@ if (_helipatrol) then {
 	
 	{
 		_x addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+		_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 	} forEach (units _unitgroup);
 } else {
 	{

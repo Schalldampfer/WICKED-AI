@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -73,9 +73,9 @@ local _loot = if (_aiType == "Hero") then {Loot_CapturedMV22 select 0;} else {Lo
 //Troops
 [[_position select 0,_position select 1,0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 33,(_position select 1) - 7,0.1],5,_difficulty,"Random","AA","Random","RU_Doctor","Random",[_aiType,100],_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 33,(_position select 1) - 18,0.1],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 
  
@@ -87,6 +87,7 @@ local _loot = if (_aiType == "Hero") then {Loot_CapturedMV22 select 0;} else {Lo
 
 //Spawn vehicles
 ["MV22_DZ",[(_position select 0) - 20.5,(_position select 1) - 5.2,0], _mission,true,-82.5] call WAI_PublishVeh;
+[WAI_MilUnarmed,[(_position select 0) - 0,(_position select 1) - 0,0], _mission] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

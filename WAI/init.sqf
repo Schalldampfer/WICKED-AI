@@ -8,11 +8,19 @@ WAI_VehPatrol = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\com
 WAI_Onkill = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\on_kill.sqf";
 WAI_DynCrate = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\dynamic_crate.sqf";
 WAI_FindPos = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\find_position.sqf";
+WAI_FindPosForest = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\find_position_forest.sqf";
 WAI_LoadAmmo = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\load_ammo.sqf";
 WAI_MissionMonitor = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\missionMonitor.sqf";
 WAI_PublishVeh = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\publishVehicle.sqf";
 WAI_SpawnObjects = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\spawnObjects.sqf";
 WAI_Overpoch = isClass (configFile >> "CfgWeapons" >> "USSR_cheytacM200");
+ARTY_LOGIC = createAgent ["BIS_ARTY_Logic",[0,0,0],[],0,"NONE"];
+enableEngineArtillery true;
+WAI_HandleDamage_Unit = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\ai_handledamage_unit.sqf";
+WAI_HandleDamage_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\ai_handledamage_vehicle.sqf";
+WAI_Killed_Vehicle = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\vehicle_kill.sqf";
+WAI_arty_fire = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\arty_fire.sqf";
+WAI_flare_fire = compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\flare_fire.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\position_functions.sqf";
 call compile preprocessFileLineNumbers "\z\addons\dayz_server\WAI\compile\functions.sqf";
 
@@ -25,20 +33,20 @@ if (isNil("DZMSInstalled")) then {
 	WEST setFriend [RESISTANCE,0];
 
 	EAST setFriend [WEST,0];
-	EAST setFriend [RESISTANCE,0];
+	EAST setFriend [RESISTANCE,1];
 	
-	RESISTANCE setFriend [EAST,0];
+	RESISTANCE setFriend [EAST,1];
 	RESISTANCE setFriend [WEST,0];
 
 } else {
 
 	createCenter RESISTANCE;
 	
-	EAST setFriend [RESISTANCE,0];
+	EAST setFriend [RESISTANCE,1];
 	WEST setFriend [RESISTANCE,0];
 	
-	RESISTANCE setFriend [EAST,0];
-	RESISTANCE setFriend [WEST,0];	
+	RESISTANCE setFriend [EAST,1];
+	RESISTANCE setFriend [WEST,0];
 };
 
 WAIconfigloaded = false;

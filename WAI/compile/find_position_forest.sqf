@@ -1,18 +1,14 @@
 local _i = 0;
 local _validspot = false;
 local _position = [];
-local _safepos = [];
 local _color = "";
 
-if (WAI_Blacklist) then {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0,waiBlackList];
-} else {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0];
-};
+local _expression = "forest - (0.25*houses + 0.25*coast + 0.25*sea + 0.25*meadow)";
+local _condition = [getMarkerPos "center", ((getMarkerSize "center") select 1) / 1.4142, _expression, 70, 1];
 
 while {!_validspot} do {
 	_i = _i + 1;
-	_position = if (!WAI_SpawnPoints) then {_safepos call BIS_fnc_findSafePos} else {waiSpawnPoints call BIS_fnc_selectRandom};
+	_position = ((selectBestPlaces _condition) select 0) select 0;
 	_validspot = true;
 	
 	// if the count of the selected position is more than two BIS_fnc_findSafePos failed
@@ -92,11 +88,6 @@ while {!_validspot} do {
 			_marker setMarkerSizeLocal [1.0, 1.0];
 			_marker setMarkerText "fail";
 		};
-	};
-
-	if ((ATLToASL [_position select 0, _position select 1, 0]) select 2 > 200) then {
-		_validspot = false;
-		_color = "ColorBlue";
 	};
 
 	if (_validspot) then {

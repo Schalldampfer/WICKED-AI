@@ -21,7 +21,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -66,7 +66,7 @@ local _loot = if (_aiType == "Hero") then {Loot_Extraction select 0;} else {Loot
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,5,_difficulty,"Random","AA","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","AT","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 5),_difficulty,WAI_Sniper,"","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 5),_difficulty,WAI_Sniper,"","Random",WAI_AcrSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -76,7 +76,7 @@ local _loot = if (_aiType == "Hero") then {Loot_Extraction select 0;} else {Loot
 	[(_position select 0) + 30, (_position select 1) + 30, 0],
 	[(_position select 0) - 30, (_position select 1) - 30, 0],
 	[(_position select 0) - 30, (_position select 1) + 30, 0]
-],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],WAI_ArmedVeh call BIS_fnc_selectRandom,_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Spawn vehicle
 local _vehicle = [_vehclass,_position,_mission] call WAI_PublishVeh;

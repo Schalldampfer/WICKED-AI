@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorYellow", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -74,7 +74,7 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 	["Land_Market_shelter_EP1",[10,-0.4,-0.01],2.32],
 	["Land_transport_crates_EP1",[22,2,-0.01],-43.88],
 	["Fort_Crate_wood",[18,-1,-0.01]],
-	["UralWreck",[27,-3,-0.01],-67.9033],
+	//["UralWreck",[27,-3,-0.01],-67.9033],
 	["Land_Canister_EP1",[18,1.4,-0.01],28.73],
 	["MAP_ground_garbage_square5",[13.6,-2,-0.01]],
 	["MAP_ground_garbage_square5",[-16,-2,-0.01]],
@@ -82,9 +82,12 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 	["MAP_garbage_misc",[-8,-2,-0.01]]
 ],_position,_mission] call WAI_SpawnObjects;
 
+//Spawn vehicles
+local _vehicle = [WAI_CargoTruck,[(_position select 0) +27,(_position select 1) -3, 0],_mission, false, 180 -67.9] call WAI_PublishVeh;
+
 //Troops
 [_position,5,_difficulty,"random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"random","AA","random","Hero","random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"random","","random","Hero","random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 4),_difficulty,"random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 4),_difficulty,"random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -92,7 +95,7 @@ local _loot = if (_aiType == "Hero") then {Loot_AbandonedTrader select 0;} else 
 [[
 	[(_position select 0) + 0.1, (_position select 1) + 20, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 20, 0]
-],"M2StaticMG","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
+],"Random","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number

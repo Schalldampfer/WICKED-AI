@@ -36,7 +36,7 @@ local _markers = [1,1,1,1];
 local _markerIndex = -1;
 if (_enableMarkers) then {
 	_markers set [0,[_position,"WAI" + str(_mission),_markerColor,"",_markerShape,_markerBrush,_markerSize,[],_markerAlpha]];
-	if (_showMarkerText) then {_markers set [1,[_position,"WAI" + str(_mission) + "dot","ColorBlack","mil_dot","","",[],[_name],0]];};
+	if (_showMarkerText) then {_markers set [1,[_position,"WAI" + str(_mission) + "dot","ColorBlack","hd_dot","","",[],[_name],0]];};
 	if (_autoClaim || _borderMarker) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [_triggerDistance,_triggerDistance], [], 0]];};
 	DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers];
 	_markerIndex = count DZE_ServerMarkerArray - 1;

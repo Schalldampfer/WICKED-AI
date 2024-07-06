@@ -15,7 +15,7 @@ local _messages = ["STR_CL_CROPRAIDER_ANNOUNCE","STR_CL_CROPRAIDER_WIN","STR_CL_
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -89,7 +89,7 @@ local _loot = if (_aiType == "Hero") then {Loot_CropRaider select 0;} else {Loot
 //Group Spawning
 [[(_position select 0) + 9, (_position select 1) - 13, 0],5,_difficulty,"Random","AT","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 13, (_position select 1) + 15, 0],5,_difficulty,"Random","AA","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 13, (_position select 1) + 15, 0],5,_difficulty,"Random","","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 13, (_position select 1) + 15, 0],5,_difficulty,"Random","AT","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 13, (_position select 1) + 15, 0],(ceil random 5),_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 [[_position select 0, _position select 1, 0],(ceil random 5),_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -100,10 +100,13 @@ local _loot = if (_aiType == "Hero") then {Loot_CropRaider select 0;} else {Loot
 [[
 	[(_position select 0) - 48, (_position select 1) + 0.1, 0],
 	[(_position select 0) + 2, (_position select 1) + 48, 0]
-],"M2StaticMG",_difficulty,"RU_Policeman_DZ",_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"Random",_difficulty,"RU_Policeman_DZ",_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Heli Paradrop
 [_position,200,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,_difficulty,"Random","","Random",_aiType,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
+
+//Spawn vehicles
+local _vehicle = [WAI_CivilVeh,[(_position select 0) +40,(_position select 1) -3, 0],_mission] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

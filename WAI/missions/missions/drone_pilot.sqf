@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -63,7 +63,7 @@ local _loot = if (_aiType == "Hero") then {Loot_DronePilot select 0;} else {Loot
 
 // Spawn Objects
 [[
-	["MQ9PredatorB",[11,-28]],
+	//["MQ9PredatorB",[11,-28]],
 	["TK_WarfareBUAVterminal_EP1",[-6,-15],-153.81],
 	["Land_budova4_in",[-13,3.5]],
 	["Land_Vysilac_FM",[-10,-7]],
@@ -85,15 +85,18 @@ local _loot = if (_aiType == "Hero") then {Loot_DronePilot select 0;} else {Loot
 // Troops
 [[(_position select 0) + 17, (_position select 1) - 18, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 11, (_position select 1) + 9, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 15, (_position select 1) - 15, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 15, (_position select 1) - 15, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"LandRover_MG_TK_EP1_DZ",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"HMMWV_Avenger_WDL_DZ",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
 
-//Static Guns
-[[[(_position select 0) - 7, (_position select 1) + 19, 0]],"KORD_high_TK_EP1",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+//Drone Patrol
+[[(_position select 0) - 7, (_position select 1) + 19, 0],300,4,"Ka137_MG_PMC",_difficulty,"Nac_Soldier_DZ",_aitype,_mission] call WAI_HeliPatrol;
+
+//Spawn vehicles
+local _vehicle = [["Ka137_PMC","Ka137_MG_PMC","Pchela1T","Pchela1T_CDF","Pchela1T_Old","AH6X_DZ"] call BIS_fnc_selectRandom,[(_position select 0) +11,(_position select 1) -28, 0],_mission, false, 180] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

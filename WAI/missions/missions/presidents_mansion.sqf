@@ -15,7 +15,7 @@ local _messages = ["STR_CL_PRESIDENT_ANNOUNCE","STR_CL_PRESIDENT_WIN","STR_CL_PR
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorBlack", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -65,10 +65,10 @@ local _objects = [[
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 5),_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 5),_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //The President and First Lady
 local _office = _objects select 0;

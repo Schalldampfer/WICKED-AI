@@ -28,11 +28,6 @@ local _destructables = [
 	"Supply_Crate_DZE"
 ];
 
-// Mission objects that need to be locked so players can't access them.
-local _locked = [
-	"MQ9PredatorB"
-];
-
 {
 	local _type = _x select 0;
 	local _offset = _x select 1;
@@ -44,9 +39,10 @@ local _locked = [
 	
 	_object = _type createVehicle [0,0,0];
 	
-	if (_type in _locked) then {
+	if (_object isKindOf "AllVehicles") then {
 		_object setVehicleLock "LOCKED";
 		_object setVariable ["CharacterID", "-1", true]; // Don't allow players to claim the vehicle.
+		dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_object];
 	};
 	
 	if (count _x > 2) then {

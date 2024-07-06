@@ -15,7 +15,7 @@ local _messages = ["STR_CL_GEMTOWER_ANNOUNCE","STR_CL_GEMTOWER_WIN","STR_CL_GEMT
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -70,9 +70,9 @@ local _loot = if (_aiType == "Hero") then {Loot_GemTower select 0;} else {Loot_G
 //Troops
 [[(_position select 0) + 29, (_position select 1) - 21, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 21, (_position select 1) + 19, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 23, (_position select 1) - 19, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 23, (_position select 1) - 19, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Humvee Patrol
 [[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
@@ -81,7 +81,7 @@ local _loot = if (_aiType == "Hero") then {Loot_GemTower select 0;} else {Loot_G
 [[
 	[(_position select 0) - 1, (_position select 1) + 39, 0],
 	[(_position select 0) + 33, (_position select 1) - 21, 0]
-],"KORD_high_TK_EP1","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"ZU23_Ins","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number

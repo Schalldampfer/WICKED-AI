@@ -15,7 +15,7 @@ local _messages = ["STR_CL_FARM_ANNOUNCE","STR_CL_FARM_WIN","STR_CL_FARM_FAIL"];
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -64,7 +64,7 @@ local _loot = if (_aiType == "Hero") then {Loot_MacDonald select 0;} else {Loot_
 	["MAP_t_quercus3s",[32.4,-32,-0.14]],
 	["MAP_t_quercus2f",[14,-3,-0.14]],
 	["MAP_t_pinusN2s",[-12,5,-0.14]],
-	["datsun01Wreck",[-10,-1,-0.02]],
+	//["datsun01Wreck",[-10,-1,-0.02]],
 	["Haystack",[-1,-32,-0.02]],
 	["Haystack_small",[-25,-36,-0.16]],
 	["Haystack_small",[33,-43,-0.02]],
@@ -79,7 +79,7 @@ local _loot = if (_aiType == "Hero") then {Loot_MacDonald select 0;} else {Loot_
 //Troops
 [[(_position select 0) - 1, (_position select 1) - 10, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 2, (_position select 1) - 50, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 1, (_position select 1) + 11, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 1, (_position select 1) + 11, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 1, (_position select 1) + 11, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 1, (_position select 1) + 11, 0],(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -88,6 +88,9 @@ local _loot = if (_aiType == "Hero") then {Loot_MacDonald select 0;} else {Loot_
  
 //Static Guns
 [[[(_position select 0) - 12, (_position select 1) - 18, 0]],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+
+//Spawn vehicles
+local _vehicle = [WAI_CivilVeh,[(_position select 0) -10,(_position select 1) -1, 0],_mission] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

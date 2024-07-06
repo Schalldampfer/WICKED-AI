@@ -38,7 +38,8 @@ local _pack = _backpack;
 	removeAllItems _unit;
 	
 	local _static = _class createVehicle _x;
-	
+	[_static,_class] call WAI_LoadAmmo;
+
 	if (surfaceIsWater _x) then {
 		_static setPosASL _x;
 	} else {
@@ -166,8 +167,15 @@ local _pack = _backpack;
 		} count _aicskill;
 	};
 	
-	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
-	
+	if (_aiskin == "InvisibleManE_EP1") then {
+		_unit allowDamage false;
+	} else {
+		_unit addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
+		_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+	};
+	_static addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
+	_static addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+
 	_static addEventHandler ["GetOut",{
 		_unit = _this select 2;
 		_static = _this select 0;
@@ -176,10 +184,11 @@ local _pack = _backpack;
 		
 	dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_static];
 		
-	if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
+	if (_skill in ["hard","extreme"] && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
 		_unit addWeapon "NVGoggles";
 	};
 	
+	_unit setunitpos "UP";
 	_unit assignAsGunner _static;
 	_unit moveInGunner _static;
 	_unit setVariable ["noKey",true];
@@ -189,7 +198,21 @@ local _pack = _backpack;
 	_static setVariable ["mission" + dayz_serverKey, _mission, false];
 	_unit setVariable ["mission" + dayz_serverKey, _mission, false];
 
+	_static addEventHandler ["GetIn", {
+		local _vehicle = _this select 0;
+		local _unit = _this select 2;
+		if (isPlayer _unit) then {
+			diag_log format["WAI: %1 tried to get in an AI vehicle %2", name _unit, typeOf _vehicle];
+			(_unit) action ["Eject",_vehicle];
+			_vehicle setDamage 1;
+		};
+	}];
+
 } forEach _position;
+
+if(_class isKindOf "StaticMortar" || _class isKindOf "StaticCannon") then {
+	_unitGroup spawn WAI_arty_fire;
+};
 
 _unitGroup selectLeader ((units _unitGroup) select 0);
 _unitGroup setVariable ["DoNotFreeze", true];
@@ -203,3 +226,5 @@ if(_hero) then {
 };
 
 if (WAI_DebugMode) then {diag_log format ["WAI: Spawned in %1 %2",(count _position),_class];};
+
+_unitGroup

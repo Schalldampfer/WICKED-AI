@@ -76,6 +76,19 @@ for "_x" from 1 to _unitnumber do {
 			_weapon = _gun;
 		};
 	};
+	
+	call {
+		if (typeName _backpack == "ARRAY") then {
+			_pack = _backpack call BIS_fnc_selectRandom;
+		} else {
+			if (_backpack == "random") exitWith {_pack = WAI_PacksAll call BIS_fnc_selectRandom;};
+			if (_backpack == "none") exitWith {_pack = "";};
+		};
+	};
+	
+	if (_pack != "") then {
+		_unit addBackpack _pack;
+	};
 
 	if (!_unarmed) then {
 		if (typeName _weapon == "ARRAY") then {
@@ -120,16 +133,27 @@ for "_x" from 1 to _unitnumber do {
 		};
 		
 		if (count _aigear > 0) then {
+			local _addItems = [];
 			for "_i" from 1 to (_aigear select 0) do {
-				_unit addMagazine (WAI_Food call BIS_fnc_selectRandom);
+				_addItems set [count _addItems, WAI_Food call BIS_fnc_selectRandom];
 			};
 			
 			for "_i" from 1 to (_aigear select 1) do {
-				_unit addMagazine (WAI_Drink call BIS_fnc_selectRandom);
+				_addItems set [count _addItems, WAI_Drink call BIS_fnc_selectRandom];
 			};
 			
 			for "_i" from 1 to (_aigear select 2) do {
-				_unit addMagazine (WAI_Medical call BIS_fnc_selectRandom);
+				_addItems set [count _addItems, WAI_Medical call BIS_fnc_selectRandom];
+			};
+			if (_pack != "") then {
+				local _bckpck = unitBackpack _unit;
+				{
+					_bckpck addMagazineCargoGlobal [_x, 1];
+				} count _addItems;
+			} else {
+				{
+					_unit addMagazine _x;
+				} count _addItems;
 			};
 			
 			local _tools = []; // tools cannot be duplicated in inventory so we add them to a temp array when selected
@@ -137,10 +161,20 @@ for "_x" from 1 to _unitnumber do {
 			while {_i < (_aigear select 3)} do {
 				local _tool = WAI_ToolsAll call BIS_fnc_selectRandom;
 				if !(_tool in _tools) then {
-					_unit addWeapon _tool;
+					//_unit addWeapon _tool;
 					_tools set [count _tools, _tool];
 					_i = _i + 1;
 				};
+			};
+			if (_pack != "") then {
+				local _bckpck = unitBackpack _unit;
+				{
+					_bckpck addWeaponCargoGlobal [_x, 1];
+				} count _tools;
+			} else {
+				{
+					_unit addWeapon _x;
+				} count _tools;
 			};
 			
 			if (random 1 <= (_aigear select 4)) then {
@@ -161,21 +195,8 @@ for "_x" from 1 to _unitnumber do {
 	if (_bandit) then {_unit setVariable ["Bandit",true,false]; _unit setVariable ["humanity", WAI_AddHumanity];};
 
 	if (!isNil "_gain") then {_unit setVariable ["humanity", _gain];};
-	
-	call {
-		if (typeName _backpack == "ARRAY") then {
-			_pack = _backpack call BIS_fnc_selectRandom;
-		} else {
-			if (_backpack == "random") exitWith {_pack = WAI_PacksAll call BIS_fnc_selectRandom;};
-			if (_backpack == "none") exitWith {_pack = "";};
-		};
-	};
-	
-	if (_pack != "") then {
-		_unit addBackpack _pack;
-	};
 
-	if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
+	if (_skill in ["hard","extreme"] && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
 		_unit addWeapon "NVGoggles";
 	};
 	
@@ -192,6 +213,7 @@ for "_x" from 1 to _unitnumber do {
 	} count _aicskill;
 
 	_unit addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+	_unit addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 
 	if (!_unarmed) then { // Don't count the AI if they are unarmed.
 		WAI_MissionData select _mission set [0, (((WAI_MissionData select _mission) select 0) + 1)];
@@ -212,8 +234,11 @@ if (_launcher != "" && WAI_UseLaunchers) then {
 	_unit addWeapon _launcher;
 };
 
+_unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);
 _unitGroup selectLeader ((units _unitGroup) select 0);
 _unitGroup allowFleeing 0;
+_unitGroup enableGunLights true;
+_unitGroup enableIRLasers true;
 
 if (_hero) then {
 	_unitGroup setCombatMode WAI_HeroCombatmode;
@@ -224,9 +249,14 @@ if (_hero) then {
 };
 
 if !(_skill == "Patrol") then { // the patrol mission sets its own waypoints.
-	_unitGroup setFormation "ECH LEFT";
-	[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call WAI_SetWaypoints;
+	if(_pos_z < 0.26) then {
+		[_unitGroup,[_pos_x,_pos_y,_pos_z],_skill] call WAI_SetWaypoints;
+	} else {
+		{doStop _x;_x setUnitPos "UP";} forEach units _unitGroup;
+	};
 };
+
+if ((_skill in ["extreme","hard","random"]) && (_gun in ["random"])) then {_unitGroup spawn WAI_flare_fire;};
 
 
 if(WAI_DebugMode) then {diag_log format ["WAI: Spawned a group of %1 AI (%3) at %2",_unitnumber,_position,_aitype];};

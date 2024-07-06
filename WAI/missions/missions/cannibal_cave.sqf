@@ -15,7 +15,7 @@ local _messages = ["STR_CL_CANNIBALCAVE_ANNOUNCE","STR_CL_CANNIBALCAVE_WIN","STR
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -80,14 +80,17 @@ local _loot = if (_aiType == "Hero") then {Loot_CannibalCave select 0;} else {Lo
 	["MAP_R2_Rock1",[-47,-45,-14.29]],
 	["Land_Campfire_burning",[-0.01,-0.01]],
 	["Mass_grave",[-6,-7,-0.02],-50.94],
-	["SKODAWreck",[-11,-46],151.15],
+	//["SKODAWreck",[-11,-46],151.15],
 	["datsun01Wreck",[-2,-60],34.54],
 	["UralWreck",[-41.3,-26],19.15]
 ],_position,_mission] call WAI_SpawnObjects;
 
+//Spawn vehicles
+local _vehicle = [WAI_CivilVeh,[(_position select 0) -11,(_position select 1) -46, 0],_mission, false, 180 -151.15] call WAI_PublishVeh;
+
 [[(_position select 0) + 12, (_position select 1) + 42.5, .01],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 11, (_position select 1) + 41, .01],5,_difficulty,"Random","AA","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 12, (_position select 1) - 43, .01],5,_difficulty,"Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 12, (_position select 1) - 43, .01],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 13, (_position select 1) - 43, .01],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 20, (_position select 1) - 43, .01],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 

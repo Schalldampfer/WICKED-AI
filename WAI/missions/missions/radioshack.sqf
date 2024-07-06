@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -65,7 +65,7 @@ local _loot = if (_aiType == "Hero") then {Loot_Radioshack select 0;} else {Loot
 [[
 	["Land_cihlovej_dum_in",[-3,-1]],
 	["Land_Com_tower_ep1",[5,-2]],
-	["LADAWreck",[-7.5,-3]],
+	//["LADAWreck",[-7.5,-3]],
 	["FoldTable",[-1.2,-4]],
 	["FoldChair",[-1,-3]],
 	["SmallTV",[-1.7,-4,0.82]],
@@ -83,9 +83,12 @@ local _loot = if (_aiType == "Hero") then {Loot_Radioshack select 0;} else {Loot
 // Troops
 [[(_position select 0) - 1.2, (_position select 1)  - 20, 0],5,_difficulty,"Random","AT","random",_aiType,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 4, (_position select 1) + 16, 0],5,_difficulty,"Random","AA","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 17, (_position select 1) - 4, 0],5,_difficulty,"Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 17, (_position select 1) - 4, 0],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 14, (_position select 1) - 3, 0],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 14, (_position select 1) - 3, 0],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+
+//Spawn vehicles
+local _vehicle = [WAI_CivilVeh,[(_position select 0) -7.5,(_position select 1) -3, 0],_mission, false, 180] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

@@ -16,6 +16,12 @@ WAI_FindAmmo = {
 
 	if (count _array > 0) then {
 		_result = _array select 0;
+		call {
+			if (_result == "20Rnd_556x45_Stanag") exitWith { _result = "30Rnd_556x45_Stanag"; };
+			if (_result == "8Rnd_B_Saiga12_74Slug") exitWith { _result = "8Rnd_B_Saiga12_Pellets"; };
+			if (_result == "8Rnd_12Gauge_Slug") exitWith { _result = "8Rnd_12Gauge_Buck"; };
+			if (_result == "PG7V") exitWith { _result = "PG7VL"; };
+		};
 	};
 	if (_result == "") then {
 		diag_log format["WAI: Cannot find magazine for weapon - %1.", _weapon];
@@ -220,7 +226,7 @@ WAI_GenerateVehKey = {
 		_vehicle setVehicleLock "unlocked";
 	};
 	if (WAI_VehKeys == "KeyinCrate") exitWith {
-		local _crate = (_crates select 0) select 0;
+		local _crate = (_crates call BIS_fnc_selectRandom) select 0;
 		_crate addWeaponCargoGlobal [_keySelected, 1];
 	};			
 	if (WAI_VehKeys == "KeyonAI") exitWith {
@@ -367,6 +373,33 @@ WAI_UnFreeze = {
 	} count _this;
 };
 
+WAI_kill_ai = {
+	private ["_veh"];
+	{
+		if (_x getVariable ["mission" + dayz_serverKey, nil] == _this) then {
+			_veh = vehicle _x;
+			if (_veh != _x) then {
+				_veh removeAllEventHandlers "GetOut";
+				_x action ["eject", _veh];
+				sleep 0.1;
+				_veh setDamage 2;
+			};
+			if (alive _x) then {
+				_x playmove (["ActsPercMstpSnonWpstDnon_suicide1B","ActsPercMstpSnonWpstDnon_suicide2B"] call BIS_fnc_selectRandom);
+				sleep 8;
+				_x fire (currentWeapon _x);
+				sleep 0.1;
+				_x setDamage 1;
+				sleep 0.1;
+				_x setVariable ["deathType", "suicide", true];
+				removeAllWeapons _x;
+				removeAllItems _x;
+				_x setVariable ["cashMoney", 0, true];
+			};
+		};
+	} count allUnits;
+};
+
 WAI_AbortMission = {
 	local _mission = _this select 0;
 	local _aiType = _this select 1;
@@ -395,4 +428,53 @@ WAI_AbortMission = {
 	DZE_ServerMarkerArray set [_markerIndex, -1];
 	DZE_MissionPositions set [_posIndex, -1];
 };
- 
+
+WAI_str_initUpper = {
+	private "_strA";
+	_strA = toArray(toLower(_this));
+	_strA set [0, (_strA select 0) - 32];
+	toString(_strA)
+};
+
+WAI_spawn_trees = { // Spawn trees around mission
+	local _position = _this select 0;
+	local _difficulty = _this select 1;
+	local _objects = [];
+
+	local _num = switch (toLower _difficulty) do {
+		case "easy": {50 + round(random 30)};
+		case "medium": {50 + round(random 100)};
+		case "hard": {100 + round(random 50)};
+		case "extreme": {100 + round(random 100)};
+		default {50 + round(random 100)};
+	};
+
+	//select 3 tree types
+	local _trees = [
+		"MAP_t_picea1s","MAP_t_picea2s","MAP_t_picea3f","MAP_t_pinusN1s","MAP_t_pinusN2s","MAP_t_pinusS2f","MAP_t_populus3s",
+		"MAP_t_betula1f","MAP_t_betula2s","MAP_t_betula2w","MAP_t_betula2f","MAP_t_fagus2f","MAP_t_fagus2s","MAP_t_fagus2W","MAP_t_malus1s",
+		"MAP_t_sorbus2s","MAP_t_quercus2f","MAP_t_quercus3s","MAP_t_pyrus2s","MAP_t_acer2s","MAP_t_fraxinus2W","MAP_t_fraxinus2s",
+		"MAP_t_salix2s","MAP_t_alnus2s","MAP_t_carpinus2s","MAP_t_larix3f","MAP_t_larix3s","MAP_t_populus3s"
+	];
+	local _types = [_trees call BIS_fnc_selectRandom,_trees call BIS_fnc_selectRandom,_trees call BIS_fnc_selectRandom];
+
+	for "_x" from 1 to _num do {
+		//find good position
+		local _pos = [_position,25 + _num * 1.0,50 + _num * 2.0,5 + (random 5),1,2000,0] call BIS_fnc_findSafePos;
+		if ((!isOnRoad _pos) && (!surfaceIsWater _pos) && (count _pos < 3)) then {
+			//select tree type
+			local _type = _types call BIS_fnc_selectRandom;
+			
+			//spawn
+			local _object = _type createVehicle _pos;
+			_object setDir (random 180);
+			_object setVectorUp surfaceNormal _pos;
+			_object enableSimulation false;
+			//_object addEventHandler ["Killed",{_this spawn enableSimulationTrue}];
+			
+			_objects set [count _objects, _object];
+		};
+	};
+
+	_objects
+};

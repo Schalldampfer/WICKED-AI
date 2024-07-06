@@ -27,7 +27,7 @@ local _messages = ["STR_CL_GRAYSKULL_ANNOUNCE","STR_CL_GRAYSKULL_WIN","STR_CL_GR
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorBlack", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -122,7 +122,7 @@ local _loot4 = [Loot_GraySkull4 select 1, Loot_GraySkull4 select 0] select _hero
 // External Troops
 [[(_position select 0) + 37, (_position select 1) + 15, 0],5,_difficulty,"Random","AA","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 15, (_position select 1) + 60, 0],5,_difficulty,"Random","AT","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 30, (_position select 1) + 45, 0],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 30, (_position select 1) + 45, 0],5,_difficulty,"Random","AA","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) - 66, (_position select 1) + 15, 0],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) - 43, (_position select 1) - 26, 0],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) + 10, (_position select 1) - 77, 0],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
@@ -131,14 +131,14 @@ local _loot4 = [Loot_GraySkull4 select 1, Loot_GraySkull4 select 0] select _hero
 // Internal Troops - these use "SENTRY" waypoint type
 [[(_position select 0) - 10, (_position select 1) - 29, .25],5,_difficulty,"Random","AT","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 22, (_position select 1) - 11, .25],5,_difficulty,"Random","AA","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 1, (_position select 1) + 39, .25],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 1, (_position select 1) + 39, .25],5,_difficulty,"Random","AT","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) - 16, (_position select 1) + 25, .25],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) - 17, (_position select 1) + 3, .25],5,_difficulty,"Random","","Random",WAI_ApocalypticSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
 [[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"BAF_Jackal2_L2A1_D_DZ","Random",_aiType,_aiType,_mission] call WAI_VehPatrol;
 
-[WAI_UnarmedTrackedVeh,[(_position select 0) - 9.7, (_position select 1) - 8],_mission, true, -209] call WAI_PublishVeh;
+[WAI_APC,[(_position select 0) - 9.7, (_position select 1) - 8],_mission, true, -209] call WAI_PublishVeh;
 
 //Static guns
 [[

@@ -18,6 +18,7 @@ if (_pos_z > 0) exitWith {
 };
 */
 
+if (isNil "_pos_z") then {_pos_z = 0;};
 if (_pos_z > 0) exitWith {
 	_wp = _unitGroup addWaypoint [_position,0];
 	//_wp setWaypointType "HOLD";

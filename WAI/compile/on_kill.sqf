@@ -8,6 +8,7 @@ if (typeName (WAI_MissionData select _mission) == "ARRAY") then {
 };
 
 _unit setVariable ["bodyName","NPC",false]; // Corpse will be deleted by sched_corpses function according to DZE_NPC_CleanUp_Time
+_unit setVariable ["deathType", "shot", true];
 
 if (WAI_HasMoney && Z_singleCurrency) then {
 	_unit setVariable ["cashMoney", (round (random WAI_MoneyMultiplier) * 50) , true];
@@ -27,12 +28,19 @@ if (isPlayer _player) then {
 	
 	if (WAI_KillFeed && WAI_HumanityGain) then {
 		local _aitype = ["Bandit","Hero"] select (_unit getVariable ["Hero", false]);
-		local _humanityReward = [format["+%1 Humanity",WAI_AddHumanity],format["-%1 Humanity",WAI_RemoveHumanity]] select (_aitype == "Hero");
+		local _humanityReward = format["+%1 Humanity",[WAI_AddHumanity,-WAI_RemoveHumanity] select (_aitype == "Hero")];
 		local _aiColor = ["#ff0000","#3333ff"] select (_aitype == "Hero");
 		local _params = [_aiColor,"0.50","#FFFFFF",-.4,.2,2,0.5];
 		
 		RemoteMessage = ["ai_killfeed", [_aitype," AI Kill",_humanityReward],_params];
 		(owner _player) publicVariableClient "RemoteMessage";
+	};
+
+	if (WAI_KillFeed) then {
+		local _name = _unit getVariable ["bodyName","unknown"];
+		local _pname = if (alive _player) then {name _player} else {_player getVariable ["bodyName","unknown"]};
+		local _weap = if ((vehicle _player) == (effectiveCommander _player)) then {currentWeapon _player} else {typeOf (vehicle _player)};
+		["0",0,_unit,"0",toArray _name,false,toArray _pname,_weap,round(_player distance _unit),"shot",getPlayerUID _player] spawn server_playerDied;
 	};
 
 	if (WAI_HumanityGain) then {
@@ -63,6 +71,13 @@ if (isPlayer _player) then {
 				_x reveal [_player, 4.0];
 			};
 		} count allUnits;
+		//change wp to killer position
+		local _grp = group _unit;
+		if ((getPosATL _unit) select 2 < 0.25 && _mission != -1) then {
+			local _wp = [_grp,currentWaypoint _grp];
+			_wp setWaypointPosition [position _player, 200];
+			[_grp,currentWaypoint _grp + 1] setWaypointPosition [position _unit, 50];
+		};
 	};
 } else {
 	if (WAI_CleanRoadKill) then {
@@ -91,3 +106,13 @@ if (WAI_RemoveLauncher && {_launcher != ""}) then {
 if (_unit hasWeapon "NVGoggles" && {floor(random 100) < 20}) then {
 	_unit removeWeapon "NVGoggles";
 };
+
+local _leader = leader group _unit;
+if (alive _leader && (_unit distance _player) > 300 && (_leader getVariable ["smokeTime",0]) < (diag_tickTime - 30)) then {
+	_leader doWatch _player;
+	_leader setVariable ["smokeTime",diag_tickTime,false];
+	_leader addMagazine "SmokeShell";
+	_leader fire ["SmokeShellMuzzle","SmokeShellMuzzle","SmokeShell"];
+};
+
+_unit removeAllEventHandlers "HandleDamage";

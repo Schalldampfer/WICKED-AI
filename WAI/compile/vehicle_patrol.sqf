@@ -35,11 +35,15 @@ local _driver = _unitGroup createUnit [_aiskin, [0,0,0], [], 1, "NONE"];
 local _vehicle = createVehicle [_vehClass, [(_startingpos select 0),(_startingpos select 1), 0], [], 0, "CAN_COLLIDE"];
 _vehicle setFuel 1;
 _vehicle engineOn true;
-_vehicle setVehicleAmmo 1;
+[_vehicle,_vehClass] call WAI_LoadAmmo;
 _vehicle allowCrewInImmobile true; 
 _vehicle lock true;
+_vehicle limitSpeed 30;
 local _turrets = _vehClass call WAI_GetTurrets;
 
+_vehicle addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
+_vehicle addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+_vehicle addEventHandler ["IncomingMissile", {(_this select 0) fire "SmokeLauncher"; effectiveCommander (_this select 0) fire "SmokeLauncher";}];
 _vehicle addEventHandler ["GetOut",{
 	local _veh = _this select 0;
 	local _role = _this select 1;
@@ -81,7 +85,11 @@ if (count _turrets > 1) then {
 	_x addWeapon "Makarov_DZ";
 	_x addMagazine "8Rnd_9x18_Makarov";
 	_x addMagazine "8Rnd_9x18_Makarov";
+	if (_skill in ["hard","extreme"]) then {
+		_x addweapon "NVGoggles";
+	};
 	_x addEventHandler ["Killed",{[_this select 0, _this select 1, "vehicle"] call WAI_Onkill;}];
+	_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 	if (_hero) then {_x setVariable ["Hero",true,false]; _x setVariable ["humanity", WAI_RemoveHumanity];};
 	if (_bandit) then {_x setVariable ["Bandit",true,false]; _x setVariable ["humanity", WAI_AddHumanity];};
 	WAI_MissionData select _mission set [0, (((WAI_MissionData select _mission) select 0) + 1)];

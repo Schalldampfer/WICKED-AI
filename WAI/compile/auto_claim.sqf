@@ -1,6 +1,7 @@
 			if (!_claimed) then {
 				// Find the closest player and send an alert
 				if (isNull _closestPlayer) then {
+					if (isNil "_claimPlayer") then {_claimPlayer = objNull;};
 					if (!isNull _claimPlayer && {alive _claimPlayer} && {_claimPlayer distance _position <= WAI_AcAlertDistance}) then {
 						_closestPlayer = _claimPlayer;
 						_claimPlayer = objNull;
@@ -24,10 +25,11 @@
 						[_closestPlayer,_name,"Claimed"] call WAI_AutoClaimAlert; // Send alert to all players
 						diag_log text format ["WAI Auto Claim: mission %1 has been claimed by %2",_name,(name _closestPlayer)];
 						_acArray = [getplayerUID _closestPlayer, name _closestPlayer]; // Add player UID and name to array
-						_markers set [3, [[(_position select 0) + 100, (_position select 1) + 100],_autoMarkDot,"ColorBlack","mil_objective","","",[],["STR_CL_CLAIM_MARKER",(name _closestPlayer)],0]];
+						_markers set [3, [[(_position select 0) + 100, (_position select 1) + 100],_autoMarkDot,"ColorBlue","hd_flag","","",[],["STR_CL_CLAIM_MARKER",(name _closestPlayer)],0]];
 						DZE_ServerMarkerArray set [_markerIndex, _markers];
 						PVDZ_ServerMarkerSend = ["createSingle",(_markers select 3)];
 						publicVariable "PVDZ_ServerMarkerSend";
+						[nil,nearestObject [_position, "All"],rSAY,"IncomingChallenge",1600] call RE;//call alarm
 					};
 				};
 			};

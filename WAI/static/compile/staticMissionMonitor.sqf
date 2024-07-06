@@ -32,7 +32,7 @@ local _markers = DZE_ServerMarkerArray select _markerIndex;
 local _aiCount = (WAI_MissionData select _mission) select 0;
 local _crates = (WAI_MissionData select _mission) select 2;
 local _aiVehicles = (WAI_MissionData select _mission) select 3;
-//local _vehicles = (WAI_MissionData select _mission) select 4;
+local _vehicles = (WAI_MissionData select _mission) select 4;
 local _closestPlayer = objNull;
 local _acArray = [];
 local _claimed = false;
@@ -138,6 +138,14 @@ while {_running} do {
 			(_markers select 1) set [7, [_name + ": Clear"]];
 			DZE_ServerMarkerArray set [_markerIndex, _markers];
 		};
+	};
+	
+	if (_clear) then {
+		{
+			[_x,_mission,_crates] call WAI_GenerateVehKey;
+		} count _vehicles;
+		
+		[nil,(_crates select 0) select 0,rSAY,"fanfare",1600] call RE;//call fanfare
 	};
 	
 	{

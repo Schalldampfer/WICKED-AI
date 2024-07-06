@@ -20,7 +20,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -77,20 +77,23 @@ local _loot = if (_aiType == "Hero") then {Loot_Base select 0;} else {Loot_Base 
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,5,_difficulty,"Random","AA","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 5),_difficulty,"Random","AA","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 5),_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
 [[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
  
 //Static Guns
 [[
-	[(_position select 0) - 10, (_position select 1) + 10, 0],
-	[(_position select 0) + 10, (_position select 1) - 10, 0],
-	[(_position select 0) + 10, (_position select 1) + 10, 0],
-	[(_position select 0) - 10, (_position select 1) - 10, 0]
+	[(_position select 0) - 40, (_position select 1) +  0, 0],//[(_position select 0) - 10, (_position select 1) + 10, 0],
+	[(_position select 0) + 40, (_position select 1) -  0, 0],//[(_position select 0) + 10, (_position select 1) - 10, 0],
+	[(_position select 0) +  0, (_position select 1) + 40, 0],//[(_position select 0) + 10, (_position select 1) + 10, 0],
+	[(_position select 0) -  0, (_position select 1) - 40, 0] //[(_position select 0) - 10, (_position select 1) - 10, 0]
 ],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+
+//Spawn vehicles
+local _vehicle = [WAI_UnarmedTrackedVeh,[(_position select 0) +10,(_position select 1) -10, 0],_mission, false, 45] call WAI_PublishVeh;
 
 //Heli Paradrop
 [_position,400,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,_difficulty,"Random","","Random",_aiType,"Random",_aiType,true,_mission] spawn WAI_HeliPara;

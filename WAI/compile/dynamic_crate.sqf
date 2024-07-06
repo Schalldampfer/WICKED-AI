@@ -20,15 +20,17 @@ local _packArray = [];
 if !(isNil "_complete") then {
 	if (typeOf _crate in (WAI_CrateLg + WAI_CrateMd + WAI_CrateSm)) then {
 		if (WAI_CrateSmoke && sunOrMoon == 1) then {
-			local _marker = "smokeShellPurple" createVehicle getPosATL _crate;
-			_marker setPosATL (getPosATL _crate);
-			_marker attachTo [_crate,[0,0,0]];
-		};
-		if (WAI_CrateFlare && sunOrMoon != 1) then {
 			local _marker = "RoadFlare" createVehicle getPosATL _crate;
 			_marker setPosATL (getPosATL _crate);
-			_marker attachTo [_crate, [0,0,0]];
+			_marker attachTo [_crate,[0,0,0]];
 			PVDZ_obj_RoadFlare = [_marker,0];
+			publicVariable "PVDZ_obj_RoadFlare";
+		};
+		if (WAI_CrateFlare && sunOrMoon != 1) then {
+			local _marker = "ChemGreen" createVehicle getPosATL _crate;
+			_marker setPosATL (getPosATL _crate);
+			_marker attachTo [_crate, [0,0,0]];
+			PVDZ_obj_RoadFlare = [_marker,1];
 			publicVariable "PVDZ_obj_RoadFlare";
 		};
 	};

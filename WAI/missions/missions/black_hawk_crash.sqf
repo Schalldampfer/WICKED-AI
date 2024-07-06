@@ -15,7 +15,7 @@ local _messages = ["STR_CL_BHCRASH_ANNOUNCE","STR_CL_BHCRASH_WIN","STR_CL_BHCRAS
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorYellow", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -56,14 +56,14 @@ local _loot = if (_aiType == "Hero") then {Loot_BHC select 0;} else {Loot_BHC se
 [[
 	[_loot,WAI_CrateMd,[0,0]]
 ],_position,_mission] call WAI_SpawnCrate;
-
+/*
 local _class = ["UH60_NAVY_Wreck_DZ","UH60_ARMY_Wreck_DZ","UH60_NAVY_Wreck_burned_DZ","UH60_ARMY_Wreck_burned_DZ"] call BIS_fnc_selectRandom;
 
 // Spawn Objects
 local _objects = [[
 	[_class,[5,5]]
 ],_position,_mission] call WAI_SpawnObjects;
-
+*/
 // Burning wreckage effect
 local _crash = _objects select 0;
 PVDZ_obj_Fire = [_crash, 4, time, false, false];
@@ -72,7 +72,7 @@ _crash setvariable ["fadeFire",false,true];
 
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -80,7 +80,10 @@ _crash setvariable ["fadeFire",false,true];
 [[
 	[(_position select 0) + 25, (_position select 1) + 25, 0],
 	[(_position select 0) - 25, (_position select 1) - 25, 0]
-],"M2StaticMG","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"BAF_GPMG_Minitripod_W","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+[[
+	[(_position select 0) + 5, (_position select 1) + 5, 0]
+],"UH60_wreck_EP1","Extreme",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"UH1Wreck"
 
 [
 	_mission, // Mission number

@@ -26,7 +26,7 @@ local _messages = ["STR_CL_WUHAN_ANNOUNCE","STR_CL_WUHAN_WIN","STR_CL_WUHAN_FAIL
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorBlack", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -133,8 +133,8 @@ _doctor disableAI "MOVE";
 
 // External Troops
 [[(_position select 0) - 26.7149, (_position select 1) + 44.2705, 0],5,_difficulty,"Random","AA","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","AT","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","AT","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 //[[(_position select 0) + 34.8667, (_position select 1) + 7.6396, 0],5,_difficulty,"Random","","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Internal Troops - these use "SENTRY" waypoint type
@@ -156,13 +156,13 @@ _doctor disableAI "MOVE";
 	((_objects select 2) modelToWorld [15.1514,-2.4043,-6.13165]),
 	[(_position select 0) - 10.0166, (_position select 1) + 0.2011, 0],
 	((_objects select 2) modelToWorld [19.4072,16.3848,-6.10211])
-],"KORD_high",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"BAF_GPMG_Minitripod_W",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"KORD_high"
 
 // Spawn Vehicles
-local _vehicle = [WAI_APC,[(_position select 0) + 5.4551, (_position select 1) + 5.9316], _mission, true, -30] call WAI_PublishVeh;
+local _vehicle = [WAI_SuperVeh,[(_position select 0) + 5.4551, (_position select 1) + 6], _mission, true, -30] call WAI_PublishVeh; //5.9316
 [_vehicle,(typeOf _vehicle),2] call WAI_LoadAmmo;
 uiSleep 1; // the warehouse needs to be fully spawned in to place the heli on the roof.
-_vehicle = [WAI_ArmedHeli,[(_position select 0) + 2.1392, (_position select 1) - 21.5498, 11.75], _mission, true, -30] call WAI_PublishVeh;
+_vehicle = [WAI_ArmedHeli,[(_position select 0) + 2.1392, (_position select 1) - 21.5498, 12], _mission, true, -30] call WAI_PublishVeh; //11.75
 [_vehicle,(typeOf _vehicle),2] call WAI_LoadAmmo;
 
 [

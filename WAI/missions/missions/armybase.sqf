@@ -16,7 +16,7 @@ local _messages = ["STR_CL_ARMYBASE_ANNOUNCE","STR_CL_ARMYBASE_WIN","STR_CL_ARMY
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorRed", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], _text, 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], _text, 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -79,7 +79,7 @@ local _loot = if (_aiType == "Hero") then {Loot_ArmyBase select 0;} else {Loot_A
 	["WarfareBDepot",[-0.02,20,-0.1],-179.832],
 	["T72Wreck",[29,-30],82.75],
 	["T72WreckTurret",[20,-36]],
-	["MAP_T34",[2,5],-71.49],
+	//["MAP_T34",[2,5],-71.49],
 	["Land_Fort_Watchtower_EP1",[26,-4],-180.097],
 	["Land_Fort_Watchtower_EP1",[-28,-6],0.999],
 	["Land_transport_crates_EP1",[-18,-9],52.43],
@@ -108,9 +108,9 @@ local _loot = if (_aiType == "Hero") then {Loot_ArmyBase select 0;} else {Loot_A
 //Troops
 [[(_position select 0) - 12, (_position select 1) + 2, 0],5,_difficulty,"Random","AT","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 2, (_position select 1) + 2, 0],5,_difficulty,"Random","AA","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 14, (_position select 1) - 35, 0],5,_difficulty,"Random","","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 13, (_position select 1) + 35, 0],(ceil random 5),_difficulty,"Random","","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 13, (_position select 1) + 35, 0],(ceil random 5),_difficulty,"Random","","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 14, (_position select 1) - 35, 0],5,_difficulty,"Random","AT","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 13, (_position select 1) + 35, 0],(ceil random 5),_difficulty,"Random","AA","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 13, (_position select 1) + 35, 0],(ceil random 5),_difficulty,"Random","AT","Random",WAI_GruSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
 [[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
@@ -120,6 +120,9 @@ local _loot = if (_aiType == "Hero") then {Loot_ArmyBase select 0;} else {Loot_A
 	[(_position select 0) - 0.01, (_position select 1) + 41, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 25, 0]
 ],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+
+//Spawn vehicles
+local _vehicle = [WAI_APC,[(_position select 0) +2,(_position select 1) +5, 0],_mission, false, 180 -71.49] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

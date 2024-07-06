@@ -50,6 +50,9 @@ if (WAI_EnableMineField && _enableMines) then {
 	_mines = [_position,50,75,100] call WAI_MineField;
 };
 
+//Spawn Trees
+_objects = _objects + ([_position,_difficulty] call WAI_spawn_trees);
+
 // Add AI counter if enabled.
 if (_showMarker && WAI_ShowCount) then {
 	local _text = if (_hero) then {
@@ -96,8 +99,14 @@ while {!_complete} do {
 				_playerArray set [count _playerArray, _player];
 			};
 			
-			if (vehicle _player != _player && {_player distance _position < 75} && {alive _player} && {(([vehicle _player] call FNC_GetPos) select 2) < 1}) then {
-				"Bo_GBU12_lgb" createVehicle ([vehicle _player] call FNC_GetPos);
+			if (vehicle _player != _player && {_player distance _position < 75} && {alive _player}) then {
+					if ((([vehicle _player] call FNC_GetPos) select 2) < 1) then {
+						_bomb = "R_OG7_AT" createVehicle ([vehicle _player] call FNC_GetPos);
+						uiSleep 3;
+						deleteVehicle _bomb;
+					} else {
+						vehicle _player setDamage 0.95;
+					};
 			};
 		} count playableUnits;
 	};
@@ -171,6 +180,12 @@ while {!_complete} do {
 			[(_x select 0),(_x select 1),_complete] call WAI_DynCrate;
 		} count _crates;
 		
+		{ //Move Remaining AIs toward players
+			if (_x getVariable ["mission" + dayz_serverKey, nil] == _mission) then {
+				_x doMove _position;
+			};
+		} count allUnits;
+		
 		if (({[_x,_name] call fnc_inString;} count WAI_CleanWhenClear) != 0) then {
 			[_position, _mission, _objects, _vehicles, _crates, _unitGroups, _aiVehicles, _posIndex, true] spawn WAI_CleanUp;
 		} else {
@@ -180,6 +195,8 @@ while {!_complete} do {
 		[_difficulty,_msgwin] call WAI_Message;
 		
 		diag_log format["WAI: %1 completed at %2",_name,_position];
+		
+		[nil,(_crates select 0) select 0,rSAY,"fanfare",1600] call RE;//call fanfare
 	};
 	
 	uiSleep 2;

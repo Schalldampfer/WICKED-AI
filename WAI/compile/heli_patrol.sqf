@@ -49,10 +49,12 @@ if (WAI_DebugMode) then {
 };
 _helicopter setFuel 1;
 _helicopter engineOn true;
-_helicopter setVehicleAmmo 1;
+[_helicopter,_heliClass] call WAI_LoadAmmo;
 _helicopter flyInHeight 150;
 _helicopter lock true;
 _helicopter addEventHandler ["GetOut",{(_this select 0) setDamage 1;}];
+_helicopter addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
+_helicopter addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_helicopter];
 
 local _turrets = _heliClass call WAI_GetTurrets;
@@ -93,6 +95,7 @@ if (count _turrets > 1) then {
 	if (_hero) then {_x setVariable ["Hero", true]; _x setVariable ["humanity", WAI_RemoveHumanity];};
 	if (_bandit) then {_x setVariable ["Bandit", true]; _x setVariable ["humanity", WAI_AddHumanity];};
 	_x addEventHandler ["Killed",{[_this select 0, _this select 1] call WAI_Onkill;}];
+	_x addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Unit}];
 } forEach (units _unitgroup);
 
 ((WAI_MissionData select _mission) select 1) set [count ((WAI_MissionData select _mission) select 1), _unitGroup];

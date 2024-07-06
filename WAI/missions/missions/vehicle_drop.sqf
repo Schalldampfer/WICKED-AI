@@ -7,7 +7,7 @@ local _completionType = ["crate"];
 local _color = "ColorYellow";
 
 //Armed Land Vehicle
-local _vehclass = WAI_ArmedVeh call BIS_fnc_selectRandom;
+local _vehclass = (WAI_ArmedVeh + WAI_SPG) call BIS_fnc_selectRandom;
 local _vehname = getText (configFile >> "CfgVehicles" >> _vehclass >> "displayName");
 
 // Plane
@@ -23,7 +23,7 @@ diag_log format["[WAI]: %1 started at %2.",_name,_position];
 
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
@@ -133,7 +133,7 @@ if (WAI_ShowCount) then {
 
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), _color, "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, _dotMarker, "ColorBlack", "mil_dot", "", "", [], _text, 0]];
+_markers set [1, [_position, _dotMarker, "ColorBlack", "hd_dot", "", "", [], _text, 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 local _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -219,7 +219,7 @@ while {!_complete} do {
 	if (_onGround && !_onGroundMarker) then {
 		_onGroundMarker = true;
 		//[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
-		_markers set [4, [_vehPos, "WAI" + str(_mission) + "vehicle", "ColorBlack", "mil_dot", "", "", [], [_vehclass], 0]];
+		_markers set [4, [_vehPos, "WAI" + str(_mission) + "vehicle", "ColorBlack", "hd_dot", "", "", [], [_vehclass], 0]];
 		DZE_ServerMarkerArray set [_markerIndex, _markers];
 		PVDZ_ServerMarkerSend = ["createSingle",(_markers select 4)];
 		publicVariable "PVDZ_ServerMarkerSend";

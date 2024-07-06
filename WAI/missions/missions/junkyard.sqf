@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorYellow", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -67,12 +67,12 @@ local _loot = if (_aiType == "Hero") then {Loot_Junkyard select 0;} else {Loot_J
 	["UralWreck",[-7,-9,-0.04],-49.99],
 	["UralWreck",[23,4,-0.04],201.46],
 	["UralWreck",[-7,23,-0.04],80.879],
-	["HMMWVWreck",[-8,7,-0.04],44.77],
+	//["HMMWVWreck",[-8,7,-0.04],44.77],
 	["BMP2Wreck",[-4,24,-0.02],-89],
 	["T72Wreck",[11,-13,-0.02],27],
-	["UralWreck",[14,10,-0.02],162],
+	//["UralWreck",[14,10,-0.02],162],
 	["T72Wreck",[4,16,-0.02]],
-	["UH60_ARMY_Wreck_DZ",[7,1.3,-0.02],-41],
+	//["UH60_ARMY_Wreck_DZ",[7,1.3,-0.02],-41],
 	["Land_Dirthump01",[9,1,-1.59],25],
 	["Land_Dirthump01",[8,0.2,-1.59],53],
 	["Mi8Wreck",[5,-34,-0.02],94],
@@ -99,9 +99,16 @@ local _loot = if (_aiType == "Hero") then {Loot_Junkyard select 0;} else {Loot_J
 
 //Troops
 [[(_position select 0) - 2, (_position select 1) - 5, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 19, (_position select 1) + 19, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 19, (_position select 1) + 19, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 17, (_position select 1) + 21, 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+
+//Spawn vehicles
+local _vehicle1 = [WAI_SportCars,[(_position select 0) -8,(_position select 1) +7, 0],_mission, false, 180 -44.77] call WAI_PublishVeh;
+local _vehicle2 = [WAI_CargoTruck,[(_position select 0) +14,(_position select 1) +10, 0],_mission, false, 180 -162] call WAI_PublishVeh;
+[[
+	[(_position select 0) + 7, (_position select 1) + 1.3, 0]
+],"UH1Wreck","Extreme",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"UH60_wreck_EP1"
 
 [
 	_mission, // Mission number

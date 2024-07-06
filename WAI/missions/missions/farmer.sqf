@@ -19,7 +19,7 @@ local _messages = if (_aiType == "Hero") then {
 local _markers = [1,1,1,1];
 //[position,createMarker,setMarkerColor,setMarkerType,setMarkerShape,setMarkerBrush,setMarkerSize,setMarkerText,setMarkerAlpha]
 _markers set [0, [_position, "WAI" + str(_mission), "ColorGreen", "", "ELLIPSE", "Solid", [300,300], [], 0]];
-_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "mil_dot", "", "", [], [_localized,_localName], 0]];
+_markers set [1, [_position, "WAI" + str(_mission) + "dot", "ColorBlack", "hd_dot", "", "", [], [_localized,_localName], 0]];
 if (WAI_AutoClaim) then {_markers set [2, [_position, "WAI" + str(_mission) + "auto", "ColorRed", "", "ELLIPSE", "Border", [WAI_AcAlertDistance,WAI_AcAlertDistance], [], 0]];};
 DZE_ServerMarkerArray set [count DZE_ServerMarkerArray, _markers]; // Markers added to global array for JIP player requests.
 _markerIndex = count DZE_ServerMarkerArray - 1;
@@ -77,12 +77,12 @@ local _loot = if (_aiType == "Hero") then {Loot_Farmer select 0;} else {Loot_Far
 ],_position,_mission] call WAI_SpawnObjects;
 
 //Troops
-[[(_position select 0) -17,(_position select 1) +29,0],5,_difficulty,"Random","AT","Random","RU_Villager2","Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) -12,(_position select 1) +20,0],(ceil random 3),_difficulty,"Random","AA","Random","Citizen2_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) -17,(_position select 1) +29,0],5,_difficulty,"Random","","Random","RU_Villager2","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) -12,(_position select 1) +20,0],(ceil random 3),_difficulty,"Random","","Random","Citizen2_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) -17,(_position select 1) +29,0],(ceil random 3),_difficulty,"Random","","Random","RU_Villager2","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Spawn vehicles
-["Tractor_DZE",[(_position select 0) -6.5, (_position select 1) +12.7],_mission,true,46.7] call WAI_PublishVeh;
+[["Tractor_DZE","TractorOld_DZE","Tractor_Armored_DZE"] call BIS_fnc_selectRandom,[(_position select 0) -6.5, (_position select 1) +12.7],_mission,true,46.7] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

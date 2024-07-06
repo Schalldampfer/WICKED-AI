@@ -320,7 +320,7 @@
 	["MAP_R2_RockTower",[13739.7,2863,-28.6652],74.849],
 	["MAP_R2_RockTower",[13683.7,2874.76,-9.24706],294.583],
 	["MAP_R2_Stone",[13698.7,2872.8,-0.00289536],0],
-	
+	["HeliHCivil", [13925.402, 2910.3215, 0], 0], //Helipad for Trader by Schalldampfer
 	// Enclosure made by JasonTM to test WAI_SpawnStaticObjects function with setVectorDirAndUp.
 	["Base_WarfareBBarrier10xTall",[13638.74,3138.256,-0.043],273.151,[[-0.998,0.055,0],[0.003,0.052,0.999]]],
 	["Base_WarfareBBarrier10xTall",[13643.66,3151.909,-0.18],307.007,[[-0.799,0.602,0],[0.032,0.042,0.999]]],
