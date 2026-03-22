@@ -74,8 +74,8 @@ local _loot = if (_aiType == "Hero") then {Loot_CapturedMV22 select 0;} else {Lo
 [[_position select 0,_position select 1,0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 33,(_position select 1) - 7,0.1],5,_difficulty,"Random","AA","Random","RU_Doctor","Random",[_aiType,100],_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 33,(_position select 1) - 18,0.1],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 1,(_position select 1) + 29,0.1],(ceil random 5),_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 1,(_position select 1) + 29,0.1],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 1,(_position select 1) + 29,0.1],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 
  
@@ -83,7 +83,7 @@ local _loot = if (_aiType == "Hero") then {Loot_CapturedMV22 select 0;} else {Lo
 [[
 	[(_position select 0) - 9.3, (_position select 1) + 11.2, 0],
 	[(_position select 0) - 6, (_position select 1) - 21.4, 0]
-],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"LandRover_MG_TK_INS_EP1",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Spawn vehicles
 ["MV22_DZ",[(_position select 0) - 20.5,(_position select 1) - 5.2,0], _mission,true,-82.5] call WAI_PublishVeh;
@@ -100,7 +100,7 @@ local _loot = if (_aiType == "Hero") then {Loot_CapturedMV22 select 0;} else {Lo
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

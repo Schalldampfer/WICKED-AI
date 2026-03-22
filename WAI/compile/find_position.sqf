@@ -5,9 +5,9 @@ local _safepos = [];
 local _color = "";
 
 if (WAI_Blacklist) then {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0,waiBlackList];
+	_safepos = [getMarkerPos "center",0,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0,waiBlackList];
 } else {
-	_safepos = [getMarkerPos "center",150,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0];
+	_safepos = [getMarkerPos "center",0,((getMarkerSize "center") select 1),(_this select 0),0,0.4,0];
 };
 
 while {!_validspot} do {

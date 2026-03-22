@@ -74,22 +74,22 @@ local _objects = [[
 local _fireStation = _objects select 0;
 
 //Troops
-[_position,5,_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.7149, (_position select 1) + 44.2705, 0],5,_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 34.8667, (_position select 1) + 7.63960, 0],5,_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 37.0000, (_position select 1) + 15.0000, 0],5,_difficulty,"Random","AT","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 15.0000, (_position select 1) + 60.0000, 0],5,_difficulty,"Random","AA","Random",WAI_FirefighterSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Spawn Vehicle
 local _vehicle = [WAI_ArmedVeh ,[(_position select 0) + 2, (_position select 1) -1.1],_mission,true,-29] call WAI_PublishVeh;
 [_vehicle,(typeOf _vehicle),2] call WAI_LoadAmmo;
 
 //Humvee Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"ArmoredSUV_PKT_DZ","Random",_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"LandRover_SPG9_TK_INS_EP1","Random","MVD_Soldier_DZ",_aiType,_mission] call WAI_VehPatrol;
 
 //Heli Paradrop
-[_position,400,"Mi171Sh_CZ_EP1_DZ","East",[3000,4000],150,1.0,200,10,"Random","Random","","Random",_aiType,"Random",_aiType,false,_mission] spawn WAI_HeliPara;
+[_position,400,"Mi171Sh_CZ_EP1","East",[3000,4000],150,1.0,200,10,"Random","Random","","Random","MVD_Soldier_DZ","Random",_aiType,false,_mission] spawn WAI_HeliPara;
 
 //Static guns
 [[
@@ -97,7 +97,7 @@ local _vehicle = [WAI_ArmedVeh ,[(_position select 0) + 2, (_position select 1) 
 	(_fireStation modelToWorld [18.8481,-7.45313,-4.5079]),
 	(_fireStation modelToWorld [-3.56787,-8.27832,8.4921]),
 	[(_position select 0) + 0.9, (_position select 1) - 20.9, 0]
-],"M2StaticMG",_difficulty,WAI_FirefighterSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"KORD_high_TK_EP1",_difficulty,WAI_FirefighterSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number
@@ -110,7 +110,7 @@ local _vehicle = [WAI_ArmedVeh ,[(_position select 0) + 2, (_position select 1) 
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

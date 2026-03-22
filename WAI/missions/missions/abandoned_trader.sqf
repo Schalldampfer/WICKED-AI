@@ -95,7 +95,7 @@ local _vehicle = [WAI_CargoTruck,[(_position select 0) +27,(_position select 1) 
 [[
 	[(_position select 0) + 0.1, (_position select 1) + 20, 0],
 	[(_position select 0) + 0.1, (_position select 1) - 20, 0]
-],"Random","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
+],"UAZ_MG_TK_EP1","Easy",_aiType,_aiType,"random","random","random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number
@@ -108,7 +108,7 @@ local _vehicle = [WAI_CargoTruck,[(_position select 0) +27,(_position select 1) 
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

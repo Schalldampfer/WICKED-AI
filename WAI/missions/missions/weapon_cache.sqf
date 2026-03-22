@@ -1,6 +1,6 @@
 local _mission = count WAI_MissionData -1;
 local _aiType = _this select 0; // "Bandit" or "Hero"
-local _position = [30] call WAI_FindPos;
+local _position = [30] call WAI_FindPosForest;
 local _name = "Weapon Cache";
 local _startTime = diag_tickTime;
 local _difficulty = "Medium";
@@ -61,6 +61,7 @@ local _loot = if (_aiType == "Hero") then {Loot_WeaponCache select 0;} else {Loo
 	[_loot,WAI_CrateLg,[0,0]]
 ],_position,_mission] call WAI_SpawnCrate;
 
+/*
 // Spawn Objects
 [[
 	["Land_fortified_nest_big_EP1",[-14,23.5],-210],
@@ -71,12 +72,13 @@ local _loot = if (_aiType == "Hero") then {Loot_WeaponCache select 0;} else {Loo
 	["Land_HBarrier_large",[7,16,-0.3],30],
 	["DesertLargeCamoNet_DZ",[-1,0],-26]
 ],_position,_mission] call WAI_SpawnObjects;
+*/
 
 //Troops
 [[(_position select 0) + 6.5,(_position select 1) - 12,0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 8,(_position select 1) + 14,0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 21,(_position select 1) - 12.5,0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 21,(_position select 1) - 12.5,0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 21,(_position select 1) - 12.5,0],4,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 21,(_position select 1) - 12.5,0],4,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Static Guns
 [[

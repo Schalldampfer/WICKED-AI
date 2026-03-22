@@ -78,8 +78,11 @@ local _loot = if (_aiType == "Hero") then {Loot_LumberJack select 0;} else {Loot
 [[(_position select 0) + 12, (_position select 1) + 22.5, 0],5,"extreme","Random","AT","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 21, (_position select 1) + 11, 0],5,_difficulty,"Random","AA","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 1.12, (_position select 1) - 0.43, 0],5,"random","Random","AT","LegendBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 23, 0],(ceil random 5),"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],5,"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 23, 0],5,"random","Random","","WandererBackpack_DZE1",WAI_ApocalypticSkin,"random",_aiType,_mission] call WAI_SpawnGroup;
+
+// Vehicle Patrol
+[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],250,2,"Offroad_DSHKM_INS",_difficulty,"Random",_aiType,_mission] call WAI_VehPatrol;
 
 //Spawn vehicles
 local _vehicle = [WAI_CargoTruck,[(_position select 0) -17,(_position select 1) +5, 0],_mission, false, 180 -59.2] call WAI_PublishVeh;
@@ -95,7 +98,7 @@ local _vehicle = [WAI_CargoTruck,[(_position select 0) -17,(_position select 1) 
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

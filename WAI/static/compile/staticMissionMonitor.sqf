@@ -137,15 +137,13 @@ while {_running} do {
 			publicVariable "PVDZ_ServerMarkerSend";
 			(_markers select 1) set [7, [_name + ": Clear"]];
 			DZE_ServerMarkerArray set [_markerIndex, _markers];
-		};
-	};
-	
-	if (_clear) then {
-		{
-			[_x,_mission,_crates] call WAI_GenerateVehKey;
-		} count _vehicles;
+			
+			{ 
+				[_x,_mission,_crates] call WAI_GenerateVehKey; //Add vehicle keys to crates 
+			} count _vehicles;
 		
-		[nil,(_crates select 0) select 0,rSAY,"fanfare",1600] call RE;//call fanfare
+			[nil,(_crates select 0) select 0,rSAY,"fanfare",1600] call RE;//call fanfare
+		};
 	};
 	
 	{

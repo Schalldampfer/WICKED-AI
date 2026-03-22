@@ -95,7 +95,7 @@ local _loot = if (_aiType == "Hero") then {Loot_Farmer select 0;} else {Loot_Far
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["kill"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

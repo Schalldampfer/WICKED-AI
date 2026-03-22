@@ -21,7 +21,7 @@ _arty = [];
 } forEach (units _battery);
 
 [_logic] call BIS_ARTY_F_Firebase;
-if (wai_debug_mode) then {diag_log format["WAI:Fire mission starting by %1",_logic];};
+if (WAI_DebugMode) then {diag_log format["WAI:Fire mission starting by %1",_logic];};
 
 _mission = (leader _battery) getVariable ["mission" + dayz_serverKey, 0];
 _unitGroups = (WAI_MissionData select _mission) select 1;
@@ -38,7 +38,9 @@ while {{alive gunner _x} count _arty > 0} do {
 			_x addMagazine "8Rnd_82mmHE_2B14";
 			_x addMagazine "8Rnd_81mmILLUM_M252";
 			_x addMagazine "8Rnd_82mmILLUM_2B14";
-			if (wai_debug_mode) then {diag_log format["WAI:Reloading mortar rounds of %2 by %1",_logic, typeOf _x];};
+			_x addMagazine "8Rnd_81mmWP_M252";
+			_x addMagazine "8Rnd_82mmWP_2B14";
+			if (WAI_DebugMode) then {diag_log format["WAI:Reloading mortar rounds of %2 by %1",_logic, typeOf _x];};
 		};
 	} forEach _arty;
 
@@ -62,7 +64,7 @@ while {{alive gunner _x} count _arty > 0} do {
 			} else {
 				_ammo = "HE";
 				if (vehicle _player == _player) then {
-					_r = 6 + random 14;
+					_r = 6 + random 20;
 					_t = random 360;
 					_pos = [(_pos select 0) + (_r*sin(_t)), (_pos select 1) + (_r*cos(_t)), _pos select 2];
 				};
@@ -73,18 +75,18 @@ while {{alive gunner _x} count _arty > 0} do {
 			if ([_logic, _pos, _fmTemplate select 1] call BIS_ARTY_F_PosInRange && {(side _x) == _side} count (_player nearEntities ["CAManBase", 40]) < 1 && {_player distance (_x select 0) < (_x select 1)} count DZE_SafeZonePosArray < 1) then {
 				//fire
 				[_logic, _pos, _fmTemplate] call BIS_ARTY_F_ExecuteTemplateMission;
-				if (wai_debug_mode) then {diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _player];};
-				RemoteMessage = ["dynamic_text",["You are under artillery fire!","Get out of here!"],["0.40","#FFFFFF","0.60","#ff3300",0,-.35,10,0.5]];
+				if (WAI_DebugMode) then {diag_log format["WAI:Firing %3 on %4 at %2 by %1",_logic, _pos, _fmTemplate, name _player];};
+				RemoteMessage = ["dynamic_text",["You are under artillery fire!","Evade!"],["0.40","#FFFFFF","0.60","#ff3300",0,-.35,10,0.5]];
 				(owner _player) publicVariableClient "RemoteMessage";
 
 				sleep (random _time/2);
 			};
 		};
 	} forEach playableUnits;
-	if (wai_debug_mode) then {diag_log format["WAI:Fire mission check by %1 is finished. Wait %2 sec",_logic,_time];};
+	if (WAI_DebugMode) then {diag_log format["WAI:Fire mission check by %1 is finished. Wait %2 sec",_logic,_time];};
 
 	sleep _time;
 };
 
-if (wai_debug_mode) then {diag_log format["WAI:Fire mission by %1 has finished",_logic];};
+if (WAI_DebugMode) then {diag_log format["WAI:Fire mission by %1 has finished",_logic];};
 deleteVehicle _logic;

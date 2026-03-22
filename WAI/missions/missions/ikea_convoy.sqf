@@ -65,18 +65,18 @@ local _loot = if (_aiType == "Hero") then {Loot_IkeaConvoy select 0;} else {Loot
 [_position,5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Static Guns
 [[
 	[(_position select 0) - 30, (_position select 1) + 4, 0],
 	[(_position select 0) + 10, (_position select 1) - 30, 0],
 	[(_position select 0) + 8, (_position select 1) + 30, 0]
-],WAI_ArmedVeh call BIS_fnc_selectRandom,_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"Offroad_DSHKM_TK_GUE_EP1",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Heli Para Drop
-[_position,400,"BAF_Merlin_HC3_D","North",[3000,4000],150,1.0,200,10,"Random","Random","","Random",_aiType,"Random",_aiType,false,_mission] spawn WAI_HeliPara;
+[_position,400,"Mi17_Ins","North",[3000,4000],150,1.0,200,10,"Random","Random","","Random",_aiType,"Random",_aiType,false,_mission] spawn WAI_HeliPara;
 
 [WAI_CargoTruck, [(_position select 0) + 19,(_position select 1) + 11],_mission,true,90] call WAI_PublishVeh;
 [WAI_RefuelTruck, [(_position select 0) - 14,(_position select 1) - 14],_mission,true,-90] call WAI_PublishVeh;
@@ -93,7 +93,7 @@ local _loot = if (_aiType == "Hero") then {Loot_IkeaConvoy select 0;} else {Loot
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

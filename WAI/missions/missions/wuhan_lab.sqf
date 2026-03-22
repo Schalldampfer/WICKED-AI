@@ -126,7 +126,7 @@ local _loot = if (_aiType == "Hero") then {Loot_Wuhan select 0;} else {Loot_Wuha
 ],((_objects select 2) modelToWorld _cratePos),_mission] call WAI_SpawnCrate;
 
 // The doctor
-local _drGrp = [((_objects select 2) modelToWorld _drPos),1,"Easy","Random","","none","Gardener_DZ","Random",[_aiType,500],_mission] call WAI_SpawnGroup;
+local _drGrp = [((_objects select 2) modelToWorld _drPos),1,"Easy","APS_SD_DZ","","none","Gardener_DZ","Random",[_aiType,500],_mission] call WAI_SpawnGroup;
 _drGrp setVariable ["DoNotFreeze", true];
 local _doctor = leader _drGrp;
 _doctor disableAI "MOVE";
@@ -135,17 +135,17 @@ _doctor disableAI "MOVE";
 [[(_position select 0) - 26.7149, (_position select 1) + 44.2705, 0],5,_difficulty,"Random","AA","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","AT","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","AT","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-//[[(_position select 0) + 34.8667, (_position select 1) + 7.6396, 0],5,_difficulty,"Random","","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 34.8667, (_position select 1) + 7.6396, 0],5,_difficulty,"Random","AA","Random",WAI_ScientistSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Internal Troops - these use "SENTRY" waypoint type
-//[[(_position select 0) - 14.0933, (_position select 1) + 8.5674, .25],5,_difficulty,"Random","AT","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 4.646, (_position select 1) + 18.4238, .25],5,_difficulty,"Random","","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 2.5156, (_position select 1) - 10.1075, .25],5,_difficulty,"Random","","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 28.0249, (_position select 1) - 12.8565, .25],5,_difficulty,"Random","","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
-//[[(_position select 0) + 14.7788, (_position select 1) - 20.7061, .25],5,_difficulty,"Random","","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 14.0933, (_position select 1) + 8.5674, .25],5,_difficulty,"Random","AT","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 4.646, (_position select 1) + 18.4238, .25],5,_difficulty,"Random","AT","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 2.5156, (_position select 1) - 10.1075, .25],5,_difficulty,"Random","AT","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 28.0249, (_position select 1) - 12.8565, .25],5,_difficulty,"Random","AA","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 14.7788, (_position select 1) - 20.7061, .25],5,_difficulty,"Random","AA","Random","RU_Doctor","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"T810A_PKT_DES_ACR_DZ","Random",_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"Offroad_SPG9_Gue","Random",WAI_ScientistSkin,_aiType,_mission] call WAI_VehPatrol;
 
 //Static guns
 [[
@@ -156,7 +156,7 @@ _doctor disableAI "MOVE";
 	((_objects select 2) modelToWorld [15.1514,-2.4043,-6.13165]),
 	[(_position select 0) - 10.0166, (_position select 1) + 0.2011, 0],
 	((_objects select 2) modelToWorld [19.4072,16.3848,-6.10211])
-],"BAF_GPMG_Minitripod_W",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"KORD_high"
+],"BAF_GPMG_Minitripod_W",_difficulty,WAI_ScientistSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"KORD_high"
 
 // Spawn Vehicles
 local _vehicle = [WAI_SuperVeh,[(_position select 0) + 5.4551, (_position select 1) + 6], _mission, true, -30] call WAI_PublishVeh; //5.9316

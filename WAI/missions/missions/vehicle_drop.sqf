@@ -27,6 +27,9 @@ diag_log format["[WAI]: %1 started at %2.",_name,_position];
 [_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
+// Vehicle Patrol
+[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],250,2,"Offroad_DSHKM_INS",_difficulty,"Random",_aiType,_mission] call WAI_VehPatrol;
+ 
 if(WAI_DebugMode) then {
 	diag_log format["WAI: [%3] %1 Vehicle Drop spawned a %2",_airName,_vehname,_aiType];
 };
@@ -89,6 +92,7 @@ dayz_serverObjectMonitor set [count dayz_serverObjectMonitor,_plane];
 _plane engineOn true;
 _plane setVelocity [(sin _dir*150),(cos _dir*150),0];
 _plane flyInHeight 200;
+_plane allowDamage false;
 
 local _aigroup = createGroup civilian;
 local _pilot = _aigroup createUnit ["SurvivorW2_DZ",_startPos,[],0,"FORM"];
@@ -98,6 +102,7 @@ _pilot setCombatMode "BLUE";
 _pilot moveInDriver _plane;
 _pilot assignAsDriver _plane;
 _aigroup setSpeedMode "LIMITED";
+_pilot allowDamage false;
 
 local _wp = _aigroup addWaypoint [_position, 0];
 _wp setWaypointType "MOVE";
@@ -153,8 +158,10 @@ while {!_complete} do {
 	};
 
 	if ((_plane distance _position < 230) && {!_vehDropped}) then {
+		_plane action ["useWeapon", _plane, _pilot, 0];
 		uiSleep 1; // This gets the drop near the center of the mission
 		local _planePos = [_plane] call FNC_GetPos;
+		_plane action ["useWeapon", _plane, _pilot, 0];
 		uiSleep 1; // need to do this otherwise the C130 blows up
 		_parachute = createVehicle ["ParachuteMediumEast", _planePos, [], 0, "FLY"];
 		_parachute setPos _planePos;
@@ -167,6 +174,7 @@ while {!_complete} do {
 		_return setWaypointBehaviour "CARELESS";
 		[_plane,_aigroup] spawn WAI_CleanAircraft;
 		_vehDropped = true;
+		_plane action ["useWeapon", _plane, _pilot, 0];
 	};
 	
 	if (_vehDropped && {!_onGround}) then {

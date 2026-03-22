@@ -222,6 +222,8 @@ for "_x" from 1 to _unitnumber do {
 };
 
 if (_launcher != "" && WAI_UseLaunchers) then {
+	for "_x" from 1 to (_unitnumber min 2)  do {
+		_unit = (units _unitGroup) select (_x - 1);
 	_launcher = call {
 		if (_launcher == "AT") exitWith {WAI_LaunchersAT call BIS_fnc_selectRandom;};
 		if (_launcher == "AA") exitWith {WAI_LaunchersAA call BIS_fnc_selectRandom;};
@@ -232,6 +234,7 @@ if (_launcher != "" && WAI_UseLaunchers) then {
 	_unit addMagazine _rocket;
 	_unit addMagazine _rocket;
 	_unit addWeapon _launcher;
+	};
 };
 
 _unitGroup setFormation (["COLUMN","STAG COLUMN","WEDGE","ECH LEFT","ECH RIGHT","VEE","LINE"] call BIS_fnc_selectRandom);

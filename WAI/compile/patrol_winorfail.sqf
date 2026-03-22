@@ -15,7 +15,7 @@ _msglose		= (_this select 9) select 2;
 _countWP		= [];
 _unitGroup = ((wai_mission_data select _mission) select 1) select 0;
 
-if(wai_debug_mode) then {diag_log format["WAI: Starting Mission number %1",_mission];};
+if(WAI_DebugMode) then {diag_log format["WAI: Starting Mission number %1",_mission];};
 
 _color = call {
 	if (_difficulty == "Easy") exitWith {"ColorGreen"};

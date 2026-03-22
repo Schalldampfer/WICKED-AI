@@ -81,9 +81,9 @@ Place your custom group spawns below
 [
 	[2095.6689, 11684.955,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -95,9 +95,9 @@ Place your custom group spawns below
 [
 	[2063.6782, 11846.96,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -107,9 +107,9 @@ Place your custom group spawns below
 [
 	[2189.7131, 11955.99,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -119,9 +119,9 @@ Place your custom group spawns below
 [
 	[2252.6467, 12124.506,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AA",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -131,9 +131,9 @@ Place your custom group spawns below
 [
 	[2386.0881, 11895.958,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -143,9 +143,9 @@ Place your custom group spawns below
 [
 	[2141.0818, 11826.796,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -155,9 +155,9 @@ Place your custom group spawns below
 [
 	[2013.6115, 11944.934,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AA",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -167,9 +167,9 @@ Place your custom group spawns below
 [
 	[2216.3472, 11877.72,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -179,9 +179,9 @@ Place your custom group spawns below
 [
 	 [2110.0903, 12046.773,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",				// Skill level of unit (easy, medium, hard, extreme, Random)
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -193,9 +193,9 @@ Place your custom group spawns below
 [
 	[2311.5579, 11848.776,0],		// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
-	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"extreme",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"MG36_DZ",				// Primary gun - "Random", "Unarmed", "Classname", Array
+	"AA",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -205,9 +205,9 @@ Place your custom group spawns below
 [
 	[2363.3757, 12007.775,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
-	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"extreme",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"MP5SD",				// Primary gun - "Random", "Unarmed", "Classname", Array
+	"AA",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -217,9 +217,9 @@ Place your custom group spawns below
 [
 	[2234.7959, 12008.812,0],	// Position - If you use a number greater than 0 for the z- coordinate, the AI will get "Sentry" WayPoints. Otherwise they are standard ground troops.
 	5,						// Number Of units
-	"Random",				// Skill level of unit (easy, medium, hard, extreme, Random)
-	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"extreme",				// Skill level of unit (easy, medium, hard, extreme, Random)
+	"MG36_DZ",				// Primary gun - "Random", "Unarmed", "Classname", Array
+	"AA",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", "none" or Array
 	"Random",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
@@ -249,13 +249,13 @@ Place your custom static weapon spawns below
 */
 
 // Static Gun Positions
-[
+local _grp = [
 	[	// Position(s) (can be multiple)
 		[2036.1055, 11775.047, 50],
 		[1992.8998, 11829.429, 50]
 	],
 	"ZU23_Ins",				// Classname of turret - Can use "Random"
-	"easy",					// Skill level of unit (easy, medium, hard, extreme, Random)
+	"Hard",					// Skill level of unit (easy, medium, hard, extreme, Random)
 	_aiType,				// Skin - "Random", "Classname", or Array 
 	_aiType,				// AI Type, "Hero" or "Bandit". Defined at the top of this file with variable _aiType.
 	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
@@ -263,7 +263,7 @@ Place your custom static weapon spawns below
 	"Random",				// Gearset - 0,1,2, or "Random"
 	_mission				// This is the mission variable established on line 1. Do not change.
 ] call WAI_SpawnStatic;
-[
+local _grp2 = [
 	[	// Position(s) (can be multiple)
 		[2083.7717, 11800.014, 20.243473],
 		[2208.2876, 11765.653, 2.758425],
@@ -281,6 +281,20 @@ Place your custom static weapon spawns below
 	"Random",				// Gearset - 0,1,2, or "Random"
 	_mission				// This is the mission variable established on line 1. Do not change.
 ] call WAI_SpawnStatic;
+(units _grp2) joinSilent _grp;
+
+//Some objects
+{
+	_grp2 = [[_x select 1],_x select 0,"Extreme",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+	local _veh = vehicle ((units _grp2) select 0);
+	_veh setPos (_x select 1);
+	_veh setDir (_x select 2);
+	(units _grp2) joinSilent _grp;
+} forEach [
+	["UH60_wreck_EP1", [2093.5786, 11867.841, 0], -121.44762],
+	["UH1Wreck", [2116.4265, 11875.687, 0], 46.634892],
+	["UH1Wreck", [2118.3567, 11900.32, 0], -51.77364]
+];
 
 /*
 Custom Chopper Patrol spawn Eg.
@@ -301,10 +315,10 @@ Place your Chopper patrols below
 
 [
 	_position,				// Position to patrol
-	700,					// Radius of patrol
-	10,						// Number of waypoints to give
-	"Mi171Sh_CZ_EP1_DZ",				// Classname of helicopter - Do not use DZE models because they spawn with no ammo.
-	"Random",				// Skill level of units (easy, medium, hard, extreme, Random)
+	300,					// Radius of patrol
+	4,						// Number of waypoints to give
+	"Ka137_MG_PMC",				// Classname of helicopter - Do not use DZE models because they spawn with no ammo.
+	"extreme",				// Skill level of units (easy, medium, hard, extreme, Random)
 	"Random",				// Skin - "Random", "Classname", or Array
 	_aitype,				// AI Type, "Hero" or "Bandit". Defined at the top of this file with variable _aiType.
 	_mission				// This is the mission variable established on line 1. Do not change.
@@ -383,11 +397,11 @@ Place your paradrop spawns under this line
 	1.0,					// Time in seconds between each deployed paratrooper. Higher number means paradropped AI will be more spread apart. Time of 0 means they all jump out rapidly.
 	200,					// Distance from the mission the helicopter should start dropping paratroopers
 	8,						// Number of units to be para dropped
-	"Random",				// Skill level of units (easy, medium, hard, extreme, Random)
-	"Random",				// Primary gun - "Random", "Unarmed", "Classname", Array
-	"",						// Launcher - "AT", "AA", or "" for no launcher
+	"extreme",				// Skill level of units (easy, medium, hard, extreme, Random)
+	"UK59_DZ",				// Primary gun - "Random", "Unarmed", "Classname", Array
+	"AT",						// Launcher - "AT", "AA", or "" for no launcher
 	"Random",				// Backpack - "Random", "Classname", or Array
-	_aiType,				// Skin - "Random", "Classname", or Array
+	"Nac_Soldier_DZ",				// Skin - "Random", "Classname", or Array
 	"Random",				// Gearset - 0,1,2, or "Random"
 	_aiType,				// AI Type, "Hero" or "Bandit". Defined at the top of this file with variable _aiType.
 	true,					// true: Aircraft will stay at position and fight. false: Heli will leave if not under fire. 
@@ -424,7 +438,7 @@ local _loot =
 Place your crate spawns under this line
 */
 
-local _briefcases = 2 + (round (random 8)); // Up to 10 briefcases.
+local _briefcases = 6 + (round (random 4)); // Up to 10 briefcases.
 
 [	// At top of building
 	[0,0,[_briefcases,WAI_Gems],0,0],// loot
@@ -434,21 +448,21 @@ local _briefcases = 2 + (round (random 8)); // Up to 10 briefcases.
 ] call WAI_SpawnStaticCrate;
 
 [	// Inside building WIP
-	[[25,WAI_Sniper+WAI_RifleGood+WAI_Silenced],8,0,10,[5,WAI_PacksLg]],// loot
+	[[25,WAI_Sniper+WAI_RifleGood+WAI_Silenced],8,[5,WAI_Attachments_Rare+WAI_Attachments_Cheap],10,[5,WAI_PacksLg]],// loot
 	WAI_CrateMd,			// crate type - array or class
 	[[[2286.9648, 12147.51, 12.266255],36]],// random positions
 	_mission				// mission variable - DO NOT CHANGE
 ] call WAI_SpawnStaticCrate;
 
 [	// In Tower Building
-	[[12,WAI_RifleGood+WAI_RifleRare+WAI_LauncherCheap],0,[20,WAI_Hemp],5,3],// loot
+	[[12,WAI_RifleGood+WAI_RifleRare+WAI_LauncherCheap],0,[20,WAI_VehAmmo+WAI_HeliAmmo],5,3],// loot
 	WAI_CrateMd,			// crate type - array or class
 	[[[2210.7173, 11997.606, 0.48433262],180]],// position
 	_mission				// mission variable - DO NOT CHANGE
 ] call WAI_SpawnStaticCrate;
 
 [	// In bunkers in forest
-	[[(ceil random 4),WAI_RifleDelux+WAI_LauncherDelux],0,[(ceil random 4),WAI_StaticMG+WAI_StaticGMG+WAI_StaticHeavy],0,0],
+	[[(ceil random 4),WAI_RifleDelux+WAI_LauncherDelux],0,[(ceil random 4),WAI_StaticMG+WAI_StaticGMG+WAI_StaticHeavy+WAI_Hemp],0,0],
 	WAI_CrateSm,			// crate type - array or class
 	[[[2397.3059, 11903.302, 0],0]],	// position and optional direction
 	_mission				// mission variable - DO NOT CHANGE

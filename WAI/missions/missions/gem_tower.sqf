@@ -68,20 +68,20 @@ local _loot = if (_aiType == "Hero") then {Loot_GemTower select 0;} else {Loot_G
 ],_position,_mission] call WAI_SpawnObjects;
 
 //Troops
-[[(_position select 0) + 29, (_position select 1) - 21, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 21, (_position select 1) + 19, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 23, (_position select 1) - 19, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 12, (_position select 1) + 23, 0],(ceil random 5),_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 29, (_position select 1) - 21, 0],5,_difficulty,"FNFAL_DZ","RPG7V","Random","TK_Soldier_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 21, (_position select 1) + 19, 0],5,_difficulty,"FNFAL_DZ","RPG7V","Random","TK_Soldier_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 23, (_position select 1) - 19, 0],5,_difficulty,"FNFAL_DZ","M47Launcher_EP1","Random","TK_Soldier_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],5,_difficulty,"PKM_DZ","Igla","Random","TK_Soldier_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 12, (_position select 1) + 23, 0],5,_difficulty,"RPK_DZ","Igla","Random","TK_Soldier_EP1","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Humvee Patrol
-[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 50, _position select 1, 0],[(_position select 0) - 60, _position select 1, 0],50,2,"LandRover_SPG9_TK_INS_EP1",_difficulty,"TK_Special_Forces_MG_EP1_DZ",_aiType,_mission] call WAI_VehPatrol;
  
 //Static Guns
 [[
 	[(_position select 0) - 1, (_position select 1) + 39, 0],
 	[(_position select 0) + 33, (_position select 1) - 21, 0]
-],"ZU23_Ins","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"LandRover_MG_TK_INS_EP1",_difficulty,"TK_Commander_EP1_DZ",_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number
@@ -94,7 +94,7 @@ local _loot = if (_aiType == "Hero") then {Loot_GemTower select 0;} else {Loot_G
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

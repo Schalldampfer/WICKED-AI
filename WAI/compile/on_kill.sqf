@@ -7,7 +7,7 @@ if (typeName (WAI_MissionData select _mission) == "ARRAY") then {
 	WAI_MissionData select _mission set [0, ((WAI_MissionData select _mission) select 0) - 1];
 };
 
-_unit setVariable ["bodyName","NPC",false]; // Corpse will be deleted by sched_corpses function according to DZE_NPC_CleanUp_Time
+_unit setVariable ["bodyName","unknown",false]; // Corpse will be deleted by sched_corpses function according to DZE_NPC_CleanUp_Time
 _unit setVariable ["deathType", "shot", true];
 
 if (WAI_HasMoney && Z_singleCurrency) then {

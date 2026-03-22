@@ -91,8 +91,8 @@ local _vehicle = [WAI_CivilVeh,[(_position select 0) -11,(_position select 1) -4
 [[(_position select 0) + 12, (_position select 1) + 42.5, .01],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 11, (_position select 1) + 41, .01],5,_difficulty,"Random","AA","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 12, (_position select 1) - 43, .01],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) - 43, .01],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 20, (_position select 1) - 43, .01],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) - 43, .01],5,"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 20, (_position select 1) - 43, .01],5,"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 
 [
 	_mission,
@@ -105,7 +105,7 @@ local _vehicle = [WAI_CivilVeh,[(_position select 0) -11,(_position select 1) -4
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

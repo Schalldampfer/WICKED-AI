@@ -20,7 +20,7 @@ WAI_FindAmmo = {
 			if (_result == "20Rnd_556x45_Stanag") exitWith { _result = "30Rnd_556x45_Stanag"; };
 			if (_result == "8Rnd_B_Saiga12_74Slug") exitWith { _result = "8Rnd_B_Saiga12_Pellets"; };
 			if (_result == "8Rnd_12Gauge_Slug") exitWith { _result = "8Rnd_12Gauge_Buck"; };
-			if (_result == "PG7V") exitWith { _result = "PG7VL"; };
+			if (_result == "PG7V") exitWith { _result = WAI_RPG7Ammo; };
 		};
 	};
 	if (_result == "") then {
@@ -474,6 +474,7 @@ WAI_spawn_trees = { // Spawn trees around mission
 			
 			_objects set [count _objects, _object];
 		};
+		sleep (10.0/_num);
 	};
 
 	_objects

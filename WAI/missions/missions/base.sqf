@@ -75,14 +75,14 @@ local _loot = if (_aiType == "Hero") then {Loot_Base select 0;} else {Loot_Base 
 ],_position,_mission] call WAI_SpawnObjects;
 
 //Troops
-[_position,5,_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AA","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"L85A2_DZ","M136","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"L85A2_DZ","M136","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"L85A2_DZ","M136","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"BAF_L110A1_Aim_DZE","Stinger","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,5,_difficulty,"M240_DZ","Stinger","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"BAF_Jackal2_L2A1_W",_difficulty,"BAF_Soldier_Officer_MTP_DZ",_aiType,_mission] call WAI_VehPatrol;
  
 //Static Guns
 [[
@@ -90,13 +90,13 @@ local _loot = if (_aiType == "Hero") then {Loot_Base select 0;} else {Loot_Base 
 	[(_position select 0) + 40, (_position select 1) -  0, 0],//[(_position select 0) + 10, (_position select 1) - 10, 0],
 	[(_position select 0) +  0, (_position select 1) + 40, 0],//[(_position select 0) + 10, (_position select 1) + 10, 0],
 	[(_position select 0) -  0, (_position select 1) - 40, 0] //[(_position select 0) - 10, (_position select 1) - 10, 0]
-],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"M2StaticMG",_difficulty,"BAF_Soldier_N_MTP_DZ",_aiType,"BAF_L85A2_RIS_SUSAT","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Spawn vehicles
 local _vehicle = [WAI_UnarmedTrackedVeh,[(_position select 0) +10,(_position select 1) -10, 0],_mission, false, 45] call WAI_PublishVeh;
 
 //Heli Paradrop
-[_position,400,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,_difficulty,"Random","","Random",_aiType,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
+[_position,400,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,_difficulty,"L85A2_DZ","BAF_NLAW_Launcher","Random","BAF_Soldier_N_MTP_DZ","Random",_aiType,true,_mission] spawn WAI_HeliPara;
 
 [
 	_mission, // Mission number
@@ -109,7 +109,7 @@ local _vehicle = [WAI_UnarmedTrackedVeh,[(_position select 0) +10,(_position sel
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

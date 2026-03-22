@@ -64,15 +64,15 @@ local _objects = [[
 ],_position,_mission] call WAI_SpawnObjects;
 
 //Troops
-[_position,5,_difficulty,"Random","AT","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AT","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.7149, (_position select 1) + 44.2705, 0],5,_difficulty,"Random","AT","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","AA","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","AT","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 34.8667, (_position select 1) + 7.63960, 0],5,_difficulty,"Random","AA","Random",WAI_GhillieSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 37.0000, (_position select 1) + 15.0000, 0],5,_difficulty,"Random","AT","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 15.0000, (_position select 1) + 60.0000, 0],5,_difficulty,"Random","AA","Random",WAI_NacSoldier,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //The Mayor Himself
-local _mayorGroup = [_position,1,_difficulty,"Random","","Random","Functionary2_EP1","Random",[_aiType,300],_mission] call WAI_SpawnGroup;
+local _mayorGroup = [_position,1,_difficulty,"Revolver_Gold_DZ","","Random","Functionary2_EP1","Random",[_aiType,300],_mission] call WAI_SpawnGroup;
 _mayorGroup setVariable ["DoNotFreeze", true];
 local _mayor = leader _mayorGroup;
 
@@ -94,17 +94,19 @@ _mayor spawn {
 };
 
 // Vehicle Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],100,10,"UAZ_MG_TK_EP1_DZ","Random",_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],100,10,"HMMWV_Avenger","Random",WAI_NacSoldier,_aiType,_mission] call WAI_VehPatrol;
 
 //Heli Paradrop
-[_position,400,"UH1Y_M240_DZ","North",[3000,4000],150,1.0,100,10,"Random","Random","","Random",_aiType,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
+[_position,400,"UH1Y_M240_DZ","North",[3000,4000],150,1.0,100,10,"Random","Random","","Random",WAI_NacSoldier,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
 
 //Static guns
 [[
 	(_mansion modelToWorld [18.0557,-18.0991,1.9926]),
-	(_mansion modelToWorld [-4.51855,-4.25928,1.98619]),
 	(_mansion modelToWorld [-17.8154,18.0659,1.97169])
-],"M2StaticMG",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"KORD_high_TK_EP1",_difficulty,WAI_NacSoldier,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+[[
+	(_mansion modelToWorld [-4.51855,-4.25928,1.98619])
+],"2b14_82mm_INS","Easy",WAI_NacSoldier,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number
@@ -117,7 +119,7 @@ _mayor spawn {
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["assassinate",_mayor], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

@@ -90,11 +90,11 @@ local _loot = if (_aiType == "Hero") then {Loot_CropRaider select 0;} else {Loot
 [[(_position select 0) + 9, (_position select 1) - 13, 0],5,_difficulty,"Random","AT","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 13, (_position select 1) + 15, 0],5,_difficulty,"Random","AA","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 13, (_position select 1) + 15, 0],5,_difficulty,"Random","AT","Random",WAI_RockerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 13, (_position select 1) + 15, 0],(ceil random 5),_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
-[[_position select 0, _position select 1, 0],(ceil random 5),_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 13, (_position select 1) + 15, 0],5,_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[_position select 0, _position select 1, 0],5,_difficulty,"Random","","Random","RU_Policeman_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],50,2,"HMMWV_Armored",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 50, _position select 1, 0],50,2,"LandRover_MG_TK_INS_EP1",_difficulty,"RU_Policeman2_DZ",_aiType,_mission] call WAI_VehPatrol;
 
 //Static Guns
 [[
@@ -103,7 +103,7 @@ local _loot = if (_aiType == "Hero") then {Loot_CropRaider select 0;} else {Loot
 ],"Random",_difficulty,"RU_Policeman_DZ",_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Heli Paradrop
-[_position,200,"UH1H_DZ","East",[3000,4000],150,1.0,200,10,_difficulty,"Random","","Random",_aiType,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
+[_position,200,"UH1H_TK_GUE_EP1","East",[3000,4000],150,1.0,200,10,_difficulty,"Random","","Random","MVD_Soldier_DZ","Random",_aiType,true,_mission] spawn WAI_HeliPara;
 
 //Spawn vehicles
 local _vehicle = [WAI_CivilVeh,[(_position select 0) +40,(_position select 1) -3, 0],_mission] call WAI_PublishVeh;
@@ -119,7 +119,7 @@ local _vehicle = [WAI_CivilVeh,[(_position select 0) +40,(_position select 1) -3
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

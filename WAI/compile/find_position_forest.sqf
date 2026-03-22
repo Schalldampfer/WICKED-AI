@@ -3,7 +3,7 @@ local _validspot = false;
 local _position = [];
 local _color = "";
 
-local _expression = "forest - (0.25*houses + 0.25*coast + 0.25*sea + 0.25*meadow)";
+local _expression = "forest - (0.50*houses + 0.25*sea + 0.25*meadow)";
 local _condition = [getMarkerPos "center", ((getMarkerSize "center") select 1) / 1.4142, _expression, 70, 1];
 
 while {!_validspot} do {

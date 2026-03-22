@@ -14,8 +14,8 @@ Loot_Farmer = [
 	[6,5,[40,WAI_Medical],3,3] // Bandit
 ];
 Loot_MediCamp = [
-	[0,0,[70,WAI_Medical],3,3], // Hero
-	[0,0,[70,WAI_Medical],3,3] // Bandit
+	[0,0,[30,WAI_Medical],3,3], // Hero
+	[0,0,[30,WAI_Medical],3,3] // Bandit
 ];
 Loot_Outpost = [
 	[6,4,40,2,3], // Hero
@@ -32,54 +32,54 @@ Loot_SlaughterHouse = [
 
 /***** Medium Missions *****/
 Loot_AbandonedTrader = [
-	[8,5,15,3,3], // Hero
-	[8,5,15,3,3] // Bandit
+	[8,5,50,3,[2,WAI_PacksLg]], // Hero
+	[8,5,50,3,[2,WAI_PacksLg]] // Bandit
 ];
 Loot_ArmedVehicle = [
-	[0,0,[35,WAI_VehAmmo],0,3], // Hero
-	[0,0,[35,WAI_VehAmmo],0,3] // Bandit
+	[0,0,[35,WAI_VehAmmo+WAI_AmmoCheap],0,3], // Hero
+	[0,0,[35,WAI_VehAmmo+WAI_AmmoCheap],0,3] // Bandit
 ];
 Loot_BHC = [ // Black Hawk Crash
-	[5,5,10,3,1], // Hero
-	[5,5,10,3,1] // Bandit
+	[14,5,3,3,1], // Hero
+	[14,5,3,3,1] // Bandit
 ];
 Loot_DrugBust = [
 	[5,5,[10,WAI_Hemp],3,3], // Hero
 	[5,5,[10,WAI_Hemp],3,3] // Bandit
 ];
 Loot_Junkyard = [
-	[14,5,1,3,1], // Hero
-	[14,5,1,3,1] // Bandit
+	[3,5,15,3,1], // Hero
+	[3,5,15,3,1] // Bandit
 ];
 Loot_Patrol = [
-	[3,0,[2,["ItemBriefcase100oz"]],0,1], // Hero
-	[3,0,[2,["ItemBriefcase100oz"]],0,1] // Bandit
+	[3,0,[2,WAI_HighValue],0,1], // Hero
+	[3,0,[2,WAI_HighValue],0,1] // Bandit
 ];
 Loot_VehicleDrop = [
-	[3,0,[2,["ItemBriefcase100oz"]],0,1], // Hero
-	[3,0,[2,["ItemBriefcase100oz"]],0,1] // Bandit
+	[3,0,[2,WAI_HighValue],0,1], // Hero
+	[3,0,[2,WAI_HighValue],0,1] // Bandit
 ];
 Loot_WeaponCache = [
-	[10,4,0,3,4], // Hero
-	[10,4,0,3,4] // Bandit
+	[10,4,[3,WAI_Attachments_Cheap],3,4], // Hero
+	[10,4,[3,WAI_Attachments_Cheap],3,4] // Bandit
 ];
 
 /***** Hard Missions *****/
 Loot_ArmyBase = [
-	[10,5,10,3,5], // Hero
-	[10,5,10,3,5] // Bandit
+	[10,5,[3,WAI_Attachments_Good],3,5], // Hero
+	[10,5,[3,WAI_Attachments_Good],3,5] // Bandit
 ];
 Loot_Base = [
-	[[16,WAI_Sniper],8,[3,WAI_HighValue],3,[4,WAI_PacksLg]], // Hero
-	[[16,WAI_Sniper],8,[3,WAI_HighValue],3,[4,WAI_PacksLg]] // Bandit
+	[[16,WAI_Sniper],8,[5,WAI_Attachments_Cheap],3,[4,WAI_PacksLg]], // Hero
+	[[16,WAI_Sniper],8,[5,WAI_Attachments_Cheap],3,[4,WAI_PacksLg]] // Bandit
 ];
 Loot_CannibalCave = [
 	[10,8,[2,WAI_HighValue],3,[2,WAI_PacksLg]], // Hero
 	[10,8,[2,WAI_HighValue],3,[2,WAI_PacksLg]] // Bandit
 ];
 Loot_CapturedMV22 = [
-	[0,0,[80,WAI_Medical],3,3], // Hero
-	[0,0,[80,WAI_Medical],3,3] // Bandit
+	[0,0,[50,WAI_Medical],3,3], // Hero
+	[0,0,[50,WAI_Medical],3,3] // Bandit
 ];
 Loot_CropRaider = [
 	[6,5,[15,WAI_Hemp],3,3], // Hero
@@ -110,12 +110,12 @@ Loot_Radioshack = [
 	[10,5,30,3,2] // Bandit
 ];
 Loot_Extraction = [
-	[[10,WAI_Sniper],4,[10,WAI_HeliAmmo],3,2], // Hero
-	[[10,WAI_Sniper],4,[10,WAI_HeliAmmo],3,2] // Bandit
+	[[8,WAI_Sniper],[3,WAI_ToolsSniper],[10,WAI_AmmoSD],3,2], // Hero
+	[[8,WAI_Sniper],[3,WAI_ToolsSniper],[10,WAI_HeliAmmo],3,2] // Bandit
 ];
 Loot_TankColumn = [
-	[12,5,30,3,4], // Hero
-	[12,5,30,3,4] // Bandit
+	[12,5,[5,WAI_VehAmmo],3,4], // Hero
+	[12,5,[5,WAI_VehAmmo],3,4] // Bandit
 ];
 
 /***** Extreme Missions *****/
@@ -124,32 +124,32 @@ Loot_Firestation1 = [ // Fire Station Crate 1
 	[0,0,[4,WAI_HighValue],0,2] // Bandit
 ];
 Loot_Firestation2 = [ // Fire Station Crate 2
-	[[10,WAI_Sniper],3,20,3,5], // Hero
-	[[10,WAI_Sniper],3,20,3,5] // Bandit
+	[[10,WAI_Sniper],3,[5,WAI_Attachments_Good],3,5], // Hero
+	[[10,WAI_Sniper],3,[5,WAI_Attachments_Good],3,5] // Bandit
 ];
 Loot_Mayors = [
-	[10,5,[4,WAI_HighValue],3,[2,WAI_PacksLg]], // Hero
-	[10,5,[4,WAI_HighValue],3,[2,WAI_PacksLg]] // Bandit
+	[10,5,[5,WAI_HighValue],3,[2,WAI_PacksLg]], // Hero
+	[10,5,[5,WAI_HighValue],3,[2,WAI_PacksLg]] // Bandit
 ];
 Loot_Presidents = [
 	[0,0,[40,WAI_Presidents],0,4], // Hero
 	[0,0,[40,WAI_Presidents],0,4] // Bandit
 ];
 Loot_Wuhan = [
-	[0,0,[6,["ItemBriefcase100oz"]],0,3], // Hero
-	[0,0,[6,["ItemBriefcase100oz"]],0,3] // Bandit
+	[0,0,[6,WAI_Gems],0,3], // Hero
+	[0,0,[6,WAI_Gems],0,3] // Bandit
 ];
 Loot_GraySkull1 = [ // Castle Grayskull Crate 1
 	[0,0,[4,WAI_HighValue],0,1], // Hero
 	[0,0,[4,WAI_HighValue],0,1] // Bandit
 ];
 Loot_GraySkull2 = [ // Castle Grayskull Crate 2
-	[[10,WAI_Sniper],3,20,3,2], // Hero
-	[[10,WAI_Sniper],3,20,3,2] // Bandit
+	[[10,WAI_Sniper],3,[20,WAI_AmmoGood],3,2], // Hero
+	[[10,WAI_Sniper],3,[20,WAI_AmmoGood],3,2] // Bandit
 ];
 Loot_GraySkull3 = [ // Castle Grayskull Crate 3
-	[10,5,30,3,2], // Hero
-	[10,5,30,3,2] // Bandit
+	[10,5,[10,WAI_Attachments_Good+WAI_Attachments_Cheap],3,2], // Hero
+	[10,5,[10,WAI_Attachments_Good+WAI_Attachments_Cheap],3,2] // Bandit
 ];
 Loot_GraySkull4 = [ // He-Man smokes weed
 	[0,0,[15,WAI_Hemp],0,3], // Hero

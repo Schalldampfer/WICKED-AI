@@ -65,17 +65,17 @@ local _loot = if (_aiType == "Hero") then {Loot_ArmedVehicle select 0;} else {Lo
 ],_position,_mission] call WAI_SpawnCrate;
 
 //Troops
-[_position, 5, _difficulty, "Random", "AT", "Random", _aiType, "Random", _aiType, _mission] call WAI_SpawnGroup;
-[_position, 5, _difficulty, "Random", "", "Random", "Hero", "Random", _aiType, _mission] call WAI_SpawnGroup;
-[_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position, 5, _difficulty, "AN94_DZ", "RPG7V", "Random", "RU_Soldier_DZ", "Random", _aiType, _mission] call WAI_SpawnGroup;
+[_position, 5, _difficulty, "AN94_DZ", "", "Random", "RU_Soldier_DZ", "Random", _aiType, _mission] call WAI_SpawnGroup;
+[_position,(ceil random 4),_difficulty,"AK107_DZ","","Random","RU_Soldier_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[_position,(ceil random 4),_difficulty,"RPK74_DZ","","Random","RU_Soldier_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Static Guns
 [[
 	[(_position select 0) + 29,(_position select 1) + 7, 0],
 	[(_position select 0) + 13,(_position select 1) + 42, 0],
 	[(_position select 0),(_position select 1) + 10, 0]
-],WAI_ArmedVeh call BIS_fnc_selectRandom,_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"UAZ_MG_INS",_difficulty,"RU_Soldier_DZ",_aiType,"AKS74U_DZ","Random","Random",_mission] call WAI_SpawnStatic;
 
 //Spawn vehicles
 local _vehicle = [_vehclass,_position,_mission] call WAI_PublishVeh;
@@ -92,7 +92,7 @@ local _vehicle = [_vehclass,_position,_mission] call WAI_PublishVeh;
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

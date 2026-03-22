@@ -43,7 +43,7 @@ local _turrets = _vehClass call WAI_GetTurrets;
 
 _vehicle addEventHandler ["HandleDamage",{_this call WAI_HandleDamage_Vehicle}];
 _vehicle addEventHandler ["Killed",{_this call WAI_Killed_Vehicle}];
-_vehicle addEventHandler ["IncomingMissile", {(_this select 0) fire "SmokeLauncher"; effectiveCommander (_this select 0) fire "SmokeLauncher";}];
+_vehicle addEventHandler ["IncomingMissile", {(_this select 0) action ["useWeapon", _this select 0, effectiveCommander (_this select 0), 0];}];
 _vehicle addEventHandler ["GetOut",{
 	local _veh = _this select 0;
 	local _role = _this select 1;

@@ -1,6 +1,7 @@
 
 waiBlackList = call {
     if (toLower worldName in ["chernarus","chernarus_winter"]) exitWith {[
+		[[1024,4290,0],[1424,3890,0]], //Racetrack
 		[[0,16000,0],[1000,-0,0]],	// Left edge of map
         [[0,16000,0],[16000.0,14580.3,0]] // Top edge of map
     ];};

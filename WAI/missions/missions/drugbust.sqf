@@ -92,8 +92,8 @@ local _loot = if (_aiType == "Hero") then {Loot_DrugBust select 0;} else {Loot_D
 //Troops
 [[(_position select 0) - 12, (_position select 1) - 15,0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) + 12, (_position select 1) + 15,0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0), (_position select 1), 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0), (_position select 1), 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0), (_position select 1), 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0), (_position select 1), 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Spawn vehicles
 local _vehicle = [WAI_CivilVeh,[(_position select 0) +11,(_position select 1) -3, 0],_mission, false, 180] call WAI_PublishVeh;
@@ -109,7 +109,7 @@ local _vehicle = [WAI_CivilVeh,[(_position select 0) +11,(_position select 1) -3
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

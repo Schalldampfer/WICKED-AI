@@ -98,7 +98,7 @@ WAI_KillPercent = 80; // percentage of AI players that must be killed at "crate"
 WAI_HighValueChance = 50; // chance in percent you find a high value item in the crate.
 WAI_NumMags = [4,5]; // Number of magazines per weapon in the crate [min,max]
 
-WAI_EnableMineField = false; // enable minefields to better defend missions
+WAI_EnableMineField = true; // enable minefields to better defend missions
 WAI_EnableStaticGuns = true; // Enables or disables static gun placements at missions that have them.
 WAI_EnableParadrops = true; // Enables or disables paratrooper drops at missions that have them.
 WAI_EnablePatrols = true; // Enables or disables armored vehicle patrols at missions that have them.
@@ -113,7 +113,7 @@ WAI_BanditLimit = 4; // define how many bandit missions can run at once
 // Mission Arrays
 // [mission name, chance to spawn] Chance to spawn is 0-1. Example - If you only want your mission to have a 25% chance to spawn enter .25
 WAI_HeroMissions = [
-	["patrol",0],
+	["patrol",1],
 	["black_hawk_crash",1],
 	["armed_vehicle",1],
 	["base",1],
@@ -143,14 +143,14 @@ WAI_HeroMissions = [
 	["black_hawk_crash",1],
 	["farmer",1],
 	["firestation",1],
-	["vehicle_drop",0],
+	["vehicle_drop",1],
 	["castle_grayskull",1],
 	["wuhan_lab",1],
 	["apc",1]
 ];
 
 WAI_BanditMissions	= [
-	["patrol",0],
+	["patrol",1],
 	["black_hawk_crash",1],
 	["armed_vehicle",1],
 	["base",1],
@@ -179,7 +179,7 @@ WAI_BanditMissions	= [
 	["outpost",1],
 	["farmer",1],
 	["firestation",1],
-	["vehicle_drop",0],
+	["vehicle_drop",1],
 	["castle_grayskull",1],
 	["wuhan_lab",1],
 	["apc",1]
@@ -187,16 +187,16 @@ WAI_BanditMissions	= [
 /* END WAI MISSIONS CONFIG */
 
 // Weapons
-WAI_AK = ["AKM_DZ","AKS_DZ","AKS74U_DZ","AK74_DZ","AKS_74","AK107_DZ","AN94_DZ"];
-WAI_RK95 = ["RK95_DZ"];
+WAI_AK = ["AKS74U_DZ","AK74_DZ","AKS_74","AK107_DZ","AN94_DZ"];
+WAI_RK95 = ["AKM_DZ","AKS_DZ","RK95_DZ"];
 WAI_Groza = ["Groza1_DZ","Groza9_DZ","VSS_vintorez_DZE","VAL_DZ"];
-WAI_Scar = ["SCAR_H_AK_DZ"];
-WAI_Sniper = ["CZ550_DZ","M24_DZ","M24_DES_DZ","M40A3_DZ","SVD_DZ","WA2000_DZ","MSR_DZ","XM2010_DZ","M4SPR_DZE","M200_CheyTac_DZ","L115A3_DZ","L115A3_2_DZ","CZ750_DZ","RSASS_DZ","DMR_DZE"];
+WAI_Scar = ["SCAR_H_AK_DZ","SCAR_H_B_AK_CCO_DZ","MK16_DZ","MK17_DZ"];
+WAI_Sniper = ["CZ550_DZ","M24_DZ","M24_DES_DZ","M40A3_DZ","SVD_DZ","G3_SG1_DZ","M21_DZ","WA2000_DZ","MSR_DZ","XM2010_DZ","M4SPR_DZE","M200_CheyTac_DZ","L115A3_DZ","L115A3_2_DZ","CZ750_DZ","RSASS_DZ","DMR_DZE","MK17_Sniper_DZ"];
 WAI_G36 = ["G36K_Camo_DZ","G36A_Camo_DZ","G36C_DZ","G36C_Camo_DZ"];
 WAI_M4 = ["M4A1_DZ","M4A1_FL_DZ","M4A1_Rusty_DZ","M4A1_Camo_CCO_DZ","M4A3_DES_CCO_DZ"];
 WAI_HK416 = ["HK416_DZ","HK416C_DZ"];
 WAI_SteyrAug = ["SteyrAug_A3_Green_DZ","SteyrAug_A3_Black_DZ","SteyrAug_A3_Blue_DZ"];
-WAI_HK53 = ["G3_DZ","HK53A3_DZ"];
+WAI_HK53 = ["G3_DZ","G3A3_DZ","HK53A3_DZ"];
 WAI_MagpulPDR = ["PDR_DZ"];
 WAI_Famas = ["Famas_DZ"];
 WAI_ACR = ["ACR_WDL_DZ","ACR_BL_DZ","ACR_DES_DZ","ACR_SNOW_DZ"];
@@ -208,9 +208,9 @@ WAI_XM8 = ["XM8_GREY_DZ","XM8_GREY_2_DZ","XM8_GREY_Compact_DZ","XM8_GREY_2_Compa
 WAI_M14 = ["M14_DZ","M1A_SC16_BL_DZ"];
 WAI_HK417 = ["HK417_DZ","HK417C_DZ"];
 WAI_MK14 = ["MK14_DZ","M1A_SC16_TAN_DZ"];
-WAI_MK17 = ["MK17_DZ"];
+WAI_MK17 = ["MK17_DZ","FNFAL_DZ"];
 WAI_CZ805 = ["CZ805_A1_DZ","CZ805_A2_DZ"];
-WAI_Shotgun = ["Crossbow_DZ","MR43_DZ","Remington870_FL_DZ","M1014_DZ","Saiga12K_DZ","AA12_DZ","USAS12_DZ"];
+WAI_Shotgun = ["MR43_DZ","Remington870_FL_DZ","M1014_DZ","Saiga12K_DZ","AA12_DZ","USAS12_DZ"];
 WAI_SVD = ["SVD_PSO1_DZ","SVD_DZ","SVU_PSO1_DZ"];
 WAI_Mosin = ["Mosin_DZ","Winchester1866_DZ","LeeEnfield_DZ"];
 WAI_M16 = ["M16A2_DZ","M16A2_Rusty_DZ","M16A4_DZ","M16A4_FL_DZ"];
@@ -219,19 +219,20 @@ WAI_L85 = ["L85A2_DZ","L85A2_FL_DZ","L86A2_LSW_DZ"];
 WAI_Pistol = ["APS_DZ","G18_DZ","M93R_DZ","Mac10_DZ","PDW_DZ","TEC9_DZ","Sa61_DZ","BrowningHP_DZ","CZ75P_DZ","CZ75D_DZ","CZ75SP_DZ","DesertEagle_DZ","DesertEagle_Modern_DZ","DesertEagle_Silver_DZ","G17_FL_DZ","M9_DZ","M9_Camo_DZ","M1911_DZ","M1911_2_DZ","Kimber_M1911_DZ","Makarov_DZ","MK22_DZ","MK22_2_DZ","P38_DZ","P99_Black_DZ","P99_Green_DZ","P99_Silver_DZ","P226_DZ","P226_Silver_DZ","PPK_DZ","Revolver_DZ","Colt_Anaconda_DZ","Colt_Bull_DZ","Colt_Python_DZ","Colt_Revolver_DZ","Ruger_MK2_DZ","Tokarew_TT33_DZ","USP_DZ"];
 WAI_SMG = ["Sten_MK_DZ","M31_DZ","MAT49_DZ","TMP_DZ","MP5_DZ","MP5SD","UMP_DZ","MP7_FL_DZ","Bizon_DZ","Scorpion_Evo3_DZ","KAC_PDW_DZ","Kriss_DZ","P90_DZ"];
 WAI_LMG = ["L110A1_DZ","M60A4_EP1_DZE","M240_DZ","M249_DZ","M249_EP1_DZ","Mk43_DZ","Mk48_DZ","PKM_DZ","UK59_DZ","MG36_DZ","MG36_Camo_DZ","RPK_DZ","RPK74_DZ"];
-WAI_TWS = ["ACR_WDL_TWS_DZ","BAF_L85A2_RIS_TWS_DZ"];
+WAI_TWS = ["ACR_WDL_TWS_DZ","BAF_L85A2_RIS_TWS_DZ","AKS74_TWS_DZ"];
 WAI_RandomWeapon = [WAI_AK,WAI_AK,WAI_AK,WAI_RK95,WAI_Groza,WAI_Scar,WAI_Sniper,WAI_G36,WAI_M4,WAI_HK416,WAI_SteyrAug,WAI_HK53,WAI_MagpulPDR,WAI_Famas,WAI_ACR,WAI_KAC,WAI_Tavor,WAI_Masada,WAI_MK16,WAI_XM8,WAI_M14,WAI_HK417,WAI_MK14,WAI_MK17,WAI_CZ805,WAI_Shotgun,WAI_Shotgun,WAI_Shotgun,WAI_SVD,WAI_Mosin,WAI_Mosin,WAI_M16,WAI_M16,WAI_SA58,WAI_L85,WAI_SMG,WAI_SMG,WAI_LMG];
 
 WAI_Silenced		= ["Scorpion_Evo3_CCO_SD_DZ","Bizon_SD_DZ","Kriss_SD_DZ","MP5_SD_DZ","MP7_SD_DZ","P90_SD_DZ","TMP_SD_DZ","UMP_SD_DZ"];
-WAI_RifleGood		= ["CZ805_A1_GL_DZ","CZ805_A2_SD_DZ","CZ805_B_GL_DZ","G36C_Camo_Holo_SD_DZ","Groza9_DZ","L86A2_LSW_DZ","M1A_SC2_BL_DZ","M4A1_Camo_Holo_GL_DZ","M4A3_ACOG_GL_DZ","M4A3_Camo_ACOG_DZ","MK16_BL_GL_ACOG_DZ","MK16_BL_Holo_SD_DZ","MK16_BL_GL_CCO_SD_DZ","MK17_BL_GL_ACOG_DZ","MK17_BL_CCO_SD_DZ","MK17_BL_GL_Holo_SD_DZ","Sa58V_Camo_ACOG_DZ"];
+WAI_RifleGood		= ["CZ805_A1_GL_DZ","CZ805_A2_SD_DZ","CZ805_B_GL_DZ","G36C_Camo_Holo_SD_DZ","Groza9_DZ","L86A2_LSW_DZ","M1A_SC2_BL_DZ","M4A1_Camo_Holo_GL_DZ","M4A3_ACOG_GL_DZ","M4A3_Camo_ACOG_DZ","MK16_BL_GL_ACOG_DZ","MK16_BL_Holo_SD_DZ","MK16_BL_GL_CCO_SD_DZ","MK17_BL_GL_ACOG_DZ","MK17_BL_CCO_SD_DZ","MK17_BL_GL_Holo_SD_DZ","Sa58V_Camo_ACOG_DZ","G3_SG1_Bipod_DZ"];
 WAI_RifleRare		= ["ACR_WDL_NV_DZ","ACR_BL_NV_DZ","ACR_DES_NV_DZ","ACR_SNOW_NV_DZ","M4SPR_DZE","CZ750_DZ","L115A3_DZ","L115A3_2_DZ","MSR_DZ","MSR_SD_DZ","XM2010_DZ","XM2010_SD_DZ","MK14_Sniper_DZ","M21A5_DZ","M21A5_SD_DZ","DMR_DZE","M1A_SC16_BL_Sniper_DZ","M1A_SC16_TAN_Sniper_DZ","M1A_SC2_BL_Sniper_DZ","WA2000_DZ","RSASS_DZ","RSASS_SD_DZ","VSS_vintorez_DZE","Groza9_GL_Sniper_DZ","Groza9_Sniper_SD_DZ","Groza1_Sniper_DZ","Groza1_Sniper_SD_DZ","M200_CheyTac_DZ","MK17_Sniper_SD_DZ","MK17_Sniper_DZ","SVU_PSO1_DZ","BAF_L110A1_Aim_DZE","Mk48_DES_CCO_DZ"];
 WAI_RifleDelux		= ["AKS_Gold_DZ","AKS_Silver_DZ","SVD_Gold_DZ","DesertEagle_Gold_DZ","Revolver_Gold_DZ","Colt_Anaconda_Gold_DZ","Anzio_20_DZ","BAF_AS50_scoped_DZ","Barrett_MRAD_Sniper_DZ","KSVK_DZE","m107_DZ","M110_NV_DZ","M200_CheyTac_SD_DZ","MSR_NV_DZ","MSR_NV_SD_DZ","XM2010_NV_DZ","XM2010_NV_SD_DZ","M249_m145_EP1_DZE","MK43_M145_DZ","m240_scoped_EP1_DZE"];
 WAI_LauncherCheap	= ["RPG7V","M136","RPG18","SMAW","MAAWS","Strela"];
 WAI_LauncherDelux	= ["M47Launcher_EP1","BAF_NLAW_Launcher","Stinger","Igla"];
 
 // Launchers
-WAI_LaunchersAT = ["RPG18","M136"];
+WAI_LaunchersAT = ["RPG18","M136","RPG7V","MAAWS"];
 WAI_LaunchersAA = ["Strela"];
+WAI_RPG7Ammo = ["PG7V","PG7V","PG7V","PG7VL","PG7VL","PG7VR","OG7","OG7","OG7"] call BIS_fnc_selectRandom;
 
 // Backpacks
 WAI_Packs = ["Patrol_Pack_DZE1","GymBag_Camo_DZE1","GymBag_Green_DZE1","Czech_Vest_Pouch_DZE1","Assault_Pack_DZE1","TerminalPack_DZE1","TinyPack_DZE1","ALICE_Pack_DZE1","TK_Assault_Pack_DZE1","School_Bag_DZE1","CompactPack_DZE1","British_ACU_DZE1","GunBag_DZE1","PartyPack_DZE1","NightPack_DZE1","SurvivorPack_DZE1","AirwavesPack_DZE1","CzechBackpack_DZE1","CzechBackpack_Camping_DZE1","CzechBackpack_OD_DZE1","CzechBackpack_DES_DZE1","CzechBackpack_3DES_DZE1","CzechBackpack_WDL_DZE1","CzechBackpack_MAR_DZE1","CzechBackpack_DMAR_DZE1","CzechBackpack_UCP_DZE1","CzechBackpack_6DES_DZE1","CzechBackpack_TAK_DZE1","CzechBackpack_NVG_DZE1","CzechBackpack_BLK_DZE1","CzechBackpack_DPM_DZE1","CzechBackpack_FIN_DZE1","CzechBackpack_MTC_DZE1","CzechBackpack_NOR_DZE1","CzechBackpack_WIN_DZE1","CzechBackpack_ATC_DZE1","CzechBackpack_MTL_DZE1","CzechBackpack_FTN_DZE1","WandererBackpack_DZE1","LegendBackpack_DZE1","CoyoteBackpack_DZE1","CoyoteBackpackDes_DZE1","CoyoteBackpackWdl_DZE1","CoyoteBackpack_Camping_DZE1","LargeGunBag_DZE1"];
@@ -268,16 +269,16 @@ WAI_Chainsaws = ["ChainSaw","ChainSawB","ChainSawG","ChainSawP","ChainSawR"];
 WAI_ToolsAll = ["ItemToolbox","ItemKeyKit","ItemCrowbar","ItemShovel","ItemFishingPole","ItemHatchet","ItemKnife","ItemMachete",format["Item%1Matchbox",round(random 4)+1],"ItemToolbox"];
 WAI_ToolsBuildable = ["ItemCrowbar","ItemKnife","ItemPickaxe","ItemSledge","ItemShovel","Handsaw_DZE","Hammer_DZE"];
 WAI_BaseAddons = ["garage_green_kit","garage_white_kit","garage_brown_kit","garage_grey_kit","ItemGenerator","ItemTent","ItemTentWinter","ItemDomeTent","ItemWinterDomeTent","ItemDesertTent","desert_net_kit","forest_net_kit","winter_net_kit","outhouse_kit","cook_tripod_kit","stoneoven_kit","commode_kit","wardrobe_kit","fridge_kit","washing_machine_kit","server_rack_kit","atm_kit","armchair_kit","sofa_kit","arcade_kit","vendmachine1_kit","vendmachine2_kit","storage_crate_kit","camo_storage_crate_kit","ItemTent","ItemTentWinter","ItemDomeTent","ItemWinterDomeTent","ItemDesertTent","ItemFireBarrel_kit","workbench_kit","advanced_workBench_kit","fuel_pump_kit","light_pole_kit","deer_stand_kit","rusty_gate_kit","stick_fence_kit","sun_shade_kit","park_bench_kit","ItemScaffoldingKit","notebook_kit","water_pump_kit","greenhouse_kit","bed_kit","table_kit","office_chair_kit","helipad_civil_kit","helipad_rescue_kit","helipad_army_kit","helipad_cross_kit","helipad_parkborder_kit","cctv_kit","storage_shed_kit","ItemStorageBarrel1_kit","ItemStorageBarrel2_kit","ItemStorageBarrel3_kit","ItemStorageBarrel4_kit","ItemStorageBarrel5_kit","ItemStorageBarrel6_kit","ItemStorageBarrel7_kit","ItemStorageBarrel8_kit","rabbit_hutch_kit","chicken_coop_kit","doghouse_kit","postbox_kit","wild_bee_hive_kit","cow_stable_kit","goat_stable_kit","sheep_stable_kit","boar_stable_kit","deer_stand_kit","sun_shade_kit","park_bench_kit","ItemScaffoldingKit"];
-WAI_HighValue = ["ItemDogTagHero","ItemDogTagBandit","ItemRuby","ItemCitrine","ItemEmerald","ItemAmethyst","ItemSapphire","ItemObsidian","ItemTopaz","bulk_equip_scrapelectronicsFull","bulk_equip_floppywireFull","bulk_ItemC4ChargeFull","bulk_PipeBombFull"];
+WAI_HighValue = ["ItemDogTag","ItemRuby","ItemCitrine","ItemEmerald","ItemAmethyst","ItemSapphire","ItemObsidian","ItemTopaz","bulk_equip_scrapelectronicsFull","bulk_equip_floppywireFull","bulk_ItemC4ChargeFull","bulk_PipeBombFull"];
 WAI_Food = ["bulk_FoodbaconCookedFull","FoodCanBakedBeans","FoodCanFrankBeans","FoodCanPasta","FoodCanSardines","FoodCanBeef","FoodCanPotatoes","FoodCanGriff","FoodCanBadguy","FoodCanBoneboy","FoodCanCorn","FoodCanCurgon","FoodCanDemon","FoodCanFraggleos","FoodCanHerpy","FoodCanDerpy","FoodCanOrlok","FoodCanPowell","FoodCanTylers","FoodCanUnlabeled","FoodCanRusUnlabeled","FoodCanRusStew","FoodCanRusPork","FoodCanRusPeas","FoodCanRusMilk","FoodCanRusCorn","FoodChipsSulahoops","FoodChipsMysticales","FoodChipsChocolate","FoodCandyChubby","FoodCandyAnders","FoodCandyLegacys","FoodCakeCremeCakeClean","FoodCandyMintception","FoodPistachio","FoodNutmix","FoodMRE","FoodbaconCooked","FoodbeefCooked","FoodchickenCooked","FoodGoatCooked","FoodmuttonCooked","FoodrabbitCooked","FishCookedTrout","FishCookedSeaBass","FishCookedTuna"];
 WAI_Drink = ["bulk_ItemSodaCokeFull","bulk_ItemSodaPepsiFull","ItemSodaCoke","ItemSodaPepsi","ItemSodaMdew","ItemSodaMtngreen","ItemSodaR4z0r","ItemSodaClays","ItemSodaSmasht","ItemSodaDrwaste","ItemSodaFranka","ItemSodaLemonade","ItemSodaLirik","ItemSodaLvg","ItemSodaMzly","ItemSodaPeppsy","ItemSodaRabbit","ItemSodaSacrite","ItemSodaRocketFuel","ItemSodaGrapeDrink","ItemSherbet","ItemSodaRbull","ItemSodaOrangeSherbet","ItemWaterbottle","ItemWaterBottleSafe","ItemWaterBottleBoiled","ItemWaterBottleHerbal","ItemPlasticWaterBottleSafe","ItemPlasticWaterBottleBoiled","ItemPlasticWaterBottleHerbal"];
-WAI_Ikea = ["plot_pole_kit","fuel_pump_kit","ItemComboLock","ItemVault","ItemTallSafe","wooden_shed_kit","wood_shack_kit","storage_shed_kit","ItemGunRackKit","ItemWoodCrateKit","woodfence_foundation_kit","woodfence_frame_kit","woodfence_1_kit","metalfence_foundation_kit","metalfence_frame_kit","metalfence_1_kit","woodfence_gate_foundation_kit","woodfence_gate_1_kit","ItemFireBarrel_kit","workbench_kit","wood_ramp_kit","metal_panel_kit","ItemCorrugated","barbed_gate_kit","light_pole_kit","rusty_gate_kit","stick_fence_kit","notebook_kit","water_pump_kit","greenhouse_kit","bed_kit","table_kit","office_chair_kit","concrete_barrier_kit","concrete_barrier_striped_kit","concrete_wall_kit","concrete_pipe_kit","dragonteeth_kit","dragonteeth_big_kit","simple_footbridge_kit","metal_container_1a_kit","metal_container_1b_kit","metal_container_1g_kit","metal_container_2d_kit","compost_barrel_empty_kit","compost_barrel_full_kit","boggle_kit","satellite_dish_kit","glass_floor_kit","glass_floor_half_kit","glass_floor_quarter_kit","metal_floor_kit","metal_floor_half_kit","metal_floor_quarter_kit","metal_floor4x_kit","metal_pillar_kit","half_cinder_wall_kit","half_cinder_wall_gap_kit","full_cinder_wall_kit","cinderwall_window_kit","cinderwall_window_locked_kit","cinder_door_frame_kit","cinder_door_kit","cinder_door_kit_locked","cinder_door_hatch_kit","cinder_door_hatch_kit_locked","cinder_garage_frame_kit","cinder_garage_kit","cinder_garage_kit_locked","cinder_garage_top_open_frame_kit","cinder_garage_top_open_kit","cinder_garage_top_open_kit_locked","cinder_gate_frame_kit","cinder_gate_kit","cinder_gate_kit_locked","cinder_bunker_kit","cinder_bunker_kit_locked","metal_drawbridge_kit","metal_drawbridge_kit_locked","elevatorstart_kit","elevatorstop_glass_kit","door_frame_kit","door_kit","door_locked_kit"];
+WAI_Ikea = ["ItemPlotDeed","fuel_pump_kit","ItemComboLock","ItemVault","ItemTallSafe","wooden_shed_kit","wood_shack_kit","storage_shed_kit","ItemGunRackKit","ItemWoodCrateKit","woodfence_foundation_kit","woodfence_frame_kit","woodfence_1_kit","metalfence_foundation_kit","metalfence_frame_kit","metalfence_1_kit","woodfence_gate_foundation_kit","woodfence_gate_1_kit","ItemFireBarrel_kit","workbench_kit","wood_ramp_kit","metal_panel_kit","ItemCorrugated","barbed_gate_kit","light_pole_kit","rusty_gate_kit","stick_fence_kit","notebook_kit","water_pump_kit","greenhouse_kit","bed_kit","table_kit","office_chair_kit","concrete_barrier_kit","concrete_barrier_striped_kit","concrete_wall_kit","concrete_pipe_kit","dragonteeth_kit","dragonteeth_big_kit","simple_footbridge_kit","metal_container_1a_kit","metal_container_1b_kit","metal_container_1g_kit","metal_container_2d_kit","compost_barrel_empty_kit","compost_barrel_full_kit","boggle_kit","satellite_dish_kit","glass_floor_kit","glass_floor_half_kit","glass_floor_quarter_kit","metal_floor_kit","metal_floor_half_kit","metal_floor_quarter_kit","metal_floor4x_kit","metal_pillar_kit","half_cinder_wall_kit","half_cinder_wall_gap_kit","full_cinder_wall_kit","cinderwall_window_kit","cinderwall_window_locked_kit","cinder_door_frame_kit","cinder_door_kit","cinder_door_kit_locked","cinder_door_hatch_kit","cinder_door_hatch_kit_locked","cinder_garage_frame_kit","cinder_garage_kit","cinder_garage_kit_locked","cinder_garage_top_open_frame_kit","cinder_garage_top_open_kit","cinder_garage_top_open_kit_locked","cinder_gate_frame_kit","cinder_gate_kit","cinder_gate_kit_locked","cinder_bunker_kit","cinder_bunker_kit_locked","metal_drawbridge_kit","metal_drawbridge_kit_locked","elevatorstart_kit","elevatorstop_glass_kit","door_frame_kit","door_kit","door_locked_kit"];
 WAI_Parts = ["equip_duct_tape","bulk_HandRoadFlareFull","PartEngine","PartEngine","PartFueltank","PartFueltank",["PartGeneric",2],["PartGeneric",2],["PartGeneric",3],["PartGeneric",4],["PartGlass",2],"PartVRotor",["PartWheel",2],["PartWheel",2],["PartWheel",2]];
 WAI_Medical = ["ItemWaterbottle","ItemPlasticWaterBottle","ItemAntibiotic","ItemAntibiotic1","bloodTester","wholeBloodBagANEG","wholeBloodBagAPOS","wholeBloodBagBNEG","wholeBloodBagBPOS","wholeBloodBagABNEG","wholeBloodBagABNEG","wholeBloodBagABPOS","wholeBloodBagONEG","wholeBloodBagOPOS","ItemAntibacterialWipe","ItemAntibacterialWipe","ItemAntibacterialWipe","ItemEpinephrine","ItemHeatPack","ItemHeatPack","ItemMorphine","ItemMorphine","ItemPainkiller","ItemPainkiller1",["ItemBandage",3],["ItemBandage",2],"ItemBandage","equip_comfreyleafs",["emptyBloodBag",3],"transfusionKit",_bloodbag];
-WAI_VehAmmo = ["pook_1300Rnd_762x51_M60","pook_250Rnd_762x51","2000Rnd_762x51_M134","2000Rnd_762x51_L94A1","60Rnd_762x54_DT","60Rnd_762x54_DT","100Rnd_762x54_PK","100Rnd_762x51_M240","200Rnd_762x51_M240","100Rnd_127x99_M2","100Rnd_127x99_M2","50Rnd_127x107_DSHKM","150Rnd_127x107_DSHKM","29Rnd_30mm_AGS30","48Rnd_40mm_MK19","3Rnd_GyroGrenade","pook_12Rnd_Grenade_Camel","PG9_AT","OG9_HE","150Rnd_30mmAP_2A42","150Rnd_30mmHE_2A42","210Rnd_25mm_M242_APDS","210Rnd_25mm_M242_HEI","500Rnd_TwinVickers","1470Rnd_127x108_YakB","750Rnd_M197_AH1","150Rnd_23mm_GSh23L","520Rnd_23mm_GSh23L","SmokeLauncherMag","60Rnd_CMFlareMagazine"];
-WAI_HeliAmmo = ["PG9_AT","OG9_HE","40rnd_PG15V","2Rnd_Sidewinder_AH1Z","10Rnd_85mmAP","21Rnd_100mmHEAT_D10","23Rnd_125mmSABOT_T72","4Rnd_AT2_Mi24D","4Rnd_AT6_Mi24V","SmokeLauncherMag","60Rnd_CMFlareMagazine"];
-WAI_Presidents = ["m240_nest_kit","ItemDocument","ItemDogTagHero","ItemDogTagBandit","equip_scrapelectronics","equip_floppywire","PipeBomb","TimeBomb","IRStrobe","BAF_L109A1_HE","HandGrenade_west","HandGrenade_east","SmokeShell","SmokeShellRed","SmokeShellGreen","SmokeShellYellow","SmokeShellPurple","SmokeShellBlue","SmokeShellOrange","FlareWhite_M203","FlareGreen_M203","FlareRed_M203","FlareYellow_M203","1Rnd_Smoke_M203","1Rnd_SmokeRed_M203","1Rnd_SmokeGreen_M203","1Rnd_SmokeYellow_M203","FlareWhite_GP25","FlareGreen_GP25","FlareRed_GP25","FlareYellow_GP25","1Rnd_SMOKE_GP25","1Rnd_SmokeRed_GP25","1Rnd_SmokeGreen_GP25","1Rnd_SmokeYellow_GP25","6Rnd_HE_M203","6Rnd_FlareWhite_M203","6Rnd_FlareGreen_M203","6Rnd_FlareRed_M203","6Rnd_FlareYellow_M203","6Rnd_Smoke_M203","6Rnd_SmokeRed_M203","6Rnd_SmokeGreen_M203","6Rnd_SmokeYellow_M203","20Rnd_B_AA12_HE"];
-WAI_Gems = ["ItemRuby","ItemCitrine","ItemEmerald","ItemAmethyst","ItemSapphire","ItemObsidian","ItemTopaz"];
+WAI_VehAmmo = ["2000Rnd_762x51_L94A1","60Rnd_762x54_DT","60Rnd_762x54_DT","100Rnd_762x54_PK","100Rnd_762x51_M240","200Rnd_762x51_M240","100Rnd_127x99_M2","100Rnd_127x99_M2","250Rnd_127x99_M3P","50Rnd_127x107_DSHKM","150Rnd_127x107_DSHKM","500Rnd_145x115_KPVT","29Rnd_30mm_AGS30","48Rnd_40mm_MK19","32Rnd_40mm_GMG","200Rnd_762x54_GPMG","PG9_AT","OG9_HE","PG9_AT","OG9_HE","40rnd_PG15V","40Rnd_23mm_AZP85","150Rnd_30mmAP_2A42","150Rnd_30mmHE_2A42","210Rnd_25mm_M242_APDS","22Rnd_125mmHE_T72","210Rnd_25mm_M242_HEI","10Rnd_85mmAP","21Rnd_100mmHEAT_D10","23Rnd_125mmSABOT_T72","2Rnd_Igla","1Rnd_Bolide","2Rnd_Stinger","8Rnd_Stinger","6Rnd_TOW_HMMWV","6Rnd_AT13","SmokeLauncherMag"];
+WAI_HeliAmmo = ["3Rnd_GyroGrenade","pook_12Rnd_Grenade_Camel","pook_1300Rnd_762x51_M60","pook_250Rnd_762x51","2000Rnd_762x51_M134","12Rnd_FFAR","2Rnd_Sidewinder_AH1Z","4Rnd_AT2_Mi24D","4Rnd_AT6_Mi24V","500Rnd_TwinVickers","1470Rnd_127x108_YakB","750Rnd_M197_AH1","150Rnd_23mm_GSh23L","520Rnd_23mm_GSh23L","60Rnd_CMFlareMagazine"];
+WAI_Presidents = ["m240_nest_kit","ItemDocument","ItemDogTag","equip_scrapelectronics","equip_floppywire","PipeBomb","TimeBomb","IRStrobe","BAF_L109A1_HE","HandGrenade_west","HandGrenade_east","SmokeShell","SmokeShellRed","SmokeShellGreen","SmokeShellYellow","SmokeShellPurple","SmokeShellBlue","SmokeShellOrange","FlareWhite_M203","FlareGreen_M203","FlareRed_M203","FlareYellow_M203","1Rnd_Smoke_M203","1Rnd_SmokeRed_M203","1Rnd_SmokeGreen_M203","1Rnd_SmokeYellow_M203","FlareWhite_GP25","FlareGreen_GP25","FlareRed_GP25","FlareYellow_GP25","1Rnd_SMOKE_GP25","1Rnd_SmokeRed_GP25","1Rnd_SmokeGreen_GP25","1Rnd_SmokeYellow_GP25","6Rnd_HE_M203","6Rnd_FlareWhite_M203","6Rnd_FlareGreen_M203","6Rnd_FlareRed_M203","6Rnd_FlareYellow_M203","6Rnd_Smoke_M203","6Rnd_SmokeRed_M203","6Rnd_SmokeGreen_M203","6Rnd_SmokeYellow_M203","20Rnd_B_AA12_HE"];
+WAI_Gems = ["ItemDogTagHero","ItemDogTagBandit","ItemRuby","ItemCitrine","ItemEmerald","ItemAmethyst","ItemSapphire","ItemObsidian","ItemTopaz"];
 WAI_Hemp = ["PipeBomb","TimeBomb","equip_string","equip_rag","bulk_ItemKiloHempFull","bulk_ItemKiloHempFull","ItemKiloHemp","ItemKiloHemp","ItemKiloHemp",["ItemCanvas",3],["ItemCanvas",2],"ItemSandbag","FoodBioMeat","ItemZombieParts"];
 WAI_Wood = ["ItemWoodFloor","ItemWoodFloor4x","ItemWoodFloorStairs","ItemTriangleWoodFloor","ItemWoodFloorHalf","ItemWoodFloorQuarter","ItemWoodStairs","ItemWoodStairsSupport","ItemWoodStairsRails","ItemWoodLadder","ItemWoodHandRail","ItemWoodPillar","ItemWoodWall","ItemTriangleWoodWall","ItemWoodWallThird","ItemWoodWallWindow","ItemWoodWallDoor","ItemWoodWallWithDoor","ItemWoodWallWithDoorLocked","ItemWoodWallGarageDoor","ItemWoodWallGarageDoorLocked","ItemWoodOpenTopGarageDoor","ItemWoodOpenTopGarageDoorLocked","ItemWoodWallLg","ItemWoodWallWindowLg","ItemWoodWallDoorLg","ItemWoodWallWithDoorLg","ItemWoodWallWithDoorLgLocked","ItemWoodGateFrame","ItemWoodGate","ItemWoodGateLocked","wooden_footbridge_kit","windbreak_kit","ItemMixOil",["PartPlywoodPack",ceil(random 12)],["ItemLog",ceil(random 5)],["ItemCanvas",3],"equip_wood_pallet","equip_crate","ItemWoodFloorHalf","ItemWoodFloorQuarter","ItemTriangleWoodFloor","ItemWoodStairs","ItemWoodLadder","ItemWoodHandRail","ItemWoodPillar","ItemWoodWall","ItemTriangleWoodWall","ItemWoodWallThird","ItemWoodWallLg","door_frame_kit","woodfence_foundation_kit","woodfence_frame_kit","woodfence_gate_foundation_kit","door_frame_kit","ItemWoodGateFrame","ItemWoodWallDoorLg","ItemWoodWallWindowLg","ItemWoodOpenTopGarageDoor","ItemWoodWallGarageDoor","ItemWoodWallDoor","ItemWoodWallWindow","woodfence_1_kit","wooden_shed_kit","wood_shack_kit","storage_shed_kit","ItemGunRackKit","StashSmall_kit"];
 WAI_Misc = ["SearchLight_Static_kit","ItemLockbox","ItemLockbox","ItemLockboxWinter","StashSmall_kit","equip_duct_tape","ItemConcreteBlock","CementBag",["CinderBlocks",3],["CinderBlocks",2],"bulk_ItemLightBulbFull",["ItemCanvas",5],["equip_metal_sheet",5],["equip_floppywire",4],["equip_scrapelectronics",4],["ItemScrews",4],"equip_rope","ItemMixOil","bulk_ItemSandbag","bulk_ItemTankTrap","bulk_ItemWire",["MortarBucket",3],["MortarBucket",2],"bulk_PartGeneric",["ItemLog",2],"equip_metal_sheet","ItemRSJ","ItemMetalSheet","equip_2inch_metal_pipe","equip_1inch_metal_pipe","equip_tent_poles","bulk_ItemScrewsFull","bulk_equip_nailsFull"];
@@ -289,6 +290,9 @@ WAI_ItemsRandom = [WAI_Food, WAI_Food, WAI_Drink, WAI_Drink, WAI_Parts, WAI_Part
 WAI_StaticMG = ["GPMG_TriPod_GrenadeLauncher_Static_kit",/*"GPMG_TriPod_MG_Static_kit",*/"M2_MG_Static_kit","M2_TriPod_MG_Static_kit","DSHKM_MG_Static_kit","DSHKM_TriPod_MG_Static_kit","KORD_TriPod_MG_Static_kit","KORD_MG_Static_kit","L2A1_MG_Static_kit","L2A1_Tripod_MG_Static_kit"];
 WAI_StaticGMG = ["GMG_Tripod_MG_Static_kit",/*"GMG_Tripod_GrenadeLauncher_Static_kit",*/"AGS30_GrenadeLauncher_Static_kit","MK19_TriPod_GrenadeLauncher_Static_kit"];
 WAI_StaticHeavy = ["Metis_Launcher_Static_kit","SPG9_Launcher_Static_kit","Stinger_Tripod_Launcher_Static_kit","TOW_Tripod_Launcher_Static_kit","Rbs70_Launcher_Static_kit","Igla_AntiAir_Launcher_Static_kit","ZU23_AntiAir_Static_kit"];
+WAI_Attachments_Cheap = ["Attachment_SCOPED","Attachment_BELT","Attachment_FL","Attachment_FL_Pist","Attachment_CCO","Attachment_Holo","Attachment_Kobra","Attachment_Ghillie","Attachment_Ghillie_Desert","Attachment_Ghillie_Snow","Attachment_Ghillie_Urban","Attachment_SA58RIS"];
+WAI_Attachments_Good = ["Attachment_M203","Attachment_GP25","Attachment_MFL","Attachment_MFL_Pist","Attachment_ACOG","Attachment_PSO1","Attachment_ANPVS4","Attachment_Laser","Attachment_NSPU"];
+WAI_Attachments_Rare = ["Attachment_Sup9","Attachment_Sup10","Attachment_Sup45","Attachment_Sup57","Attachment_Sup68","Attachment_Sup556","Attachment_Sup545","Attachment_Sup762","Attachment_Sup939","Attachment_SupMakarov","Attachment_SupBizon","Attachment_NV"];//"Attachment_Tws"
 
 /* AUTO-CLAIM CONFIG */
 WAI_AutoClaim = true; // Turn on the auto-claim feature.

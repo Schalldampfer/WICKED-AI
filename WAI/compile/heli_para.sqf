@@ -285,7 +285,7 @@ while {(alive _helicopter) && _drop} do {
 				_para addBackpack _pack;
 			};
 	
-			if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _unit))} && {!("NVGoggles_DZE" in (weapons _unit))}) then {
+			if (sunOrMoon != 1 && {!("NVGoggles" in (weapons _para))} && {!("NVGoggles_DZE" in (weapons _para))}) then {
 				_para addWeapon "NVGoggles";
 			};
 			

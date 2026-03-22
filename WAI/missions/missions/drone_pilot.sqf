@@ -83,17 +83,17 @@ local _loot = if (_aiType == "Hero") then {Loot_DronePilot select 0;} else {Loot
 ],_position,_mission] call WAI_SpawnObjects;
 
 // Troops
-[[(_position select 0) + 17, (_position select 1) - 18, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) - 11, (_position select 1) + 9, 0],5,_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 15, (_position select 1) - 15, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 2, (_position select 1) + 18, 0],(ceil random 5),_difficulty,"Random","AA","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 17, (_position select 1) - 18, 0],5,_difficulty,"AK74_DZ","RPG7V","Random","Soldier1_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 11, (_position select 1) + 9, 0],5,_difficulty,"AK74_DZ","RPG7V","Random","Soldier1_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 15, (_position select 1) - 15, 0],5,_difficulty,"RPK74_DZ","RPG18","Random","Soldier1_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 2, (_position select 1) + 18, 0],5,_difficulty,"PKM_DZ","Strela","Random","Soldier1_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 2, (_position select 1) + 18, 0],5,_difficulty,"SVD_DZ","Igla","Random","Soldier1_DZ","Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Vehicle Patrol
-[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"HMMWV_Avenger_WDL_DZ",_difficulty,_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 55, _position select 1, 0],[(_position select 0) + 17, _position select 1, 0],50,2,"HMMWV_Avenger_WDL_DZ",_difficulty,"US_Soldier_EP1_DZ",_aiType,_mission] call WAI_VehPatrol;
 
 //Drone Patrol
-[[(_position select 0) - 7, (_position select 1) + 19, 0],300,4,"Ka137_MG_PMC",_difficulty,"Nac_Soldier_DZ",_aitype,_mission] call WAI_HeliPatrol;
+[[(_position select 0) - 7, (_position select 1) + 19, 0],300,4,"Ka137_MG_PMC",_difficulty,"US_Soldier_EP1_DZ",_aitype,_mission] call WAI_HeliPatrol;
 
 //Spawn vehicles
 local _vehicle = [["Ka137_PMC","Ka137_MG_PMC","Pchela1T","Pchela1T_CDF","Pchela1T_Old","AH6X_DZ"] call BIS_fnc_selectRandom,[(_position select 0) +11,(_position select 1) -28, 0],_mission, false, 180] call WAI_PublishVeh;
@@ -109,7 +109,7 @@ local _vehicle = [["Ka137_PMC","Ka137_MG_PMC","Pchela1T","Pchela1T_CDF","Pchela1
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

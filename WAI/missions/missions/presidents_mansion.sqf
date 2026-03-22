@@ -63,16 +63,16 @@ local _objects = [[
 ],_position,_mission] call WAI_SpawnObjects;
 
 //Troops
-[_position,5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[_position,(ceil random 5),_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.7149, (_position select 1) + 44.2705, 0],5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 35.6089, (_position select 1) - 11.2735, 0],5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) - 26.1333, (_position select 1) - 45.6035, 0],5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 34.8667, (_position select 1) + 7.63960, 0],5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 37.0000, (_position select 1) + 15.0000, 0],5,_difficulty,"Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 15.0000, (_position select 1) + 60.0000, 0],5,_difficulty,"Random","AA","Random",WAI_StalkerSkin,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //The President and First Lady
 local _office = _objects select 0;
-local _presGroup = [(_office modelToWorld [4.34668,1.2998,-2.028]),1,_difficulty,"Random","","none","Functionary2_EP1","Random",[_aiType,500],_mission] call WAI_SpawnGroup;
+local _presGroup = [(_office modelToWorld [4.34668,1.2998,-2.028]),1,_difficulty,"Revolver_Gold_DZ","","none","Functionary2_EP1","Random",[_aiType,500],_mission] call WAI_SpawnGroup;
 local _firstladyGroup = [(_office modelToWorld [6.52441,1.25781,-2.028]),1,_difficulty,"unarmed","","none","Secretary1","none",[_aiType,0],_mission] call WAI_SpawnGroup;	
 _presGroup setVariable ["DoNotFreeze", true];
 _firstladyGroup setVariable ["DoNotFreeze", true];
@@ -93,7 +93,7 @@ _president spawn {
 };
 
 // Vehicle Patrol
-[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"BAF_Jackal2_L2A1_D_DZ","Random",_aiType,_aiType,_mission] call WAI_VehPatrol;
+[[(_position select 0) + 100, _position select 1, 0],[(_position select 0) + 100, _position select 1, 0],50,2,"HMMWV_Avenger_DES_EP1","Random",WAI_StalkerSkin,_aiType,_mission] call WAI_VehPatrol;
 
 //Heli Paradrop
 [_position,400,"MH60S_DZ","East",[3000,4000],150,1.0,200,10,"Random","Random","AT","Random",WAI_StalkerSkin,"Random",_aiType,true,_mission] spawn WAI_HeliPara;
@@ -101,9 +101,11 @@ _president spawn {
 //Static guns
 [[
 	(_office modelToWorld [15.1953,6.62402,0.471999]),
-	(_office modelToWorld [-13.249,6.74121,0.472008]),
+	(_office modelToWorld [-13.249,6.74121,0.472008])
+],"KORD_high_TK_EP1",_difficulty,WAI_StalkerSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+[[
 	(_office modelToWorld [2.39844,-1.79785,6.71491])
-],"M2StaticMG",_difficulty,WAI_StalkerSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+],"2b14_82mm_INS","Easy",WAI_StalkerSkin,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
 
 [
 	_mission, // Mission number
@@ -116,7 +118,7 @@ _president spawn {
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["assassinate",_president], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;

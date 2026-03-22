@@ -56,19 +56,14 @@ local _loot = if (_aiType == "Hero") then {Loot_BHC select 0;} else {Loot_BHC se
 [[
 	[_loot,WAI_CrateMd,[0,0]]
 ],_position,_mission] call WAI_SpawnCrate;
-/*
-local _class = ["UH60_NAVY_Wreck_DZ","UH60_ARMY_Wreck_DZ","UH60_NAVY_Wreck_burned_DZ","UH60_ARMY_Wreck_burned_DZ"] call BIS_fnc_selectRandom;
 
+local _class = ["UH60_wreck_EP1","MH60S","UH60M_EP1"] call BIS_fnc_selectRandom;
+/*
 // Spawn Objects
 local _objects = [[
 	[_class,[5,5]]
 ],_position,_mission] call WAI_SpawnObjects;
 */
-// Burning wreckage effect
-local _crash = _objects select 0;
-PVDZ_obj_Fire = [_crash, 4, time, false, false];
-publicVariable "PVDZ_obj_Fire";
-_crash setvariable ["fadeFire",false,true];
 
 //Troops
 [_position,5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
@@ -77,13 +72,20 @@ _crash setvariable ["fadeFire",false,true];
 [_position,(ceil random 5),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Static Guns
-[[
+local _grp2 = [[
 	[(_position select 0) + 25, (_position select 1) + 25, 0],
 	[(_position select 0) - 25, (_position select 1) - 25, 0]
-],"BAF_GPMG_Minitripod_W","Easy",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
-[[
+],"Offroad_DSHKM_Gue",_difficulty,_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic;
+local _grp = [[
 	[(_position select 0) + 5, (_position select 1) + 5, 0]
-],"UH60_wreck_EP1","Extreme",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"UH1Wreck"
+],_class,"Extreme",_aiType,_aiType,"Random","Random","Random",_mission] call WAI_SpawnStatic; //"UH1Wreck"
+(units _grp2) joinSilent _grp;
+
+// Burning wreckage effect
+local _crash = vehicle ((units _grp) select 0);
+PVDZ_obj_Fire = [_crash, 4, time, false, false];
+publicVariable "PVDZ_obj_Fire";
+_crash setvariable ["fadeFire",false,true];
 
 [
 	_mission, // Mission number

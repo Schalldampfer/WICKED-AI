@@ -1,6 +1,6 @@
 local _mission = count WAI_MissionData -1;
 local _aiType = _this select 0; // "Bandit" or "Hero"
-local _position = [30] call WAI_FindPos;
+local _position = [30] call WAI_FindPosForest;
 local _name = "Scout Patrol";
 local _startTime = diag_tickTime;
 local _difficulty = "Easy";
@@ -67,7 +67,7 @@ local _loot = if (_aiType == "Hero") then {Loot_ScoutPatrol select 0;} else {Loo
 [_position,(ceil random 3),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 // Spawn Vehicle
-[([WAI_CivilHeli,WAI_CivilVeh] call BIS_fnc_selectRandom),_position,_mission] call WAI_PublishVeh;
+[["Old_moto_TK_Civ_EP1_DZE","TT650_Civ_DZE","TT650_TK_CIV_EP1_DZE","TT650_Ins_DZE","M1030_US_DES_EP1_DZE"],_position,_mission] call WAI_PublishVeh;
 
 [
 	_mission, // Mission number

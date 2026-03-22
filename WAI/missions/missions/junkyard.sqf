@@ -100,8 +100,8 @@ local _loot = if (_aiType == "Hero") then {Loot_Junkyard select 0;} else {Loot_J
 //Troops
 [[(_position select 0) - 2, (_position select 1) - 5, 0],5,_difficulty,"Random","AT","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 19, (_position select 1) + 19, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 17, (_position select 1) + 21, 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 17, (_position select 1) + 21, 0],(ceil random 4),_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 17, (_position select 1) + 21, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 17, (_position select 1) + 21, 0],5,_difficulty,"Random","","Random",_aiType,"Random",_aiType,_mission] call WAI_SpawnGroup;
 
 //Spawn vehicles
 local _vehicle1 = [WAI_SportCars,[(_position select 0) -8,(_position select 1) +7, 0],_mission, false, 180 -44.77] call WAI_PublishVeh;

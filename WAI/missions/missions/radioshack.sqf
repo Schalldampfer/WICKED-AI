@@ -84,8 +84,11 @@ local _loot = if (_aiType == "Hero") then {Loot_Radioshack select 0;} else {Loot
 [[(_position select 0) - 1.2, (_position select 1)  - 20, 0],5,_difficulty,"Random","AT","random",_aiType,"random",[_aiType,150],_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 4, (_position select 1) + 16, 0],5,_difficulty,"Random","AA","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
 [[(_position select 0) - 17, (_position select 1) - 4, 0],5,_difficulty,"Random","AT","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 14, (_position select 1) - 3, 0],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
-[[(_position select 0) + 14, (_position select 1) - 3, 0],(ceil random 5),"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+[[(_position select 0) + 14, (_position select 1) - 3, 0],5,"random","Random","","random",_aiType,"random",_aiType,_mission] call WAI_SpawnGroup;
+
+// Vehicle Patrol
+[[(_position select 0) - 22, (_position select 1) - 56, 0],[(_position select 0) + 22, (_position select 1) + 56, 0],250,2,"LandRover_MG_TK_INS_EP1",_difficulty,"Random",_aiType,_mission] call WAI_VehPatrol;
 
 //Spawn vehicles
 local _vehicle = [WAI_CivilVeh,[(_position select 0) -7.5,(_position select 1) -3, 0],_mission, false, 180] call WAI_PublishVeh;
@@ -101,7 +104,7 @@ local _vehicle = [WAI_CivilVeh,[(_position select 0) -7.5,(_position select 1) -
 	_posIndex,
 	_claimPlayer,
 	true, // show mission marker?
-	true, // make minefields available for this mission
+	false, // make minefields available for this mission
 	["crate"], // Completion type: ["crate"], ["kill"], or ["assassinate", _unitGroup],
 	_messages
 ] spawn WAI_MissionMonitor;
