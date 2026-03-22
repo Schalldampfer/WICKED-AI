@@ -304,11 +304,12 @@ WAI_AcTimeout = 90; // If the claimer leaves the mission area he/she has this mu
 /* STATIC MISSIONS CONFIG */
 WAI_StaticMissions = true; // Enable static missions
 WAI_RandomStatic = false; // This will pick randomly from the list below.
-WAI_StaticLimit = 3; // if WAI_RandomStatic is true, then this is how many random missions will load on startup. if WAI_RandomStatic is false then all missions in the list below will load on startup.
+WAI_StaticLimit = 4; // if WAI_RandomStatic is true, then this is how many random missions will load on startup. if WAI_RandomStatic is false then all missions in the list below will load on startup.
 
 // List the names of your static missions below. This should be the file name minus the .sqf
 WAI_StaticList = [
 	"static",
+	"zoneA",
 	"sector_c",
 	"skalisty_island"
 ];
